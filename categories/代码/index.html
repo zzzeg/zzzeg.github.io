@@ -39,6 +39,10 @@
 			  
 			
 			  
+				<a href="/categories/工具/" class="header-nav-link"  title="工具">工具</a>
+			  
+			
+			  
 				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
 			  
 			
@@ -148,6 +152,66 @@ var CONFIG = {
 	
 	<!--h2>代码</h2-->
     
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2022/04/01/vue3%E4%BD%BF%E7%94%A8element-plus%E5%9B%BE%E6%A0%87/">Vue3使用element-plus图标</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2022-04-01</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>Vue项目中使用Element-plus的Icon图标，包括按钮和动态菜单</p>
+						<div class="read-more">
+							<a href="/2022/04/01/vue3%E4%BD%BF%E7%94%A8element-plus%E5%9B%BE%E6%A0%87/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2022/03/24/vue3+vite/">vite+vue3搭建项目</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2022-03-24</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>vite要求node版本大于12
+						<div class="read-more">
+							<a href="/2022/03/24/vue3+vite/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
     
         
 			<article class="post-abstract">
@@ -330,73 +394,6 @@ var CONFIG = {
 		
 
     
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2020/11/25/svn%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%E5%BF%BD%E7%95%A5node_modules%E6%96%87%E4%BB%B6%E5%A4%B9/">svn提交的时候忽略node_moudules文件夹</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2020-11-25</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>右键空白处&gt;选中TortoiseSVN&gt;设置(settings)&gt;常规设置(General)&gt;Subversion&gt;编辑(edit)&gt;在弹出的config文件中找到global-ignores=“<em>node_modules”，复制一行下来，去掉global-ignores前的#。<br>如果是“文件夹” global-ignores=</em>node_modules<br>如果是”文件“ global-ignores = .project .git<br>中间用空格隔开<br><img src="https://img2018.cnblogs.com/blog/982259/201908/982259-20190820155127746-412002335.png" alt="图"></p>
-
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2019/07/01/Vue%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E8%AE%BF%E9%97%AE/">Vue项目设置局域网访问</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2019-07-01</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>有两种方式：</p>
-<ol>
-<li>修改<code>package.json</code>文件的dev,后面加上<code>--host 0.0.0.0</code>，或者自己的局域网ip地址，例：<code>--host 192.168.0.33</code></li>
-</ol>
-<pre><code>&quot;scripts&quot;: {
-    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0&quot;,
-    &quot;build&quot;: &quot;node build/build.js&quot;,
-    &quot;start&quot;: &quot;npm run build:client &amp;&amp; npm run build:server &amp;&amp; cross-env NODE_ENV=production node server&quot;,
-    &quot;build:client&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.client.conf.js --progress --hide-modules&quot;,
-    &quot;temp&quot;: &quot;node tools/app.js&quot;,
-    &quot;build:server&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.server.conf.js --progress --hide-modules&quot;,
-    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
-    &quot;karma&quot;: &quot;cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run&quot;
-  },</code></pre><p>2.Vue配置文件config下面的index.js把locahost改成0.0.0.0</p>
-<pre><code>dev: {
-    port: 8000,
-    autoOpenBrowser: true,
-    host: &#39;0.0.0.0&#39;,
-}</code></pre>
-					
-				</div>
-			</article>
-		
-
-    
 </section>
 <div class="paginator">
     
@@ -423,7 +420,7 @@ var CONFIG = {
             &copy;
             
             
-            2021
+            2022
             &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
             <a target="_blank" href="https://github.com/iJinxin">zeg</a>
         </p>
