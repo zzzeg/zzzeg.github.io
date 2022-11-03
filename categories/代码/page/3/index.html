@@ -213,7 +213,12 @@ $ git merge temp//合并temp分支到master分支
 $ git branch -d temp//删除temp
 
 //方法三
-$ git pull //更新远程代码到本地</code></pre>
+$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><pre><code>git config --global https.proxy http://127.0.0.1:7890
+git config --global http.proxy http://127.0.0.1:7890
+
+# 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy</code></pre>
 					
 				</div>
 			</article>

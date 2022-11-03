@@ -162,7 +162,7 @@ var CONFIG = {
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#上传"><span class="toc-text">上传</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化仓库"><span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将文件添加到仓库"><span class="toc-text">将文件添加到仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件commit到仓库"><span class="toc-text">文件commit到仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><span class="toc-text">去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上传代码到仓库"><span class="toc-text">上传代码到仓库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一次下载"><span class="toc-text">第一次下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载更新"><span class="toc-text">下载更新</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#上传"><span class="toc-text">上传</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化仓库"><span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将文件添加到仓库"><span class="toc-text">将文件添加到仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件commit到仓库"><span class="toc-text">文件commit到仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><span class="toc-text">去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上传代码到仓库"><span class="toc-text">上传代码到仓库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一次下载"><span class="toc-text">第一次下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载更新"><span class="toc-text">下载更新</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#设置代理"><span class="toc-text">设置代理</span></a></li></ol></li></ol></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
@@ -181,7 +181,12 @@ $ git merge temp//合并temp分支到master分支
 $ git branch -d temp//删除temp
 
 //方法三
-$ git pull //更新远程代码到本地</code></pre>
+$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><pre><code>git config --global https.proxy http://127.0.0.1:7890
+git config --global http.proxy http://127.0.0.1:7890
+
+# 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy</code></pre>
         </div>
         
         <div class="post-tag">

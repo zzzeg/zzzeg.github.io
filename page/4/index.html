@@ -148,6 +148,35 @@ var CONFIG = {
     
         <article class="post-abstract">
             <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/">Vue-quill-editor样式错乱</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-03-08</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>2018年1月19日，项目使用<br>加入富文本编辑器（quillEditor），出现如下问题.</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/373/732/3737323270-5a3bb77255b35_articlex" alt=""></p>
+<p>查询一圈，是因为这玩意儿升级了，css要单独去引用
+                    <div class="read-more">
+                        <a href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
                 <h2><a class="post-title-link" href="/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/">Vue快速搭建</a></h2>
             </div>
             <div class="post-meta">
@@ -348,32 +377,6 @@ console.log(a);// 1,2,3  不改变本身  </code></pre>
                             <i class="iconfont icon-readmore"></i>
                         </a>
                     </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/">a.js里调用b.js的方法</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-04-16</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>在调用之前，引入如下4行代码即可 </p>
-<pre><code>new_element=document.createElement(&quot;script&quot;);   
-new_element.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);   
-new_element.setAttribute(&quot;src&quot;,&quot;b.js&quot;);  
-document.body.appendChild(new_element);  </code></pre><p>分析：利用document.createElement(“script”)生成了一个script的标签，设置其type属性为text/javascript，src为a.js(这里的a.js同b.js放在同一个目录，也可放在不同的目录)。最后将这个标签动态地加入body中。如此一来，我们就可以调用到不同js文件中的方法了</p>
-
                 
             </div>
         </article>

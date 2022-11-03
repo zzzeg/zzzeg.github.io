@@ -148,6 +148,32 @@ var CONFIG = {
     
         <article class="post-abstract">
             <div class="post-title">
+                <h2><a class="post-title-link" href="/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/">a.js里调用b.js的方法</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2016-04-16</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>在调用之前，引入如下4行代码即可 </p>
+<pre><code>new_element=document.createElement(&quot;script&quot;);   
+new_element.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);   
+new_element.setAttribute(&quot;src&quot;,&quot;b.js&quot;);  
+document.body.appendChild(new_element);  </code></pre><p>分析：利用document.createElement(“script”)生成了一个script的标签，设置其type属性为text/javascript，src为a.js(这里的a.js同b.js放在同一个目录，也可放在不同的目录)。最后将这个标签动态地加入body中。如此一来，我们就可以调用到不同js文件中的方法了</p>
+
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
                 <h2><a class="post-title-link" href="/2015/03/07/filter%E6%BB%A4%E9%95%9C/">filter滤镜</a></h2>
             </div>
             <div class="post-meta">
@@ -348,35 +374,6 @@ filter:alpha(opacity=50);
             </div>
         </article>
     
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2014/05/14/%E6%97%85%E9%80%94%E9%9A%8F%E6%84%9F/">旅途随感</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2014-05-14</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E6%97%A5%E5%B8%B8%E5%BF%83%E6%83%85/">日常心情</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>五月，下了一场很长很长的暴雨…<br>　　不知道期待了多久的雨过天晴，却迟迟未至，屋里充斥着气息君的低吟。雨天，是个调皮的坏姑娘，总是拦着我的脚步，陪她在家里玩耍…</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/6f26315cgw1ejbg4tg69xj21kw11xtwz.jpg" alt="赣州浮桥"></p>
-<p>　　不知何时，习惯独自旅行，背着行囊，掠过层层叠叠的风景，情不自禁中拍下了许多照片留念，想把所有好的、美的、有趣的事物都留在自己的相机里、回忆里…可是，随着旅行的次数越来越多，时间的更迭，逐渐发现，即使是在此来到最美好的地方，还是孤身一人，而身临佳境的欢愉，一个不用朋友圈的人，竟不知要与何人分享。那个瞬间，突然有所感慨，原来一路走到现在，生活中所有与自己擦肩的人都成了过客，并没有谁一直做伴，看尽旅途…<br>
-                    <div class="read-more">
-                        <a href="/2014/05/14/%E6%97%85%E9%80%94%E9%9A%8F%E6%84%9F/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
 </div>
 <div class="paginator">
     
@@ -386,6 +383,11 @@ filter:alpha(opacity=50);
             上一页
         </a>
         
+        
+        <a class="next" href="/page/6/">
+            下一页
+            <i class="iconfont icon-next"></i>
+        </a>
         
     
 </div>
