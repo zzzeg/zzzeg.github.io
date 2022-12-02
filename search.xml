@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Vue快速搭建</title>
+    <url>/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>截止到这篇文章发布，搭建开发环境用到的组件、工具：<a href="http://lib.csdn.net/base/nodejs" target="_blank" rel="noopener" title="Node.js知识库">Node.js</a> 8.2.1、npm 5.3.0、webpack 2.6.1、sublime3<br> <a id="more"></a><br>现在开始安装环境</p>
+<h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a><a href="#安装nodejs" title="安装nodejs"></a>安装nodejs</h4><p>可以在终端里下载，但是不推荐，npm的版本会报错<br>去nodejs官网下载即可，地址：<a href="http://nodejs.cn/" target="_blank" rel="noopener">http://nodejs.cn/</a>中文网</p>
+<h4 id="安装vue淘宝镜像"><a href="#安装vue淘宝镜像" class="headerlink" title="安装vue淘宝镜像"></a><a href="#安装vue淘宝镜像" title="安装vue淘宝镜像"></a>安装vue淘宝镜像</h4><pre><code>npm install -g vue –registry=https://registry.npm.taobao.org  </code></pre><h4 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a><a href="#安装webpack" title="安装webpack"></a>安装webpack</h4><pre><code>npm install webpack -g  </code></pre><h4 id="安装vue脚手架"><a href="#安装vue脚手架" class="headerlink" title="安装vue脚手架"></a><a href="#安装vue脚手架" title="安装vue脚手架"></a>安装vue脚手架</h4><pre><code>npm install vue-cli -g  </code></pre><p>—————-如果第二次编写新的vue项目，就可以在这里开始了—————–</p>
+<h4 id="根据模板创建项目"><a href="#根据模板创建项目" class="headerlink" title="根据模板创建项目"></a><a href="#根据模板创建项目" title="根据模板创建项目"></a>根据模板创建项目</h4><p>vue init webpack 项目名字&lt;项目名字不能用中文&gt;<br>接着开始下载 vue2.0模板，网络不好的下载前最好启动ssh (连接代理，否则过程会比较漫长)…</p>
+<h4 id="会有一些初始化的设置，如下输入"><a href="#会有一些初始化的设置，如下输入" class="headerlink" title="会有一些初始化的设置，如下输入:"></a><a href="#会有一些初始化的设置，如下输入" title="会有一些初始化的设置，如下输入:"></a>会有一些初始化的设置，如下输入:</h4><pre><code>Project name (vue-test) 直接回车默认  
+Project description (A Vue.js project) 直接回车默认  
+Author 直接回车默认  
+Install vue-router? (Y/n) Y  
+Use ESLint to lint your code? (Y/n) n  
+Setup unit tests with Karma + Mocha? (Y/n) n (单元测试不需要)  
+Setup e2e tests with Nightwatch? (Y/n) n (单元测试不需要)  </code></pre><p><strong>进入项目<br>win + R 键 输入 cmd<br>cd 项目名字 或者 cd /d 盘符:\项目名<br>例： cd /d e:\webs</strong></p>
+<h4 id="安装项目依赖"><a href="#安装项目依赖" class="headerlink" title="安装项目依赖"></a><a href="#安装项目依赖" title="安装项目依赖"></a>安装项目依赖</h4><pre><code>npm install  //下载node_modules文件夹的过程，这个文件夹不能拷贝，拷贝会导致各种错误...  </code></pre><h4 id="安装需要用到的组件"><a href="#安装需要用到的组件" class="headerlink" title="安装需要用到的组件"></a><a href="#安装需要用到的组件" title="安装需要用到的组件"></a>安装需要用到的组件</h4><pre><code>\- (1)npm install sass-loader --save-dev  
+\- (2)npm install gulp-sass --save  
+\- (3)npm install less --save  
+\- (4)npm install less-loader --save      // sass和less 二选一就行  
+\- (5)npm install --save axios   
+\- (6)npm install element-ui@1.4.2 -S   
+\- (7)npm install vuex --save   
+\- (8)npm install moment      // 日期格式化  
+\- (9)npm install vue-router vue-resource --save   // 路由模块vue-router和网络请求模块vue-resource  </code></pre><h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a><a href="#启动项目" title="启动项目"></a>启动项目</h4><pre><code>npm run dev  </code></pre><h4 id="发布项目"><a href="#发布项目" class="headerlink" title="发布项目"></a><a href="#发布项目" title="发布项目"></a>发布项目</h4><pre><code>npm run build  </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Vue-quill-editor样式错乱</title>
+    <url>/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/</url>
+    <content><![CDATA[<p>2018年1月19日，项目使用<br>加入富文本编辑器（quillEditor），出现如下问题.</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/373/732/3737323270-5a3bb77255b35_articlex" alt=""></p>
+<p>查询一圈，是因为这玩意儿升级了，css要单独去引用  <a id="more"></a></p>
+<pre><code>import &#39;quill/dist/quill.core.css&#39;  
+import &#39;quill/dist/quill.snow.css&#39;  
+import &#39;quill/dist/quill.bubble.css&#39;  </code></pre><p>全局引用就丢在main.js，局部丢在相关vue文件内的 export default 上方  </p>
+<h3 id="附上引入以及使用方法："><a href="#附上引入以及使用方法：" class="headerlink" title="附上引入以及使用方法："></a><a href="#附上引入以及使用方法：" title="附上引入以及使用方法："></a>附上引入以及使用方法：</h3><p>安装：  </p>
+<pre><code>npm install vue-quill-editor --save  </code></pre><p>1)在main.js中引入  </p>
+<pre><code>import vueQuillEditor from &#39;vue-quill-editor&#39; // 引入富文本工具  </code></pre><p>2)在main.js中使用  </p>
+<pre><code>Vue.use(vueQuillEditor)  </code></pre><p>3) 页面上</p>
+<pre><code>&lt;quill-editor ref=&quot;myTextEditor&quot;  
+ :content=&quot;content&quot;//内容对应的字段  
+ :options = &quot;editorOption&quot;  
+ @change=&quot;onEditorChange($event)&quot;&gt;//内容改变事件  
+&lt;/quill-editor&gt;  </code></pre><p>4) js  </p>
+<pre><code>export default {  
+components: {  
+quillEditor  
+},data(){  
+content:&quot;&quot;  
+}  </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hexo动态个性标题</title>
+    <url>/2018/11/28/Hexo%E5%8A%A8%E6%80%81%E4%B8%AA%E6%80%A7%E6%A0%87%E9%A2%98/</url>
+    <content><![CDATA[<p>装完乱七八糟的东西之后，发现网站title一直是同一个内容，翻到模版<code>head.ejs</code>里，当前配置的title改为  </p>
+<pre><code>&lt;title&gt;&lt;%= page.title ? page.title : config.title %&gt;&lt;/title&gt;  </code></pre><p>即可有动态title</p>
+<a id="more"></a>
+<p>在查资料看别人的博客时，发现一个比较有趣的效果：<a href="https://liuzhichao.com/" target="_blank" rel="noopener">https://liuzhichao.com/</a></p>
+<p>经查，通过document.hidden属性判断当前页面是否是激活状态<br>兼容性：IE10+，Firefox10+,Chrome14+,Opera12.1+,Safari7.1+<br>加在页面底部的js代码：  </p>
+<pre><code>var hiddenProperty = &#39;hidden&#39; in document ? &#39;hidden&#39; :   
+ &#39;webkitHidden&#39; in document ? &#39;webkitHidden&#39; :   
+ &#39;mozHidden&#39; in document ? &#39;mozHidden&#39; :   
+ null;  
+var realTitle = &#39;&lt;%= page.title ? page.title : config.title %&gt;&#39;;  
+var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, &#39;visibilitychange&#39;);  
+var onVisibilityChange = function(){  
+ if (!document\[hiddenProperty\]) {  
+ document.title = realTitle;  
+ }else{  
+ document.title = &#39;藏起来啦 (*´∇｀*)&#39;;  
+ }  
+}  
+document.addEventListener(visibilityChangeEvent, onVisibilityChange); </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>a.js里调用b.js的方法</title>
+    <url>/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>在调用之前，引入如下4行代码即可 </p>
+<pre><code>new_element=document.createElement(&quot;script&quot;);   
+new_element.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);   
+new_element.setAttribute(&quot;src&quot;,&quot;b.js&quot;);  
+document.body.appendChild(new_element);  </code></pre><p>分析：利用document.createElement(“script”)生成了一个script的标签，设置其type属性为text/javascript，src为a.js(这里的a.js同b.js放在同一个目录，也可放在不同的目录)。最后将这个标签动态地加入body中。如此一来，我们就可以调用到不同js文件中的方法了</p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Vue里push方法的视图不更新</title>
     <url>/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/</url>
     <content><![CDATA[<p>在js里面写的xxx[‘n’] = []，触发push后，视图没及时更新  </p>
@@ -34,68 +128,18 @@ vm.b = 2
       </tags>
   </entry>
   <entry>
-    <title>Vue-quill-editor样式错乱</title>
-    <url>/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/</url>
-    <content><![CDATA[<p>2018年1月19日，项目使用<br>加入富文本编辑器（quillEditor），出现如下问题.</p>
-<p><img src="https://sfault-image.b0.upaiyun.com/373/732/3737323270-5a3bb77255b35_articlex" alt=""></p>
-<p>查询一圈，是因为这玩意儿升级了，css要单独去引用  <a id="more"></a></p>
-<pre><code>import &#39;quill/dist/quill.core.css&#39;  
-import &#39;quill/dist/quill.snow.css&#39;  
-import &#39;quill/dist/quill.bubble.css&#39;  </code></pre><p>全局引用就丢在main.js，局部丢在相关vue文件内的 export default 上方  </p>
-<h3 id="附上引入以及使用方法："><a href="#附上引入以及使用方法：" class="headerlink" title="附上引入以及使用方法："></a><a href="#附上引入以及使用方法：" title="附上引入以及使用方法："></a>附上引入以及使用方法：</h3><p>安装：  </p>
-<pre><code>npm install vue-quill-editor --save  </code></pre><p>1)在main.js中引入  </p>
-<pre><code>import vueQuillEditor from &#39;vue-quill-editor&#39; // 引入富文本工具  </code></pre><p>2)在main.js中使用  </p>
-<pre><code>Vue.use(vueQuillEditor)  </code></pre><p>3) 页面上</p>
-<pre><code>&lt;quill-editor ref=&quot;myTextEditor&quot;  
- :content=&quot;content&quot;//内容对应的字段  
- :options = &quot;editorOption&quot;  
- @change=&quot;onEditorChange($event)&quot;&gt;//内容改变事件  
-&lt;/quill-editor&gt;  </code></pre><p>4) js  </p>
-<pre><code>export default {  
-components: {  
-quillEditor  
-},data(){  
-content:&quot;&quot;  
-}  </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>a.js里调用b.js的方法</title>
-    <url>/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>在调用之前，引入如下4行代码即可 </p>
-<pre><code>new_element=document.createElement(&quot;script&quot;);   
-new_element.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);   
-new_element.setAttribute(&quot;src&quot;,&quot;b.js&quot;);  
-document.body.appendChild(new_element);  </code></pre><p>分析：利用document.createElement(“script”)生成了一个script的标签，设置其type属性为text/javascript，src为a.js(这里的a.js同b.js放在同一个目录，也可放在不同的目录)。最后将这个标签动态地加入body中。如此一来，我们就可以调用到不同js文件中的方法了</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Hexo动态个性标题</title>
-    <url>/2018/11/28/Hexo%E5%8A%A8%E6%80%81%E4%B8%AA%E6%80%A7%E6%A0%87%E9%A2%98/</url>
-    <content><![CDATA[<p>装完乱七八糟的东西之后，发现网站title一直是同一个内容，翻到模版<code>head.ejs</code>里，当前配置的title改为  </p>
-<pre><code>&lt;title&gt;&lt;%= page.title ? page.title : config.title %&gt;&lt;/title&gt;  </code></pre><p>即可有动态title</p>
+    <title>elementui的click事件绑定无效解决方案</title>
+    <url>/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p>做步骤条的时候，加click没生效，想点击步骤直接跳转<br><img src="https://image-static.segmentfault.com/418/389/4183891061-59967d2472d13_articlex" alt=""><br>图片来自<a href="https://segmentfault.com/q/1010000010731358" target="_blank" rel="noopener">segmentfault</a></p>
 <a id="more"></a>
-<p>在查资料看别人的博客时，发现一个比较有趣的效果：<a href="https://liuzhichao.com/" target="_blank" rel="noopener">https://liuzhichao.com/</a></p>
-<p>经查，通过document.hidden属性判断当前页面是否是激活状态<br>兼容性：IE10+，Firefox10+,Chrome14+,Opera12.1+,Safari7.1+<br>加在页面底部的js代码：  </p>
-<pre><code>var hiddenProperty = &#39;hidden&#39; in document ? &#39;hidden&#39; :   
- &#39;webkitHidden&#39; in document ? &#39;webkitHidden&#39; :   
- &#39;mozHidden&#39; in document ? &#39;mozHidden&#39; :   
- null;  
-var realTitle = &#39;&lt;%= page.title ? page.title : config.title %&gt;&#39;;  
-var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, &#39;visibilitychange&#39;);  
-var onVisibilityChange = function(){  
- if (!document\[hiddenProperty\]) {  
- document.title = realTitle;  
- }else{  
- document.title = &#39;藏起来啦 (*´∇｀*)&#39;;  
- }  
-}  
-document.addEventListener(visibilityChangeEvent, onVisibilityChange); </code></pre>]]></content>
+<p>代码：  </p>
+<pre><code>&lt;el-steps :active=&quot;activeCheck&quot; finish-status=&quot;success&quot;&gt;  
+　&lt;el-step @click=&quot;activeCheck = index&quot; :title=&quot;stepse.stepName&quot; v-for=&quot;(stepse, index) in itemList&quot;&gt;&lt;/el-step&gt;  
+&lt;/el-steps&gt;  </code></pre><p>试了试click在别的地方加也不行，只对button有用，查了半天查到一个遇到相同问题的文章里被采纳的第一条<a href="https://jsfiddle.net/1m6kkqgg/" target="_blank" rel="noopener">回答</a>，蛋事没vpn打不开。<br>最终在<a href="https://segmentfault.com/q/1010000008874997" target="_blank" rel="noopener">另一篇文章</a>找到解决方案。原来在<code>@click.native=’functionName’</code> 就可以了.  </p>
+<pre><code>&lt;el-steps :active=&quot;activeCheck&quot; finish-status=&quot;success&quot;&gt;  
+　&lt;el-step @click.native=&quot;activeCheck = index&quot; :title=&quot;stepse.stepName&quot; v-for=&quot;(stepse, index) in itemList&quot;&gt;&lt;/el-step&gt;  
+&lt;/el-steps&gt;  </code></pre><p>结论：是这个库某些地方把原生的click禁用了</p>
+]]></content>
       <categories>
         <category>代码</category>
       </categories>
@@ -130,6 +174,82 @@ document.addEventListener(visibilityChangeEvent, onVisibilityChange); </code></p
       </tags>
   </entry>
   <entry>
+    <title>github+Hexo搭建博客</title>
+    <url>/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>　　以前用wordpress写的博客，因为疏于更新后台，被勤劳的小蜜蜂们各种挂马，服务商给我下通牒的时候我才知道，记录的东西也丢失了七七八八。最近闲下来在看nodejs相关的资料时，无意间了解到hexo，然后决定入坑.  </p>
+<a id="more"></a>
+<h3 id="安装篇："><a href="#安装篇：" class="headerlink" title="安装篇："></a><a href="#安装篇：" title="安装篇："></a>安装篇：</h3><h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a><a href="#nodejs" title="nodejs"></a>nodejs</h4><p>　下软件就行了</p>
+<h4 id="git"><a href="#git" class="headerlink" title="git"></a><a href="#git" title="git"></a>git</h4><p>　下软件看说明各种下一步结束</p>
+<h4 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a><a href="#hexo" title="hexo"></a>hexo</h4><p>　创建个文件夹来存放当前项目，并且，在该目录下右键菜单 选择： git bash</p>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a><a href="#初始化" title="初始化"></a>初始化</h5><p>在新开窗口下疯狂码字：  </p>
+<pre><code>git config –-global user.name &quot;zhangsan&quot;  //(&quot;&quot;里的账号是刚才Github里面自己注册的账号)   
+git config –-global user.email &quot;123456789@qq.com&quot; //(&quot;&quot;里的邮箱是注册的github邮箱)  
+
+// 生成密钥到github  
+cd ~/.ssh   
+ssh-keygen -t rsa -C &quot;123456789@qq.com&quot;   
+
+然后打开  
+C:\\Users\\username.ssh 文件夹，复制 id_rsa.pub文件里的内容，丢到github上的sshKey上  
+途径：github-&gt;settings-&gt;SSH and GPG key-&gt;new ssh key  
+
+不进行这两步，以后提交代码的时候要输帐号密码  
+
+npm install  
+npm install -g hexo-cli  // 第一次使用hexo要安装  成功后下一步  
+hexo init  </code></pre><p>到这模版就创建好了。蛋事，模版毕竟是模版，还是要自己修改一下配置信息</p>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a href="#配置" title="配置"></a>配置</h5><p>根目录下的 <code>_config.yml</code> 文件，某些东西一定要改  </p>
+<pre><code>title: xxx  # 博客名，站点名称  
+author: xxx # 博客作者名字  
+description: xxx # 对站点的描述，搜索引擎会抓取，可以自定义  
+language: zh-CN # 语言 简体中文  
+theme: sky  # 配置的主题名  </code></pre><p>这样，一个站点的基础配置就完了</p>
+<p>想要发布到github上，也要做跟github”关联”的配置，一样在<code>_config.yml</code> 最底下追加内容  </p>
+<pre><code>deploy:     # 部署相关配置  
+ type: git     # 使用 Git 提交  
+ repository: git@github.com/username/username.github.io.git # 博客的仓库地址，仓库名最好是 用户名.github.io   
+ branch: master    # 分支名称  </code></pre><h5 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a><a href="#创建文章" title="创建文章"></a>创建文章</h5><p>初始化完毕就可以创建文章了  </p>
+<pre><code>hexo new &quot;xxxx&quot;  </code></pre><p>在hexo/source/_posts下生成：”xxxx”文件夹、”xxxx.md”这俩.”xxxx.md”就是markdown语法的文章，文件夹目前还不知道干啥的，以后更新，我是直接在编辑器里，打开_posts文件夹，直接新建”a.md”文件，省去了文件夹，编译下来也没什么不一样。<br>创建后的页面内容如下：  </p>
+<pre><code>\-\-\-  
+title: 标题  
+date: 2018-11-20 11:26:00 # 时间  
+tags: 标签  
+categories: 分类  
+\-\-\-  
+内容  </code></pre><p>标签和分类，当在页面有填入对应的值时，会自动创建分类，如果要手动创建分类页面  </p>
+<pre><code>hexo new page &quot;categories&quot;  </code></pre><h5 id="发布网站"><a href="#发布网站" class="headerlink" title="发布网站"></a><a href="#发布网站" title="发布网站"></a>发布网站</h5><p>发布之前要装个git的插件,不然<code>hexo d</code>会报错</p>
+<pre><code>npm install hexo-deployer-git --save</code></pre><p>文章写完，发布到github上  </p>
+<pre><code>hexo clean     // 清除缓存  
+hexo g       // 生成  
+hexo s         // 启动本地服务查看，默认 localhost:4000//  
+hexo s -p 5000  假如4000端口被占用，更改其他端口启动服务  
+hexo d        // 发布到github上  
+
+也可以一次性执行：  
+hexo clean &amp;&amp; hexo g &amp;&amp; hexo s  </code></pre><h3 id="装完吐槽"><a href="#装完吐槽" class="headerlink" title="装完吐槽"></a><a href="#装完吐槽篇（踩坑之路）" title="装完吐槽篇（踩坑之路）"></a>装完吐槽</h3><p>　　最初，考虑到自己的英文水平不怎样，看github略困难，谷歌浏览器没梯子不能翻译，了解到方便的国内代码托管平台有不少，在下试用了coding.net、码云、腾讯云：</p>
+<ul>
+<li><p>coding.net使用感觉还不错，私有仓库、pages服务免费，并且<code>Enforce https</code>可以不用长时间的等解析，证书也是秒生成，不带https的请求也都一并强制了https，非常舒服。<br>但是coding.net被腾讯注资了，到处是”转移到腾讯云获得更好的服务”诸如此类的信息。看到这类提示，强迫症表示不点不舒服，点之，一路”下一步”进入马总的怀抱…然后回不来了，每次登录到coding.net就跳转腾讯云，真是手贱当斩！</p>
+</li>
+<li><p>腾讯云的托管系统界面和操作都跟coding.net基本没差别，初用也很顺滑，唯一查到的区别就是腾讯云的代码托管有隐藏的容量限制，没达到之前不会告诉你的(好像是总量10G)，要突破还得去找客服申请，而coding没有。想想也没关系，个人用户一般没事，然后绑定域名开启https一气呵成。然后，第二天打开这博客地址的时候，慌的一批，F12看到，页面加载2min，一个几kb的小图片加载20s，2kb的css加载16s，这公网服务速度真是没的说…<br>　我：页面这么慢怎么办？<br>　tx：<a href="https://imgsa.baidu.com/forum/w%3D580/sign=96ce82539b529822053339cbe7c87b3b/3a1f78310a55b3193b293ce148a98226cdfc17aa.jpg" target="_blank" rel="noopener">年轻人，你这个问题非常好，其实“点这”就可以解决的</a><br>　我：再见来不及挥手~</p>
+</li>
+<li><p>码云，体验还行，界面都是中文的，操作也还算顺手，但是pages服务和自定义域名要收钱，再见码云~</p>
+</li>
+<li><p>github，绕一圈又回到github，英文界面不习惯，走投无路的心情下，用着用着也就舒服了，只有一处坑，就是配置https：解析<code>Enforce https</code>一直点不上，一直提示配置不对。杠了半天，发现要添加域名解析A记录到185.199.109.153，然后把<code>Custom domain</code>下的域名删掉之后，等个五六七八个小时后，再重新添加域名进去，然后再等个十几分钟，就可以勾选了</p>
+</li>
+</ul>
+<h3 id="为博客安装评论"><a href="#为博客安装评论" class="headerlink" title="为博客安装评论"></a><a href="#为博客安装评论" title="为博客安装评论"></a>为博客安装评论</h3><h4 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a><a href="#Gitment" title="Gitment"></a>Gitment</h4><p>第一接触的评论插件是Gitment，自带的landscape主题也是用这玩意儿，必须要github帐号登录才能评论，又是注册 OAuth Application，又是配置callback乱七八糟的东西，排除了种种错误之后，在知乎上某篇文章了解到gitment作者弃坑了，要用gitment，得自己搭建服务器才行。</p>
+<h4 id="valine"><a href="#valine" class="headerlink" title="valine"></a><a href="#valine" title="valine"></a>valine</h4><p>折腾过gitment之后，再看valine，它简直就是个jquery插件。Valine依赖于Leancloud的后端服务，去leanclould注册一个账号，按部就班的<a href="https://valine.js.org/quickstart.html" target="_blank" rel="noopener">配置</a>一下就行。里面分为免费版和商业版还有企业版，免费版有一定限制首先API请求每天30000，最大10GB的储存空间，支持markdown语法。有点点不好的就是不会markdown语法的读者不好传图片。还有，由于是免登陆插件，所以这个评论没管理员概念，不会提示谁是当前作者。<strong>目前本站用的就是这个。</strong></p>
+<h4 id="hypercomments"><a href="#hypercomments" class="headerlink" title="hypercomments"></a><a href="#hypercomments" title="hypercomments"></a>hypercomments</h4><p>这个麻瓜以前免费，现在不免费了，不想讲了</p>
+<h4 id="gitalk"><a href="#gitalk" class="headerlink" title="gitalk"></a><a href="#gitalk" title="gitalk"></a>gitalk</h4><p>安装教程：<a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md" target="_blank" rel="noopener">https://github.com/gitalk/gitalk/blob/master/readme-cn.md</a></p>
+<h3 id="装后优化篇-（2020-1-10）"><a href="#装后优化篇-（2020-1-10）" class="headerlink" title="装后优化篇 （2020-1-10）"></a>装后优化篇 （2020-1-10）</h3><h4 id="上传github-后-自定义域名的坑"><a href="#上传github-后-自定义域名的坑" class="headerlink" title="上传github 后 自定义域名的坑"></a>上传github 后 自定义域名的坑</h4><p>域名解析，到域名解析界面增加一个CNAME记录，值为Username.github.io就行<br>然后进入<code>(https://github.com/Username/Username.github.io/)</code>，选择settings，找到Custom domain输入自己的域名<br>然后一定要在源文件根目录的source 文件夹下，新建一个名字为“CNAME”的文件，没后缀，内容写自己的域名，保存/生成/发布  ，不然每次<code>hexo d</code>,都要去重新绑定域名</p>
+<h3 id="填坑篇"><a href="#填坑篇" class="headerlink" title="填坑篇"></a>填坑篇</h3><h4 id="hexo-g-不生成style-css，导致整个站点没有style-css文件"><a href="#hexo-g-不生成style-css，导致整个站点没有style-css文件" class="headerlink" title="hexo g 不生成style.css，导致整个站点没有style.css文件"></a>hexo g 不生成style.css，导致整个站点没有style.css文件</h4><p>找了几种办法，改_config.yml的url，root，安装什么<code>hexo-renderer-stylus</code>什么的都是假的，真正原因在主题里，把style.css加到themes-themename-source-css里，就完事了</p>
+<p><a href="https://www.jianshu.com/p/ea1eb11db63f" target="_blank" rel="noopener">markdown图床</a></p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
     <title>git日常</title>
     <url>/2018/06/28/git%E6%97%A5%E5%B8%B8/</url>
     <content><![CDATA[<h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><pre><code>git init</code></pre><h4 id="将文件添加到仓库"><a href="#将文件添加到仓库" class="headerlink" title="将文件添加到仓库"></a>将文件添加到仓库</h4><pre><code>git add .</code></pre><h4 id="文件commit到仓库"><a href="#文件commit到仓库" class="headerlink" title="文件commit到仓库"></a>文件commit到仓库</h4><pre><code>git commit -m &#39;注释&#39;</code></pre><h4 id="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><a href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上" class="headerlink" title="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"></a>去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</h4><pre><code>git remote add origin 仓库的地址</code></pre><h4 id="上传代码到仓库"><a href="#上传代码到仓库" class="headerlink" title="上传代码到仓库"></a>上传代码到仓库</h4><pre><code>git push -u origin master</code></pre><p>执行完没问题就完事了，如果上传失败，可能是因为README.md没下载下来，先下载再上传</p>
@@ -157,33 +277,6 @@ git config --global --unset https.proxy</code></pre>]]></content>
       <tags>
         <tag>git</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Vue快速搭建</title>
-    <url>/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p>截止到这篇文章发布，搭建开发环境用到的组件、工具：<a href="http://lib.csdn.net/base/nodejs" target="_blank" rel="noopener" title="Node.js知识库">Node.js</a> 8.2.1、npm 5.3.0、webpack 2.6.1、sublime3<br> <a id="more"></a><br>现在开始安装环境</p>
-<h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a><a href="#安装nodejs" title="安装nodejs"></a>安装nodejs</h4><p>可以在终端里下载，但是不推荐，npm的版本会报错<br>去nodejs官网下载即可，地址：<a href="http://nodejs.cn/" target="_blank" rel="noopener">http://nodejs.cn/</a>中文网</p>
-<h4 id="安装vue淘宝镜像"><a href="#安装vue淘宝镜像" class="headerlink" title="安装vue淘宝镜像"></a><a href="#安装vue淘宝镜像" title="安装vue淘宝镜像"></a>安装vue淘宝镜像</h4><pre><code>npm install -g vue –registry=https://registry.npm.taobao.org  </code></pre><h4 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a><a href="#安装webpack" title="安装webpack"></a>安装webpack</h4><pre><code>npm install webpack -g  </code></pre><h4 id="安装vue脚手架"><a href="#安装vue脚手架" class="headerlink" title="安装vue脚手架"></a><a href="#安装vue脚手架" title="安装vue脚手架"></a>安装vue脚手架</h4><pre><code>npm install vue-cli -g  </code></pre><p>—————-如果第二次编写新的vue项目，就可以在这里开始了—————–</p>
-<h4 id="根据模板创建项目"><a href="#根据模板创建项目" class="headerlink" title="根据模板创建项目"></a><a href="#根据模板创建项目" title="根据模板创建项目"></a>根据模板创建项目</h4><p>vue init webpack 项目名字&lt;项目名字不能用中文&gt;<br>接着开始下载 vue2.0模板，网络不好的下载前最好启动ssh (连接代理，否则过程会比较漫长)…</p>
-<h4 id="会有一些初始化的设置，如下输入"><a href="#会有一些初始化的设置，如下输入" class="headerlink" title="会有一些初始化的设置，如下输入:"></a><a href="#会有一些初始化的设置，如下输入" title="会有一些初始化的设置，如下输入:"></a>会有一些初始化的设置，如下输入:</h4><pre><code>Project name (vue-test) 直接回车默认  
-Project description (A Vue.js project) 直接回车默认  
-Author 直接回车默认  
-Install vue-router? (Y/n) Y  
-Use ESLint to lint your code? (Y/n) n  
-Setup unit tests with Karma + Mocha? (Y/n) n (单元测试不需要)  
-Setup e2e tests with Nightwatch? (Y/n) n (单元测试不需要)  </code></pre><p><strong>进入项目<br>win + R 键 输入 cmd<br>cd 项目名字 或者 cd /d 盘符:\项目名<br>例： cd /d e:\webs</strong></p>
-<h4 id="安装项目依赖"><a href="#安装项目依赖" class="headerlink" title="安装项目依赖"></a><a href="#安装项目依赖" title="安装项目依赖"></a>安装项目依赖</h4><pre><code>npm install  //下载node_modules文件夹的过程，这个文件夹不能拷贝，拷贝会导致各种错误...  </code></pre><h4 id="安装需要用到的组件"><a href="#安装需要用到的组件" class="headerlink" title="安装需要用到的组件"></a><a href="#安装需要用到的组件" title="安装需要用到的组件"></a>安装需要用到的组件</h4><pre><code>\- (1)npm install sass-loader --save-dev  
-\- (2)npm install gulp-sass --save  
-\- (3)npm install less --save  
-\- (4)npm install less-loader --save      // sass和less 二选一就行  
-\- (5)npm install --save axios   
-\- (6)npm install element-ui@1.4.2 -S   
-\- (7)npm install vuex --save   
-\- (8)npm install moment      // 日期格式化  
-\- (9)npm install vue-router vue-resource --save   // 路由模块vue-router和网络请求模块vue-resource  </code></pre><h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a><a href="#启动项目" title="启动项目"></a>启动项目</h4><pre><code>npm run dev  </code></pre><h4 id="发布项目"><a href="#发布项目" class="headerlink" title="发布项目"></a><a href="#发布项目" title="发布项目"></a>发布项目</h4><pre><code>npm run build  </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
   </entry>
   <entry>
     <title>filter滤镜</title>
@@ -284,23 +377,6 @@ W3C代码：background:-webkit-linear-gradient(#000000 0, #ffffff 100%);  </code
       </tags>
   </entry>
   <entry>
-    <title>elementui的click事件绑定无效解决方案</title>
-    <url>/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<p>做步骤条的时候，加click没生效，想点击步骤直接跳转<br><img src="https://image-static.segmentfault.com/418/389/4183891061-59967d2472d13_articlex" alt=""><br>图片来自<a href="https://segmentfault.com/q/1010000010731358" target="_blank" rel="noopener">segmentfault</a></p>
-<a id="more"></a>
-<p>代码：  </p>
-<pre><code>&lt;el-steps :active=&quot;activeCheck&quot; finish-status=&quot;success&quot;&gt;  
-　&lt;el-step @click=&quot;activeCheck = index&quot; :title=&quot;stepse.stepName&quot; v-for=&quot;(stepse, index) in itemList&quot;&gt;&lt;/el-step&gt;  
-&lt;/el-steps&gt;  </code></pre><p>试了试click在别的地方加也不行，只对button有用，查了半天查到一个遇到相同问题的文章里被采纳的第一条<a href="https://jsfiddle.net/1m6kkqgg/" target="_blank" rel="noopener">回答</a>，蛋事没vpn打不开。<br>最终在<a href="https://segmentfault.com/q/1010000008874997" target="_blank" rel="noopener">另一篇文章</a>找到解决方案。原来在<code>@click.native=’functionName’</code> 就可以了.  </p>
-<pre><code>&lt;el-steps :active=&quot;activeCheck&quot; finish-status=&quot;success&quot;&gt;  
-　&lt;el-step @click.native=&quot;activeCheck = index&quot; :title=&quot;stepse.stepName&quot; v-for=&quot;(stepse, index) in itemList&quot;&gt;&lt;/el-step&gt;  
-&lt;/el-steps&gt;  </code></pre><p>结论：是这个库某些地方把原生的click禁用了</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
     <title>javascript阻止浏览器后退backspace键</title>
     <url>/2016/06/21/javascript%E9%98%BB%E6%AD%A2%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%8E%E9%80%80backspace%E9%94%AE/</url>
     <content><![CDATA[<p>由于项目需求，写到某个插件的时候，需要阻止backspace等浏览器默认事件，但是用e.preventDefault()无论如何都搞不定，火狐和谷歌在input或textarea失焦之后，按backspace都执行了后退(上一页)，网上查了资料，也问了不少人，最终原生js解决，以此为记：  </p>
@@ -354,6 +430,69 @@ window.history.forward(1);//屏蔽浏览器自带的后退键 </code></pre>]]></
       </categories>
   </entry>
   <entry>
+    <title>json数组的增删改操作</title>
+    <url>/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
+var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
+var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre><a id="more"></a>
+<p>要说明的是，虽然第二种方法创建数组指定了长度，但实际上所有情况下数组都是变长的，也就是说即使指定了长度为5，仍然可以将元素存储在规定长度以外的，注意：这时长度会随之改变。</p>
+<h4 id="2、数组的元素的访问"><a href="#2、数组的元素的访问" class="headerlink" title="2、数组的元素的访问"></a><a href="#2、数组的元素的访问" title="2、数组的元素的访问"></a>2、数组的元素的访问</h4><pre><code>var testGetArrValue=arrayObj\[1\]; //获取数组的元素值  
+arrayObj\[1\]= &quot;这是新值&quot;; //给数组元素赋予新的值  </code></pre><h4 id="3、数组元素的添加"><a href="#3、数组元素的添加" class="headerlink" title="3、数组元素的添加"></a><a href="#3、数组元素的添加" title="3、数组元素的添加"></a>3、数组元素的添加</h4><pre><code>// 将一个或多个新元素添加到数组结尾，并返回数组新长度  
+arrayObj. push(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
+// 将一个或多个新元素添加到数组开始，数组中的元素自动后移，返回数组新长度  
+arrayObj.unshift(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
+//将一个或多个新元素插入到数组的指定位置，插入位置的元素自动后移，返回&quot;&quot;。  
+arrayObj.splice(insertPos,0,\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="4、数组元素的删除"><a href="#4、数组元素的删除" class="headerlink" title="4、数组元素的删除"></a><a href="#4、数组元素的删除" title="4、数组元素的删除"></a>4、数组元素的删除</h4><pre><code>//移除最后一个元素并返回该元素值  
+arrayObj.pop();   
+//移除最前一个元素并返回该元素值，数组中元素自动前移  
+arrayObj.shift();   
+//删除从指定位置deletePos开始的指定数量deleteCount的元素，数组形式返回所移除的元素  
+arrayObj.splice(deletePos,deleteCount);  </code></pre><h4 id="5、数组的截取和合并"><a href="#5、数组的截取和合并" class="headerlink" title="5、数组的截取和合并"></a><a href="#5、数组的截取和合并" title="5、数组的截取和合并"></a>5、数组的截取和合并</h4><pre><code>//以数组的形式返回数组的一部分，注意不包括 end 对应的元素，如果省略 end 将复制 start 之后的所有元素  
+arrayObj.slice(start, \[end\]);   
+//将多个数组（也可以是字符串，或者是数组和字符串的混合）连接为一个数组，返回连接好的新的数组  
+arrayObj.concat(\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="6、数组的拷贝"><a href="#6、数组的拷贝" class="headerlink" title="6、数组的拷贝"></a><a href="#6、数组的拷贝" title="6、数组的拷贝"></a>6、数组的拷贝</h4><pre><code>arrayObj.slice(0); //返回数组的拷贝数组，注意是一个新的数组，不是指向  
+arrayObj.concat(); //返回数组的拷贝数组，注意是一个新的数组，不是指向  </code></pre><h4 id="7、数组元素的排序"><a href="#7、数组元素的排序" class="headerlink" title="7、数组元素的排序"></a><a href="#7、数组元素的排序" title="7、数组元素的排序"></a>7、数组元素的排序</h4><pre><code>arrayObj.reverse(); //反转元素（最前的排到最后、最后的排到最前），返回数组地址  
+arrayObj.sort(); //对数组元素排序，返回数组地址  </code></pre><h4 id="8、数组元素的字符串化"><a href="#8、数组元素的字符串化" class="headerlink" title="8、数组元素的字符串化"></a><a href="#8、数组元素的字符串化" title="8、数组元素的字符串化"></a>8、数组元素的字符串化</h4><pre><code>arrayObj.join(separator); //返回字符串，这个字符串将数组的每一个元素值连接在一起，中间用 separator 隔开。  
+toLocaleString 、toString 、valueOf：可以看作是join的特殊用法，不常用 </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>js/jquery选中部分文字功能</title>
+    <url>/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p>项目上需要一个文件重命名功能，就像百度网盘的文件重命名一样，只选中文件名不选中后缀:<br>这样子：<br><img src="http://zzzeg.github.io/img/0001.jpg" alt=""><br>代码如下：<br>  <a id="more"></a><br>html部分  </p>
+<pre><code>&lt;a class=&quot;a&quot; id=&quot;a&quot;&gt;点击重命名文件名&lt;/a&gt;  
+&lt;input type=&quot;text&quot; id=&quot;t2&quot; value=&quot;sadasdasdasdasd.doc&quot; name=&quot;x&quot; /&gt;  </code></pre><p>js部分：  </p>
+<pre><code>//selectionStart:起始选中位置,selectionEnd:结束选中位置  
+$.fn.setSelection = function(selectionStart, selectionEnd) {  
+ if(this.length == 0) return this;  
+ input = this\[0\];  
+ if (input.createTextRange) {  
+ var range = input.createTextRange();  
+ range.collapse(true);  
+ range.moveEnd(&#39;character&#39;, selectionEnd);  
+ range.moveStart(&#39;character&#39;, selectionStart);  
+ range.select();  
+ }   
+else if (input.setSelectionRange) {  
+ input.focus();  
+ input.setSelectionRange(selectionStart, selectionEnd);  
+ }  
+ return this;  
+}  
+
+$(&quot;.a&quot;).click(function(){  
+ var str = $(&quot;#t2&quot;).val();  
+ var index = str.replace(/.*(\\.\[^\\.\]+)$/, &#39;$1&#39;).length;//文件名里后缀+&quot;.&quot;的长度;  
+ var allin=str.length-index; //总字符长度- 后缀长度=需要选中部分的长度  
+ $(&quot;#t2&quot;).setSelection(0,allin);  
+})  </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
     <title>hexo里的code代码高亮</title>
     <url>/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/</url>
     <content><![CDATA[<p>Hexo博客弄好之后，代码高亮显得太单调了，以前折腾wordpress的时候用param.js不太适合这个，多方查看找到个<a href="https://github.com/google/code-prettify" target="_blank" rel="noopener">prettify</a> 插件，尝试了一下之后效果还不错。</p>
@@ -399,140 +538,113 @@ window.history.forward(1);//屏蔽浏览器自带的后退键 </code></pre>]]></
       </categories>
   </entry>
   <entry>
-    <title>js/jquery选中部分文字功能</title>
-    <url>/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<p>项目上需要一个文件重命名功能，就像百度网盘的文件重命名一样，只选中文件名不选中后缀:<br>这样子：<br><img src="http://zzzeg.github.io/img/0001.jpg" alt=""><br>代码如下：<br>  <a id="more"></a><br>html部分  </p>
-<pre><code>&lt;a class=&quot;a&quot; id=&quot;a&quot;&gt;点击重命名文件名&lt;/a&gt;  
-&lt;input type=&quot;text&quot; id=&quot;t2&quot; value=&quot;sadasdasdasdasd.doc&quot; name=&quot;x&quot; /&gt;  </code></pre><p>js部分：  </p>
-<pre><code>//selectionStart:起始选中位置,selectionEnd:结束选中位置  
-$.fn.setSelection = function(selectionStart, selectionEnd) {  
- if(this.length == 0) return this;  
- input = this\[0\];  
- if (input.createTextRange) {  
- var range = input.createTextRange();  
- range.collapse(true);  
- range.moveEnd(&#39;character&#39;, selectionEnd);  
- range.moveStart(&#39;character&#39;, selectionStart);  
- range.select();  
- }   
-else if (input.setSelectionRange) {  
- input.focus();  
- input.setSelectionRange(selectionStart, selectionEnd);  
+    <title>js判断数组中是否有某个值存在</title>
+    <url>/2018/11/23/js%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E6%9F%90%E4%B8%AA%E5%80%BC%E5%AD%98%E5%9C%A8/</url>
+    <content><![CDATA[<p>时常用到一些循环判断对比，想的最多的是for循环，后端返回的geneList是有几千条gene一维数组，数据结构为<code>list:[gene1,gene2,gene3,…]</code>，添加功能时不愿意改结构，response里增加了个<code>list1:[gene2,gene8]</code>这样的两对数据，进行循环对比，使同时存在于数组1和数组2数据的加上特殊颜色标识，for循环嵌套在dom里走不通，要实现得用钩子函数重构数组<br>  <a id="more"></a><br>无对比遍历代码(基于elementui，仅遍历arrayA) ：  </p>
+<pre><code>&lt;span v-for=&quot;(i, index) in arrayA&quot; :key=&quot;index&quot;&gt;  
+ {i}  
+&lt;/span&gt;  </code></pre><p>如果用for循环比对，很麻烦，要多增加很多代码量，js里有个array.indexOf(‘a’)，来查询字符串对应索引  </p>
+<pre><code>例子：  
+var array = \[1,2,3,4\];  
+alert(array.indexOf(3)); // 2   得到索引  
+alert(array.indexOf(5)); // -1  </code></pre><p>indexOf的代码：  </p>
+<pre><code>&lt;span v-for=&quot;(i, index) in arrayA&quot; :key=&quot;index&quot;&gt;  
+ &lt;span :class=&quot;{&#39;color_red&#39;: arrayB.indexOf(i) != -1, &#39;&#39;: arrayB.indexOf(i) == -1}&quot;&gt;{{ i }}&lt;/span&gt;  
+ or   
+ &lt;span :class=&quot;{arrayB.indexOf(i) != -1 ? &#39;color_red&#39;: &#39;&#39;}&quot;&gt;{{ i }}&lt;/span&gt;  
+&lt;/span&gt;  </code></pre><p>然而，也可以通过Vue的过滤器来搞定：<br>dom：  </p>
+<pre><code>&lt;span v-for=&quot;(i, index) in arrayA :key=&quot;index&quot; :class=&quot;i | hasName(arrayB) ? &#39;color_red&#39;: &#39;&#39;&quot;&gt;  
+ {i}  
+&lt;/span&gt;  </code></pre><p>script：  </p>
+<pre><code>filters: {  
+ hasName (data, param) {  
+ let isOK = false  
+ for (let i in param) {  
+ if (param\[i\] == data) {  
+ isOK = true  
+ break  
  }  
- return this;  
-}  
-
-$(&quot;.a&quot;).click(function(){  
- var str = $(&quot;#t2&quot;).val();  
- var index = str.replace(/.*(\\.\[^\\.\]+)$/, &#39;$1&#39;).length;//文件名里后缀+&quot;.&quot;的长度;  
- var allin=str.length-index; //总字符长度- 后缀长度=需要选中部分的长度  
- $(&quot;#t2&quot;).setSelection(0,allin);  
-})  </code></pre>]]></content>
+ }  
+ console.log(isOK)  
+ return isOK  
+ }  
+}  </code></pre>]]></content>
       <categories>
         <category>代码</category>
       </categories>
   </entry>
   <entry>
-    <title>github+Hexo搭建博客</title>
-    <url>/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>　　以前用wordpress写的博客，因为疏于更新后台，被勤劳的小蜜蜂们各种挂马，服务商给我下通牒的时候我才知道，记录的东西也丢失了七七八八。最近闲下来在看nodejs相关的资料时，无意间了解到hexo，然后决定入坑.  </p>
+    <title>mac提交代码到github上，xcrun报错</title>
+    <url>/2021/01/28/mac%E4%BD%BF%E7%94%A8git,svn%E6%8F%90%E4%BA%A4%E5%A4%B1%E8%B4%A5%E6%8A%A5%E9%94%99xcrun/</url>
+    <content><![CDATA[<p>升级了MacOS系统之后，提交代码到github失败，出现了错误，如下：</p>
 <a id="more"></a>
-<h3 id="安装篇："><a href="#安装篇：" class="headerlink" title="安装篇："></a><a href="#安装篇：" title="安装篇："></a>安装篇：</h3><h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a><a href="#nodejs" title="nodejs"></a>nodejs</h4><p>　下软件就行了</p>
-<h4 id="git"><a href="#git" class="headerlink" title="git"></a><a href="#git" title="git"></a>git</h4><p>　下软件看说明各种下一步结束</p>
-<h4 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a><a href="#hexo" title="hexo"></a>hexo</h4><p>　创建个文件夹来存放当前项目，并且，在该目录下右键菜单 选择： git bash</p>
-<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a><a href="#初始化" title="初始化"></a>初始化</h5><p>在新开窗口下疯狂码字：  </p>
-<pre><code>git config –-global user.name &quot;zhangsan&quot;  //(&quot;&quot;里的账号是刚才Github里面自己注册的账号)   
-git config –-global user.email &quot;123456789@qq.com&quot; //(&quot;&quot;里的邮箱是注册的github邮箱)  
-
-// 生成密钥到github  
-cd ~/.ssh   
-ssh-keygen -t rsa -C &quot;123456789@qq.com&quot;   
-
-然后打开  
-C:\\Users\\username.ssh 文件夹，复制 id_rsa.pub文件里的内容，丢到github上的sshKey上  
-途径：github-&gt;settings-&gt;SSH and GPG key-&gt;new ssh key  
-
-不进行这两步，以后提交代码的时候要输帐号密码  
-
-npm install  
-npm install -g hexo-cli  // 第一次使用hexo要安装  成功后下一步  
-hexo init  </code></pre><p>到这模版就创建好了。蛋事，模版毕竟是模版，还是要自己修改一下配置信息</p>
-<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a href="#配置" title="配置"></a>配置</h5><p>根目录下的 <code>_config.yml</code> 文件，某些东西一定要改  </p>
-<pre><code>title: xxx  # 博客名，站点名称  
-author: xxx # 博客作者名字  
-description: xxx # 对站点的描述，搜索引擎会抓取，可以自定义  
-language: zh-CN # 语言 简体中文  
-theme: sky  # 配置的主题名  </code></pre><p>这样，一个站点的基础配置就完了</p>
-<p>想要发布到github上，也要做跟github”关联”的配置，一样在<code>_config.yml</code> 最底下追加内容  </p>
-<pre><code>deploy:     # 部署相关配置  
- type: git     # 使用 Git 提交  
- repository: git@github.com/username/username.github.io.git # 博客的仓库地址，仓库名最好是 用户名.github.io   
- branch: master    # 分支名称  </code></pre><h5 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a><a href="#创建文章" title="创建文章"></a>创建文章</h5><p>初始化完毕就可以创建文章了  </p>
-<pre><code>hexo new &quot;xxxx&quot;  </code></pre><p>在hexo/source/_posts下生成：”xxxx”文件夹、”xxxx.md”这俩.”xxxx.md”就是markdown语法的文章，文件夹目前还不知道干啥的，以后更新，我是直接在编辑器里，打开_posts文件夹，直接新建”a.md”文件，省去了文件夹，编译下来也没什么不一样。<br>创建后的页面内容如下：  </p>
-<pre><code>\-\-\-  
-title: 标题  
-date: 2018-11-20 11:26:00 # 时间  
-tags: 标签  
-categories: 分类  
-\-\-\-  
-内容  </code></pre><p>标签和分类，当在页面有填入对应的值时，会自动创建分类，如果要手动创建分类页面  </p>
-<pre><code>hexo new page &quot;categories&quot;  </code></pre><h5 id="发布网站"><a href="#发布网站" class="headerlink" title="发布网站"></a><a href="#发布网站" title="发布网站"></a>发布网站</h5><p>发布之前要装个git的插件,不然<code>hexo d</code>会报错</p>
-<pre><code>npm install hexo-deployer-git --save</code></pre><p>文章写完，发布到github上  </p>
-<pre><code>hexo clean     // 清除缓存  
-hexo g       // 生成  
-hexo s         // 启动本地服务查看，默认 localhost:4000//  
-hexo s -p 5000  假如4000端口被占用，更改其他端口启动服务  
-hexo d        // 发布到github上  
-
-也可以一次性执行：  
-hexo clean &amp;&amp; hexo g &amp;&amp; hexo s  </code></pre><h3 id="装完吐槽"><a href="#装完吐槽" class="headerlink" title="装完吐槽"></a><a href="#装完吐槽篇（踩坑之路）" title="装完吐槽篇（踩坑之路）"></a>装完吐槽</h3><p>　　最初，考虑到自己的英文水平不怎样，看github略困难，谷歌浏览器没梯子不能翻译，了解到方便的国内代码托管平台有不少，在下试用了coding.net、码云、腾讯云：</p>
-<ul>
-<li><p>coding.net使用感觉还不错，私有仓库、pages服务免费，并且<code>Enforce https</code>可以不用长时间的等解析，证书也是秒生成，不带https的请求也都一并强制了https，非常舒服。<br>但是coding.net被腾讯注资了，到处是”转移到腾讯云获得更好的服务”诸如此类的信息。看到这类提示，强迫症表示不点不舒服，点之，一路”下一步”进入马总的怀抱…然后回不来了，每次登录到coding.net就跳转腾讯云，真是手贱当斩！</p>
-</li>
-<li><p>腾讯云的托管系统界面和操作都跟coding.net基本没差别，初用也很顺滑，唯一查到的区别就是腾讯云的代码托管有隐藏的容量限制，没达到之前不会告诉你的(好像是总量10G)，要突破还得去找客服申请，而coding没有。想想也没关系，个人用户一般没事，然后绑定域名开启https一气呵成。然后，第二天打开这博客地址的时候，慌的一批，F12看到，页面加载2min，一个几kb的小图片加载20s，2kb的css加载16s，这公网服务速度真是没的说…<br>　我：页面这么慢怎么办？<br>　tx：<a href="https://imgsa.baidu.com/forum/w%3D580/sign=96ce82539b529822053339cbe7c87b3b/3a1f78310a55b3193b293ce148a98226cdfc17aa.jpg" target="_blank" rel="noopener">年轻人，你这个问题非常好，其实“点这”就可以解决的</a><br>　我：再见来不及挥手~</p>
-</li>
-<li><p>码云，体验还行，界面都是中文的，操作也还算顺手，但是pages服务和自定义域名要收钱，再见码云~</p>
-</li>
-<li><p>github，绕一圈又回到github，英文界面不习惯，走投无路的心情下，用着用着也就舒服了，只有一处坑，就是配置https：解析<code>Enforce https</code>一直点不上，一直提示配置不对。杠了半天，发现要添加域名解析A记录到185.199.109.153，然后把<code>Custom domain</code>下的域名删掉之后，等个五六七八个小时后，再重新添加域名进去，然后再等个十几分钟，就可以勾选了</p>
-</li>
-</ul>
-<h3 id="为博客安装评论"><a href="#为博客安装评论" class="headerlink" title="为博客安装评论"></a><a href="#为博客安装评论" title="为博客安装评论"></a>为博客安装评论</h3><h4 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a><a href="#Gitment" title="Gitment"></a>Gitment</h4><p>第一接触的评论插件是Gitment，自带的landscape主题也是用这玩意儿，必须要github帐号登录才能评论，又是注册 OAuth Application，又是配置callback乱七八糟的东西，排除了种种错误之后，在知乎上某篇文章了解到gitment作者弃坑了，要用gitment，得自己搭建服务器才行。</p>
-<h4 id="valine"><a href="#valine" class="headerlink" title="valine"></a><a href="#valine" title="valine"></a>valine</h4><p>折腾过gitment之后，再看valine，它简直就是个jquery插件。Valine依赖于Leancloud的后端服务，去leanclould注册一个账号，按部就班的<a href="https://valine.js.org/quickstart.html" target="_blank" rel="noopener">配置</a>一下就行。里面分为免费版和商业版还有企业版，免费版有一定限制首先API请求每天30000，最大10GB的储存空间，支持markdown语法。有点点不好的就是不会markdown语法的读者不好传图片。还有，由于是免登陆插件，所以这个评论没管理员概念，不会提示谁是当前作者。<strong>目前本站用的就是这个。</strong></p>
-<h4 id="hypercomments"><a href="#hypercomments" class="headerlink" title="hypercomments"></a><a href="#hypercomments" title="hypercomments"></a>hypercomments</h4><p>这个麻瓜以前免费，现在不免费了，不想讲了</p>
-<h4 id="gitalk"><a href="#gitalk" class="headerlink" title="gitalk"></a><a href="#gitalk" title="gitalk"></a>gitalk</h4><p>安装教程：<a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md" target="_blank" rel="noopener">https://github.com/gitalk/gitalk/blob/master/readme-cn.md</a></p>
-<h3 id="装后优化篇-（2020-1-10）"><a href="#装后优化篇-（2020-1-10）" class="headerlink" title="装后优化篇 （2020-1-10）"></a>装后优化篇 （2020-1-10）</h3><h4 id="上传github-后-自定义域名的坑"><a href="#上传github-后-自定义域名的坑" class="headerlink" title="上传github 后 自定义域名的坑"></a>上传github 后 自定义域名的坑</h4><p>域名解析，到域名解析界面增加一个CNAME记录，值为Username.github.io就行<br>然后进入<code>(https://github.com/Username/Username.github.io/)</code>，选择settings，找到Custom domain输入自己的域名<br>然后一定要在源文件根目录的source 文件夹下，新建一个名字为“CNAME”的文件，没后缀，内容写自己的域名，保存/生成/发布  ，不然每次<code>hexo d</code>,都要去重新绑定域名</p>
-<h3 id="填坑篇"><a href="#填坑篇" class="headerlink" title="填坑篇"></a>填坑篇</h3><h4 id="hexo-g-不生成style-css，导致整个站点没有style-css文件"><a href="#hexo-g-不生成style-css，导致整个站点没有style-css文件" class="headerlink" title="hexo g 不生成style.css，导致整个站点没有style.css文件"></a>hexo g 不生成style.css，导致整个站点没有style.css文件</h4><p>找了几种办法，改_config.yml的url，root，安装什么<code>hexo-renderer-stylus</code>什么的都是假的，真正原因在主题里，把style.css加到themes-themename-source-css里，就完事了</p>
-<p><a href="https://www.jianshu.com/p/ea1eb11db63f" target="_blank" rel="noopener">markdown图床</a></p>
+<pre><code>xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), 
+missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</code></pre><p>解决方法</p>
+<pre><code>xcode-select --install</code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>prism.js代码高亮插件</title>
+    <url>/2014/12/08/prism-js%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>Prism 是一个轻量级，可扩展的语法着色工具，符合 Web 标准。它压缩后只有 2KB，每种语言定义约增加300-500自己大小。非常易于使用，只需要插入一个 CSS 和 JS 文件即可。支持多种着色主题。  </p>
+<p>支持各种编程语言和插件：</p>
+<a id="more"></a>
+<h2 id="Prism-js的优点"><a href="#Prism-js的优点" class="headerlink" title="Prism.js的优点"></a><a href="#Prism-js的优点" title="Prism.js的优点"></a>Prism.js的优点</h2><h4 id="极致易用"><a href="#极致易用" class="headerlink" title="极致易用"></a><a href="#极致易用" title="极致易用"></a>极致易用</h4><p>引用 prism.css 和 prism.js，使用合适的 HTML5 标签（code.language-xxxx），搞定！</p>
+<h4 id="天生伶俐"><a href="#天生伶俐" class="headerlink" title="天生伶俐"></a><a href="#天生伶俐" title="天生伶俐"></a>天生伶俐</h4><p>语言的 CSS 类是可继承的，所以你只需定义一次就能应用到多个代码片段。</p>
+<h4 id="轻如鸿毛"><a href="#轻如鸿毛" class="headerlink" title="轻如鸿毛"></a><a href="#轻如鸿毛" title="轻如鸿毛"></a>轻如鸿毛</h4><p>代码压缩后只有 1.6KB。每添加一个语言平均增加 0.3-0.5KB，主题在 1KB 左右。</p>
+<h4 id="快如闪电"><a href="#快如闪电" class="headerlink" title="快如闪电"></a><a href="#快如闪电" title="快如闪电"></a>快如闪电</h4><p>如果可能，支持通过 Web Workers 实现并行。</p>
+<h4 id="轻松扩展"><a href="#轻松扩展" class="headerlink" title="轻松扩展"></a><a href="#轻松扩展" title="轻松扩展"></a>轻松扩展</h4><p>定义新语言或扩展现有语法，或者新增功能都非常简单。</p>
+<h4 id="丰富样式"><a href="#丰富样式" class="headerlink" title="丰富样式"></a><a href="#丰富样式" title="丰富样式"></a>丰富样式</h4><p>所有的样式通过 CSS 完成，并使用合理的类名如：.comment, .string, .property 等。</p>
+<h2 id="Prism-js使用方法"><a href="#Prism-js使用方法" class="headerlink" title="Prism.js使用方法"></a><a href="#Prism-js使用方法" title="Prism.js使用方法"></a>Prism.js使用方法</h2><p>Prism 使用非常简单，只需添加 Javascript 和 CSS 就能够轻易的将其整合进项目中使用。目前它已内置了 HTML\CSS\Javascript 三种语言的高亮支持，你也可以添加新的语法高亮配置文件，只需修改 Javascipt 和 CSS 文件就行。除此之外，它也提供了额外的插件功能，让你可以新增其它功能，比如自动转换链接等，你也可以自己撰写插件。<br>目前 Prism 唯一的缺点就是不支持 IE8，看<a href="http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/" target="_blank" rel="noopener">作者的博客介绍</a>，也不想支持 IE8。</p>
+<p>1、首先在页面的 head 中引入 Prism 的 CSS 样式文件和Prism类库  </p>
+<pre><code>&lt;link href=&quot;prism.css&quot; rel=&quot;stylesheet&quot;/&gt;  
+&lt;script src=&quot;prism.min.js&quot;&gt;&lt;/script&gt;  </code></pre><p>2、添加要高亮显示的代码，要放在 pre 标签中，设置 code 标签的样式类型为代码的类别，如下：  </p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;language-xxx&quot;&gt;p { color: red }&lt;/code&gt;&lt;/pre&gt;  </code></pre><p>//注意：language-xxx，后面的xxx 是代码类型，在<a href="http://prismjs.com/download.html" target="_blank" rel="noopener">Prism.js的下载页面</a>“Language”一栏下有详细描述,见下图<br>//如：当前代码是html类型 那此处的language-xxx，就应该替换为 language-markup<br>//相对应的js类型代码,即将language-xxx,替换为language-javascript</p>
+<p><img src="http://ww1.sinaimg.cn/large/005K8Fb9gw1en2bbjdmluj30lu0bw76u.jpg" alt=""></p>
+<p><a href="http://prismjs.com/" target="_blank" rel="noopener">Prism 官网</a> | <a href="http://prismjs.com/examples.html" target="_blank" rel="noopener">代码示例</a> | <a href="http://prismjs.com/download.html" target="_blank" rel="noopener">立即下载</a></p>
 ]]></content>
       <categories>
         <category>代码</category>
       </categories>
   </entry>
   <entry>
-    <title>json数组的增删改操作</title>
-    <url>/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
-var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
-var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre><a id="more"></a>
-<p>要说明的是，虽然第二种方法创建数组指定了长度，但实际上所有情况下数组都是变长的，也就是说即使指定了长度为5，仍然可以将元素存储在规定长度以外的，注意：这时长度会随之改变。</p>
-<h4 id="2、数组的元素的访问"><a href="#2、数组的元素的访问" class="headerlink" title="2、数组的元素的访问"></a><a href="#2、数组的元素的访问" title="2、数组的元素的访问"></a>2、数组的元素的访问</h4><pre><code>var testGetArrValue=arrayObj\[1\]; //获取数组的元素值  
-arrayObj\[1\]= &quot;这是新值&quot;; //给数组元素赋予新的值  </code></pre><h4 id="3、数组元素的添加"><a href="#3、数组元素的添加" class="headerlink" title="3、数组元素的添加"></a><a href="#3、数组元素的添加" title="3、数组元素的添加"></a>3、数组元素的添加</h4><pre><code>// 将一个或多个新元素添加到数组结尾，并返回数组新长度  
-arrayObj. push(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
-// 将一个或多个新元素添加到数组开始，数组中的元素自动后移，返回数组新长度  
-arrayObj.unshift(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
-//将一个或多个新元素插入到数组的指定位置，插入位置的元素自动后移，返回&quot;&quot;。  
-arrayObj.splice(insertPos,0,\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="4、数组元素的删除"><a href="#4、数组元素的删除" class="headerlink" title="4、数组元素的删除"></a><a href="#4、数组元素的删除" title="4、数组元素的删除"></a>4、数组元素的删除</h4><pre><code>//移除最后一个元素并返回该元素值  
-arrayObj.pop();   
-//移除最前一个元素并返回该元素值，数组中元素自动前移  
-arrayObj.shift();   
-//删除从指定位置deletePos开始的指定数量deleteCount的元素，数组形式返回所移除的元素  
-arrayObj.splice(deletePos,deleteCount);  </code></pre><h4 id="5、数组的截取和合并"><a href="#5、数组的截取和合并" class="headerlink" title="5、数组的截取和合并"></a><a href="#5、数组的截取和合并" title="5、数组的截取和合并"></a>5、数组的截取和合并</h4><pre><code>//以数组的形式返回数组的一部分，注意不包括 end 对应的元素，如果省略 end 将复制 start 之后的所有元素  
-arrayObj.slice(start, \[end\]);   
-//将多个数组（也可以是字符串，或者是数组和字符串的混合）连接为一个数组，返回连接好的新的数组  
-arrayObj.concat(\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="6、数组的拷贝"><a href="#6、数组的拷贝" class="headerlink" title="6、数组的拷贝"></a><a href="#6、数组的拷贝" title="6、数组的拷贝"></a>6、数组的拷贝</h4><pre><code>arrayObj.slice(0); //返回数组的拷贝数组，注意是一个新的数组，不是指向  
-arrayObj.concat(); //返回数组的拷贝数组，注意是一个新的数组，不是指向  </code></pre><h4 id="7、数组元素的排序"><a href="#7、数组元素的排序" class="headerlink" title="7、数组元素的排序"></a><a href="#7、数组元素的排序" title="7、数组元素的排序"></a>7、数组元素的排序</h4><pre><code>arrayObj.reverse(); //反转元素（最前的排到最后、最后的排到最前），返回数组地址  
-arrayObj.sort(); //对数组元素排序，返回数组地址  </code></pre><h4 id="8、数组元素的字符串化"><a href="#8、数组元素的字符串化" class="headerlink" title="8、数组元素的字符串化"></a><a href="#8、数组元素的字符串化" title="8、数组元素的字符串化"></a>8、数组元素的字符串化</h4><pre><code>arrayObj.join(separator); //返回字符串，这个字符串将数组的每一个元素值连接在一起，中间用 separator 隔开。  
-toLocaleString 、toString 、valueOf：可以看作是join的特殊用法，不常用 </code></pre>]]></content>
+    <title>Something About JQueryUi</title>
+    <url>/2016/07/14/something-about-JQueryUi/</url>
+    <content><![CDATA[<p>1、需要对IE6支持的话，只能使用jQuery UI 1.9.2，目前官网<a href="//jqueryui.com/download/" target="_blank" rel="noopener">定制页</a>只有1.9.2会支持IE6，</p>
+<p>jQuery UI Upgrade Guide（升级指南）中指出</p>
+<p><a href="//jqueryui.com/upgrade-guide/1.10/" target="_blank" rel="noopener">jQuery UI 1.10 Upgrade Guide</a></p>
+<h3 id="Removed-support-for-IE6"><a href="#Removed-support-for-IE6" class="headerlink" title="Removed support for IE6"></a><a href="#Removed-support-for-IE6" title="Removed support for IE6"></a>Removed support for IE6</h3><p>IE6 usage has dropped to a low enough point that jQuery UI no longer finds it necessary to support. As of 1.10.0, some portions of jQuery UI may not work properly in IE6. If you need to continue to support IE6, use the latest jQuery UI 1.9 release.<br><a href="//jqueryui.com/upgrade-guide/1.11/" target="_blank" rel="noopener">jQuery UI 1.11 Upgrade Guide</a></p>
+<h3 id="Discontinued-IE7-Support"><a href="#Discontinued-IE7-Support" class="headerlink" title="Discontinued IE7 Support"></a><a href="#Discontinued-IE7-Support" title="Discontinued IE7 Support"></a>Discontinued IE7 Support</h3><p>As of this release we are no longer accepting bug reports for IE7 issues. We have also removed IE7 from our testing infrastructure. The IE7 workarounds are still present in the code, but we will remove them for jQuery UI 1.12.</p>
+<p>2、部分组件只在服务端生效，目前用过的服务端生效的有：resizable、slider、</p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>js函数相关</title>
+    <url>/2021/07/12/js%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>记录的一些js函数</p>
+<a id="more"></a>
+<h5 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/javaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">mdn对slice()的解释</a><br>当下有个本地实现分页的需求，为了给dataList分页，需要截取返回数组的部分内容<br>slice语法</p>
+<pre><code>slice(begin-index[,end下标])  //第一个是 开始的索引，第二个是 结束但不包括的索引， 例如：slice(0,4); 意思是索引 0，1，2，3，不包括4
+var list = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;,&#39;f&#39;,&#39;g&#39;];
+console.log(list.slice(0,2)) //Array: [&#39;a&#39;,&#39;b&#39;] </code></pre><p>顺手保存一个 url转码的网站 <a href="https://gongjux.com/urlcode" target="_blank" rel="noopener">url在线转码/解码</a></p>
+<h4 id="限制input输入两位小数的正则"><a href="#限制input输入两位小数的正则" class="headerlink" title="限制input输入两位小数的正则"></a>限制input输入两位小数的正则</h4><pre><code>&lt;input :value=&quot;form.price&quot; @input=&quot;onlyFloat($event, &#39;price&#39;)&quot;/&gt;
+
+methods: {
+    onlyFloat(e, type) {
+        let val = e.detail.value
+        val = val.replace(/^(\-)*(\d+)\.(\d\d).*$/, &#39;$1$2.$3&#39;)
+        this.form[type] = val
+        return val
+    }
+}</code></pre>]]></content>
       <categories>
         <category>代码</category>
       </categories>
@@ -584,66 +696,6 @@ Cyrus SASL 认证可用。</code></pre><h4 id="启动mac-os本地服务器-2022-
       </tags>
   </entry>
   <entry>
-    <title>prism.js代码高亮插件</title>
-    <url>/2014/12/08/prism-js%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>Prism 是一个轻量级，可扩展的语法着色工具，符合 Web 标准。它压缩后只有 2KB，每种语言定义约增加300-500自己大小。非常易于使用，只需要插入一个 CSS 和 JS 文件即可。支持多种着色主题。  </p>
-<p>支持各种编程语言和插件：</p>
-<a id="more"></a>
-<h2 id="Prism-js的优点"><a href="#Prism-js的优点" class="headerlink" title="Prism.js的优点"></a><a href="#Prism-js的优点" title="Prism.js的优点"></a>Prism.js的优点</h2><h4 id="极致易用"><a href="#极致易用" class="headerlink" title="极致易用"></a><a href="#极致易用" title="极致易用"></a>极致易用</h4><p>引用 prism.css 和 prism.js，使用合适的 HTML5 标签（code.language-xxxx），搞定！</p>
-<h4 id="天生伶俐"><a href="#天生伶俐" class="headerlink" title="天生伶俐"></a><a href="#天生伶俐" title="天生伶俐"></a>天生伶俐</h4><p>语言的 CSS 类是可继承的，所以你只需定义一次就能应用到多个代码片段。</p>
-<h4 id="轻如鸿毛"><a href="#轻如鸿毛" class="headerlink" title="轻如鸿毛"></a><a href="#轻如鸿毛" title="轻如鸿毛"></a>轻如鸿毛</h4><p>代码压缩后只有 1.6KB。每添加一个语言平均增加 0.3-0.5KB，主题在 1KB 左右。</p>
-<h4 id="快如闪电"><a href="#快如闪电" class="headerlink" title="快如闪电"></a><a href="#快如闪电" title="快如闪电"></a>快如闪电</h4><p>如果可能，支持通过 Web Workers 实现并行。</p>
-<h4 id="轻松扩展"><a href="#轻松扩展" class="headerlink" title="轻松扩展"></a><a href="#轻松扩展" title="轻松扩展"></a>轻松扩展</h4><p>定义新语言或扩展现有语法，或者新增功能都非常简单。</p>
-<h4 id="丰富样式"><a href="#丰富样式" class="headerlink" title="丰富样式"></a><a href="#丰富样式" title="丰富样式"></a>丰富样式</h4><p>所有的样式通过 CSS 完成，并使用合理的类名如：.comment, .string, .property 等。</p>
-<h2 id="Prism-js使用方法"><a href="#Prism-js使用方法" class="headerlink" title="Prism.js使用方法"></a><a href="#Prism-js使用方法" title="Prism.js使用方法"></a>Prism.js使用方法</h2><p>Prism 使用非常简单，只需添加 Javascript 和 CSS 就能够轻易的将其整合进项目中使用。目前它已内置了 HTML\CSS\Javascript 三种语言的高亮支持，你也可以添加新的语法高亮配置文件，只需修改 Javascipt 和 CSS 文件就行。除此之外，它也提供了额外的插件功能，让你可以新增其它功能，比如自动转换链接等，你也可以自己撰写插件。<br>目前 Prism 唯一的缺点就是不支持 IE8，看<a href="http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/" target="_blank" rel="noopener">作者的博客介绍</a>，也不想支持 IE8。</p>
-<p>1、首先在页面的 head 中引入 Prism 的 CSS 样式文件和Prism类库  </p>
-<pre><code>&lt;link href=&quot;prism.css&quot; rel=&quot;stylesheet&quot;/&gt;  
-&lt;script src=&quot;prism.min.js&quot;&gt;&lt;/script&gt;  </code></pre><p>2、添加要高亮显示的代码，要放在 pre 标签中，设置 code 标签的样式类型为代码的类别，如下：  </p>
-<pre><code>&lt;pre&gt;&lt;code class=&quot;language-xxx&quot;&gt;p { color: red }&lt;/code&gt;&lt;/pre&gt;  </code></pre><p>//注意：language-xxx，后面的xxx 是代码类型，在<a href="http://prismjs.com/download.html" target="_blank" rel="noopener">Prism.js的下载页面</a>“Language”一栏下有详细描述,见下图<br>//如：当前代码是html类型 那此处的language-xxx，就应该替换为 language-markup<br>//相对应的js类型代码,即将language-xxx,替换为language-javascript</p>
-<p><img src="http://ww1.sinaimg.cn/large/005K8Fb9gw1en2bbjdmluj30lu0bw76u.jpg" alt=""></p>
-<p><a href="http://prismjs.com/" target="_blank" rel="noopener">Prism 官网</a> | <a href="http://prismjs.com/examples.html" target="_blank" rel="noopener">代码示例</a> | <a href="http://prismjs.com/download.html" target="_blank" rel="noopener">立即下载</a></p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>js判断数组中是否有某个值存在</title>
-    <url>/2018/11/23/js%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E6%9F%90%E4%B8%AA%E5%80%BC%E5%AD%98%E5%9C%A8/</url>
-    <content><![CDATA[<p>时常用到一些循环判断对比，想的最多的是for循环，后端返回的geneList是有几千条gene一维数组，数据结构为<code>list:[gene1,gene2,gene3,…]</code>，添加功能时不愿意改结构，response里增加了个<code>list1:[gene2,gene8]</code>这样的两对数据，进行循环对比，使同时存在于数组1和数组2数据的加上特殊颜色标识，for循环嵌套在dom里走不通，要实现得用钩子函数重构数组<br>  <a id="more"></a><br>无对比遍历代码(基于elementui，仅遍历arrayA) ：  </p>
-<pre><code>&lt;span v-for=&quot;(i, index) in arrayA&quot; :key=&quot;index&quot;&gt;  
- {i}  
-&lt;/span&gt;  </code></pre><p>如果用for循环比对，很麻烦，要多增加很多代码量，js里有个array.indexOf(‘a’)，来查询字符串对应索引  </p>
-<pre><code>例子：  
-var array = \[1,2,3,4\];  
-alert(array.indexOf(3)); // 2   得到索引  
-alert(array.indexOf(5)); // -1  </code></pre><p>indexOf的代码：  </p>
-<pre><code>&lt;span v-for=&quot;(i, index) in arrayA&quot; :key=&quot;index&quot;&gt;  
- &lt;span :class=&quot;{&#39;color_red&#39;: arrayB.indexOf(i) != -1, &#39;&#39;: arrayB.indexOf(i) == -1}&quot;&gt;{{ i }}&lt;/span&gt;  
- or   
- &lt;span :class=&quot;{arrayB.indexOf(i) != -1 ? &#39;color_red&#39;: &#39;&#39;}&quot;&gt;{{ i }}&lt;/span&gt;  
-&lt;/span&gt;  </code></pre><p>然而，也可以通过Vue的过滤器来搞定：<br>dom：  </p>
-<pre><code>&lt;span v-for=&quot;(i, index) in arrayA :key=&quot;index&quot; :class=&quot;i | hasName(arrayB) ? &#39;color_red&#39;: &#39;&#39;&quot;&gt;  
- {i}  
-&lt;/span&gt;  </code></pre><p>script：  </p>
-<pre><code>filters: {  
- hasName (data, param) {  
- let isOK = false  
- for (let i in param) {  
- if (param\[i\] == data) {  
- isOK = true  
- break  
- }  
- }  
- console.log(isOK)  
- return isOK  
- }  
-}  </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
     <title>nvm安装使用</title>
     <url>/2021/07/05/nvm%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h5 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h5><a id="more"></a>
@@ -686,6 +738,18 @@ nvm ls-remote --lts  //查看线上所有稳定版</code></pre>]]></content>
       </tags>
   </entry>
   <entry>
+    <title>svn提交的时候忽略node_moudules文件夹</title>
+    <url>/2020/11/25/svn%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%E5%BF%BD%E7%95%A5node_modules%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
+    <content><![CDATA[<p>右键空白处&gt;选中TortoiseSVN&gt;设置(settings)&gt;常规设置(General)&gt;Subversion&gt;编辑(edit)&gt;在弹出的config文件中找到global-ignores=“<em>node_modules”，复制一行下来，去掉global-ignores前的#。<br>如果是“文件夹” global-ignores=</em>node_modules<br>如果是”文件“ global-ignores = .project .git<br>中间用空格隔开<br><img src="https://img2018.cnblogs.com/blog/982259/201908/982259-20190820155127746-412002335.png" alt="图"></p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublimeText相关</title>
     <url>/2022/03/31/sublimeText%E6%B3%A8%E5%86%8C%E7%A0%81/</url>
     <content><![CDATA[<p>4126版本注册码</p>
@@ -716,58 +780,6 @@ B1D4C178 2F9DDB16 ABAA74E5 95304BEF
 —— END LICENSE ——</code></pre>]]></content>
       <categories>
         <category>工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Something About JQueryUi</title>
-    <url>/2016/07/14/something-about-JQueryUi/</url>
-    <content><![CDATA[<p>1、需要对IE6支持的话，只能使用jQuery UI 1.9.2，目前官网<a href="//jqueryui.com/download/" target="_blank" rel="noopener">定制页</a>只有1.9.2会支持IE6，</p>
-<p>jQuery UI Upgrade Guide（升级指南）中指出</p>
-<p><a href="//jqueryui.com/upgrade-guide/1.10/" target="_blank" rel="noopener">jQuery UI 1.10 Upgrade Guide</a></p>
-<h3 id="Removed-support-for-IE6"><a href="#Removed-support-for-IE6" class="headerlink" title="Removed support for IE6"></a><a href="#Removed-support-for-IE6" title="Removed support for IE6"></a>Removed support for IE6</h3><p>IE6 usage has dropped to a low enough point that jQuery UI no longer finds it necessary to support. As of 1.10.0, some portions of jQuery UI may not work properly in IE6. If you need to continue to support IE6, use the latest jQuery UI 1.9 release.<br><a href="//jqueryui.com/upgrade-guide/1.11/" target="_blank" rel="noopener">jQuery UI 1.11 Upgrade Guide</a></p>
-<h3 id="Discontinued-IE7-Support"><a href="#Discontinued-IE7-Support" class="headerlink" title="Discontinued IE7 Support"></a><a href="#Discontinued-IE7-Support" title="Discontinued IE7 Support"></a>Discontinued IE7 Support</h3><p>As of this release we are no longer accepting bug reports for IE7 issues. We have also removed IE7 from our testing infrastructure. The IE7 workarounds are still present in the code, but we will remove them for jQuery UI 1.12.</p>
-<p>2、部分组件只在服务端生效，目前用过的服务端生效的有：resizable、slider、</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac提交代码到github上，xcrun报错</title>
-    <url>/2021/01/28/mac%E4%BD%BF%E7%94%A8git,svn%E6%8F%90%E4%BA%A4%E5%A4%B1%E8%B4%A5%E6%8A%A5%E9%94%99xcrun/</url>
-    <content><![CDATA[<p>升级了MacOS系统之后，提交代码到github失败，出现了错误，如下：</p>
-<a id="more"></a>
-<pre><code>xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), 
-missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</code></pre><p>解决方法</p>
-<pre><code>xcode-select --install</code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js函数相关</title>
-    <url>/2021/07/12/js%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<p>记录的一些js函数</p>
-<a id="more"></a>
-<h5 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/javaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">mdn对slice()的解释</a><br>当下有个本地实现分页的需求，为了给dataList分页，需要截取返回数组的部分内容<br>slice语法</p>
-<pre><code>slice(begin-index[,end下标])  //第一个是 开始的索引，第二个是 结束但不包括的索引， 例如：slice(0,4); 意思是索引 0，1，2，3，不包括4
-var list = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;,&#39;f&#39;,&#39;g&#39;];
-console.log(list.slice(0,2)) //Array: [&#39;a&#39;,&#39;b&#39;] </code></pre><p>顺手保存一个 url转码的网站 <a href="https://gongjux.com/urlcode" target="_blank" rel="noopener">url在线转码/解码</a></p>
-<h4 id="限制input输入两位小数的正则"><a href="#限制input输入两位小数的正则" class="headerlink" title="限制input输入两位小数的正则"></a>限制input输入两位小数的正则</h4><pre><code>&lt;input :value=&quot;form.price&quot; @input=&quot;onlyFloat($event, &#39;price&#39;)&quot;/&gt;
-
-methods: {
-    onlyFloat(e, type) {
-        let val = e.detail.value
-        val = val.replace(/^(\-)*(\d+)\.(\d\d).*$/, &#39;$1$2.$3&#39;)
-        this.form[type] = val
-        return val
-    }
-}</code></pre>]]></content>
-      <categories>
-        <category>代码</category>
       </categories>
   </entry>
   <entry>
@@ -879,117 +891,57 @@ export default defineConfig({
       </categories>
   </entry>
   <entry>
-    <title>svn提交的时候忽略node_moudules文件夹</title>
-    <url>/2020/11/25/svn%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%E5%BF%BD%E7%95%A5node_modules%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
-    <content><![CDATA[<p>右键空白处&gt;选中TortoiseSVN&gt;设置(settings)&gt;常规设置(General)&gt;Subversion&gt;编辑(edit)&gt;在弹出的config文件中找到global-ignores=“<em>node_modules”，复制一行下来，去掉global-ignores前的#。<br>如果是“文件夹” global-ignores=</em>node_modules<br>如果是”文件“ global-ignores = .project .git<br>中间用空格隔开<br><img src="https://img2018.cnblogs.com/blog/982259/201908/982259-20190820155127746-412002335.png" alt="图"></p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中秋月圆夜</title>
-    <url>/2014/09/08/%E4%B8%AD%E7%A7%8B%E6%9C%88%E5%9C%86%E5%A4%9C/</url>
-    <content><![CDATA[<p>　　适逢中秋佳节…聚餐街比平时多了一倍多的人，大家都在聚餐吃饭赏月，欢声笑语此起彼伏。尤其是萌萌的小姑娘们，像久居学堂被特赦了个大假一样，抱着碗、嘟着嘴、啃着嘴里的肉，笑容洋溢在脸上，好不开心。看得真想上去抱她们一下，分享分享她们的乐趣。”家庭和睦””其乐融融”有了孩子的参与，才配得上”家”的称谓吧…</p>
-<p><img src="https://imgm.gmw.cn/attachement/jpg/site2/20180305/719851693657967590.jpg" alt="中秋聚餐" title="聚餐"></p>
-<p>　　饭毕出行，外面天色全黑，云层细碎，月亮趋向逐渐圆满中。空间里微博里微信里，都在发布圆月的照片，似乎称赞这春花秋月，就是与这个世间一一贴身过招一样…  <a id="more"></a><br>　　置身街中，享受这种身处热闹场景又不被关注的感觉，像个流离的游魂，没有自我意识，无喜无悲，把心情交给眼前即时所见，随乐乐，随忧忧…<br>　　如若能每日如此清欢淡足，忘却门楼外的尘世和萧条，就这样度过一生。未尝不是件美事罢。</p>
-<p>　　直到此刻，都没给家人打电话问候，每次电话里都是重复的几句话，未曾有过新意，不知何时，我也学会撒谎，与父母一般。各知安好，坏仍不言…<br>　　近几年彳亍异乡，与其说在四处行走见识大千世界，不如说是在寻找能够让自己完整的部分。有所亏欠的，要填补。有所付出的，要获取。爱究其深刻，难以用语言表述。究其日常，不过如斯作为。<br>　　或许…他们久等我的致电问候未果，此时已经睡下…</p>
-<p>　　静谧的夜晚，平缓小道上一路泥土青草味扑鼻。不见了身着运动装跑步的少年们、携挽男人的女人，连在大树下小憩闲谈的老人们也都回了家。走进夜色深浓的公园，越走越远，越走越深。心里愈发安宁…</p>
-<p>　　值此中秋佳节.远方亲友同勉…<br>　　但愿人长久，分离不再有… 　　</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>写在vue中简单的随机验证码</title>
-    <url>/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
-    <content><![CDATA[<p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
+    <title>computed对input的v-model监听无效</title>
+    <url>/2021/07/19/vue%E4%B8%ADcomputed%E5%AF%B9input%E7%9A%84v-model%E7%9B%91%E5%90%AC%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>在写某个项目遇到的表单提交验证时，打算偷懒一次性验证几个字段，结果遇到，v-model绑定input，data未及时更新的小坑</p>
 <a id="more"></a>
-<h3 id="dom"><a href="#dom" class="headerlink" title="dom"></a><a href="#dom" title="dom"></a>dom</h3><pre><code>&lt;el-form :model=&quot;formData&quot; :rules=&quot;rules&quot; ref=&quot;formData&quot; label-width=&quot;0px&quot;&gt;  
- &lt;el-form-item prop=&quot;picLyanzhengma&quot;&gt;  
- &lt;el-input type=&quot;text&quot; placeholder=&quot;请输入验证码&quot; @blur=&quot;checkLpicma()&quot; v-model=&quot;formData.picLyanzhengma&quot;&gt;&lt;/el-input&gt;  
- &lt;input type=&quot;button&quot; @click=&quot;createCode&quot; class=&quot;verification1&quot; v-model=&quot;checkCode&quot;/&gt;  
- &lt;/el-form-item&gt;  
- &lt;el-button :loading=&quot;isLogin&quot; type=&quot;primary&quot; v-on:click=&quot;login(&#39;formData&#39;)&quot;&gt;登录&lt;/el-button&gt;  
-&lt;/el-form&gt;  </code></pre><h3 id="script"><a href="#script" class="headerlink" title="script"></a><a href="#script" title="script"></a>script</h3><pre><code>&lt;script&gt;  
- export default {  
- data () {  
- var checkCodes = (rule, value, callback) =&gt; {  
- if (value == &#39;&#39;) {  
- callback(new Error(&#39;请输入验证码&#39;));  
- } else if (value.toUpperCase() != this.checkCode) {  
- callback(new Error(&#39;验证码不正确&#39;));  
- } else {  
- callback();  
- }  
- };  
- return {  
- formData: {  
- picLyanzhengma: &#39;&#39;  
- },  
- checkCode: &#39;&#39;,  
- rules: {  
- picLyanzhengma :\[  
- { validator: checkCodes, trigger:&#39;blur&#39;}  
- \]  
- },  
- isLogin: false  
- }  
- },  
- methods: {  
- // 生成图片验证码  
- createCode(){  
- let code = &quot;&quot;;   
- var codeLength = 4;//验证码的长度   
- var random = new Array(0,1,2,3,4,5,6,7,8,9,&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,   
- &#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;);//随机数   
- for(var i = 0; i &lt; codeLength; i++) {  
- //循环操作   
- var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
- code += random\[index\];//根据索引取得随机数加到code上   
- }   
- this.checkCode = code;//把code值赋给验证码   
- },  
- // 失焦验证图和密码  
- checkLpicma(){  
- let that = this  
- this.formData.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写   
- if(this.formData.picLyanzhengma == &#39;&#39;) {  
- // 留空不刷  
- }else if(this.formData.picLyanzhengma.toUpperCase() != this.checkCode ) {   
- this.createCode();// 输错就刷新验证码   
- this.formData.picLyanzhengma = &#39;&#39;;  
- }else {  
- return true;  
- }   
- },  
- login (formName) {  
- var that = this  
- this.$refs\[formName\].validate((valid) =&gt; {  
- if (valid) {   
- // 验证通过  
- } else {  
- return false  
- }  
- })  
- }  
- }  
- }  
-&lt;/script&gt;  </code></pre><h3 id="css"><a href="#css" class="headerlink" title="css"></a><a href="#css" title="css"></a>css</h3><pre><code>.verification1{  
- vertical-align: middle;  
- width: 70px;  
- background: #f9f9f9;  
- border: solid 1px #ddd;  
- color: blue;  
- height: 2rem;  
-}  </code></pre>]]></content>
+<p>源代码：</p>
+<pre><code>&lt;input v-model=&quot;info.expressName&quot;/&gt;
+&lt;input v-model=&quot;info.expressNo&quot;/&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        info: {
+            expressName: &#39;&#39;,
+            expressNo: &#39;&#39;
+        }
+    },
+    methods: {
+
+    }
+    computed: {
+        isCanSub: function() {
+            return this.info.expressName || this.info.expressNo
+        }
+    }
+}
+&lt;/script&gt;</code></pre><p>测试发现，computed并没有监听到任意一个input的v-model值的变化<br>怎么写怎么不通过，网上搜索一番，有的说在computed里$set()重新渲染，有的说用watch，有的说用value不用model，基本都没用，不方便的不方便，不好使的不好使。思来想去，既然没更新，那我直接vue.$set() 强制更新一波不就完了。<br>测试通过完美解决问题</p>
+<pre><code>&lt;input :value=&quot;info.expressName&quot; @input=&quot;checkValue($event, &#39;expressName&#39;)&quot;/&gt;
+&lt;input :value=&quot;info.expressNo&quot; @input=&quot;checkValue($event, &#39;expressNo&#39;)&quot;/&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        info: {
+            expressName: &#39;&#39;,
+            expressNo: &#39;&#39;
+        }
+    },
+    methods: {
+        checkValue(e, type){
+            let val = e.detail.value
+            this.$set(this.info, type, val)
+            return val
+        }
+    }
+    computed: {
+        isCanSub: function() {
+            return this.info.expressName || this.info.expressNo
+        }
+    }
+}
+&lt;/script&gt;</code></pre>]]></content>
       <categories>
         <category>代码</category>
       </categories>
@@ -1114,79 +1066,110 @@ const menuList = computed(
       </tags>
   </entry>
   <entry>
-    <title>computed对input的v-model监听无效</title>
-    <url>/2021/07/19/vue%E4%B8%ADcomputed%E5%AF%B9input%E7%9A%84v-model%E7%9B%91%E5%90%AC%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>在写某个项目遇到的表单提交验证时，打算偷懒一次性验证几个字段，结果遇到，v-model绑定input，data未及时更新的小坑</p>
-<a id="more"></a>
-<p>源代码：</p>
-<pre><code>&lt;input v-model=&quot;info.expressName&quot;/&gt;
-&lt;input v-model=&quot;info.expressNo&quot;/&gt;
-
-&lt;script&gt;
-export default {
-    data() {
-        info: {
-            expressName: &#39;&#39;,
-            expressNo: &#39;&#39;
-        }
-    },
-    methods: {
-
-    }
-    computed: {
-        isCanSub: function() {
-            return this.info.expressName || this.info.expressNo
-        }
-    }
-}
-&lt;/script&gt;</code></pre><p>测试发现，computed并没有监听到任意一个input的v-model值的变化<br>怎么写怎么不通过，网上搜索一番，有的说在computed里$set()重新渲染，有的说用watch，有的说用value不用model，基本都没用，不方便的不方便，不好使的不好使。思来想去，既然没更新，那我直接vue.$set() 强制更新一波不就完了。<br>测试通过完美解决问题</p>
-<pre><code>&lt;input :value=&quot;info.expressName&quot; @input=&quot;checkValue($event, &#39;expressName&#39;)&quot;/&gt;
-&lt;input :value=&quot;info.expressNo&quot; @input=&quot;checkValue($event, &#39;expressNo&#39;)&quot;/&gt;
-
-&lt;script&gt;
-export default {
-    data() {
-        info: {
-            expressName: &#39;&#39;,
-            expressNo: &#39;&#39;
-        }
-    },
-    methods: {
-        checkValue(e, type){
-            let val = e.detail.value
-            this.$set(this.info, type, val)
-            return val
-        }
-    }
-    computed: {
-        isCanSub: function() {
-            return this.info.expressName || this.info.expressNo
-        }
-    }
-}
-&lt;/script&gt;</code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>心情随笔</title>
-    <url>/2014/12/24/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<p>　　生活越来越平淡慵懒和无力，内心疲倦到再难泛起丝毫涟漪。知觉和情感都下落到一个低潮的极点，与人交际不再单纯的交流，不愿过多谈及自身，疑似社会的黑暗面就在身边般小心翼翼地藏匿.</p>
-<p>　　不再相信美好的未来却又幻想未来的样子，像看恐怖片一样，明知害怕内心却期待着会出现什么样的场面让自己惊恐。这是瘾，是对作死的孤独有种习惯上的瘾…</p>
-<p>　　曾笃信，陪伴是最长情的告白，也一直默默身体力行。然，事实是时时事事为他人做嫁衣…一次又一次的双手空空。残酷的结局一次次碰击信念，如同克雷泽清肃屏障一般，屏障终将破碎。思维也在经历的催化下逐渐自我变异，无私的奉献心被短期的收益心取而代之，不再做看不到回报的事，长期式的坚持也被认为是多个短期的结合体，持之以恒变得艰难而又廉价。与朋友闲聊时不知不觉无言以对，从自闭到开怀再到慵懒过后，心很累，很累很累…满腔踌躇无人倾诉，把心情寄托于文字宣泄…  </p>
-<p><img src="http://ww4.sinaimg.cn/large/005K8Fb9gw1enkw25vjg6j30jg06474y.jpg" alt="">  </p>
-<p>　　读李煜词集、眠空、朝花夕拾…或许是受这类成名作影响变得沉毅寡言。但也无可置否，拥类似心境的人，论事朱红，偶尔愤世妒俗，时常为了活在当下而得过且过，站在社会的角读来看，着实是失败、偏执、也不合群…</p>
-<p>　　如此认清自己，也深知阳光下绿叶旁活的健康向上，却不愿主动去变更生活的习惯。有时曾想，自己怎么变得这么懒，基本的积极向上的心态都失去了。后来在某些方面的表现否定了自己的猜想。是麻木，是情感和生活的麻木，带走了信念里难得的动力，却不知如何找回，不知它在哪里…不知，它是否在偷笑着看我这副样子…</p>
+    <title>中秋月圆夜</title>
+    <url>/2014/09/08/%E4%B8%AD%E7%A7%8B%E6%9C%88%E5%9C%86%E5%A4%9C/</url>
+    <content><![CDATA[<p>　　适逢中秋佳节…聚餐街比平时多了一倍多的人，大家都在聚餐吃饭赏月，欢声笑语此起彼伏。尤其是萌萌的小姑娘们，像久居学堂被特赦了个大假一样，抱着碗、嘟着嘴、啃着嘴里的肉，笑容洋溢在脸上，好不开心。看得真想上去抱她们一下，分享分享她们的乐趣。”家庭和睦””其乐融融”有了孩子的参与，才配得上”家”的称谓吧…</p>
+<p><img src="https://imgm.gmw.cn/attachement/jpg/site2/20180305/719851693657967590.jpg" alt="中秋聚餐" title="聚餐"></p>
+<p>　　饭毕出行，外面天色全黑，云层细碎，月亮趋向逐渐圆满中。空间里微博里微信里，都在发布圆月的照片，似乎称赞这春花秋月，就是与这个世间一一贴身过招一样…  <a id="more"></a><br>　　置身街中，享受这种身处热闹场景又不被关注的感觉，像个流离的游魂，没有自我意识，无喜无悲，把心情交给眼前即时所见，随乐乐，随忧忧…<br>　　如若能每日如此清欢淡足，忘却门楼外的尘世和萧条，就这样度过一生。未尝不是件美事罢。</p>
+<p>　　直到此刻，都没给家人打电话问候，每次电话里都是重复的几句话，未曾有过新意，不知何时，我也学会撒谎，与父母一般。各知安好，坏仍不言…<br>　　近几年彳亍异乡，与其说在四处行走见识大千世界，不如说是在寻找能够让自己完整的部分。有所亏欠的，要填补。有所付出的，要获取。爱究其深刻，难以用语言表述。究其日常，不过如斯作为。<br>　　或许…他们久等我的致电问候未果，此时已经睡下…</p>
+<p>　　静谧的夜晚，平缓小道上一路泥土青草味扑鼻。不见了身着运动装跑步的少年们、携挽男人的女人，连在大树下小憩闲谈的老人们也都回了家。走进夜色深浓的公园，越走越远，越走越深。心里愈发安宁…</p>
+<p>　　值此中秋佳节.远方亲友同勉…<br>　　但愿人长久，分离不再有… 　　</p>
 ]]></content>
       <categories>
         <category>日常心情</category>
       </categories>
       <tags>
         <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写在vue中简单的随机验证码</title>
+    <url>/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    <content><![CDATA[<p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
+<a id="more"></a>
+<h3 id="dom"><a href="#dom" class="headerlink" title="dom"></a><a href="#dom" title="dom"></a>dom</h3><pre><code>&lt;el-form :model=&quot;formData&quot; :rules=&quot;rules&quot; ref=&quot;formData&quot; label-width=&quot;0px&quot;&gt;  
+ &lt;el-form-item prop=&quot;picLyanzhengma&quot;&gt;  
+ &lt;el-input type=&quot;text&quot; placeholder=&quot;请输入验证码&quot; @blur=&quot;checkLpicma()&quot; v-model=&quot;formData.picLyanzhengma&quot;&gt;&lt;/el-input&gt;  
+ &lt;input type=&quot;button&quot; @click=&quot;createCode&quot; class=&quot;verification1&quot; v-model=&quot;checkCode&quot;/&gt;  
+ &lt;/el-form-item&gt;  
+ &lt;el-button :loading=&quot;isLogin&quot; type=&quot;primary&quot; v-on:click=&quot;login(&#39;formData&#39;)&quot;&gt;登录&lt;/el-button&gt;  
+&lt;/el-form&gt;  </code></pre><h3 id="script"><a href="#script" class="headerlink" title="script"></a><a href="#script" title="script"></a>script</h3><pre><code>&lt;script&gt;  
+ export default {  
+ data () {  
+ var checkCodes = (rule, value, callback) =&gt; {  
+ if (value == &#39;&#39;) {  
+ callback(new Error(&#39;请输入验证码&#39;));  
+ } else if (value.toUpperCase() != this.checkCode) {  
+ callback(new Error(&#39;验证码不正确&#39;));  
+ } else {  
+ callback();  
+ }  
+ };  
+ return {  
+ formData: {  
+ picLyanzhengma: &#39;&#39;  
+ },  
+ checkCode: &#39;&#39;,  
+ rules: {  
+ picLyanzhengma :\[  
+ { validator: checkCodes, trigger:&#39;blur&#39;}  
+ \]  
+ },  
+ isLogin: false  
+ }  
+ },  
+ methods: {  
+ // 生成图片验证码  
+ createCode(){  
+ let code = &quot;&quot;;   
+ var codeLength = 4;//验证码的长度   
+ var random = new Array(0,1,2,3,4,5,6,7,8,9,&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,   
+ &#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;);//随机数   
+ for(var i = 0; i &lt; codeLength; i++) {  
+ //循环操作   
+ var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
+ code += random\[index\];//根据索引取得随机数加到code上   
+ }   
+ this.checkCode = code;//把code值赋给验证码   
+ },  
+ // 失焦验证图和密码  
+ checkLpicma(){  
+ let that = this  
+ this.formData.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写   
+ if(this.formData.picLyanzhengma == &#39;&#39;) {  
+ // 留空不刷  
+ }else if(this.formData.picLyanzhengma.toUpperCase() != this.checkCode ) {   
+ this.createCode();// 输错就刷新验证码   
+ this.formData.picLyanzhengma = &#39;&#39;;  
+ }else {  
+ return true;  
+ }   
+ },  
+ login (formName) {  
+ var that = this  
+ this.$refs\[formName\].validate((valid) =&gt; {  
+ if (valid) {   
+ // 验证通过  
+ } else {  
+ return false  
+ }  
+ })  
+ }  
+ }  
+ }  
+&lt;/script&gt;  </code></pre><h3 id="css"><a href="#css" class="headerlink" title="css"></a><a href="#css" title="css"></a>css</h3><pre><code>.verification1{  
+ vertical-align: middle;  
+ width: 70px;  
+ background: #f9f9f9;  
+ border: solid 1px #ddd;  
+ color: blue;  
+ height: 2rem;  
+}  </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1217,6 +1200,23 @@ export default {
       <categories>
         <category>日常心情</category>
       </categories>
+  </entry>
+  <entry>
+    <title>心情随笔</title>
+    <url>/2014/12/24/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<p>　　生活越来越平淡慵懒和无力，内心疲倦到再难泛起丝毫涟漪。知觉和情感都下落到一个低潮的极点，与人交际不再单纯的交流，不愿过多谈及自身，疑似社会的黑暗面就在身边般小心翼翼地藏匿.</p>
+<p>　　不再相信美好的未来却又幻想未来的样子，像看恐怖片一样，明知害怕内心却期待着会出现什么样的场面让自己惊恐。这是瘾，是对作死的孤独有种习惯上的瘾…</p>
+<p>　　曾笃信，陪伴是最长情的告白，也一直默默身体力行。然，事实是时时事事为他人做嫁衣…一次又一次的双手空空。残酷的结局一次次碰击信念，如同克雷泽清肃屏障一般，屏障终将破碎。思维也在经历的催化下逐渐自我变异，无私的奉献心被短期的收益心取而代之，不再做看不到回报的事，长期式的坚持也被认为是多个短期的结合体，持之以恒变得艰难而又廉价。与朋友闲聊时不知不觉无言以对，从自闭到开怀再到慵懒过后，心很累，很累很累…满腔踌躇无人倾诉，把心情寄托于文字宣泄…  </p>
+<p><img src="http://ww4.sinaimg.cn/large/005K8Fb9gw1enkw25vjg6j30jg06474y.jpg" alt="">  </p>
+<p>　　读李煜词集、眠空、朝花夕拾…或许是受这类成名作影响变得沉毅寡言。但也无可置否，拥类似心境的人，论事朱红，偶尔愤世妒俗，时常为了活在当下而得过且过，站在社会的角读来看，着实是失败、偏执、也不合群…</p>
+<p>　　如此认清自己，也深知阳光下绿叶旁活的健康向上，却不愿主动去变更生活的习惯。有时曾想，自己怎么变得这么懒，基本的积极向上的心态都失去了。后来在某些方面的表现否定了自己的猜想。是麻木，是情感和生活的麻木，带走了信念里难得的动力，却不知如何找回，不知它在哪里…不知，它是否在偷笑着看我这副样子…</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
   </entry>
   <entry>
     <title>日常</title>
@@ -1250,6 +1250,7 @@ export default {
 <h5 id="12月24日"><a href="#12月24日" class="headerlink" title="12月24日"></a>12月24日</h5><p>人类的情绪，并不相通，社会上的尔虞我诈，互相踩踏，仍旧很多，只是以一种相对文明的形式存在<br>升米恩，斗米仇，谁都想咬我一口，他们总说”你吃点亏吧“，可他们并不在乎你吃了多少亏，只想你再吃一点亏，每个人眼里都只有自己，生活在人间，仿佛置身于大海，水流时刻在挤压着自己，水里的空间就是生活中的资源，我稍微退一点，水就会进一步，占领本属于我的空间，我强一点，就能挤开水，自己多占一点空间。活着便是无时无刻不在与他人争斗，无论自己愿不愿意…</p>
 <h5 id="2022年9月6日"><a href="#2022年9月6日" class="headerlink" title="2022年9月6日"></a>2022年9月6日</h5><p>心脏，它很脆弱…</p>
 <h5 id="2022年9月12日（农历8月17）"><a href="#2022年9月12日（农历8月17）" class="headerlink" title="2022年9月12日（农历8月17）"></a>2022年9月12日（农历8月17）</h5><p>感受到了秋天的凉意…</p>
+<h5 id="2022年11月7日，晚上21点"><a href="#2022年11月7日，晚上21点" class="headerlink" title="2022年11月7日，晚上21点"></a>2022年11月7日，晚上21点</h5><p>直到今天，我才幡然理解到，”每天都有爱”的意思是”每天都有新鲜的爱”，没有喜忧的起伏生活是平凡，日复一日的生活是平淡，早安晚安的吻是日常，唯独缺少了让感觉人心神激荡的爱意，贪婪的女人啊，需要的是新鲜的爱意来作为维持关系的补充剂…</p>
 <!-- 
 ##### something to ll
 这两年，我经常在想，导致分开的源头在哪里
@@ -1268,37 +1269,6 @@ export default {
 这两年一直在想导致分开的原因，我晚上在打游戏，你晚上在与人闲聊
 
 -->]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>海心</title>
-    <url>/2014/05/18/%E6%B5%B7%E5%BF%83/</url>
-    <content><![CDATA[<p>　　昨日去了海边…</p>
-<p>　　szw很长很长，租一辆单车，缓缓骑行。飒飒的海风拂面，带着些许潮湿和腥味，这种腥咸的味道，清凉、酸涩、无人问津…耳边不时听闻男男女女的谈笑、小孩的稚语、好机油们打牌的大叫、山地车携带的咚恰乐…恰有一番清明上河图的繁华与喧嚣…<br>    <a id="more"></a><br>　　岸边树林下，条条石凳上都有一对相拥而坐的情侣在窃窃私语，好不浪漫。阴凉、安静、惬意，倘若是我，也定须选在这里约会…<br>靠近沙滩边的地方，每隔不远处都会有一小块聚会地，一张张颜色各异的毯子上摆着各式各样的零食，男女老少围成一圈，打牌、聊天、分享照片，笑声连绵…</p>
-<p>　　海边的浪花，沙粒，贝壳，海鸥，海藻…水如清泉，海天一色。看着一望无际的远方，大海和天空牵着手，交融在一起。看不清彼岸，可是能猜到，海那边，是大家立下的誓言，无边无际，永恒无期…</p>
-<p>　　沙滩上前一刻踩出的脚印，后一刻浪花涌上，瞬间被海水抚平。有些东西，虽随浪花离去，却已然铭记于心，任雪风吹雨打，依然不卑不亢，与岁月，与生命，不离不弃…</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>旅途随感</title>
-    <url>/2014/05/14/%E6%97%85%E9%80%94%E9%9A%8F%E6%84%9F/</url>
-    <content><![CDATA[<p>五月，下了一场很长很长的暴雨…<br>　　不知道期待了多久的雨过天晴，却迟迟未至，屋里充斥着气息君的低吟。雨天，是个调皮的坏姑娘，总是拦着我的脚步，陪她在家里玩耍…</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/6f26315cgw1ejbg4tg69xj21kw11xtwz.jpg" alt="赣州浮桥"></p>
-<p>　　不知何时，习惯独自旅行，背着行囊，掠过层层叠叠的风景，情不自禁中拍下了许多照片留念，想把所有好的、美的、有趣的事物都留在自己的相机里、回忆里…可是，随着旅行的次数越来越多，时间的更迭，逐渐发现，即使是在此来到最美好的地方，还是孤身一人，而身临佳境的欢愉，一个不用朋友圈的人，竟不知要与何人分享。那个瞬间，突然有所感慨，原来一路走到现在，生活中所有与自己擦肩的人都成了过客，并没有谁一直做伴，看尽旅途…<br> <a id="more"></a><br><img src="http://ww4.sinaimg.cn/mw690/6f26315cgw1ejh15plaloj21kw0vzneh.jpg" alt="2014年-列车-武昌途"></p>
-<p>　　坐上缓缓行驶的车厢，望着窗外，倒退的草木犹如时间分分秒秒从眼前闪过，来不及欣赏，它已成为过去，塞上耳塞，眼前只有声音的跃动，”时间都去哪儿了,还没好好感受年轻就老了.时间都去哪儿了,还没好好看看你眼睛就花了…”</p>
-<p>　　人生的旅行，时间是最公平的资源，自己既是看客，也是风景. 感谢所有走进生命的人，无论有怎样的交集，终会随时间定格，都只是一场风月情浓…</p>
-]]></content>
       <categories>
         <category>日常心情</category>
       </categories>
@@ -1384,6 +1354,134 @@ console.log(obj1.b.b1)  // 22 obj1拷贝了obj2的所有属性以及值，并不
       <tags>
         <tag>js</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>最近在喝武夷山岩茶</title>
+    <url>/2022/11/03/%E9%A5%AE%E8%8C%B6%E6%9C%89%E6%84%9F/</url>
+    <content><![CDATA[<p>冬天来了，要泡热茶喝了</p>
+<a id="more"></a>
+<h3 id="假的入门"><a href="#假的入门" class="headerlink" title="假的入门"></a>假的入门</h3><p><strong>136/250g 试喝装，一泡8g，给了5种，共30包+赠送两包“金奖大红袍+铁罗汉”（30包，折算下来，0.544元/g-272元/斤，一泡约4.5元）</strong> </p>
+<p><strong>金奖大红袍</strong>：一般，喝起来后味儿还有点收敛和涩口…500一斤的话划不来</p>
+<p><strong>铁罗汉</strong>： 喝起来有股淡淡的茶香，但也有一股淡淡的中药味，半茶半药，喝不来…</p>
+<p><strong>高山肉桂</strong>：还没喝就闻到强烈的香气，不像桂皮，就是好闻，入口有炭火味儿，火焙得有些过，喝着比之闻起来的香味减半，在口中停留几秒后再减半，三泡之后味道再减半，回甘不足，喝着让人有意犹未尽的感觉，茶香让人感觉是鸦片，茶汤喝起来像大前门，就刺激，不解馋，茶香、茶水不一致，品质不够</p>
+<p><strong>高枞水仙</strong>：闻香比肉桂平和，肉桂是强烈，水仙是温柔，茶汤入口顺滑，但香气散的快，喝几杯就感觉没味儿了…像温婉的女子在捏肩捶背，空有看头，喝几口过后再无兴致</p>
+<p><strong>奇兰</strong>：香气似铁观音和大红袍的对半分，喝起来顺口，略带绿茶的清新，茶汤香气绵长，比肉桂持久，乌龙茶的“乌龙感”当以奇兰的口感最为明显</p>
+<p><strong>金牡丹</strong>：闻起来很香，茶汤喝起来也香，没什么毛病，挺好喝，可以买些囤着用来招待。<br><small>(经查询，这个是属于移植茶（杂交）。“铁观音为母本，黄棪(旦)为父本，采用杂交育种法育成”)</small></p>
+<p><strong>红色包装大红袍</strong>：比较中庸，香气算第三，茶汤顺口，回甘有，但不多，也不会涩口，喝起来不错，老实人的感觉，像是调制茶，比之金奖大红袍要老实本分些</p>
+<p><del>上面有一款茶凉着也好喝，忘了哪个了…</del></p>
+<h3 id="真的入门-1"><a href="#真的入门-1" class="headerlink" title="真的入门+1"></a>真的入门+1</h3><p><strong>原价88/8泡/64g，加12块钱，换下了金奖大红袍+铁罗汉，换了两款“金交椅+荒野小气候”肉桂，送了一包上面的 高山肉桂（10包，折算下来均价，1.25元/g-625元/斤，一泡约10元）</strong></p>
+<p><strong>荒野小气候</strong>（x2）： 第一泡用的快客杯，茶具是粗陶的，这茶说是比高山肉桂喝起来更霸道，老客户价¥600/250g(半斤)，一泡下来，香味有，但茶水寡淡无味，如果上面的茶各有明显突出的特点像年轻人的话，这茶就像行将就木的老人，平淡无回甘无起伏，就是平淡，像是放了很久，把棱角都磨去了一样。<br>过了几天，特意问了老板，是去年的茶，今年都要结束，去年的茶，还经历过年年底的年货没卖完，到今天为止起码放15个月的库存茶，焙的火估计都下的差不多了<br>第二泡，用盖碗泡，喝起来平稳很多，茶香终于是出来了，不苦不涩，纯纯的陈香，没别的杂味儿，但还是有点过于陈的感觉</p>
+<p><strong>金交椅肉桂</strong>： 3秒出汤，耐泡，3-5泡还味道如初，茶香明显，初闻香气，隐隐有红薯的味道，就是蒸熟的红薯，喝起来也比较柔顺，像三四十岁的中年人，茶汤入口平和，没有舌头不适的感觉，回甘丝丝缕缕，有一点点薄荷的清凉。茶叶滤水后，闻茶，这才是肉桂，真肉桂，桂皮就是这个味儿，贼冲，高山肉桂就没这种明显的桂皮味儿。<br>这个味道，越闻越像热红薯…喝起来也有点，这就是桂皮的味道吗？</p>
+<p><del><em>这两泡贵一点的下来，茶汤全是平和，没有刺激味蕾的地方，一千出头的茶，满满的平和味儿，让我不禁遐思：那再贵点的茶，是不是马上快回到了立顿红茶的柔顺感了</em></del></p>
+<p><strong>兰香水仙</strong>： 耐泡，七八泡了还有味，香味平和，特点不突出，喝起来还可以</p>
+<p><strong>竹窠肉桂</strong>： 耐泡，闻起来果香浓郁，入口比金交椅好入口，金交椅的是突出的红薯味儿，这个是果香比较突出，但美中不足，回甘不甜</p>
+<p><strong>燕子窠</strong>： 耐泡，好像这个价位的茶都挺耐泡，前几泡果香突出，后泡就是桂皮比较突出了，闻起来的味道和竹窠差不多，区别是竹窠五六泡之后不会变红薯味儿。（这个醒茶后，要瞬间出汤，泡多几秒就苦了）</p>
+<p><strong>高山肉桂</strong>：就是”假的入门”里说的便宜的肉桂</p>
+<p><strong>老从水仙</strong>：好喝，闻起来淡雅，喝起来香，可以打七八分，汤水清亮，喝起来柔顺，甘甜有致，持久留香，水仙更喜欢这个</p>
+<p><strong>野生红茶</strong>：非常不起眼的一泡茶，小小包，5g，包装也不华丽，写着野生红茶，但喝起来好喝，闻起来很香，泡起来汤香也很浓郁，喝到胃里很舒服，耐泡性好，五六泡下来顶多香气淡一点，不会出苦味儿，600一斤，能有100泡，一泡10块，还算划得来</p>
+<p>以上都是在“欢乐茶仓”的店里喝的</p>
+<h3 id="触及初级"><a href="#触及初级" class="headerlink" title="触及初级"></a>触及初级</h3><p><strong>双11闲逛淘宝，无意间看到了一家名叫“望峰”的店铺，卖的牛栏坑肉桂在打折，原价750，双11只要¥501/500g，8g/泡，买了一斤试试水，送了正装以外其他别的类型1+3包试饮装</strong></p>
+<p><strong>牛栏坑肉桂</strong>： 秒出汤，香气四溢，醇香顺滑，上面的高山、小气候、竹窠、燕子窠，比起来，都没这个香，它的香会更入水一些，喝起来没有杂味，好喝是好喝，但不耐泡，小碗4泡就出苦味儿，不耐泡这点让人有一点点意犹未尽的感觉，喝完这个再回去喝高山肉桂，能明显感觉到味道的差距，这个喝起来好喝的多</p>
+<p>以下3款，都是赠的试饮装，与上面的牛栏坑，是同一链接的货，但价格有所不同，这三款大概都在4-500左右<br><strong>赠品_马头岩肉桂</strong>：刺激的味儿比较大，像脱缰的野马，wc 各种冲的味儿，去求吧，幸亏是送的，喝两杯就换茶了<br><strong>赠品_老枞水仙</strong>： 水仙如其名，如水般柔顺，香气比较足，没有那么突出的、特别的味道，就是淡香、顺滑，500一斤性价比可以的<br><strong>赠品_大红袍</strong>： 喝起来没特点…大红袍是各种岩茶掺一起的调制品，目前包括前面喝到的大红袍，基本都是特点无，食之无味的一款，也可能是我的嘴巴喝刁了</p>
+<p>11月25日，野生红茶喝了几包，跟望峰的店里老板也聊了不少，突发奇想试试望峰家的红茶，跟老板商量下，118买了6种12包，各式的红茶试饮装，老板又送了4泡肉桂，一共16包，单算价格已经不是划不划算的问题了，很划算！</p>
+<p>红茶6种，就跟上面到手的 野生红茶 做对比 (11月25日)<br><strong>麻栗老枞小种</strong>：998/斤，一般，相比妃子笑，稍微淳一些<br><strong>桐木老枞</strong>：420/斤，<br><strong>妃子笑正山小种</strong>：628/斤，喝起来略寡淡，香气淡，真淡，像白茶一样淡<br><strong>金芽金骏眉</strong>：628/斤，一般<br><strong>桐木关金骏眉</strong>：960/斤，<br><strong>顶级金骏眉</strong>：2988/斤，香气相对也淡，喝起来淳一些，想想价格，像亲了一口古代的公主-只觉高贵而不解馋，还是没野生红茶喝起来香，我可能对红茶无感？明显的区别在茶叶外形上，这个茶叶看起来可太值钱了，过水后泡开，不是大叶的一坨，就是一小毫一小毫，茶叶的单位都不能用”片”了，小小个，像是用茶树尖尖上最嫩的小叶部分做出来的，叶片各个大小还都差不多，都是那么丁点大，这卖相明显区别于别的茶</p>
+<p>肉桂4种，每种一包 （12月1日晚）<br><strong>马头岩肉桂</strong>：不敢喝，还没喝，想想前面的马头岩一言难尽…</p>
+<p><strong>牛背_牛栏坑肉桂</strong>：惊喜，目前喝到最好的茶，前面虽然吹嘘肉桂香，肉桂好，但在这个面前，就是儿子见爸爸，如果前面喝的是纯牛奶的话，这个就是特仑苏，浓、淳厚，就是它的代名词，比前面的牛栏坑肉桂耐泡些，五六泡还不苦不涩，厚重，醇香，喝到嘴里才知道是啥意思，就是价格…一问：老客户1200/斤</p>
+<p><strong>水帘洞肉桂</strong>：如果牛背是特仑苏的话，这个就是安慕希，也有淳厚感，但没牛背那么厚，太容易出味儿了，太浓了，秒出汤还很浓，看起来都发黑，浓到喝起来有微微的发苦，估计得用泡小青柑的方式来冲这个茶，盖碗秒出汤泡出来都过浓 （自己去望峰店里查了，标价610/斤，高火的，感觉火要是轻点，可能会好些？）<br>朋友喝了遭不住，我出汤兑水对半喝了七八泡还有味儿，耐泡性挺强的，就是浓的发苦…浓茶不过如此</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旅途随感</title>
+    <url>/2014/05/14/%E6%97%85%E9%80%94%E9%9A%8F%E6%84%9F/</url>
+    <content><![CDATA[<p>五月，下了一场很长很长的暴雨…<br>　　不知道期待了多久的雨过天晴，却迟迟未至，屋里充斥着气息君的低吟。雨天，是个调皮的坏姑娘，总是拦着我的脚步，陪她在家里玩耍…</p>
+<p><img src="http://ww3.sinaimg.cn/mw690/6f26315cgw1ejbg4tg69xj21kw11xtwz.jpg" alt="赣州浮桥"></p>
+<p>　　不知何时，习惯独自旅行，背着行囊，掠过层层叠叠的风景，情不自禁中拍下了许多照片留念，想把所有好的、美的、有趣的事物都留在自己的相机里、回忆里…可是，随着旅行的次数越来越多，时间的更迭，逐渐发现，即使是在此来到最美好的地方，还是孤身一人，而身临佳境的欢愉，一个不用朋友圈的人，竟不知要与何人分享。那个瞬间，突然有所感慨，原来一路走到现在，生活中所有与自己擦肩的人都成了过客，并没有谁一直做伴，看尽旅途…<br> <a id="more"></a><br><img src="http://ww4.sinaimg.cn/mw690/6f26315cgw1ejh15plaloj21kw0vzneh.jpg" alt="2014年-列车-武昌途"></p>
+<p>　　坐上缓缓行驶的车厢，望着窗外，倒退的草木犹如时间分分秒秒从眼前闪过，来不及欣赏，它已成为过去，塞上耳塞，眼前只有声音的跃动，”时间都去哪儿了,还没好好感受年轻就老了.时间都去哪儿了,还没好好看看你眼睛就花了…”</p>
+<p>　　人生的旅行，时间是最公平的资源，自己既是看客，也是风景. 感谢所有走进生命的人，无论有怎样的交集，终会随时间定格，都只是一场风月情浓…</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>海心</title>
+    <url>/2014/05/18/%E6%B5%B7%E5%BF%83/</url>
+    <content><![CDATA[<p>　　昨日去了海边…</p>
+<p>　　szw很长很长，租一辆单车，缓缓骑行。飒飒的海风拂面，带着些许潮湿和腥味，这种腥咸的味道，清凉、酸涩、无人问津…耳边不时听闻男男女女的谈笑、小孩的稚语、好机油们打牌的大叫、山地车携带的咚恰乐…恰有一番清明上河图的繁华与喧嚣…<br>    <a id="more"></a><br>　　岸边树林下，条条石凳上都有一对相拥而坐的情侣在窃窃私语，好不浪漫。阴凉、安静、惬意，倘若是我，也定须选在这里约会…<br>靠近沙滩边的地方，每隔不远处都会有一小块聚会地，一张张颜色各异的毯子上摆着各式各样的零食，男女老少围成一圈，打牌、聊天、分享照片，笑声连绵…</p>
+<p>　　海边的浪花，沙粒，贝壳，海鸥，海藻…水如清泉，海天一色。看着一望无际的远方，大海和天空牵着手，交融在一起。看不清彼岸，可是能猜到，海那边，是大家立下的誓言，无边无际，永恒无期…</p>
+<p>　　沙滩上前一刻踩出的脚印，后一刻浪花涌上，瞬间被海水抚平。有些东西，虽随浪花离去，却已然铭记于心，任雪风吹雨打，依然不卑不亢，与岁月，与生命，不离不弃…</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用css使网站全局或者局部变黑色</title>
+    <url>/2014/09/24/%E7%94%A8css%E4%BD%BF%E7%BD%91%E7%AB%99%E5%85%A8%E5%B1%80%E6%88%96%E8%80%85%E5%B1%80%E9%83%A8%E5%8F%98%E9%BB%91%E8%89%B2/</url>
+    <content><![CDATA[<p>现在，不少网站需要用到灰色效果，比如企业站的”友情链接”、”部分案例”、网站底部logo等…<br>切图是比较简单，保存一张图片就好了。但是…图片要加载、增加了图片数量、更换不方便等等等等…<br>站在效率的角度来讲，用简单的代码来实现，显然更胜一筹…  </p>
+<a id="more"></a> 
+<h4 id="1、整站变灰"><a href="#1、整站变灰" class="headerlink" title="1、整站变灰"></a><a href="#1、整站变灰" title="1、整站变灰"></a>1、整站变灰</h4><p>在全局css文件中，加入以下代码  </p>
+<pre><code>html {  
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); //IE6以上   
+-webkit-filter:grayscale(100%); //支持google、Safari  
+}</code></pre><h4 id="2、只想针对图片"><a href="#2、只想针对图片" class="headerlink" title="2、只想针对图片"></a><a href="#2、只想针对图片" title="2、只想针对图片"></a>2、只想针对图片</h4><p>页面里所有的图片  </p>
+<pre><code>img{filter:Gray; //IE}  </code></pre><h4 id="3、只让指定图片变为灰色"><a href="#3、只让指定图片变为灰色" class="headerlink" title="3、只让指定图片变为灰色"></a><a href="#3、只让指定图片变为灰色" title="3、只让指定图片变为灰色"></a>3、只让指定图片变为灰色</h4><p>比如logo  </p>
+<pre><code>.gery{filter:Gray;}  
+&lt;img src=&quot;logo.gif&quot; class=&quot;gery&quot;&gt;  </code></pre><h4 id="4、如果部分图片变灰"><a href="#4、如果部分图片变灰" class="headerlink" title="4、如果部分图片变灰"></a><a href="#4、如果部分图片变灰" title="4、如果部分图片变灰"></a>4、如果部分图片变灰</h4><p>另外一些保留彩色  </p>
+<pre><code>.nochange {filter:gray(enabled=false);}  
+&lt;img src=&quot;no.gif&quot; class=&quot;nochange&quot; /&gt;  </code></pre><h4 id="5、让网站中Flash动画变灰"><a href="#5、让网站中Flash动画变灰" class="headerlink" title="5、让网站中Flash动画变灰"></a><a href="#5、让网站中Flash动画变灰" title="5、让网站中Flash动画变灰"></a>5、让网站中Flash动画变灰</h4><p>在Flash代码的&lt;object …&gt;和</object>之间插入： </p>
+<pre><code>&lt;param value=&quot;false&quot; name=&quot;menu&quot;/&gt;  
+&lt;param value=&quot;opaque&quot; name=&quot;wmode&quot;/&gt;  </code></pre><h4 id="6、使得Firefox变灰的方法"><a href="#6、使得Firefox变灰的方法" class="headerlink" title="6、使得Firefox变灰的方法"></a><a href="#6、使得Firefox变灰的方法" title="6、使得Firefox变灰的方法"></a>6、使得Firefox变灰的方法</h4><p>firefox旧版本必须调用<a href="http://www.oschina.net/p/grayscaling-js/similar_projects" target="_blank" rel="noopener">grayscale.js</a>来实现，然后在网站头部加入引用：  </p>
+<pre><code>&lt;script src=&quot;grayscale.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
+&lt;script type=&quot;text/javascript&quot;&gt; window.onload=function(){grayscale(document.body); } &lt;/script&gt;  </code></pre><h4 id="然而Firefox新版已支持该滤镜"><a href="#然而Firefox新版已支持该滤镜" class="headerlink" title="然而Firefox新版已支持该滤镜"></a><a href="#然而Firefox新版已支持该滤镜" title="然而Firefox新版已支持该滤镜"></a>然而Firefox新版已支持该滤镜</h4><h4 id="综上所述，IE6-、FF、google-全兼容完整的代码为："><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" class="headerlink" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a>综上所述，IE6+、FF、google 全兼容完整的代码为：</h4><pre><code>html{  
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
+-webkit-filter:grayscale(100%);  
+-moz-filter: grayscale(100%);  
+-ms-filter: grayscale(100%);  
+-o-filter: grayscale(100%);  
+filter: grayscale(100%);  
+filter:Gray;  
+}  </code></pre><p>注：相信日常会用FF的朋友，都会进行升级体验，所以grayscale.js的写法不调用，在此只用来拓展学习。 　　</p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背景透明hack</title>
+    <url>/2014/11/11/%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8Ehack/</url>
+    <content><![CDATA[<p>不同浏览器里的兼容，实在有种蛋蛋的忧伤， 摆出所有hack，哪个浏览器不行就加哪个。通用就可以兼容各种浏览器</p>
+<h4 id="模块透明度"><a href="#模块透明度" class="headerlink" title="模块透明度"></a><a href="#模块透明度" title="模块透明度"></a>模块透明度</h4><pre><code>opacity:0.5;//所有浏览器  
+_filter:alpha(opacity=50);//IE6  
+\*opacity:0.5;//IE6&amp;7(\*包括6和7)  
++opacity:0.5;//IE7独有  
+-ms-filter:alpha(opacity=50);//-ms- IE8独有的hack  
+-ms-filter:&quot;progid:DXImageTransform.Microsoft.Alpha(opacity=50)&quot;;//上一句完整的写法  
+opacity:0.5\\9;  //IE6-10   
+opacity:0.5\\0; //IE8-10+最新版opera   
+-moz-opacity:0.5;//火狐  
+-webkit-opacity:0.5; //谷歌+safari  
+-o-opacity:0.5;//欧鹏(opera)  </code></pre><h4 id="IE6-、FF、google全兼容"><a href="#IE6-、FF、google全兼容" class="headerlink" title="IE6+、FF、google全兼容"></a><a href="#IE6-、FF、google全兼容" title="IE6+、FF、google全兼容"></a>IE6+、FF、google全兼容</h4><pre><code>opacity:0.5;  
+filter:alpha(opacity=50);  
+-ms-filter:alpha(opacity=50); </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
   </entry>
   <entry>
     <title>uni-app-小程序的一些功能</title>
@@ -1618,81 +1716,6 @@ onEditorReady(index) {
       </categories>
       <tags>
         <tag>uniapp小程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最近在喝武夷山岩茶</title>
-    <url>/2022/11/03/%E9%A5%AE%E8%8C%B6%E6%9C%89%E6%84%9F/</url>
-    <content><![CDATA[<p>冬天来了，要泡热茶喝了</p>
-<a id="more"></a>
-<h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p><strong>136/250g 试喝装，一泡8g，给了5种，共30包+赠送两包“金奖大红袍+铁罗汉”</strong></p>
-<p><strong>金奖大红袍</strong>：一般，喝起来后味儿还有点涩口…就这说卖500一斤？<br><strong>铁罗汉</strong>： 什么玩意儿…喝起来有股淡淡的中药味道，还有一股淡淡的茶味儿，半茶半药，喝不来…<br><strong>高山肉桂</strong>：还没喝就闻到强烈的香气，不像桂皮，就是好闻，入口有炭火味儿，喝着比之闻起来的香味减半，在口中停留几秒后再减半，茶叶喝三泡之后味道再减半，回甘不足，喝着让人有意犹未尽的感觉，茶香让人感觉是鸦片，茶汤喝起来像大前门，不解馋，茶香、茶水不一致，品质不够<br><strong>高枞水仙</strong>：闻香比肉桂平和，肉桂是强烈，水仙是温柔，茶汤入口顺滑，但香气散的快，喝几杯就感觉没味儿了…像温婉的女子在捏肩捶背，空有看头，喝几口过后再无兴致<br><strong>奇兰</strong>：香气似铁观音和大红袍的对半分，喝起来顺口，略带绿茶的清新，茶汤香气绵长，比肉桂持久，乌龙茶的“乌龙感”当以奇兰的口感最为明显<br><strong>金牡丹</strong>：香～喝起来也香，没什么毛病，我还要买，可以拿回家给不常喝茶的家里人泡一泡<br><strong>红色包装大红袍</strong>：比较中庸，香气算第三，茶汤顺口，回甘有，但不多，也不会涩口，喝起来不错，老实人的感觉，像是调制茶</p>
-<p><del>上面有一款茶凉着好喝，忘了哪个了…hhhhh</del></p>
-<h3 id="入门-1"><a href="#入门-1" class="headerlink" title="入门+1"></a>入门+1</h3><p><strong>原价88/8泡/64g，加12块钱，换下了金奖大红袍+铁罗汉，换了两款“金交椅+荒野小气候”肉桂，送了一包上面的 高山肉桂</strong></p>
-<p><strong>荒野小气候</strong>： 说是老客户价¥600/250g，一泡下来，香味有，但茶水寡淡无味，如果上面的茶各有特色像年轻人的话，这茶就像行将就木的老人，平淡无回甘无欺负，就是平淡，像是放了三年，把棱角都磨去了一样<br><strong>金交椅肉桂</strong>： 3秒出汤，耐泡，3-5泡还味道如初，茶香明显，初闻香气，隐隐有红薯的味道，就是蒸熟的红薯，喝起来也比较柔顺，像三四十岁的中年人，茶汤入口平和，没有舌头不适的感觉，回甘丝丝缕缕，有一点点薄荷的清凉。茶叶滤水后，闻茶，这才是肉桂，真肉桂，桂皮就是这个味儿，贼冲，高山肉桂是什么山沟沟里的假冒东西.<br>这玩意儿，越闻越像热红薯…喝起来也有点，这就是桂皮香？这一点也不算“香”…</p>
-<p><del><em>这两泡贵一点的下来，茶汤全是平和，没有刺激味蕾的地方，一千出头的茶，满满的平和味儿，让我不禁遐思：那再贵点的茶，是不是马上快回到了立顿红茶的柔顺感了</em></del><br><del><em>本来热着没什么味儿，凉了就更没味儿</em></del></p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>背景透明hack</title>
-    <url>/2014/11/11/%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8Ehack/</url>
-    <content><![CDATA[<p>不同浏览器里的兼容，实在有种蛋蛋的忧伤， 摆出所有hack，哪个浏览器不行就加哪个。通用就可以兼容各种浏览器</p>
-<h4 id="模块透明度"><a href="#模块透明度" class="headerlink" title="模块透明度"></a><a href="#模块透明度" title="模块透明度"></a>模块透明度</h4><pre><code>opacity:0.5;//所有浏览器  
-_filter:alpha(opacity=50);//IE6  
-\*opacity:0.5;//IE6&amp;7(\*包括6和7)  
-+opacity:0.5;//IE7独有  
--ms-filter:alpha(opacity=50);//-ms- IE8独有的hack  
--ms-filter:&quot;progid:DXImageTransform.Microsoft.Alpha(opacity=50)&quot;;//上一句完整的写法  
-opacity:0.5\\9;  //IE6-10   
-opacity:0.5\\0; //IE8-10+最新版opera   
--moz-opacity:0.5;//火狐  
--webkit-opacity:0.5; //谷歌+safari  
--o-opacity:0.5;//欧鹏(opera)  </code></pre><h4 id="IE6-、FF、google全兼容"><a href="#IE6-、FF、google全兼容" class="headerlink" title="IE6+、FF、google全兼容"></a><a href="#IE6-、FF、google全兼容" title="IE6+、FF、google全兼容"></a>IE6+、FF、google全兼容</h4><pre><code>opacity:0.5;  
-filter:alpha(opacity=50);  
--ms-filter:alpha(opacity=50); </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>用css使网站全局或者局部变黑色</title>
-    <url>/2014/09/24/%E7%94%A8css%E4%BD%BF%E7%BD%91%E7%AB%99%E5%85%A8%E5%B1%80%E6%88%96%E8%80%85%E5%B1%80%E9%83%A8%E5%8F%98%E9%BB%91%E8%89%B2/</url>
-    <content><![CDATA[<p>现在，不少网站需要用到灰色效果，比如企业站的”友情链接”、”部分案例”、网站底部logo等…<br>切图是比较简单，保存一张图片就好了。但是…图片要加载、增加了图片数量、更换不方便等等等等…<br>站在效率的角度来讲，用简单的代码来实现，显然更胜一筹…  </p>
-<a id="more"></a> 
-<h4 id="1、整站变灰"><a href="#1、整站变灰" class="headerlink" title="1、整站变灰"></a><a href="#1、整站变灰" title="1、整站变灰"></a>1、整站变灰</h4><p>在全局css文件中，加入以下代码  </p>
-<pre><code>html {  
-filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); //IE6以上   
--webkit-filter:grayscale(100%); //支持google、Safari  
-}</code></pre><h4 id="2、只想针对图片"><a href="#2、只想针对图片" class="headerlink" title="2、只想针对图片"></a><a href="#2、只想针对图片" title="2、只想针对图片"></a>2、只想针对图片</h4><p>页面里所有的图片  </p>
-<pre><code>img{filter:Gray; //IE}  </code></pre><h4 id="3、只让指定图片变为灰色"><a href="#3、只让指定图片变为灰色" class="headerlink" title="3、只让指定图片变为灰色"></a><a href="#3、只让指定图片变为灰色" title="3、只让指定图片变为灰色"></a>3、只让指定图片变为灰色</h4><p>比如logo  </p>
-<pre><code>.gery{filter:Gray;}  
-&lt;img src=&quot;logo.gif&quot; class=&quot;gery&quot;&gt;  </code></pre><h4 id="4、如果部分图片变灰"><a href="#4、如果部分图片变灰" class="headerlink" title="4、如果部分图片变灰"></a><a href="#4、如果部分图片变灰" title="4、如果部分图片变灰"></a>4、如果部分图片变灰</h4><p>另外一些保留彩色  </p>
-<pre><code>.nochange {filter:gray(enabled=false);}  
-&lt;img src=&quot;no.gif&quot; class=&quot;nochange&quot; /&gt;  </code></pre><h4 id="5、让网站中Flash动画变灰"><a href="#5、让网站中Flash动画变灰" class="headerlink" title="5、让网站中Flash动画变灰"></a><a href="#5、让网站中Flash动画变灰" title="5、让网站中Flash动画变灰"></a>5、让网站中Flash动画变灰</h4><p>在Flash代码的&lt;object …&gt;和</object>之间插入： </p>
-<pre><code>&lt;param value=&quot;false&quot; name=&quot;menu&quot;/&gt;  
-&lt;param value=&quot;opaque&quot; name=&quot;wmode&quot;/&gt;  </code></pre><h4 id="6、使得Firefox变灰的方法"><a href="#6、使得Firefox变灰的方法" class="headerlink" title="6、使得Firefox变灰的方法"></a><a href="#6、使得Firefox变灰的方法" title="6、使得Firefox变灰的方法"></a>6、使得Firefox变灰的方法</h4><p>firefox旧版本必须调用<a href="http://www.oschina.net/p/grayscaling-js/similar_projects" target="_blank" rel="noopener">grayscale.js</a>来实现，然后在网站头部加入引用：  </p>
-<pre><code>&lt;script src=&quot;grayscale.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
-&lt;script type=&quot;text/javascript&quot;&gt; window.onload=function(){grayscale(document.body); } &lt;/script&gt;  </code></pre><h4 id="然而Firefox新版已支持该滤镜"><a href="#然而Firefox新版已支持该滤镜" class="headerlink" title="然而Firefox新版已支持该滤镜"></a><a href="#然而Firefox新版已支持该滤镜" title="然而Firefox新版已支持该滤镜"></a>然而Firefox新版已支持该滤镜</h4><h4 id="综上所述，IE6-、FF、google-全兼容完整的代码为："><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" class="headerlink" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a>综上所述，IE6+、FF、google 全兼容完整的代码为：</h4><pre><code>html{  
-filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
--webkit-filter:grayscale(100%);  
--moz-filter: grayscale(100%);  
--ms-filter: grayscale(100%);  
--o-filter: grayscale(100%);  
-filter: grayscale(100%);  
-filter:Gray;  
-}  </code></pre><p>注：相信日常会用FF的朋友，都会进行升级体验，所以grayscale.js的写法不调用，在此只用来拓展学习。 　　</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>
