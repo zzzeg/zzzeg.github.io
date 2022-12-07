@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo动态个性标题</title>
+    <url>/2018/11/28/Hexo%E5%8A%A8%E6%80%81%E4%B8%AA%E6%80%A7%E6%A0%87%E9%A2%98/</url>
+    <content><![CDATA[<p>装完乱七八糟的东西之后，发现网站title一直是同一个内容，翻到模版<code>head.ejs</code>里，当前配置的title改为  </p>
+<pre><code>&lt;title&gt;&lt;%= page.title ? page.title : config.title %&gt;&lt;/title&gt;  </code></pre><p>即可有动态title</p>
+<a id="more"></a>
+<p>在查资料看别人的博客时，发现一个比较有趣的效果：<a href="https://liuzhichao.com/" target="_blank" rel="noopener">https://liuzhichao.com/</a></p>
+<p>经查，通过document.hidden属性判断当前页面是否是激活状态<br>兼容性：IE10+，Firefox10+,Chrome14+,Opera12.1+,Safari7.1+<br>加在页面底部的js代码：  </p>
+<pre><code>var hiddenProperty = &#39;hidden&#39; in document ? &#39;hidden&#39; :   
+ &#39;webkitHidden&#39; in document ? &#39;webkitHidden&#39; :   
+ &#39;mozHidden&#39; in document ? &#39;mozHidden&#39; :   
+ null;  
+var realTitle = &#39;&lt;%= page.title ? page.title : config.title %&gt;&#39;;  
+var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, &#39;visibilitychange&#39;);  
+var onVisibilityChange = function(){  
+ if (!document\[hiddenProperty\]) {  
+ document.title = realTitle;  
+ }else{  
+ document.title = &#39;藏起来啦 (*´∇｀*)&#39;;  
+ }  
+}  
+document.addEventListener(visibilityChangeEvent, onVisibilityChange); </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Vue里push方法的视图不更新</title>
+    <url>/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<p>在js里面写的xxx[‘n’] = []，触发push后，视图没及时更新  </p>
+<pre><code>that.formData\[&#39;sampleList&#39;\] = \[\]  // 无效的响应式属性创建方式  
+that.formData.sampleList.push(n)  // push后视图不会更新  </code></pre><p>查了一番，是由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除，得用set去创建新的响应式属性：  </p>
+<pre><code>that.$set(that.formData, &#39;sampleList&#39;, \[\])  
+that.formData.sampleList.push(n)  </code></pre><a id="more"></a>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a><a href="#分析" title="分析"></a>分析</h4><pre><code>var vm = new Vue({  
+ data: {  
+ a: 1  
+ }  
+})  
+// &#39;vm.a&#39; 是响应式  
+
+vm.b = 2  
+// &#39;vm.b&#39; 不是响应式  </code></pre><p>对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 Vue.set(object, key, value)方法向嵌套对象添加响应式属性。例：  </p>
+<pre><code>var vm = new Vue({  
+ data: {  
+ userProfile: {  
+ name: &#39;Anika&#39;  
+ }  
+ }  
+})  </code></pre><p>可以添加一个新的 age 属性到嵌套的 userProfile 对象：  </p>
+<pre><code>Vue.set(vm.userProfile, &#39;age&#39;, 27)  </code></pre><p>全局vm.$set的方式  </p>
+<pre><code>vm.$set(vm.userProfile, &#39;age&#39;, 27) </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue项目设置局域网访问</title>
+    <url>/2019/07/01/Vue%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<p>有两种方式：</p>
+<ol>
+<li>修改<code>package.json</code>文件的dev,后面加上<code>--host 0.0.0.0</code>，或者自己的局域网ip地址，例：<code>--host 192.168.0.33</code></li>
+</ol>
+<pre><code>&quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0&quot;,
+    &quot;build&quot;: &quot;node build/build.js&quot;,
+    &quot;start&quot;: &quot;npm run build:client &amp;&amp; npm run build:server &amp;&amp; cross-env NODE_ENV=production node server&quot;,
+    &quot;build:client&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.client.conf.js --progress --hide-modules&quot;,
+    &quot;temp&quot;: &quot;node tools/app.js&quot;,
+    &quot;build:server&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.server.conf.js --progress --hide-modules&quot;,
+    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
+    &quot;karma&quot;: &quot;cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run&quot;
+  },</code></pre><p>2.Vue配置文件config下面的index.js把locahost改成0.0.0.0</p>
+<pre><code>dev: {
+    port: 8000,
+    autoOpenBrowser: true,
+    host: &#39;0.0.0.0&#39;,
+}</code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue快速搭建</title>
     <url>/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p>截止到这篇文章发布，搭建开发环境用到的组件、工具：<a href="http://lib.csdn.net/base/nodejs" target="_blank" rel="noopener" title="Node.js知识库">Node.js</a> 8.2.1、npm 5.3.0、webpack 2.6.1、sublime3<br> <a id="more"></a><br>现在开始安装环境</p>
@@ -56,32 +144,6 @@ content:&quot;&quot;
       </categories>
   </entry>
   <entry>
-    <title>Hexo动态个性标题</title>
-    <url>/2018/11/28/Hexo%E5%8A%A8%E6%80%81%E4%B8%AA%E6%80%A7%E6%A0%87%E9%A2%98/</url>
-    <content><![CDATA[<p>装完乱七八糟的东西之后，发现网站title一直是同一个内容，翻到模版<code>head.ejs</code>里，当前配置的title改为  </p>
-<pre><code>&lt;title&gt;&lt;%= page.title ? page.title : config.title %&gt;&lt;/title&gt;  </code></pre><p>即可有动态title</p>
-<a id="more"></a>
-<p>在查资料看别人的博客时，发现一个比较有趣的效果：<a href="https://liuzhichao.com/" target="_blank" rel="noopener">https://liuzhichao.com/</a></p>
-<p>经查，通过document.hidden属性判断当前页面是否是激活状态<br>兼容性：IE10+，Firefox10+,Chrome14+,Opera12.1+,Safari7.1+<br>加在页面底部的js代码：  </p>
-<pre><code>var hiddenProperty = &#39;hidden&#39; in document ? &#39;hidden&#39; :   
- &#39;webkitHidden&#39; in document ? &#39;webkitHidden&#39; :   
- &#39;mozHidden&#39; in document ? &#39;mozHidden&#39; :   
- null;  
-var realTitle = &#39;&lt;%= page.title ? page.title : config.title %&gt;&#39;;  
-var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, &#39;visibilitychange&#39;);  
-var onVisibilityChange = function(){  
- if (!document\[hiddenProperty\]) {  
- document.title = realTitle;  
- }else{  
- document.title = &#39;藏起来啦 (*´∇｀*)&#39;;  
- }  
-}  
-document.addEventListener(visibilityChangeEvent, onVisibilityChange); </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
     <title>a.js里调用b.js的方法</title>
     <url>/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>在调用之前，引入如下4行代码即可 </p>
@@ -93,39 +155,6 @@ document.body.appendChild(new_element);  </code></pre><p>分析：利用document
       <categories>
         <category>代码</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Vue里push方法的视图不更新</title>
-    <url>/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/</url>
-    <content><![CDATA[<p>在js里面写的xxx[‘n’] = []，触发push后，视图没及时更新  </p>
-<pre><code>that.formData\[&#39;sampleList&#39;\] = \[\]  // 无效的响应式属性创建方式  
-that.formData.sampleList.push(n)  // push后视图不会更新  </code></pre><p>查了一番，是由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除，得用set去创建新的响应式属性：  </p>
-<pre><code>that.$set(that.formData, &#39;sampleList&#39;, \[\])  
-that.formData.sampleList.push(n)  </code></pre><a id="more"></a>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a><a href="#分析" title="分析"></a>分析</h4><pre><code>var vm = new Vue({  
- data: {  
- a: 1  
- }  
-})  
-// &#39;vm.a&#39; 是响应式  
-
-vm.b = 2  
-// &#39;vm.b&#39; 不是响应式  </code></pre><p>对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 Vue.set(object, key, value)方法向嵌套对象添加响应式属性。例：  </p>
-<pre><code>var vm = new Vue({  
- data: {  
- userProfile: {  
- name: &#39;Anika&#39;  
- }  
- }  
-})  </code></pre><p>可以添加一个新的 age 属性到嵌套的 userProfile 对象：  </p>
-<pre><code>Vue.set(vm.userProfile, &#39;age&#39;, 27)  </code></pre><p>全局vm.$set的方式  </p>
-<pre><code>vm.$set(vm.userProfile, &#39;age&#39;, 27) </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
   </entry>
   <entry>
     <title>elementui的click事件绑定无效解决方案</title>
@@ -145,32 +174,101 @@ vm.b = 2
       </categories>
   </entry>
   <entry>
-    <title>Vue项目设置局域网访问</title>
-    <url>/2019/07/01/Vue%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E8%AE%BF%E9%97%AE/</url>
-    <content><![CDATA[<p>有两种方式：</p>
-<ol>
-<li>修改<code>package.json</code>文件的dev,后面加上<code>--host 0.0.0.0</code>，或者自己的局域网ip地址，例：<code>--host 192.168.0.33</code></li>
-</ol>
-<pre><code>&quot;scripts&quot;: {
-    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0&quot;,
-    &quot;build&quot;: &quot;node build/build.js&quot;,
-    &quot;start&quot;: &quot;npm run build:client &amp;&amp; npm run build:server &amp;&amp; cross-env NODE_ENV=production node server&quot;,
-    &quot;build:client&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.client.conf.js --progress --hide-modules&quot;,
-    &quot;temp&quot;: &quot;node tools/app.js&quot;,
-    &quot;build:server&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.server.conf.js --progress --hide-modules&quot;,
-    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
-    &quot;karma&quot;: &quot;cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run&quot;
-  },</code></pre><p>2.Vue配置文件config下面的index.js把locahost改成0.0.0.0</p>
-<pre><code>dev: {
-    port: 8000,
-    autoOpenBrowser: true,
-    host: &#39;0.0.0.0&#39;,
-}</code></pre>]]></content>
+    <title>filter滤镜</title>
+    <url>/2015/03/07/filter%E6%BB%A4%E9%95%9C/</url>
+    <content><![CDATA[<p>在IE中使用CSS3的旋转效果是不能实现的，，但是我又想把IE旋转效果跟其他浏览使用CSS3 rotate(deg)一样。在百度找了一下，发现IE里面有一款滤镜，可以实现旋转角度。</p>
+<p>代码如下：  </p>
+<pre><code>filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod=&#39;auto expand&#39;, M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678);  </code></pre><a id="more"></a>
+<p>假如红色的矩形是我们需要旋转的元素，蓝色矩形是旋转之后的位置，也就是说(0,1)和(1,0)这两个坐标旋转a角之后变成了(x,y)和(m,-n)，我们只要知道他们的变换关系就好。那么(x,y)和(m,-n)可以用简单的三角函数算出得到(sin(a),cos(a))和(cos(a),-sin(a))。把这个结果代入单位矩阵中得到</p>
+<pre><code>{    m    -n    }  
+ x    y  
+也就是  
+{    cos(a)    -sin(a)    }  
+ sin(a)    cos(a)  
+假如a是45°就可以得到如下值。  
+{    0.707    -0.707    }  
+ 0.707    0.707  
+
+sin()  cos()  可在自己电脑上打开计算器进行计算。如下图计算了一个45度后的sin值。  </code></pre><p>其实旋转完了还是有些问题的存在。问题就是元素旋转了IE和FF的中心点不一样了。IE偏离了中心点，为了解决这个问题还是要计算一下。我们先要计算出它旋转后的大小，然后就能知道它旋转后大小的增量，偏移量就是这个增量的一半。公式：  </p>
+<pre><code>W=|sin(a)\*h|+|cos(a)\*w|，H=|sin(a)\*w|+|cos(a)\*h|  </code></pre><p>我这个元素的宽高都是200px…那么旋转后282这样。增量就是82.。。偏移量就是增量的一半那就是41.。。所以加这个属性margin:-41px;….不这个属性只是针对IE。。<br>所以Ie8：  </p>
+<pre><code>margin:-41px\\0;        ie7  : *margin:-41px;        ie6:margin:-41px;  </code></pre><h2 id="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"><a href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现" class="headerlink" title="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"></a><a href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现" title="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"></a>有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现</h2><h4 id="IE滤镜"><a href="#IE滤镜" class="headerlink" title="IE滤镜"></a><a href="#IE滤镜" title="IE滤镜"></a>IE滤镜</h4><pre><code>Alpha：设置透明层次.   
+blur：创建高速度移动效果，即模糊效果.   
+Chroma：制作专用颜色透明.   
+DropShadow：创建对象的固定影子.   
+FlipH：创建水平镜像图片.   
+FlipV：创建垂直镜像图片.   
+glow：加光辉在附近对象的边外.   
+gray：把图片灰度化.   
+invert：反色.   
+light：创建光源在对象上.   
+mask：创建透明掩膜在对象上.   
+shadow：创建偏移固定影子.   
+wave：波纹效果.   
+Xray：使对象变的像被x光照射一样.  </code></pre><h4 id="W3C滤镜"><a href="#W3C滤镜" class="headerlink" title="W3C滤镜"></a><a href="#W3C滤镜" title="W3C滤镜"></a>W3C滤镜</h4><pre><code>grayscale 灰度  
+sepia 褐色  
+saturate 饱和度  
+hue-rotate 色相旋转  
+invert 反色  
+opacity 透明度  
+brightness 亮度  
+contrast 对比度  
+blur 模糊  
+drop-shadow 阴影  </code></pre><h2 id="滤镜：透明效果"><a href="#滤镜：透明效果" class="headerlink" title="滤镜：透明效果"></a><a href="#滤镜：透明效果" title="滤镜：透明效果"></a>滤镜：透明效果</h2><p>语法：<br>filter:Alpha(Opacity=opacity,FinishOpacity=finishopacity，Style=style,StartX=startX，StartY=startY，FinishX=finishX，FinishY=finishY)<br>说明：<br>Opacity：起始值，取值为0～100, 0为透明，100为原图。<br>FinishOpacity：目标值。<br>Style：1或2或3<br>StartX：任意值<br>StartY：任意值<br>FinishX：任意值<br>FinishY：任意值</p>
+<pre><code>一般透明效果：filter:alpha(opacity=30);  
+
+W3C代码：-webkit-filter:opacity(0.3); 或 opacity:0.3;  
+
+线型透明：filter: alpha(Opacity=0, FinishOpacity=100, Style=1, StartX=0, StartY=0, FinishX=200, FinishY=180);  
+
+放射透明：filter: Alpha(Opacity=0, FinishOpacity=100, Style=2);  
+
+柔光效果filter:alpha(opacity=100, finishOpacity=0,style=3);  </code></pre><h2 id="滤镜：投影效果"><a href="#滤镜：投影效果" class="headerlink" title="滤镜：投影效果"></a><a href="#滤镜：投影效果" title="滤镜：投影效果"></a>滤镜：投影效果</h2><p>语法：<br>filter:DropShadow(Color=color, OffX=offX, OffY=offY, Positive=positive)<br>说明：<br>Color:#rrggbb格式，任意。<br>Offx：X轴偏离值。<br>Offy：Y轴偏离值。<br>Positive：如果为”True”为任何的非透明像素建立可见的投影.如果为”False”,为透明的像素部分建立可见的投影。</p>
+<pre><code>投影效果：filter:progid:dXImageTransform.Microsoft.DropShadow(color=#000000,offX=5,offY=5,positives=true);  
+
+W3C代码：-webkit-filter:drop-shadow(5px 5px 0 #000000); 或 box-shadow:5px 5px 0 #000;  
+
+阴影效果：progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=10);  
+
+虑色效果：progid:DXImageTransform.Microsoft.Chroma(color=#59A074);  
+
+马赛克：filter:progid:dXImageTransform.Microsoft.Pixelate(maxsquare=3);  
+
+发光效果：filter:progid:dXImageTransform.Microsoft.Glow(color=#000000,Strength=5);  
+
+水平翻转：filter: fliph;  
+
+W3C代码：-webkit-transform:rotateY(180deg);  
+
+垂直翻转：filter: flipv;  
+
+W3C代码：-webkit-transform:rotateX(180deg);  
+
+反色效果：filter: invert;  
+
+W3C代码：-webkit-filter:invert(1);  
+
+黑白效果：filter:gray;  
+
+W3C代码：-webkit-filter:grayscale(1);  
+
+X光照片：filter:xray;  
+
+W3C代码：-webkit-filter:grayscale(1) invert(1);  </code></pre><h2 id="滤镜：模糊效果"><a href="#滤镜：模糊效果" class="headerlink" title="滤镜：模糊效果"></a><a href="#滤镜：模糊效果" title="滤镜：模糊效果"></a>滤镜：模糊效果</h2><p>语法：<br>filter:Blur(Add = add, Direction = direction, Strength = strength)<br>说明：<br>Add：指定图片是否被改变成印象派的模糊效果.1为真，0为假。<br>Direction：角度，0～315度，步长为45度。<br>Strength：有多少像素的宽度受到模糊影响,默认是5个像素。</p>
+<pre><code>风动模糊(有角度)：filter: blur(add=true,direction=45,strength=30);  
+
+一般模糊：filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=7);  
+
+W3C代码：-webkit-filter:blur(3px);  </code></pre><h2 id="滤镜：波纹效果"><a href="#滤镜：波纹效果" class="headerlink" title="滤镜：波纹效果"></a><a href="#滤镜：波纹效果" title="滤镜：波纹效果"></a>滤镜：波纹效果</h2><p>语法：<br>filter: Wave(Add=add，Freq=freq，LightStrength=strength，Phase=phase， Strength=strength)<br>说明：<br>Add：是否打乱,默认是”True”。<br>Freq：产生多少个完整的波纹。<br>LightStrength：增强光影,0-100的整数值。<br>Phase：正弦波的偏移量,通常值为0,范围是0-100的整数值。<br>Strength：代表振幅大小。</p>
+<pre><code>正弦波纹：filter: Wave(Add=0, Freq=60, LightStrength=1, Phase=0, Strength=3);  
+
+渐变效果：filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=&quot;#000000&quot;, EndColorStr=&quot;#ffffff&quot;);  
+
+W3C代码：background:-webkit-linear-gradient(#000000 0, #ffffff 100%);  </code></pre>]]></content>
       <categories>
         <category>代码</category>
       </categories>
       <tags>
-        <tag>vue</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -279,104 +377,6 @@ git config --global --unset https.proxy</code></pre>]]></content>
       </tags>
   </entry>
   <entry>
-    <title>filter滤镜</title>
-    <url>/2015/03/07/filter%E6%BB%A4%E9%95%9C/</url>
-    <content><![CDATA[<p>在IE中使用CSS3的旋转效果是不能实现的，，但是我又想把IE旋转效果跟其他浏览使用CSS3 rotate(deg)一样。在百度找了一下，发现IE里面有一款滤镜，可以实现旋转角度。</p>
-<p>代码如下：  </p>
-<pre><code>filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod=&#39;auto expand&#39;, M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678);  </code></pre><a id="more"></a>
-<p>假如红色的矩形是我们需要旋转的元素，蓝色矩形是旋转之后的位置，也就是说(0,1)和(1,0)这两个坐标旋转a角之后变成了(x,y)和(m,-n)，我们只要知道他们的变换关系就好。那么(x,y)和(m,-n)可以用简单的三角函数算出得到(sin(a),cos(a))和(cos(a),-sin(a))。把这个结果代入单位矩阵中得到</p>
-<pre><code>{    m    -n    }  
- x    y  
-也就是  
-{    cos(a)    -sin(a)    }  
- sin(a)    cos(a)  
-假如a是45°就可以得到如下值。  
-{    0.707    -0.707    }  
- 0.707    0.707  
-
-sin()  cos()  可在自己电脑上打开计算器进行计算。如下图计算了一个45度后的sin值。  </code></pre><p>其实旋转完了还是有些问题的存在。问题就是元素旋转了IE和FF的中心点不一样了。IE偏离了中心点，为了解决这个问题还是要计算一下。我们先要计算出它旋转后的大小，然后就能知道它旋转后大小的增量，偏移量就是这个增量的一半。公式：  </p>
-<pre><code>W=|sin(a)\*h|+|cos(a)\*w|，H=|sin(a)\*w|+|cos(a)\*h|  </code></pre><p>我这个元素的宽高都是200px…那么旋转后282这样。增量就是82.。。偏移量就是增量的一半那就是41.。。所以加这个属性margin:-41px;….不这个属性只是针对IE。。<br>所以Ie8：  </p>
-<pre><code>margin:-41px\\0;        ie7  : *margin:-41px;        ie6:margin:-41px;  </code></pre><h2 id="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"><a href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现" class="headerlink" title="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"></a><a href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现" title="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"></a>有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现</h2><h4 id="IE滤镜"><a href="#IE滤镜" class="headerlink" title="IE滤镜"></a><a href="#IE滤镜" title="IE滤镜"></a>IE滤镜</h4><pre><code>Alpha：设置透明层次.   
-blur：创建高速度移动效果，即模糊效果.   
-Chroma：制作专用颜色透明.   
-DropShadow：创建对象的固定影子.   
-FlipH：创建水平镜像图片.   
-FlipV：创建垂直镜像图片.   
-glow：加光辉在附近对象的边外.   
-gray：把图片灰度化.   
-invert：反色.   
-light：创建光源在对象上.   
-mask：创建透明掩膜在对象上.   
-shadow：创建偏移固定影子.   
-wave：波纹效果.   
-Xray：使对象变的像被x光照射一样.  </code></pre><h4 id="W3C滤镜"><a href="#W3C滤镜" class="headerlink" title="W3C滤镜"></a><a href="#W3C滤镜" title="W3C滤镜"></a>W3C滤镜</h4><pre><code>grayscale 灰度  
-sepia 褐色  
-saturate 饱和度  
-hue-rotate 色相旋转  
-invert 反色  
-opacity 透明度  
-brightness 亮度  
-contrast 对比度  
-blur 模糊  
-drop-shadow 阴影  </code></pre><h2 id="滤镜：透明效果"><a href="#滤镜：透明效果" class="headerlink" title="滤镜：透明效果"></a><a href="#滤镜：透明效果" title="滤镜：透明效果"></a>滤镜：透明效果</h2><p>语法：<br>filter:Alpha(Opacity=opacity,FinishOpacity=finishopacity，Style=style,StartX=startX，StartY=startY，FinishX=finishX，FinishY=finishY)<br>说明：<br>Opacity：起始值，取值为0～100, 0为透明，100为原图。<br>FinishOpacity：目标值。<br>Style：1或2或3<br>StartX：任意值<br>StartY：任意值<br>FinishX：任意值<br>FinishY：任意值</p>
-<pre><code>一般透明效果：filter:alpha(opacity=30);  
-
-W3C代码：-webkit-filter:opacity(0.3); 或 opacity:0.3;  
-
-线型透明：filter: alpha(Opacity=0, FinishOpacity=100, Style=1, StartX=0, StartY=0, FinishX=200, FinishY=180);  
-
-放射透明：filter: Alpha(Opacity=0, FinishOpacity=100, Style=2);  
-
-柔光效果filter:alpha(opacity=100, finishOpacity=0,style=3);  </code></pre><h2 id="滤镜：投影效果"><a href="#滤镜：投影效果" class="headerlink" title="滤镜：投影效果"></a><a href="#滤镜：投影效果" title="滤镜：投影效果"></a>滤镜：投影效果</h2><p>语法：<br>filter:DropShadow(Color=color, OffX=offX, OffY=offY, Positive=positive)<br>说明：<br>Color:#rrggbb格式，任意。<br>Offx：X轴偏离值。<br>Offy：Y轴偏离值。<br>Positive：如果为”True”为任何的非透明像素建立可见的投影.如果为”False”,为透明的像素部分建立可见的投影。</p>
-<pre><code>投影效果：filter:progid:dXImageTransform.Microsoft.DropShadow(color=#000000,offX=5,offY=5,positives=true);  
-
-W3C代码：-webkit-filter:drop-shadow(5px 5px 0 #000000); 或 box-shadow:5px 5px 0 #000;  
-
-阴影效果：progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=10);  
-
-虑色效果：progid:DXImageTransform.Microsoft.Chroma(color=#59A074);  
-
-马赛克：filter:progid:dXImageTransform.Microsoft.Pixelate(maxsquare=3);  
-
-发光效果：filter:progid:dXImageTransform.Microsoft.Glow(color=#000000,Strength=5);  
-
-水平翻转：filter: fliph;  
-
-W3C代码：-webkit-transform:rotateY(180deg);  
-
-垂直翻转：filter: flipv;  
-
-W3C代码：-webkit-transform:rotateX(180deg);  
-
-反色效果：filter: invert;  
-
-W3C代码：-webkit-filter:invert(1);  
-
-黑白效果：filter:gray;  
-
-W3C代码：-webkit-filter:grayscale(1);  
-
-X光照片：filter:xray;  
-
-W3C代码：-webkit-filter:grayscale(1) invert(1);  </code></pre><h2 id="滤镜：模糊效果"><a href="#滤镜：模糊效果" class="headerlink" title="滤镜：模糊效果"></a><a href="#滤镜：模糊效果" title="滤镜：模糊效果"></a>滤镜：模糊效果</h2><p>语法：<br>filter:Blur(Add = add, Direction = direction, Strength = strength)<br>说明：<br>Add：指定图片是否被改变成印象派的模糊效果.1为真，0为假。<br>Direction：角度，0～315度，步长为45度。<br>Strength：有多少像素的宽度受到模糊影响,默认是5个像素。</p>
-<pre><code>风动模糊(有角度)：filter: blur(add=true,direction=45,strength=30);  
-
-一般模糊：filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=7);  
-
-W3C代码：-webkit-filter:blur(3px);  </code></pre><h2 id="滤镜：波纹效果"><a href="#滤镜：波纹效果" class="headerlink" title="滤镜：波纹效果"></a><a href="#滤镜：波纹效果" title="滤镜：波纹效果"></a>滤镜：波纹效果</h2><p>语法：<br>filter: Wave(Add=add，Freq=freq，LightStrength=strength，Phase=phase， Strength=strength)<br>说明：<br>Add：是否打乱,默认是”True”。<br>Freq：产生多少个完整的波纹。<br>LightStrength：增强光影,0-100的整数值。<br>Phase：正弦波的偏移量,通常值为0,范围是0-100的整数值。<br>Strength：代表振幅大小。</p>
-<pre><code>正弦波纹：filter: Wave(Add=0, Freq=60, LightStrength=1, Phase=0, Strength=3);  
-
-渐变效果：filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=&quot;#000000&quot;, EndColorStr=&quot;#ffffff&quot;);  
-
-W3C代码：background:-webkit-linear-gradient(#000000 0, #ffffff 100%);  </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javascript阻止浏览器后退backspace键</title>
     <url>/2016/06/21/javascript%E9%98%BB%E6%AD%A2%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%8E%E9%80%80backspace%E9%94%AE/</url>
     <content><![CDATA[<p>由于项目需求，写到某个插件的时候，需要阻止backspace等浏览器默认事件，但是用e.preventDefault()无论如何都搞不定，火狐和谷歌在input或textarea失焦之后，按backspace都执行了后退(上一页)，网上查了资料，也问了不少人，最终原生js解决，以此为记：  </p>
@@ -430,35 +430,6 @@ window.history.forward(1);//屏蔽浏览器自带的后退键 </code></pre>]]></
       </categories>
   </entry>
   <entry>
-    <title>json数组的增删改操作</title>
-    <url>/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
-var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
-var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre><a id="more"></a>
-<p>要说明的是，虽然第二种方法创建数组指定了长度，但实际上所有情况下数组都是变长的，也就是说即使指定了长度为5，仍然可以将元素存储在规定长度以外的，注意：这时长度会随之改变。</p>
-<h4 id="2、数组的元素的访问"><a href="#2、数组的元素的访问" class="headerlink" title="2、数组的元素的访问"></a><a href="#2、数组的元素的访问" title="2、数组的元素的访问"></a>2、数组的元素的访问</h4><pre><code>var testGetArrValue=arrayObj\[1\]; //获取数组的元素值  
-arrayObj\[1\]= &quot;这是新值&quot;; //给数组元素赋予新的值  </code></pre><h4 id="3、数组元素的添加"><a href="#3、数组元素的添加" class="headerlink" title="3、数组元素的添加"></a><a href="#3、数组元素的添加" title="3、数组元素的添加"></a>3、数组元素的添加</h4><pre><code>// 将一个或多个新元素添加到数组结尾，并返回数组新长度  
-arrayObj. push(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
-// 将一个或多个新元素添加到数组开始，数组中的元素自动后移，返回数组新长度  
-arrayObj.unshift(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
-//将一个或多个新元素插入到数组的指定位置，插入位置的元素自动后移，返回&quot;&quot;。  
-arrayObj.splice(insertPos,0,\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="4、数组元素的删除"><a href="#4、数组元素的删除" class="headerlink" title="4、数组元素的删除"></a><a href="#4、数组元素的删除" title="4、数组元素的删除"></a>4、数组元素的删除</h4><pre><code>//移除最后一个元素并返回该元素值  
-arrayObj.pop();   
-//移除最前一个元素并返回该元素值，数组中元素自动前移  
-arrayObj.shift();   
-//删除从指定位置deletePos开始的指定数量deleteCount的元素，数组形式返回所移除的元素  
-arrayObj.splice(deletePos,deleteCount);  </code></pre><h4 id="5、数组的截取和合并"><a href="#5、数组的截取和合并" class="headerlink" title="5、数组的截取和合并"></a><a href="#5、数组的截取和合并" title="5、数组的截取和合并"></a>5、数组的截取和合并</h4><pre><code>//以数组的形式返回数组的一部分，注意不包括 end 对应的元素，如果省略 end 将复制 start 之后的所有元素  
-arrayObj.slice(start, \[end\]);   
-//将多个数组（也可以是字符串，或者是数组和字符串的混合）连接为一个数组，返回连接好的新的数组  
-arrayObj.concat(\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="6、数组的拷贝"><a href="#6、数组的拷贝" class="headerlink" title="6、数组的拷贝"></a><a href="#6、数组的拷贝" title="6、数组的拷贝"></a>6、数组的拷贝</h4><pre><code>arrayObj.slice(0); //返回数组的拷贝数组，注意是一个新的数组，不是指向  
-arrayObj.concat(); //返回数组的拷贝数组，注意是一个新的数组，不是指向  </code></pre><h4 id="7、数组元素的排序"><a href="#7、数组元素的排序" class="headerlink" title="7、数组元素的排序"></a><a href="#7、数组元素的排序" title="7、数组元素的排序"></a>7、数组元素的排序</h4><pre><code>arrayObj.reverse(); //反转元素（最前的排到最后、最后的排到最前），返回数组地址  
-arrayObj.sort(); //对数组元素排序，返回数组地址  </code></pre><h4 id="8、数组元素的字符串化"><a href="#8、数组元素的字符串化" class="headerlink" title="8、数组元素的字符串化"></a><a href="#8、数组元素的字符串化" title="8、数组元素的字符串化"></a>8、数组元素的字符串化</h4><pre><code>arrayObj.join(separator); //返回字符串，这个字符串将数组的每一个元素值连接在一起，中间用 separator 隔开。  
-toLocaleString 、toString 、valueOf：可以看作是join的特殊用法，不常用 </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
     <title>js/jquery选中部分文字功能</title>
     <url>/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<p>项目上需要一个文件重命名功能，就像百度网盘的文件重命名一样，只选中文件名不选中后缀:<br>这样子：<br><img src="http://zzzeg.github.io/img/0001.jpg" alt=""><br>代码如下：<br>  <a id="more"></a><br>html部分  </p>
@@ -493,27 +464,6 @@ $(&quot;.a&quot;).click(function(){
       </categories>
   </entry>
   <entry>
-    <title>hexo里的code代码高亮</title>
-    <url>/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/</url>
-    <content><![CDATA[<p>Hexo博客弄好之后，代码高亮显得太单调了，以前折腾wordpress的时候用param.js不太适合这个，多方查看找到个<a href="https://github.com/google/code-prettify" target="_blank" rel="noopener">prettify</a> 插件，尝试了一下之后效果还不错。</p>
-<p>先关闭Hexo的代码高亮功能，修改根目录下的配置文件<code>_config.yml</code>  </p>
-<pre><code>highlight:  
- enable: false  
- line_number: false   
- auto_detect: false  
- tab_replace:  </code></pre><a id="more"></a>
-<p>然后下载 <a href="https://github.com/google/code-prettify" target="_blank" rel="noopener">prettify</a>，把css和js文件丢到对应的<code>hexo\themes\themeName\source\css、js</code>文件夹里面，并引入</p>
-<p>js引入位置在<code>hexo\themes\themeName\layout\layout.ejs</code>内：  </p>
-<pre><code>&lt;%\- js(&#39;js/prettify.js&#39;) %&gt;  </code></pre><p>css引入位置在  </p>
-<pre><code>&lt;%\- css(&#39;css/tomorrow-night.min.css&#39;) %&gt;  </code></pre><p>并且在页面加载完毕后调用  </p>
-<pre><code>$(&#39;pre&#39;).addClass(&#39;prettyprint linenums&#39;).attr(&#39;style&#39;, &#39;overflow:auto;&#39;);  
- prettyPrint();  </code></pre><p>就这样，设置就完成了，刷新看效果<br>另外，可以在这个地方<a href="https://jmblog.github.io/color-themes-for-google-code-prettify/" target="_blank" rel="noopener">https://jmblog.github.io/color-themes-for-google-code-prettify/</a>选择一套自己喜欢的主题替换上面的prettify.css即可。</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
     <title>hexo设置网站图标Favicon</title>
     <url>/2018/11/22/hexo%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87Favicon/</url>
     <content><![CDATA[<p>网站发布后总是报错favicon.ico 403 not found. 坑很多啊！</p>
@@ -532,6 +482,56 @@ $(&quot;.a&quot;).click(function(){
 <li>字体、图标少拐弯，抗锯齿方式最好用”锐利”这种比较清晰，没有模糊边</li>
 </ul>
 <p>我的图标：字体：Gadugi(Regular) + 锐利 + 19像素字(实际图片里高18px)，顶边距=底边距=7px</p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>json数组的增删改操作</title>
+    <url>/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
+var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
+var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre><a id="more"></a>
+<p>要说明的是，虽然第二种方法创建数组指定了长度，但实际上所有情况下数组都是变长的，也就是说即使指定了长度为5，仍然可以将元素存储在规定长度以外的，注意：这时长度会随之改变。</p>
+<h4 id="2、数组的元素的访问"><a href="#2、数组的元素的访问" class="headerlink" title="2、数组的元素的访问"></a><a href="#2、数组的元素的访问" title="2、数组的元素的访问"></a>2、数组的元素的访问</h4><pre><code>var testGetArrValue=arrayObj\[1\]; //获取数组的元素值  
+arrayObj\[1\]= &quot;这是新值&quot;; //给数组元素赋予新的值  </code></pre><h4 id="3、数组元素的添加"><a href="#3、数组元素的添加" class="headerlink" title="3、数组元素的添加"></a><a href="#3、数组元素的添加" title="3、数组元素的添加"></a>3、数组元素的添加</h4><pre><code>// 将一个或多个新元素添加到数组结尾，并返回数组新长度  
+arrayObj. push(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
+// 将一个或多个新元素添加到数组开始，数组中的元素自动后移，返回数组新长度  
+arrayObj.unshift(\[item1 \[item2 \[. . . \[itemN \]\]\]\]);  
+//将一个或多个新元素插入到数组的指定位置，插入位置的元素自动后移，返回&quot;&quot;。  
+arrayObj.splice(insertPos,0,\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="4、数组元素的删除"><a href="#4、数组元素的删除" class="headerlink" title="4、数组元素的删除"></a><a href="#4、数组元素的删除" title="4、数组元素的删除"></a>4、数组元素的删除</h4><pre><code>//移除最后一个元素并返回该元素值  
+arrayObj.pop();   
+//移除最前一个元素并返回该元素值，数组中元素自动前移  
+arrayObj.shift();   
+//删除从指定位置deletePos开始的指定数量deleteCount的元素，数组形式返回所移除的元素  
+arrayObj.splice(deletePos,deleteCount);  </code></pre><h4 id="5、数组的截取和合并"><a href="#5、数组的截取和合并" class="headerlink" title="5、数组的截取和合并"></a><a href="#5、数组的截取和合并" title="5、数组的截取和合并"></a>5、数组的截取和合并</h4><pre><code>//以数组的形式返回数组的一部分，注意不包括 end 对应的元素，如果省略 end 将复制 start 之后的所有元素  
+arrayObj.slice(start, \[end\]);   
+//将多个数组（也可以是字符串，或者是数组和字符串的混合）连接为一个数组，返回连接好的新的数组  
+arrayObj.concat(\[item1\[, item2\[, . . . \[,itemN\]\]\]\]);  </code></pre><h4 id="6、数组的拷贝"><a href="#6、数组的拷贝" class="headerlink" title="6、数组的拷贝"></a><a href="#6、数组的拷贝" title="6、数组的拷贝"></a>6、数组的拷贝</h4><pre><code>arrayObj.slice(0); //返回数组的拷贝数组，注意是一个新的数组，不是指向  
+arrayObj.concat(); //返回数组的拷贝数组，注意是一个新的数组，不是指向  </code></pre><h4 id="7、数组元素的排序"><a href="#7、数组元素的排序" class="headerlink" title="7、数组元素的排序"></a><a href="#7、数组元素的排序" title="7、数组元素的排序"></a>7、数组元素的排序</h4><pre><code>arrayObj.reverse(); //反转元素（最前的排到最后、最后的排到最前），返回数组地址  
+arrayObj.sort(); //对数组元素排序，返回数组地址  </code></pre><h4 id="8、数组元素的字符串化"><a href="#8、数组元素的字符串化" class="headerlink" title="8、数组元素的字符串化"></a><a href="#8、数组元素的字符串化" title="8、数组元素的字符串化"></a>8、数组元素的字符串化</h4><pre><code>arrayObj.join(separator); //返回字符串，这个字符串将数组的每一个元素值连接在一起，中间用 separator 隔开。  
+toLocaleString 、toString 、valueOf：可以看作是join的特殊用法，不常用 </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo里的code代码高亮</title>
+    <url>/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/</url>
+    <content><![CDATA[<p>Hexo博客弄好之后，代码高亮显得太单调了，以前折腾wordpress的时候用param.js不太适合这个，多方查看找到个<a href="https://github.com/google/code-prettify" target="_blank" rel="noopener">prettify</a> 插件，尝试了一下之后效果还不错。</p>
+<p>先关闭Hexo的代码高亮功能，修改根目录下的配置文件<code>_config.yml</code>  </p>
+<pre><code>highlight:  
+ enable: false  
+ line_number: false   
+ auto_detect: false  
+ tab_replace:  </code></pre><a id="more"></a>
+<p>然后下载 <a href="https://github.com/google/code-prettify" target="_blank" rel="noopener">prettify</a>，把css和js文件丢到对应的<code>hexo\themes\themeName\source\css、js</code>文件夹里面，并引入</p>
+<p>js引入位置在<code>hexo\themes\themeName\layout\layout.ejs</code>内：  </p>
+<pre><code>&lt;%\- js(&#39;js/prettify.js&#39;) %&gt;  </code></pre><p>css引入位置在  </p>
+<pre><code>&lt;%\- css(&#39;css/tomorrow-night.min.css&#39;) %&gt;  </code></pre><p>并且在页面加载完毕后调用  </p>
+<pre><code>$(&#39;pre&#39;).addClass(&#39;prettyprint linenums&#39;).attr(&#39;style&#39;, &#39;overflow:auto;&#39;);  
+ prettyPrint();  </code></pre><p>就这样，设置就完成了，刷新看效果<br>另外，可以在这个地方<a href="https://jmblog.github.io/color-themes-for-google-code-prettify/" target="_blank" rel="noopener">https://jmblog.github.io/color-themes-for-google-code-prettify/</a>选择一套自己喜欢的主题替换上面的prettify.css即可。</p>
 ]]></content>
       <categories>
         <category>代码</category>
@@ -574,59 +574,6 @@ alert(array.indexOf(5)); // -1  </code></pre><p>indexOf的代码：  </p>
       </categories>
   </entry>
   <entry>
-    <title>mac提交代码到github上，xcrun报错</title>
-    <url>/2021/01/28/mac%E4%BD%BF%E7%94%A8git,svn%E6%8F%90%E4%BA%A4%E5%A4%B1%E8%B4%A5%E6%8A%A5%E9%94%99xcrun/</url>
-    <content><![CDATA[<p>升级了MacOS系统之后，提交代码到github失败，出现了错误，如下：</p>
-<a id="more"></a>
-<pre><code>xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), 
-missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</code></pre><p>解决方法</p>
-<pre><code>xcode-select --install</code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>prism.js代码高亮插件</title>
-    <url>/2014/12/08/prism-js%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>Prism 是一个轻量级，可扩展的语法着色工具，符合 Web 标准。它压缩后只有 2KB，每种语言定义约增加300-500自己大小。非常易于使用，只需要插入一个 CSS 和 JS 文件即可。支持多种着色主题。  </p>
-<p>支持各种编程语言和插件：</p>
-<a id="more"></a>
-<h2 id="Prism-js的优点"><a href="#Prism-js的优点" class="headerlink" title="Prism.js的优点"></a><a href="#Prism-js的优点" title="Prism.js的优点"></a>Prism.js的优点</h2><h4 id="极致易用"><a href="#极致易用" class="headerlink" title="极致易用"></a><a href="#极致易用" title="极致易用"></a>极致易用</h4><p>引用 prism.css 和 prism.js，使用合适的 HTML5 标签（code.language-xxxx），搞定！</p>
-<h4 id="天生伶俐"><a href="#天生伶俐" class="headerlink" title="天生伶俐"></a><a href="#天生伶俐" title="天生伶俐"></a>天生伶俐</h4><p>语言的 CSS 类是可继承的，所以你只需定义一次就能应用到多个代码片段。</p>
-<h4 id="轻如鸿毛"><a href="#轻如鸿毛" class="headerlink" title="轻如鸿毛"></a><a href="#轻如鸿毛" title="轻如鸿毛"></a>轻如鸿毛</h4><p>代码压缩后只有 1.6KB。每添加一个语言平均增加 0.3-0.5KB，主题在 1KB 左右。</p>
-<h4 id="快如闪电"><a href="#快如闪电" class="headerlink" title="快如闪电"></a><a href="#快如闪电" title="快如闪电"></a>快如闪电</h4><p>如果可能，支持通过 Web Workers 实现并行。</p>
-<h4 id="轻松扩展"><a href="#轻松扩展" class="headerlink" title="轻松扩展"></a><a href="#轻松扩展" title="轻松扩展"></a>轻松扩展</h4><p>定义新语言或扩展现有语法，或者新增功能都非常简单。</p>
-<h4 id="丰富样式"><a href="#丰富样式" class="headerlink" title="丰富样式"></a><a href="#丰富样式" title="丰富样式"></a>丰富样式</h4><p>所有的样式通过 CSS 完成，并使用合理的类名如：.comment, .string, .property 等。</p>
-<h2 id="Prism-js使用方法"><a href="#Prism-js使用方法" class="headerlink" title="Prism.js使用方法"></a><a href="#Prism-js使用方法" title="Prism.js使用方法"></a>Prism.js使用方法</h2><p>Prism 使用非常简单，只需添加 Javascript 和 CSS 就能够轻易的将其整合进项目中使用。目前它已内置了 HTML\CSS\Javascript 三种语言的高亮支持，你也可以添加新的语法高亮配置文件，只需修改 Javascipt 和 CSS 文件就行。除此之外，它也提供了额外的插件功能，让你可以新增其它功能，比如自动转换链接等，你也可以自己撰写插件。<br>目前 Prism 唯一的缺点就是不支持 IE8，看<a href="http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/" target="_blank" rel="noopener">作者的博客介绍</a>，也不想支持 IE8。</p>
-<p>1、首先在页面的 head 中引入 Prism 的 CSS 样式文件和Prism类库  </p>
-<pre><code>&lt;link href=&quot;prism.css&quot; rel=&quot;stylesheet&quot;/&gt;  
-&lt;script src=&quot;prism.min.js&quot;&gt;&lt;/script&gt;  </code></pre><p>2、添加要高亮显示的代码，要放在 pre 标签中，设置 code 标签的样式类型为代码的类别，如下：  </p>
-<pre><code>&lt;pre&gt;&lt;code class=&quot;language-xxx&quot;&gt;p { color: red }&lt;/code&gt;&lt;/pre&gt;  </code></pre><p>//注意：language-xxx，后面的xxx 是代码类型，在<a href="http://prismjs.com/download.html" target="_blank" rel="noopener">Prism.js的下载页面</a>“Language”一栏下有详细描述,见下图<br>//如：当前代码是html类型 那此处的language-xxx，就应该替换为 language-markup<br>//相对应的js类型代码,即将language-xxx,替换为language-javascript</p>
-<p><img src="http://ww1.sinaimg.cn/large/005K8Fb9gw1en2bbjdmluj30lu0bw76u.jpg" alt=""></p>
-<p><a href="http://prismjs.com/" target="_blank" rel="noopener">Prism 官网</a> | <a href="http://prismjs.com/examples.html" target="_blank" rel="noopener">代码示例</a> | <a href="http://prismjs.com/download.html" target="_blank" rel="noopener">立即下载</a></p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Something About JQueryUi</title>
-    <url>/2016/07/14/something-about-JQueryUi/</url>
-    <content><![CDATA[<p>1、需要对IE6支持的话，只能使用jQuery UI 1.9.2，目前官网<a href="//jqueryui.com/download/" target="_blank" rel="noopener">定制页</a>只有1.9.2会支持IE6，</p>
-<p>jQuery UI Upgrade Guide（升级指南）中指出</p>
-<p><a href="//jqueryui.com/upgrade-guide/1.10/" target="_blank" rel="noopener">jQuery UI 1.10 Upgrade Guide</a></p>
-<h3 id="Removed-support-for-IE6"><a href="#Removed-support-for-IE6" class="headerlink" title="Removed support for IE6"></a><a href="#Removed-support-for-IE6" title="Removed support for IE6"></a>Removed support for IE6</h3><p>IE6 usage has dropped to a low enough point that jQuery UI no longer finds it necessary to support. As of 1.10.0, some portions of jQuery UI may not work properly in IE6. If you need to continue to support IE6, use the latest jQuery UI 1.9 release.<br><a href="//jqueryui.com/upgrade-guide/1.11/" target="_blank" rel="noopener">jQuery UI 1.11 Upgrade Guide</a></p>
-<h3 id="Discontinued-IE7-Support"><a href="#Discontinued-IE7-Support" class="headerlink" title="Discontinued IE7 Support"></a><a href="#Discontinued-IE7-Support" title="Discontinued IE7 Support"></a>Discontinued IE7 Support</h3><p>As of this release we are no longer accepting bug reports for IE7 issues. We have also removed IE7 from our testing infrastructure. The IE7 workarounds are still present in the code, but we will remove them for jQuery UI 1.12.</p>
-<p>2、部分组件只在服务端生效，目前用过的服务端生效的有：resizable、slider、</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-  </entry>
-  <entry>
     <title>js函数相关</title>
     <url>/2021/07/12/js%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<p>记录的一些js函数</p>
@@ -645,6 +592,77 @@ methods: {
         return val
     }
 }</code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac提交代码到github上，xcrun报错</title>
+    <url>/2021/01/28/mac%E4%BD%BF%E7%94%A8git,svn%E6%8F%90%E4%BA%A4%E5%A4%B1%E8%B4%A5%E6%8A%A5%E9%94%99xcrun/</url>
+    <content><![CDATA[<p>升级了MacOS系统之后，提交代码到github失败，出现了错误，如下：</p>
+<a id="more"></a>
+<pre><code>xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), 
+missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</code></pre><p>解决方法</p>
+<pre><code>xcode-select --install</code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nvm安装使用</title>
+    <url>/2021/07/05/nvm%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h5 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h5><a id="more"></a>
+<p>注意事项，windows安装路径，不能有空格<br>安装之后，要在settings.txt里面加配置</p>
+<pre><code>node_mirror: https://npm.taobao.org/mirrors/node/
+npm_mirror: https://npm.taobao.org/mirrors/npm/</code></pre><p><a href="https://blog.csdn.net/YHjmonkey/article/details/110921515" target="_blank" rel="noopener">详细安装教程</a><br><a href="https://blog.csdn.net/weixin_40013817/article/details/114847038" target="_blank" rel="noopener">安装blog-底下有命令</a></p>
+<h5 id="mac安装nvm"><a href="#mac安装nvm" class="headerlink" title="mac安装nvm"></a>mac安装nvm</h5><p>卸载node先！一定要先卸载，依次输入</p>
+<pre><code>sudo npm uninstall npm -g
+sudo rm -rf /usr/local/lib/node /usr/local/lib/node_modules /var/db/receipts/org.nodejs.*
+sudo rm -rf /usr/local/include/node /Users/$USER/.npm
+sudo rm /usr/local/bin/node
+sudo rm /usr/local/share/man/man1/node.1
+sudo rm /usr/local/lib/dtrace/node.d</code></pre><p>完事后验证一下</p>
+<pre><code>node  //command not found
+npm  //command not found</code></pre><p>发现要先安装wget，或者curl，我选了wget<br><a href="https://www.cnblogs.com/wyaokai/p/11947379.html" target="_blank" rel="noopener">curl和wget的区别</a><br>安装wget要用brew install wget<br>brew每次使用的时候，都会自动更新，麻瓜！</p>
+<p>然后安装nvm</p>
+<pre><code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash</code></pre><p><a href="https://blog.csdn.net/yh1061632045/article/details/90290597" target="_blank" rel="noopener">有问题的话看安装nvm的教程</a><br>安装完nvm，下载node。<br>如果不是先卸载原有的全局node再安装nvm的话，安装完nvm使用node的时候，也需要卸载原来的，卸载完原来的node，在use新的node时，就会出现底下问题。</p>
+<pre><code>our user’s .npmrc file (${HOME}/.npmrc)
+has a `globalconfig` and/or a `prefix` setting, which are incompatible with nvm.
+Run `nvm use --delete-prefix v12.16.0` to unset it.</code></pre><p>解决办法</p>
+<pre><code>npm config delete prefix</code></pre><p>再重新use</p>
+<pre><code>nvm use 12.16.0</code></pre><p>如果vue项目打不开，就重启一下命令行，或者重新use node version</p>
+<h5 id="记录于7月19日"><a href="#记录于7月19日" class="headerlink" title="记录于7月19日"></a>记录于7月19日</h5><p>每次打开新项目，都提示node没了，烦死了<br>搜索得知还有个默认命令，默认使用某个版本，就不用次次切换了</p>
+<pre><code>nvm install xxx 　　　　  //安装版本号
+nvm use xxx 　　　　　　  //设置使用版本号
+nvm list 　　　　　　　　 //所有的node版本号
+nvm alias default v4.2.4  //nvm设置默认node版本号
+
+
+nvm install --lts # 下载最新的稳定版
+nvm alias default &lt;版本号&gt; //永久切换版本（版本别名，default就是默认使用的版本）
+nvm uninstall &lt;版本号&gt; // 删除指定版本
+nvm ls // 查看本地所有版本
+nvm ls-remote --lts  //查看线上所有稳定版</code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>nvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Something About JQueryUi</title>
+    <url>/2016/07/14/something-about-JQueryUi/</url>
+    <content><![CDATA[<p>1、需要对IE6支持的话，只能使用jQuery UI 1.9.2，目前官网<a href="//jqueryui.com/download/" target="_blank" rel="noopener">定制页</a>只有1.9.2会支持IE6，</p>
+<p>jQuery UI Upgrade Guide（升级指南）中指出</p>
+<p><a href="//jqueryui.com/upgrade-guide/1.10/" target="_blank" rel="noopener">jQuery UI 1.10 Upgrade Guide</a></p>
+<h3 id="Removed-support-for-IE6"><a href="#Removed-support-for-IE6" class="headerlink" title="Removed support for IE6"></a><a href="#Removed-support-for-IE6" title="Removed support for IE6"></a>Removed support for IE6</h3><p>IE6 usage has dropped to a low enough point that jQuery UI no longer finds it necessary to support. As of 1.10.0, some portions of jQuery UI may not work properly in IE6. If you need to continue to support IE6, use the latest jQuery UI 1.9 release.<br><a href="//jqueryui.com/upgrade-guide/1.11/" target="_blank" rel="noopener">jQuery UI 1.11 Upgrade Guide</a></p>
+<h3 id="Discontinued-IE7-Support"><a href="#Discontinued-IE7-Support" class="headerlink" title="Discontinued IE7 Support"></a><a href="#Discontinued-IE7-Support" title="Discontinued IE7 Support"></a>Discontinued IE7 Support</h3><p>As of this release we are no longer accepting bug reports for IE7 issues. We have also removed IE7 from our testing infrastructure. The IE7 workarounds are still present in the code, but we will remove them for jQuery UI 1.12.</p>
+<p>2、部分组件只在服务端生效，目前用过的服务端生效的有：resizable、slider、</p>
+]]></content>
       <categories>
         <category>代码</category>
       </categories>
@@ -696,90 +714,27 @@ Cyrus SASL 认证可用。</code></pre><h4 id="启动mac-os本地服务器-2022-
       </tags>
   </entry>
   <entry>
-    <title>nvm安装使用</title>
-    <url>/2021/07/05/nvm%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h5 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h5><a id="more"></a>
-<p>注意事项，windows安装路径，不能有空格<br>安装之后，要在settings.txt里面加配置</p>
-<pre><code>node_mirror: https://npm.taobao.org/mirrors/node/
-npm_mirror: https://npm.taobao.org/mirrors/npm/</code></pre><p><a href="https://blog.csdn.net/YHjmonkey/article/details/110921515" target="_blank" rel="noopener">详细安装教程</a><br><a href="https://blog.csdn.net/weixin_40013817/article/details/114847038" target="_blank" rel="noopener">安装blog-底下有命令</a></p>
-<h5 id="mac安装nvm"><a href="#mac安装nvm" class="headerlink" title="mac安装nvm"></a>mac安装nvm</h5><p>卸载node先！一定要先卸载，依次输入</p>
-<pre><code>sudo npm uninstall npm -g
-sudo rm -rf /usr/local/lib/node /usr/local/lib/node_modules /var/db/receipts/org.nodejs.*
-sudo rm -rf /usr/local/include/node /Users/$USER/.npm
-sudo rm /usr/local/bin/node
-sudo rm /usr/local/share/man/man1/node.1
-sudo rm /usr/local/lib/dtrace/node.d</code></pre><p>完事后验证一下</p>
-<pre><code>node  //command not found
-npm  //command not found</code></pre><p>发现要先安装wget，或者curl，我选了wget<br><a href="https://www.cnblogs.com/wyaokai/p/11947379.html" target="_blank" rel="noopener">curl和wget的区别</a><br>安装wget要用brew install wget<br>brew每次使用的时候，都会自动更新，麻瓜！</p>
-<p>然后安装nvm</p>
-<pre><code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash</code></pre><p><a href="https://blog.csdn.net/yh1061632045/article/details/90290597" target="_blank" rel="noopener">有问题的话看安装nvm的教程</a><br>安装完nvm，下载node。<br>如果不是先卸载原有的全局node再安装nvm的话，安装完nvm使用node的时候，也需要卸载原来的，卸载完原来的node，在use新的node时，就会出现底下问题。</p>
-<pre><code>our user’s .npmrc file (${HOME}/.npmrc)
-has a `globalconfig` and/or a `prefix` setting, which are incompatible with nvm.
-Run `nvm use --delete-prefix v12.16.0` to unset it.</code></pre><p>解决办法</p>
-<pre><code>npm config delete prefix</code></pre><p>再重新use</p>
-<pre><code>nvm use 12.16.0</code></pre><p>如果vue项目打不开，就重启一下命令行，或者重新use node version</p>
-<h5 id="记录于7月19日"><a href="#记录于7月19日" class="headerlink" title="记录于7月19日"></a>记录于7月19日</h5><p>每次打开新项目，都提示node没了，烦死了<br>搜索得知还有个默认命令，默认使用某个版本，就不用次次切换了</p>
-<pre><code>nvm install xxx 　　　　  //安装版本号
-nvm use xxx 　　　　　　  //设置使用版本号
-nvm list 　　　　　　　　 //所有的node版本号
-nvm alias default v4.2.4  //nvm设置默认node版本号
-
-
-nvm install --lts # 下载最新的稳定版
-nvm alias default &lt;版本号&gt; //永久切换版本（版本别名，default就是默认使用的版本）
-nvm uninstall &lt;版本号&gt; // 删除指定版本
-nvm ls // 查看本地所有版本
-nvm ls-remote --lts  //查看线上所有稳定版</code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>nvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn提交的时候忽略node_moudules文件夹</title>
-    <url>/2020/11/25/svn%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%E5%BF%BD%E7%95%A5node_modules%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
-    <content><![CDATA[<p>右键空白处&gt;选中TortoiseSVN&gt;设置(settings)&gt;常规设置(General)&gt;Subversion&gt;编辑(edit)&gt;在弹出的config文件中找到global-ignores=“<em>node_modules”，复制一行下来，去掉global-ignores前的#。<br>如果是“文件夹” global-ignores=</em>node_modules<br>如果是”文件“ global-ignores = .project .git<br>中间用空格隔开<br><img src="https://img2018.cnblogs.com/blog/982259/201908/982259-20190820155127746-412002335.png" alt="图"></p>
+    <title>prism.js代码高亮插件</title>
+    <url>/2014/12/08/prism-js%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>Prism 是一个轻量级，可扩展的语法着色工具，符合 Web 标准。它压缩后只有 2KB，每种语言定义约增加300-500自己大小。非常易于使用，只需要插入一个 CSS 和 JS 文件即可。支持多种着色主题。  </p>
+<p>支持各种编程语言和插件：</p>
+<a id="more"></a>
+<h2 id="Prism-js的优点"><a href="#Prism-js的优点" class="headerlink" title="Prism.js的优点"></a><a href="#Prism-js的优点" title="Prism.js的优点"></a>Prism.js的优点</h2><h4 id="极致易用"><a href="#极致易用" class="headerlink" title="极致易用"></a><a href="#极致易用" title="极致易用"></a>极致易用</h4><p>引用 prism.css 和 prism.js，使用合适的 HTML5 标签（code.language-xxxx），搞定！</p>
+<h4 id="天生伶俐"><a href="#天生伶俐" class="headerlink" title="天生伶俐"></a><a href="#天生伶俐" title="天生伶俐"></a>天生伶俐</h4><p>语言的 CSS 类是可继承的，所以你只需定义一次就能应用到多个代码片段。</p>
+<h4 id="轻如鸿毛"><a href="#轻如鸿毛" class="headerlink" title="轻如鸿毛"></a><a href="#轻如鸿毛" title="轻如鸿毛"></a>轻如鸿毛</h4><p>代码压缩后只有 1.6KB。每添加一个语言平均增加 0.3-0.5KB，主题在 1KB 左右。</p>
+<h4 id="快如闪电"><a href="#快如闪电" class="headerlink" title="快如闪电"></a><a href="#快如闪电" title="快如闪电"></a>快如闪电</h4><p>如果可能，支持通过 Web Workers 实现并行。</p>
+<h4 id="轻松扩展"><a href="#轻松扩展" class="headerlink" title="轻松扩展"></a><a href="#轻松扩展" title="轻松扩展"></a>轻松扩展</h4><p>定义新语言或扩展现有语法，或者新增功能都非常简单。</p>
+<h4 id="丰富样式"><a href="#丰富样式" class="headerlink" title="丰富样式"></a><a href="#丰富样式" title="丰富样式"></a>丰富样式</h4><p>所有的样式通过 CSS 完成，并使用合理的类名如：.comment, .string, .property 等。</p>
+<h2 id="Prism-js使用方法"><a href="#Prism-js使用方法" class="headerlink" title="Prism.js使用方法"></a><a href="#Prism-js使用方法" title="Prism.js使用方法"></a>Prism.js使用方法</h2><p>Prism 使用非常简单，只需添加 Javascript 和 CSS 就能够轻易的将其整合进项目中使用。目前它已内置了 HTML\CSS\Javascript 三种语言的高亮支持，你也可以添加新的语法高亮配置文件，只需修改 Javascipt 和 CSS 文件就行。除此之外，它也提供了额外的插件功能，让你可以新增其它功能，比如自动转换链接等，你也可以自己撰写插件。<br>目前 Prism 唯一的缺点就是不支持 IE8，看<a href="http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/" target="_blank" rel="noopener">作者的博客介绍</a>，也不想支持 IE8。</p>
+<p>1、首先在页面的 head 中引入 Prism 的 CSS 样式文件和Prism类库  </p>
+<pre><code>&lt;link href=&quot;prism.css&quot; rel=&quot;stylesheet&quot;/&gt;  
+&lt;script src=&quot;prism.min.js&quot;&gt;&lt;/script&gt;  </code></pre><p>2、添加要高亮显示的代码，要放在 pre 标签中，设置 code 标签的样式类型为代码的类别，如下：  </p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;language-xxx&quot;&gt;p { color: red }&lt;/code&gt;&lt;/pre&gt;  </code></pre><p>//注意：language-xxx，后面的xxx 是代码类型，在<a href="http://prismjs.com/download.html" target="_blank" rel="noopener">Prism.js的下载页面</a>“Language”一栏下有详细描述,见下图<br>//如：当前代码是html类型 那此处的language-xxx，就应该替换为 language-markup<br>//相对应的js类型代码,即将language-xxx,替换为language-javascript</p>
+<p><img src="http://ww1.sinaimg.cn/large/005K8Fb9gw1en2bbjdmluj30lu0bw76u.jpg" alt=""></p>
+<p><a href="http://prismjs.com/" target="_blank" rel="noopener">Prism 官网</a> | <a href="http://prismjs.com/examples.html" target="_blank" rel="noopener">代码示例</a> | <a href="http://prismjs.com/download.html" target="_blank" rel="noopener">立即下载</a></p>
 ]]></content>
       <categories>
         <category>代码</category>
-      </categories>
-      <tags>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sublimeText相关</title>
-    <url>/2022/03/31/sublimeText%E6%B3%A8%E5%86%8C%E7%A0%81/</url>
-    <content><![CDATA[<p>4126版本注册码</p>
-<pre><code>—– BEGIN LICENSE —–
-
-Mifeng User
-
-Single User License
-
-EA7E-1184812
-
-C0DAA9CD 6BE825B5 FF935692 1750523A
-
-EDF59D3F A3BD6C96 F8D33866 3F1CCCEA
-
-1C25BE4D 25B1C4CC 5110C20E 5246CC42
-
-D232C83B C99CCC42 0E32890C B6CBF018
-
-B1D4C178 2F9DDB16 ABAA74E5 95304BEF
-
-9D0CCFA9 8AF8F8E2 1E0A955E 4771A576
-
-50737C65 325B6C32 817DCB83 A7394DFA
-
-27B7E747 736A1198 B3865734 0B434AA5
-
-—— END LICENSE ——</code></pre>]]></content>
-      <categories>
-        <category>工具</category>
       </categories>
   </entry>
   <entry>
@@ -794,6 +749,18 @@ oninput=&quot;this.style.height=&#39;auto&#39;;this.style.height = this.scrollHe
       <categories>
         <category>代码</category>
       </categories>
+  </entry>
+  <entry>
+    <title>svn提交的时候忽略node_moudules文件夹</title>
+    <url>/2020/11/25/svn%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%E5%BF%BD%E7%95%A5node_modules%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
+    <content><![CDATA[<p>右键空白处&gt;选中TortoiseSVN&gt;设置(settings)&gt;常规设置(General)&gt;Subversion&gt;编辑(edit)&gt;在弹出的config文件中找到global-ignores=“<em>node_modules”，复制一行下来，去掉global-ignores前的#。<br>如果是“文件夹” global-ignores=</em>node_modules<br>如果是”文件“ global-ignores = .project .git<br>中间用空格隔开<br><img src="https://img2018.cnblogs.com/blog/982259/201908/982259-20190820155127746-412002335.png" alt="图"></p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>svn</tag>
+      </tags>
   </entry>
   <entry>
     <title>vite+vue3搭建项目</title>
@@ -891,63 +858,37 @@ export default defineConfig({
       </categories>
   </entry>
   <entry>
-    <title>computed对input的v-model监听无效</title>
-    <url>/2021/07/19/vue%E4%B8%ADcomputed%E5%AF%B9input%E7%9A%84v-model%E7%9B%91%E5%90%AC%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>在写某个项目遇到的表单提交验证时，打算偷懒一次性验证几个字段，结果遇到，v-model绑定input，data未及时更新的小坑</p>
-<a id="more"></a>
-<p>源代码：</p>
-<pre><code>&lt;input v-model=&quot;info.expressName&quot;/&gt;
-&lt;input v-model=&quot;info.expressNo&quot;/&gt;
+    <title>sublimeText相关</title>
+    <url>/2022/03/31/sublimeText%E6%B3%A8%E5%86%8C%E7%A0%81/</url>
+    <content><![CDATA[<p>4126版本注册码</p>
+<pre><code>—– BEGIN LICENSE —–
 
-&lt;script&gt;
-export default {
-    data() {
-        info: {
-            expressName: &#39;&#39;,
-            expressNo: &#39;&#39;
-        }
-    },
-    methods: {
+Mifeng User
 
-    }
-    computed: {
-        isCanSub: function() {
-            return this.info.expressName || this.info.expressNo
-        }
-    }
-}
-&lt;/script&gt;</code></pre><p>测试发现，computed并没有监听到任意一个input的v-model值的变化<br>怎么写怎么不通过，网上搜索一番，有的说在computed里$set()重新渲染，有的说用watch，有的说用value不用model，基本都没用，不方便的不方便，不好使的不好使。思来想去，既然没更新，那我直接vue.$set() 强制更新一波不就完了。<br>测试通过完美解决问题</p>
-<pre><code>&lt;input :value=&quot;info.expressName&quot; @input=&quot;checkValue($event, &#39;expressName&#39;)&quot;/&gt;
-&lt;input :value=&quot;info.expressNo&quot; @input=&quot;checkValue($event, &#39;expressNo&#39;)&quot;/&gt;
+Single User License
 
-&lt;script&gt;
-export default {
-    data() {
-        info: {
-            expressName: &#39;&#39;,
-            expressNo: &#39;&#39;
-        }
-    },
-    methods: {
-        checkValue(e, type){
-            let val = e.detail.value
-            this.$set(this.info, type, val)
-            return val
-        }
-    }
-    computed: {
-        isCanSub: function() {
-            return this.info.expressName || this.info.expressNo
-        }
-    }
-}
-&lt;/script&gt;</code></pre>]]></content>
+EA7E-1184812
+
+C0DAA9CD 6BE825B5 FF935692 1750523A
+
+EDF59D3F A3BD6C96 F8D33866 3F1CCCEA
+
+1C25BE4D 25B1C4CC 5110C20E 5246CC42
+
+D232C83B C99CCC42 0E32890C B6CBF018
+
+B1D4C178 2F9DDB16 ABAA74E5 95304BEF
+
+9D0CCFA9 8AF8F8E2 1E0A955E 4771A576
+
+50737C65 325B6C32 817DCB83 A7394DFA
+
+27B7E747 736A1198 B3865734 0B434AA5
+
+—— END LICENSE ——</code></pre>]]></content>
       <categories>
-        <category>代码</category>
+        <category>工具</category>
       </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
   </entry>
   <entry>
     <title>Vue3使用element-plus图标</title>
@@ -1081,407 +1022,6 @@ const menuList = computed(
       <tags>
         <tag>心情</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>写在vue中简单的随机验证码</title>
-    <url>/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
-    <content><![CDATA[<p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
-<a id="more"></a>
-<h3 id="dom"><a href="#dom" class="headerlink" title="dom"></a><a href="#dom" title="dom"></a>dom</h3><pre><code>&lt;el-form :model=&quot;formData&quot; :rules=&quot;rules&quot; ref=&quot;formData&quot; label-width=&quot;0px&quot;&gt;  
- &lt;el-form-item prop=&quot;picLyanzhengma&quot;&gt;  
- &lt;el-input type=&quot;text&quot; placeholder=&quot;请输入验证码&quot; @blur=&quot;checkLpicma()&quot; v-model=&quot;formData.picLyanzhengma&quot;&gt;&lt;/el-input&gt;  
- &lt;input type=&quot;button&quot; @click=&quot;createCode&quot; class=&quot;verification1&quot; v-model=&quot;checkCode&quot;/&gt;  
- &lt;/el-form-item&gt;  
- &lt;el-button :loading=&quot;isLogin&quot; type=&quot;primary&quot; v-on:click=&quot;login(&#39;formData&#39;)&quot;&gt;登录&lt;/el-button&gt;  
-&lt;/el-form&gt;  </code></pre><h3 id="script"><a href="#script" class="headerlink" title="script"></a><a href="#script" title="script"></a>script</h3><pre><code>&lt;script&gt;  
- export default {  
- data () {  
- var checkCodes = (rule, value, callback) =&gt; {  
- if (value == &#39;&#39;) {  
- callback(new Error(&#39;请输入验证码&#39;));  
- } else if (value.toUpperCase() != this.checkCode) {  
- callback(new Error(&#39;验证码不正确&#39;));  
- } else {  
- callback();  
- }  
- };  
- return {  
- formData: {  
- picLyanzhengma: &#39;&#39;  
- },  
- checkCode: &#39;&#39;,  
- rules: {  
- picLyanzhengma :\[  
- { validator: checkCodes, trigger:&#39;blur&#39;}  
- \]  
- },  
- isLogin: false  
- }  
- },  
- methods: {  
- // 生成图片验证码  
- createCode(){  
- let code = &quot;&quot;;   
- var codeLength = 4;//验证码的长度   
- var random = new Array(0,1,2,3,4,5,6,7,8,9,&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,   
- &#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;);//随机数   
- for(var i = 0; i &lt; codeLength; i++) {  
- //循环操作   
- var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
- code += random\[index\];//根据索引取得随机数加到code上   
- }   
- this.checkCode = code;//把code值赋给验证码   
- },  
- // 失焦验证图和密码  
- checkLpicma(){  
- let that = this  
- this.formData.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写   
- if(this.formData.picLyanzhengma == &#39;&#39;) {  
- // 留空不刷  
- }else if(this.formData.picLyanzhengma.toUpperCase() != this.checkCode ) {   
- this.createCode();// 输错就刷新验证码   
- this.formData.picLyanzhengma = &#39;&#39;;  
- }else {  
- return true;  
- }   
- },  
- login (formName) {  
- var that = this  
- this.$refs\[formName\].validate((valid) =&gt; {  
- if (valid) {   
- // 验证通过  
- } else {  
- return false  
- }  
- })  
- }  
- }  
- }  
-&lt;/script&gt;  </code></pre><h3 id="css"><a href="#css" class="headerlink" title="css"></a><a href="#css" title="css"></a>css</h3><pre><code>.verification1{  
- vertical-align: middle;  
- width: 70px;  
- background: #f9f9f9;  
- border: solid 1px #ddd;  
- color: blue;  
- height: 2rem;  
-}  </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小丑</title>
-    <url>/2016/07/14/%E5%B0%8F%E4%B8%91/</url>
-    <content><![CDATA[<p>世间曾有一个小丑。</p>
-<p>他长时间都过着很快乐的生活；但渐渐地有些流言传到了他的耳朵里，说他被公认为是个极其愚蠢的、非常鄙俗的家伙。</p>
-<p>小丑窘住了，开始忧郁地想：怎样才能制止那些讨厌的流言呢？</p>
-<p>一个突然的想法使他的脑袋瓜开了窍……于是，他一点也不拖延地把他的想法付诸实行。</p>
-<p>他在街上碰见了一个熟人，那熟人夸奖起一位著名的色彩画家。</p>
-<p>“得了吧！”小丑提高声音说道，“这位色彩画家早已经不行啦……您还不知道这个吗？我真没想到您会这样……您是个落后的人啦！”</p>
-<p>熟人感到吃惊，并立刻同意了小丑的说法。  </p>
-<p>“今天我读完了一本多么好的书啊！”另一个熟人告诉他说。</p>
-<p>“得了吧！”小丑提高声音说道，“您怎么不害羞？这本书一点意思也没有，大家老早就已经不看这本书了，您还不知道这个？您是个落后的人啦！”</p>
-<p>于是，这个熟人也感到吃惊，也同意了小丑的说法。</p>
-<p>“我的朋友某君真是个非常好的人啊！”第三个熟人告诉小丑说，“他真正是个高尚的人！”</p>
-<p>“得了吧！”小丑提高声音说道，“某君明明是个下流东西！他抢夺过所有亲戚的东西。谁还不知道这个呢？您是个落后的人啦。”</p>
-<p>第三个熟人同样感到吃惊，也同意了小丑的说法，并且不再同那个朋友来往。总之，人们在小丑面前无论赞扬谁和赞扬什么，他都一个劲儿地驳斥。</p>
-<p>只是有时候，他还以责备的口气补充说道：“您至今还相信权威吗？”</p>
-<p>“好一个坏心肠的人！一个好毒辣的家伙！”他的熟人们开始谈论起小丑了，“不过，他的脑袋瓜多么不简单！”</p>
-<p>“他的舌头也不简单！”另一些人又补充道，“哦，他简直是个天才！”</p>
-<p>末了，一家报纸的出版人，请小丑到那儿去主持一下评论专栏。</p>
-<p>于是，小丑开始批评一切事个一切人，一点也没有改变自己的手法和自己趾高气扬的神态。</p>
-<p>现在，他——一个曾经大喊大叫反对过权威的人——自己也成了一个权威了，而年轻人正崇拜他，而且害怕他。</p>
-<p>他们，可怜的年轻人，该怎么办呢？虽然一般地说，不应该崇拜……可是，在这儿，你试试不再去崇拜吧——你就将是个落后的人啦！</p>
-<p>在胆小的人们中间，小丑们是能很好地生活的。</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>心情随笔</title>
-    <url>/2014/12/24/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<p>　　生活越来越平淡慵懒和无力，内心疲倦到再难泛起丝毫涟漪。知觉和情感都下落到一个低潮的极点，与人交际不再单纯的交流，不愿过多谈及自身，疑似社会的黑暗面就在身边般小心翼翼地藏匿.</p>
-<p>　　不再相信美好的未来却又幻想未来的样子，像看恐怖片一样，明知害怕内心却期待着会出现什么样的场面让自己惊恐。这是瘾，是对作死的孤独有种习惯上的瘾…</p>
-<p>　　曾笃信，陪伴是最长情的告白，也一直默默身体力行。然，事实是时时事事为他人做嫁衣…一次又一次的双手空空。残酷的结局一次次碰击信念，如同克雷泽清肃屏障一般，屏障终将破碎。思维也在经历的催化下逐渐自我变异，无私的奉献心被短期的收益心取而代之，不再做看不到回报的事，长期式的坚持也被认为是多个短期的结合体，持之以恒变得艰难而又廉价。与朋友闲聊时不知不觉无言以对，从自闭到开怀再到慵懒过后，心很累，很累很累…满腔踌躇无人倾诉，把心情寄托于文字宣泄…  </p>
-<p><img src="http://ww4.sinaimg.cn/large/005K8Fb9gw1enkw25vjg6j30jg06474y.jpg" alt="">  </p>
-<p>　　读李煜词集、眠空、朝花夕拾…或许是受这类成名作影响变得沉毅寡言。但也无可置否，拥类似心境的人，论事朱红，偶尔愤世妒俗，时常为了活在当下而得过且过，站在社会的角读来看，着实是失败、偏执、也不合群…</p>
-<p>　　如此认清自己，也深知阳光下绿叶旁活的健康向上，却不愿主动去变更生活的习惯。有时曾想，自己怎么变得这么懒，基本的积极向上的心态都失去了。后来在某些方面的表现否定了自己的猜想。是麻木，是情感和生活的麻木，带走了信念里难得的动力，却不知如何找回，不知它在哪里…不知，它是否在偷笑着看我这副样子…</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日常</title>
-    <url>/2021/02/03/%E6%97%A5%E5%B8%B8/</url>
-    <content><![CDATA[<h5 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h5><a id="more"></a>
-<p>躺下的时候灵感如泉涌，起来的时候，一篓子的感慨又不知跑到哪里去了，城市的喧嚣，让我安静不下来，亦消停不下来</p>
-<p>去年前年实在太累，19年7月份忙碌到2021年</p>
-<p>或许人都是不知足的，想要听话的，想要懂事的，又想要知心的来分担生活的琐碎。世上没有十全大补汤，也没有十全十美的人，以前以为十全十美是没有缺点没有恶习，长大后结合生活发现，十全十美是御、萝、少、骚、纯、忠、孝、勇、智、信 各个角度各个角色各个方面都具备的人，可世上哪有这样的人</p>
-<h5 id="2021年2月5日"><a href="#2021年2月5日" class="headerlink" title="2021年2月5日"></a>2021年2月5日</h5><p>假如疼痛会觉得快乐，疼痛会让人发笑，那该是怎样的，以前认为，怎么会有人觉得疼痛是快乐的呢。可随着逐步深入的了解这个社会，就是有那么些人，疼的时候说快乐，思想被扭曲，培养成这样的心理，该怎么去拯救ta们呢，心理学上至今没有一个解释，铁条弯了，反向扭一下就能变直，那些心理弯的人，如何反向扭才能让ta们直起来，还是像那破裂的腰间盘一样，永远也直不起来了…<br>如果有地狱，希望每个人都能知道，但即使有地狱，也得等老去死去才知道，它太遥远了，有些人，需要在去的过程中就感受到它的可怕，某些“传教士”更应受到如此的惩罚</p>
-<h5 id="2月6日"><a href="#2月6日" class="headerlink" title="2月6日"></a>2月6日</h5><p>把博客完善了一下，亲手搭建出来的东西，满满的成就感，或许以后会升级，但目前已经够用，上班的最后一天，把博客的分类整理清楚了，快乐～<br>更新了分类模块显示<br>还差个全站搜索</p>
-<h5 id="2月9日"><a href="#2月9日" class="headerlink" title="2月9日"></a>2月9日</h5><p>windows电脑卡的原因终于找到了，本打算重装系统，备份资料…一顿大操作，突然灵光一闪，检查软件的安装位置，全部重装到固态硬盘，完美解决所有问题！快乐</p>
-<h5 id="2月14日"><a href="#2月14日" class="headerlink" title="2月14日"></a>2月14日</h5><p>虽是情人节，见闻却跟情人节没丝毫关系。同龄人都有了各自成熟的想法，而我相比之下，就是个井底之蛙。小地方物质生活虽然没大城市现代化，但思想修行是真的快。<br>认识了几个新朋友，第一个暂称其为二哥，第一印象“眯眯眼，猥琐，好色，甚至有点娘”，一起喝茶聊天吃饭喝酒后，发现是个很细心专注有想法的人，或许是有殷实的家底，或许是也没遇到什么机遇，才未曾发展事业；第二个老大哥，四十来岁，交了个与我同龄的女朋友，大哥看起来随和、憨厚、实诚、大方，会面结束后，才知道是个政客，手段丰富，也位高权重；还有叔叔阿姨，饭店老板，甚至十来岁的小朋友都敢主动问我是哪里人，个个能抗能打，二线城市厉害如厮。</p>
-<h5 id="2月24日"><a href="#2月24日" class="headerlink" title="2月24日"></a>2月24日</h5><p>昨天搞定了分类排序错乱的功能，搜索一直没完善，下午定位问题在search.js上，经过两天的折腾，看了几个地方的源码+官网API，总算把全站搜索功能做了出来，别人的东西全是坑，完善改良了一下，尚且可用，以后有优化的空间的话再改。<br><a href="https://www.bilibili.com/read/cv6759812" target="_blank" rel="noopener">参考的b站脚程</a><br><a href="https://github.com/theme-next/hexo-theme-next/tree/master/layout/_partials" target="_blank" rel="noopener">theme-next主题github源码</a></p>
-<h5 id="2月25日"><a href="#2月25日" class="headerlink" title="2月25日"></a>2月25日</h5><p>可怜人必有可恨处，可恨人必有可怜处，接触到的人生故事，总结下来就像是一个圆，父母有本事的孩子废，孩子的孩子又努力又本事，富不过三代</p>
-<h5 id="3月3日"><a href="#3月3日" class="headerlink" title="3月3日"></a>3月3日</h5><p>给中介转店，交了钱后就没信儿了，别的会被发在朋友圈，有人问店，他先介绍别的同类型的店铺，绝口不提与我之间的合约<br>想起大前年，朋友借了点钱说是一个月还 2年后自己都开买玛莎拉蒂了才想着还钱，还钱的当天，让我他们那去参加个活动，我拒绝后，他大过年的喝点酒又打电话想让我把还给我的债钱给他转回去…奇妙的世界奇妙的人类，不遇事永远不知道自己交的胖友能干出什么奇妙的事儿.</p>
-<p>世间哪有绝对公平可言</p>
-<h5 id="3月21日"><a href="#3月21日" class="headerlink" title="3月21日"></a>3月21日</h5><p>有些路，虽然坑坑洼洼，但一路没什么大坎坷<br>有些路，平整漂亮，偶尔有一个井盖盖着下水道，下水道里藏污纳垢臭气熏天<br>有些人，其貌不扬，兢兢业业，安安稳稳，老老实实<br>有些人，光鲜亮丽，在某些特定的地方，特定的人面前，卑微如尘、如牛马、如猪狗…<br>平整的路面被挖个下水道，路一定很痛吧，下水道还被用来放污秽的东西，应该恨挖井的人吗？各有各的好，各有各的命，各有各的用处，各种各样的人，五彩斑斓的人生路…路就在那，谁有能力谁去改变；人是那些，谁有本事谁去拿捏. 这就是现实…</p>
-<p>我出生于黑夜，却妄想贪图光明；身处商人家庭，却想浮生牧野，不问世事；<br>光不救世，暗非毁灭，生活在黑暗里不一定都邪恶，阳光下也不全是鸟语花香，回到擅长的地方，或许能走的更好更稳</p>
-<h5 id="4月28日"><a href="#4月28日" class="headerlink" title="4月28日"></a>4月28日</h5><p>历经1年11个月，店铺关闭了，生活状态仿佛回到了2年前，轻松惬意而又无所事事，开始接受不完美，买东西会不介意二手，不再完美主义，开始不在意屏幕贴膜左下角鼓包，不在意手机壳的裂痕，我是老了么？可能真的老了</p>
-<h5 id="7月1日"><a href="#7月1日" class="headerlink" title="7月1日"></a>7月1日</h5><p>6月20日，一个朋友打电话来借钱，说是急用，最迟不超过明天还，然而10天过去，朋友的微信朋友圈里，该玩玩，该吃吃该喝喝，就是没有一条给我的还款信息，我打电话过去，向他表明今日是7月1号，公司拖欠了两个月工资没发，我手上没什么钱，要交房租了…话没说完，他打断我说知道我打电话什么意思，回说今天没有，明天给我。然而明日复明日，并没有消息，或许拮据是成家男人的常态，但“无声”的失信，令人失望<br>手上借出去给各种人的钱，全收回来可以买辆车了，最早的一个是2年前的，最近的是这个6月20号的，虽然大家还联系，日常闲聊中，他们的生活，个个过的都还不错，就是欠债的事儿，我不提，个个都跟没发生似的. “有财不露”，古人诚不欺我</p>
-<h5 id="7月5日"><a href="#7月5日" class="headerlink" title="7月5日"></a>7月5日</h5><p>迟来的阳光救不了枯萎的向日葵</p>
-<h5 id="9月1日"><a href="#9月1日" class="headerlink" title="9月1日"></a>9月1日</h5><p>我们在围墙里，受监管，被围了围栏的狩猎场，当狩猎场生态不平衡时，围栏管理者会来人来给主持公道，那围栏管理者来狩猎时，谁给公道呢…<br>生活在猪圈里的猪，圈里的一举一动都在被观察着。管理员说：“外面有狼，出去会被狼吃掉的”，但我会想“或许我运气好可能永远都遇不到狼呢”，为什么想逃？因为在围栏里，过年就一定会有猪被管理员吃掉… </p>
-<h5 id="9月2日"><a href="#9月2日" class="headerlink" title="9月2日"></a>9月2日</h5><p>人类的悲欢并不相通，我只是觉得他们吵闹 ————鲁迅<br>我扔了一件东西，然后又得到了一件同类替代品。某一天，发现这件我以为成色还可以的替代品，竟然是别人用坏再修复后扔掉的…哈哈哈哈哈哈…</p>
-<p>世上事，像一个圆，冥冥中似有因果轮回，你瞒我瞒，瞒到最后发现自己怎么对待别人，上天就会安排另外的别人来以同样的方式对待自己…如同还债一样.<br>活着是件不容易的事，大人物们的监管，小人物们的依赖和小心思，处于中间的人上下都要兼顾，早些年未曾懂得这些道理<br>初听不知曲中意，再听已是曲中人</p>
-<h5 id="10月中旬"><a href="#10月中旬" class="headerlink" title="10月中旬"></a>10月中旬</h5><p>人类之间在没有利益冲突时，客套和友情看起来都很坚固，有利益冲突时，除了利益，就什么都不想顾。说什么大家都不容易…实则内心都期待着别人白给自己，但个个又都不傻，最终僵持不下就耗着。活着很累，争斗的生活也令人厌倦</p>
-<p>zf的工作人员，徇私舞弊，交警不作为，查人不查车；<br>工商局的人接到举报后，不去查处，反而是给被举报的商户打电话询问别人是否违法经营；<br>废物行为让人失望<br>大家都在为着各自行事，什么道德理想人情世故，在利益面前一无是处，我顾情谊 他人不顾，那就对什么人用什么方式，斗个痛快。</p>
-<h5 id="11月3日"><a href="#11月3日" class="headerlink" title="11月3日"></a>11月3日</h5><p>睡了个饱饱的觉，8个小时，很久没睡到这么久，神清气爽思路清晰，错过太多东西，什么都没有自己重要，到了该健身、学习投资自己的时候了</p>
-<h5 id="11月18日"><a href="#11月18日" class="headerlink" title="11月18日"></a>11月18日</h5><p>次承租人A，拒绝交租，提醒后仍然不交，接到我解除合同的律师函的时候，发来信息恶语相向，什么“你真有本事，你会搬起石头砸自己的脚…”之类的话一段接着一段，不曾想，业权是我的，我才是站在高处的人，古人有云：“唯女子小人难养也”。世间应有个统一的秩序和标准，有些不明事理的人，理应得到该得的教训<br>不就是个拆迁赔偿么，馋赔偿款又不想尽义务，哪有这么好的事</p>
-<h5 id="11月19日"><a href="#11月19日" class="headerlink" title="11月19日"></a>11月19日</h5><p>感受到了一个人的恶意，看起来平时唯唯诺诺和气友善的人，竟然有那么暴躁的一面，且那一面如此轻易爆发出来，可怜人有可恨处，并非空穴来风。社会上，不知什么时候会出现一根刺，突然出现扎我一下，虽然我不曾想过伤害任何人，可别人却不同我一般想，对于好说话的人，他们都想咬一口，多占一点便宜，遇到利益不管不顾，甚至可能忘了看一下，对方是个兔子，还是只老虎…或许，成年人的世界就不该有太多怜悯.<br>古时候那些练铁砂掌的人，为了防御强大的意外，把手在铁砂里磨练，磨练出老茧、厚皮、磨练出一手肉刺，是可以防御部分外在危险，但以后要是再与细皮嫩肉的人握手时，难免会扎伤这类细皮嫩肉的人，这也算是有舍有得吧</p>
-<h5 id="11月21日"><a href="#11月21日" class="headerlink" title="11月21日"></a>11月21日</h5><p>与官方人打交道，时刻都像是在博弈，科长尚且如此</p>
-<h5 id="12月24日"><a href="#12月24日" class="headerlink" title="12月24日"></a>12月24日</h5><p>人类的情绪，并不相通，社会上的尔虞我诈，互相踩踏，仍旧很多，只是以一种相对文明的形式存在<br>升米恩，斗米仇，谁都想咬我一口，他们总说”你吃点亏吧“，可他们并不在乎你吃了多少亏，只想你再吃一点亏，每个人眼里都只有自己，生活在人间，仿佛置身于大海，水流时刻在挤压着自己，水里的空间就是生活中的资源，我稍微退一点，水就会进一步，占领本属于我的空间，我强一点，就能挤开水，自己多占一点空间。活着便是无时无刻不在与他人争斗，无论自己愿不愿意…</p>
-<h5 id="2022年9月6日"><a href="#2022年9月6日" class="headerlink" title="2022年9月6日"></a>2022年9月6日</h5><p>心脏，它很脆弱…</p>
-<h5 id="2022年9月12日（农历8月17）"><a href="#2022年9月12日（农历8月17）" class="headerlink" title="2022年9月12日（农历8月17）"></a>2022年9月12日（农历8月17）</h5><p>感受到了秋天的凉意…</p>
-<h5 id="2022年11月7日，晚上21点"><a href="#2022年11月7日，晚上21点" class="headerlink" title="2022年11月7日，晚上21点"></a>2022年11月7日，晚上21点</h5><p>直到今天，我才幡然理解到，”每天都有爱”的意思是”每天都有新鲜的爱”，没有喜忧的起伏生活是平凡，日复一日的生活是平淡，早安晚安的吻是日常，唯独缺少了让感觉人心神激荡的爱意，贪婪的女人啊，需要的是新鲜的爱意来作为维持关系的补充剂…</p>
-<!-- 
-##### something to ll
-这两年，我经常在想，导致分开的源头在哪里
-2021年3月27号，我应邀去襄阳参加一个大学同学的婚礼，乘坐了飞机，有幸观赏到傍晚到天黑的天空，真的很美，挺遗憾的，与你一起乘机的约定未能实现
-
-到了后看到他们的婚礼，父母都在，了解后才知道，只是接亲的时候接新娘不接父母，而双方父母自行到酒店汇合，小地方的习俗并不怪，只是我理解错了
-
-我妈有了新的归宿，她的病情在服药后也很稳定的与正常人无异，这两年，我还是在外面，没尽什么在她身边照顾的责任，她的生活没有我过的也很舒服，每个人都有自己的生活，当时的我，想得太多，也想包揽的太多了
-
-太多太多地方要跟你说对不起了
-
-算命的说，经常梦到一个人，说明那个人在忘记你，我都梦了2年了...
-
-两个人在一起很容易，分开也很容易，不容易的是抹除那些已经发生的事，每每想起，酸甜苦辣的感觉还是一如既往
-
-这两年一直在想导致分开的原因，我晚上在打游戏，你晚上在与人闲聊
-
--->]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数组的和并和对象的和并</title>
-    <url>/2016/12/05/%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C%E5%B9%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%92%8C%E5%B9%B6/</url>
-    <content><![CDATA[<h4 id="1-数组合并"><a href="#1-数组合并" class="headerlink" title="1 数组合并"></a><a href="#1-数组合并" title="1 数组合并"></a>1 数组合并</h4><h5 id="1-1-concat-方法"><a href="#1-1-concat-方法" class="headerlink" title="1.1 concat 方法"></a><a href="#1-1-concat-方法" title="1.1 concat 方法"></a>1.1 concat 方法</h5><pre><code>var a=\[1,2,3\],b=\[4,5,6\];  
-var c=a.concat(b);  
-console.log(c);// 1,2,3,4,5,6  
-console.log(a);// 1,2,3  不改变本身  </code></pre><a id="more"></a>
-<h5 id="1-2-循环遍历"><a href="#1-2-循环遍历" class="headerlink" title="1.2 循环遍历"></a><a href="#1-2-循环遍历" title="1.2 循环遍历"></a>1.2 循环遍历</h5><pre><code>var arr1=\[&#39;a&#39;,&#39;b&#39;\];  
-var arr2=\[&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\];  
-
-for(var i=0;i &lt; arr2.length;i++){  
- arr1.push(arr2\[i\])   
-}  
-
-console.log(arr1);//\[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\]  </code></pre><h5 id="1-3-apply"><a href="#1-3-apply" class="headerlink" title="1.3 apply"></a><a href="#1-3-apply" title="1.3 apply"></a>1.3 apply</h5><p>合并数组arr1和数组arr2,使用Array.prototype.push.apply(arr1,arr2) or arr1.push.apply(arr1,arr2);  </p>
-<pre><code>var arr1=\[&#39;a&#39;,&#39;b&#39;\];  
-var arr2=\[&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\];  
-
-Array.prototype.push.apply(arr1,arr2);  
-
-//或者  
-
-arr1.push.apply(arr1,arr2);  
-console.log(arr1) //\[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\]  </code></pre><h4 id="2-对象合并"><a href="#2-对象合并" class="headerlink" title="2 对象合并"></a><a href="#2-对象合并" title="2 对象合并"></a>2 对象合并</h4><h5 id="2-1-extend"><a href="#2-1-extend" class="headerlink" title="2.1 $.extend()"></a><a href="#2-1-extend" title="2.1 $.extend()"></a>2.1 $.extend()</h5><pre><code>var obj1= {&#39;a&#39;: 1};  
-var obj2= {&#39;b&#39;: 1};  
-var c = $.extend(obj1, obj2);  
-console.log(obj1); // {a: 1, b: 1}  obj1已被修改  
-//或者   
-var obj3 = $.extend({}, obj1, obj2)   
-console.log(obj3); //{a: 1, b: 1} 不会改变obj1,obj2  </code></pre><h5 id="2-2-遍历赋值"><a href="#2-2-遍历赋值" class="headerlink" title="2.2 遍历赋值"></a><a href="#2-2-遍历赋值" title="2.2 遍历赋值"></a>2.2 遍历赋值</h5><pre><code>var obj1={&#39;a&#39;:1};  
-var obj2={&#39;b&#39;:2,&#39;c&#39;:3};  
-for(var key in obj2){  
- if(obj2.hasOwnProperty(key)===true){   
- //此处hasOwnProperty是判断自有属性，使用 for in 循环遍历对象的属性时，原型链上的所有属性都将被访问会避免原型对象扩展带来的干扰  
- obj1\[key\]=obj2\[key\];  
-}   
-}  
-
-console.log(obj1);//{&#39;a&#39;:1,&#39;b&#39;:2,&#39;c&#39;:3};  </code></pre><h5 id="2-3-Obj-assign"><a href="#2-3-Obj-assign" class="headerlink" title="2.3 Obj.assign()"></a><a href="#2-3-Obj-assign" title="2.3 Obj.assign()"></a>2.3 Obj.assign()</h5><p>可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。</p>
-<p>Object.assign(target, …sources)  </p>
-<pre><code>//a. 复制一个对象  
-var obj = { a: 1 ,b:2};  
-var copyObj = Object.assign({}, obj);  
-console.log(copyObj); // { a: 1,b:2 }  
-
-//b.合并多个对象  
-var o1 = { a: 1 };  
-var o2 = { b: 2 };  
-var o3 = { c: 3 };  
-
-var obj = Object.assign(o1, o2, o3);  
-console.log(obj); // { a: 1, b: 2, c: 3 }  
-console.log(o1);  // { a: 1, b: 2, c: 3 }, 且目标对象自身也会改变。  </code></pre><p>//注意：obj.assign 也是浅拷贝，遇到对象里套对象的情况，也是拷贝一个引用</p>
-<h5 id="2-4-对象的深拷贝和浅拷贝"><a href="#2-4-对象的深拷贝和浅拷贝" class="headerlink" title="2.4 对象的深拷贝和浅拷贝"></a><a href="#2-4-对象的深拷贝和浅拷贝" title="2.4 对象的深拷贝和浅拷贝"></a>2.4 对象的深拷贝和浅拷贝</h5><h6 id="2-4-1-浅拷贝"><a href="#2-4-1-浅拷贝" class="headerlink" title="2.4.1 浅拷贝"></a><a href="#2-4-1-浅拷贝" title="2.4.1 浅拷贝"></a>2.4.1 浅拷贝</h6><pre><code>var obj1={&#39;a&#39;:1};  
-var obj2={&#39;b&#39;:{&#39;b1&#39;:22,&#39;b2&#39;:33}};  
-
-$.extend(obj1, obj2);   //obj1拷贝了obj2的属性  
-
-console.log(obj1)  // {&#39;a&#39;:1,&#39;b&#39;{&#39;b1&#39;:22,&#39;b2&#39;:33}}  
-console.log(obj1.b.b1)  // 22  
-
-obj2.b.b1=44;   //obj2重新赋值  
-console.log(obj1.b.b1)  // 44  obj1.b仅拷贝了对象的指引，所以受原obj2的影响  </code></pre><h6 id="2-4-2-深拷贝"><a href="#2-4-2-深拷贝" class="headerlink" title="2.4.2 深拷贝"></a><a href="#2-4-2-深拷贝" title="2.4.2 深拷贝"></a>2.4.2 深拷贝</h6><pre><code>var obj1={&#39;a&#39;:1};  
-var obj2={&#39;b&#39;:{&#39;b1&#39;:22,&#39;b2&#39;:33}};  
-
-$.extend(true,obj1, obj2);   //第一个参数设为true表示深复制  
-
-console.log(obj1)  // {&#39;a&#39;:1,&#39;b&#39;{&#39;b1&#39;:22,&#39;b2&#39;:33}}  
-console.log(obj1.b.b1)  // 22  
-
-obj2.b.b1=44;   //obj2重新赋值  
-console.log(obj1.b.b1)  // 22 obj1拷贝了obj2的所有属性以及值，并不受obj2的影响 </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最近在喝武夷山岩茶</title>
-    <url>/2022/11/03/%E9%A5%AE%E8%8C%B6%E6%9C%89%E6%84%9F/</url>
-    <content><![CDATA[<p>冬天来了，要泡热茶喝了</p>
-<a id="more"></a>
-<h3 id="假的入门"><a href="#假的入门" class="headerlink" title="假的入门"></a>假的入门</h3><p><strong>136/250g 试喝装，一泡8g，给了5种，共30包+赠送两包“金奖大红袍+铁罗汉”（30包，折算下来，0.544元/g-272元/斤，一泡约4.5元）</strong> </p>
-<p><strong>金奖大红袍</strong>：一般，喝起来后味儿还有点收敛和涩口…500一斤的话划不来</p>
-<p><strong>铁罗汉</strong>： 喝起来有股淡淡的茶香，但也有一股淡淡的中药味，半茶半药，喝不来…</p>
-<p><strong>高山肉桂</strong>：还没喝就闻到强烈的香气，不像桂皮，就是好闻，入口有炭火味儿，火焙得有些过，喝着比之闻起来的香味减半，在口中停留几秒后再减半，三泡之后味道再减半，回甘不足，喝着让人有意犹未尽的感觉，茶香让人感觉是鸦片，茶汤喝起来像大前门，就刺激，不解馋，茶香、茶水不一致，品质不够</p>
-<p><strong>高枞水仙</strong>：闻香比肉桂平和，肉桂是强烈，水仙是温柔，茶汤入口顺滑，但香气散的快，喝几杯就感觉没味儿了…像温婉的女子在捏肩捶背，空有看头，喝几口过后再无兴致</p>
-<p><strong>奇兰</strong>：香气似铁观音和大红袍的对半分，喝起来顺口，略带绿茶的清新，茶汤香气绵长，比肉桂持久，乌龙茶的“乌龙感”当以奇兰的口感最为明显</p>
-<p><strong>金牡丹</strong>：闻起来很香，茶汤喝起来也香，没什么毛病，挺好喝，可以买些囤着用来招待。<br><small>(经查询，这个是属于移植茶（杂交）。“铁观音为母本，黄棪(旦)为父本，采用杂交育种法育成”)</small></p>
-<p><strong>红色包装大红袍</strong>：比较中庸，香气算第三，茶汤顺口，回甘有，但不多，也不会涩口，喝起来不错，老实人的感觉，像是调制茶，比之金奖大红袍要老实本分些</p>
-<p><del>上面有一款茶凉着也好喝，忘了哪个了…</del></p>
-<h3 id="真的入门-1"><a href="#真的入门-1" class="headerlink" title="真的入门+1"></a>真的入门+1</h3><p><strong>原价88/8泡/64g，加12块钱，换下了金奖大红袍+铁罗汉，换了两款“金交椅+荒野小气候”肉桂，送了一包上面的 高山肉桂（10包，折算下来均价，1.25元/g-625元/斤，一泡约10元）</strong></p>
-<p><strong>荒野小气候</strong>（x2）： 第一泡用的快客杯，茶具是粗陶的，这茶说是比高山肉桂喝起来更霸道，老客户价¥600/250g(半斤)，一泡下来，香味有，但茶水寡淡无味，如果上面的茶各有明显突出的特点像年轻人的话，这茶就像行将就木的老人，平淡无回甘无起伏，就是平淡，像是放了很久，把棱角都磨去了一样。<br>过了几天，特意问了老板，是去年的茶，今年都要结束，去年的茶，还经历过年年底的年货没卖完，到今天为止起码放15个月的库存茶，焙的火估计都下的差不多了<br>第二泡，用盖碗泡，喝起来平稳很多，茶香终于是出来了，不苦不涩，纯纯的陈香，没别的杂味儿，但还是有点过于陈的感觉</p>
-<p><strong>金交椅肉桂</strong>： 3秒出汤，耐泡，3-5泡还味道如初，茶香明显，初闻香气，隐隐有红薯的味道，就是蒸熟的红薯，喝起来也比较柔顺，像三四十岁的中年人，茶汤入口平和，没有舌头不适的感觉，回甘丝丝缕缕，有一点点薄荷的清凉。茶叶滤水后，闻茶，这才是肉桂，真肉桂，桂皮就是这个味儿，贼冲，高山肉桂就没这种明显的桂皮味儿。<br>这个味道，越闻越像热红薯…喝起来也有点，这就是桂皮的味道吗？</p>
-<p><del><em>这两泡贵一点的下来，茶汤全是平和，没有刺激味蕾的地方，一千出头的茶，满满的平和味儿，让我不禁遐思：那再贵点的茶，是不是马上快回到了立顿红茶的柔顺感了</em></del></p>
-<p><strong>兰香水仙</strong>： 耐泡，七八泡了还有味，香味平和，特点不突出，喝起来还可以</p>
-<p><strong>竹窠肉桂</strong>： 耐泡，闻起来果香浓郁，入口比金交椅好入口，金交椅的是突出的红薯味儿，这个是果香比较突出，但美中不足，回甘不甜</p>
-<p><strong>燕子窠</strong>： 耐泡，好像这个价位的茶都挺耐泡，前几泡果香突出，后泡就是桂皮比较突出了，闻起来的味道和竹窠差不多，区别是竹窠五六泡之后不会变红薯味儿。（这个醒茶后，要瞬间出汤，泡多几秒就苦了）</p>
-<p><strong>高山肉桂</strong>：就是”假的入门”里说的便宜的肉桂</p>
-<p><strong>老从水仙</strong>：好喝，闻起来淡雅，喝起来香，可以打七八分，汤水清亮，喝起来柔顺，甘甜有致，持久留香，水仙更喜欢这个</p>
-<p><strong>野生红茶</strong>：非常不起眼的一泡茶，小小包，5g，包装也不华丽，写着野生红茶，但喝起来好喝，闻起来很香，泡起来汤香也很浓郁，喝到胃里很舒服，耐泡性好，五六泡下来顶多香气淡一点，不会出苦味儿，600一斤，能有100泡，一泡10块，还算划得来</p>
-<p>以上都是在“欢乐茶仓”的店里喝的</p>
-<h3 id="触及初级"><a href="#触及初级" class="headerlink" title="触及初级"></a>触及初级</h3><p><strong>双11闲逛淘宝，无意间看到了一家名叫“望峰”的店铺，卖的牛栏坑肉桂在打折，原价750，双11只要¥501/500g，8g/泡，买了一斤试试水，送了正装以外其他别的类型1+3包试饮装</strong></p>
-<p><strong>牛栏坑肉桂</strong>： 秒出汤，香气四溢，醇香顺滑，上面的高山、小气候、竹窠、燕子窠，比起来，都没这个香，它的香会更入水一些，喝起来没有杂味，好喝是好喝，但不耐泡，小碗4泡就出苦味儿，不耐泡这点让人有一点点意犹未尽的感觉，喝完这个再回去喝高山肉桂，能明显感觉到味道的差距，这个喝起来好喝的多</p>
-<p>以下3款，都是赠的试饮装，与上面的牛栏坑，是同一链接的货，但价格有所不同，这三款大概都在4-500左右<br><strong>赠品_马头岩肉桂</strong>：刺激的味儿比较大，像脱缰的野马，wc 各种冲的味儿，去求吧，幸亏是送的，喝两杯就换茶了<br><strong>赠品_老枞水仙</strong>： 水仙如其名，如水般柔顺，香气比较足，没有那么突出的、特别的味道，就是淡香、顺滑，500一斤性价比可以的<br><strong>赠品_大红袍</strong>： 喝起来没特点…大红袍是各种岩茶掺一起的调制品，目前包括前面喝到的大红袍，基本都是特点无，食之无味的一款，也可能是我的嘴巴喝刁了</p>
-<p>11月25日，野生红茶喝了几包，跟望峰的店里老板也聊了不少，突发奇想试试望峰家的红茶，跟老板商量下，118买了6种12包，各式的红茶试饮装，老板又送了4泡肉桂，一共16包，单算价格已经不是划不划算的问题了，很划算！</p>
-<p>红茶6种，就跟上面到手的 野生红茶 做对比 (11月25日)<br><strong>麻栗老枞小种</strong>：998/斤，一般，相比妃子笑，稍微淳一些<br><strong>桐木老枞</strong>：420/斤，<br><strong>妃子笑正山小种</strong>：628/斤，喝起来略寡淡，香气淡，真淡，像白茶一样淡<br><strong>金芽金骏眉</strong>：628/斤，一般<br><strong>桐木关金骏眉</strong>：960/斤，<br><strong>顶级金骏眉</strong>：2988/斤，香气相对也淡，喝起来淳一些，想想价格，像亲了一口古代的公主-只觉高贵而不解馋，还是没野生红茶喝起来香，我可能对红茶无感？明显的区别在茶叶外形上，这个茶叶看起来可太值钱了，过水后泡开，不是大叶的一坨，就是一小毫一小毫，茶叶的单位都不能用”片”了，小小个，像是用茶树尖尖上最嫩的小叶部分做出来的，叶片各个大小还都差不多，都是那么丁点大，这卖相明显区别于别的茶</p>
-<p>肉桂4种，每种一包 （12月1日晚）<br><strong>马头岩肉桂</strong>：不敢喝，还没喝，想想前面的马头岩一言难尽…</p>
-<p><strong>牛背_牛栏坑肉桂</strong>：惊喜，目前喝到最好的茶，前面虽然吹嘘肉桂香，肉桂好，但在这个面前，就是儿子见爸爸，如果前面喝的是纯牛奶的话，这个就是特仑苏，浓、淳厚，就是它的代名词，比前面的牛栏坑肉桂耐泡些，五六泡还不苦不涩，厚重，醇香，喝到嘴里才知道是啥意思，就是价格…一问：老客户1200/斤</p>
-<p><strong>水帘洞肉桂</strong>：如果牛背是特仑苏的话，这个就是安慕希，也有淳厚感，但没牛背那么厚，太容易出味儿了，太浓了，秒出汤还很浓，看起来都发黑，浓到喝起来有微微的发苦，估计得用泡小青柑的方式来冲这个茶，盖碗秒出汤泡出来都过浓 （自己去望峰店里查了，标价610/斤，高火的，感觉火要是轻点，可能会好些？）<br>朋友喝了遭不住，我出汤兑水对半喝了七八泡还有味儿，耐泡性挺强的，就是浓的发苦…浓茶不过如此</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>旅途随感</title>
-    <url>/2014/05/14/%E6%97%85%E9%80%94%E9%9A%8F%E6%84%9F/</url>
-    <content><![CDATA[<p>五月，下了一场很长很长的暴雨…<br>　　不知道期待了多久的雨过天晴，却迟迟未至，屋里充斥着气息君的低吟。雨天，是个调皮的坏姑娘，总是拦着我的脚步，陪她在家里玩耍…</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/6f26315cgw1ejbg4tg69xj21kw11xtwz.jpg" alt="赣州浮桥"></p>
-<p>　　不知何时，习惯独自旅行，背着行囊，掠过层层叠叠的风景，情不自禁中拍下了许多照片留念，想把所有好的、美的、有趣的事物都留在自己的相机里、回忆里…可是，随着旅行的次数越来越多，时间的更迭，逐渐发现，即使是在此来到最美好的地方，还是孤身一人，而身临佳境的欢愉，一个不用朋友圈的人，竟不知要与何人分享。那个瞬间，突然有所感慨，原来一路走到现在，生活中所有与自己擦肩的人都成了过客，并没有谁一直做伴，看尽旅途…<br> <a id="more"></a><br><img src="http://ww4.sinaimg.cn/mw690/6f26315cgw1ejh15plaloj21kw0vzneh.jpg" alt="2014年-列车-武昌途"></p>
-<p>　　坐上缓缓行驶的车厢，望着窗外，倒退的草木犹如时间分分秒秒从眼前闪过，来不及欣赏，它已成为过去，塞上耳塞，眼前只有声音的跃动，”时间都去哪儿了,还没好好感受年轻就老了.时间都去哪儿了,还没好好看看你眼睛就花了…”</p>
-<p>　　人生的旅行，时间是最公平的资源，自己既是看客，也是风景. 感谢所有走进生命的人，无论有怎样的交集，终会随时间定格，都只是一场风月情浓…</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>海心</title>
-    <url>/2014/05/18/%E6%B5%B7%E5%BF%83/</url>
-    <content><![CDATA[<p>　　昨日去了海边…</p>
-<p>　　szw很长很长，租一辆单车，缓缓骑行。飒飒的海风拂面，带着些许潮湿和腥味，这种腥咸的味道，清凉、酸涩、无人问津…耳边不时听闻男男女女的谈笑、小孩的稚语、好机油们打牌的大叫、山地车携带的咚恰乐…恰有一番清明上河图的繁华与喧嚣…<br>    <a id="more"></a><br>　　岸边树林下，条条石凳上都有一对相拥而坐的情侣在窃窃私语，好不浪漫。阴凉、安静、惬意，倘若是我，也定须选在这里约会…<br>靠近沙滩边的地方，每隔不远处都会有一小块聚会地，一张张颜色各异的毯子上摆着各式各样的零食，男女老少围成一圈，打牌、聊天、分享照片，笑声连绵…</p>
-<p>　　海边的浪花，沙粒，贝壳，海鸥，海藻…水如清泉，海天一色。看着一望无际的远方，大海和天空牵着手，交融在一起。看不清彼岸，可是能猜到，海那边，是大家立下的誓言，无边无际，永恒无期…</p>
-<p>　　沙滩上前一刻踩出的脚印，后一刻浪花涌上，瞬间被海水抚平。有些东西，虽随浪花离去，却已然铭记于心，任雪风吹雨打，依然不卑不亢，与岁月，与生命，不离不弃…</p>
-]]></content>
-      <categories>
-        <category>日常心情</category>
-      </categories>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用css使网站全局或者局部变黑色</title>
-    <url>/2014/09/24/%E7%94%A8css%E4%BD%BF%E7%BD%91%E7%AB%99%E5%85%A8%E5%B1%80%E6%88%96%E8%80%85%E5%B1%80%E9%83%A8%E5%8F%98%E9%BB%91%E8%89%B2/</url>
-    <content><![CDATA[<p>现在，不少网站需要用到灰色效果，比如企业站的”友情链接”、”部分案例”、网站底部logo等…<br>切图是比较简单，保存一张图片就好了。但是…图片要加载、增加了图片数量、更换不方便等等等等…<br>站在效率的角度来讲，用简单的代码来实现，显然更胜一筹…  </p>
-<a id="more"></a> 
-<h4 id="1、整站变灰"><a href="#1、整站变灰" class="headerlink" title="1、整站变灰"></a><a href="#1、整站变灰" title="1、整站变灰"></a>1、整站变灰</h4><p>在全局css文件中，加入以下代码  </p>
-<pre><code>html {  
-filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); //IE6以上   
--webkit-filter:grayscale(100%); //支持google、Safari  
-}</code></pre><h4 id="2、只想针对图片"><a href="#2、只想针对图片" class="headerlink" title="2、只想针对图片"></a><a href="#2、只想针对图片" title="2、只想针对图片"></a>2、只想针对图片</h4><p>页面里所有的图片  </p>
-<pre><code>img{filter:Gray; //IE}  </code></pre><h4 id="3、只让指定图片变为灰色"><a href="#3、只让指定图片变为灰色" class="headerlink" title="3、只让指定图片变为灰色"></a><a href="#3、只让指定图片变为灰色" title="3、只让指定图片变为灰色"></a>3、只让指定图片变为灰色</h4><p>比如logo  </p>
-<pre><code>.gery{filter:Gray;}  
-&lt;img src=&quot;logo.gif&quot; class=&quot;gery&quot;&gt;  </code></pre><h4 id="4、如果部分图片变灰"><a href="#4、如果部分图片变灰" class="headerlink" title="4、如果部分图片变灰"></a><a href="#4、如果部分图片变灰" title="4、如果部分图片变灰"></a>4、如果部分图片变灰</h4><p>另外一些保留彩色  </p>
-<pre><code>.nochange {filter:gray(enabled=false);}  
-&lt;img src=&quot;no.gif&quot; class=&quot;nochange&quot; /&gt;  </code></pre><h4 id="5、让网站中Flash动画变灰"><a href="#5、让网站中Flash动画变灰" class="headerlink" title="5、让网站中Flash动画变灰"></a><a href="#5、让网站中Flash动画变灰" title="5、让网站中Flash动画变灰"></a>5、让网站中Flash动画变灰</h4><p>在Flash代码的&lt;object …&gt;和</object>之间插入： </p>
-<pre><code>&lt;param value=&quot;false&quot; name=&quot;menu&quot;/&gt;  
-&lt;param value=&quot;opaque&quot; name=&quot;wmode&quot;/&gt;  </code></pre><h4 id="6、使得Firefox变灰的方法"><a href="#6、使得Firefox变灰的方法" class="headerlink" title="6、使得Firefox变灰的方法"></a><a href="#6、使得Firefox变灰的方法" title="6、使得Firefox变灰的方法"></a>6、使得Firefox变灰的方法</h4><p>firefox旧版本必须调用<a href="http://www.oschina.net/p/grayscaling-js/similar_projects" target="_blank" rel="noopener">grayscale.js</a>来实现，然后在网站头部加入引用：  </p>
-<pre><code>&lt;script src=&quot;grayscale.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
-&lt;script type=&quot;text/javascript&quot;&gt; window.onload=function(){grayscale(document.body); } &lt;/script&gt;  </code></pre><h4 id="然而Firefox新版已支持该滤镜"><a href="#然而Firefox新版已支持该滤镜" class="headerlink" title="然而Firefox新版已支持该滤镜"></a><a href="#然而Firefox新版已支持该滤镜" title="然而Firefox新版已支持该滤镜"></a>然而Firefox新版已支持该滤镜</h4><h4 id="综上所述，IE6-、FF、google-全兼容完整的代码为："><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" class="headerlink" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a>综上所述，IE6+、FF、google 全兼容完整的代码为：</h4><pre><code>html{  
-filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
--webkit-filter:grayscale(100%);  
--moz-filter: grayscale(100%);  
--ms-filter: grayscale(100%);  
--o-filter: grayscale(100%);  
-filter: grayscale(100%);  
-filter:Gray;  
-}  </code></pre><p>注：相信日常会用FF的朋友，都会进行升级体验，所以grayscale.js的写法不调用，在此只用来拓展学习。 　　</p>
-]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>背景透明hack</title>
-    <url>/2014/11/11/%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8Ehack/</url>
-    <content><![CDATA[<p>不同浏览器里的兼容，实在有种蛋蛋的忧伤， 摆出所有hack，哪个浏览器不行就加哪个。通用就可以兼容各种浏览器</p>
-<h4 id="模块透明度"><a href="#模块透明度" class="headerlink" title="模块透明度"></a><a href="#模块透明度" title="模块透明度"></a>模块透明度</h4><pre><code>opacity:0.5;//所有浏览器  
-_filter:alpha(opacity=50);//IE6  
-\*opacity:0.5;//IE6&amp;7(\*包括6和7)  
-+opacity:0.5;//IE7独有  
--ms-filter:alpha(opacity=50);//-ms- IE8独有的hack  
--ms-filter:&quot;progid:DXImageTransform.Microsoft.Alpha(opacity=50)&quot;;//上一句完整的写法  
-opacity:0.5\\9;  //IE6-10   
-opacity:0.5\\0; //IE8-10+最新版opera   
--moz-opacity:0.5;//火狐  
--webkit-opacity:0.5; //谷歌+safari  
--o-opacity:0.5;//欧鹏(opera)  </code></pre><h4 id="IE6-、FF、google全兼容"><a href="#IE6-、FF、google全兼容" class="headerlink" title="IE6+、FF、google全兼容"></a><a href="#IE6-、FF、google全兼容" title="IE6+、FF、google全兼容"></a>IE6+、FF、google全兼容</h4><pre><code>opacity:0.5;  
-filter:alpha(opacity=50);  
--ms-filter:alpha(opacity=50); </code></pre>]]></content>
-      <categories>
-        <category>代码</category>
-      </categories>
   </entry>
   <entry>
     <title>uni-app-小程序的一些功能</title>
@@ -1716,6 +1256,453 @@ onEditorReady(index) {
       </categories>
       <tags>
         <tag>uniapp小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小丑</title>
+    <url>/2016/07/14/%E5%B0%8F%E4%B8%91/</url>
+    <content><![CDATA[<p>世间曾有一个小丑。</p>
+<p>他长时间都过着很快乐的生活；但渐渐地有些流言传到了他的耳朵里，说他被公认为是个极其愚蠢的、非常鄙俗的家伙。</p>
+<p>小丑窘住了，开始忧郁地想：怎样才能制止那些讨厌的流言呢？</p>
+<p>一个突然的想法使他的脑袋瓜开了窍……于是，他一点也不拖延地把他的想法付诸实行。</p>
+<p>他在街上碰见了一个熟人，那熟人夸奖起一位著名的色彩画家。</p>
+<p>“得了吧！”小丑提高声音说道，“这位色彩画家早已经不行啦……您还不知道这个吗？我真没想到您会这样……您是个落后的人啦！”</p>
+<p>熟人感到吃惊，并立刻同意了小丑的说法。  </p>
+<p>“今天我读完了一本多么好的书啊！”另一个熟人告诉他说。</p>
+<p>“得了吧！”小丑提高声音说道，“您怎么不害羞？这本书一点意思也没有，大家老早就已经不看这本书了，您还不知道这个？您是个落后的人啦！”</p>
+<p>于是，这个熟人也感到吃惊，也同意了小丑的说法。</p>
+<p>“我的朋友某君真是个非常好的人啊！”第三个熟人告诉小丑说，“他真正是个高尚的人！”</p>
+<p>“得了吧！”小丑提高声音说道，“某君明明是个下流东西！他抢夺过所有亲戚的东西。谁还不知道这个呢？您是个落后的人啦。”</p>
+<p>第三个熟人同样感到吃惊，也同意了小丑的说法，并且不再同那个朋友来往。总之，人们在小丑面前无论赞扬谁和赞扬什么，他都一个劲儿地驳斥。</p>
+<p>只是有时候，他还以责备的口气补充说道：“您至今还相信权威吗？”</p>
+<p>“好一个坏心肠的人！一个好毒辣的家伙！”他的熟人们开始谈论起小丑了，“不过，他的脑袋瓜多么不简单！”</p>
+<p>“他的舌头也不简单！”另一些人又补充道，“哦，他简直是个天才！”</p>
+<p>末了，一家报纸的出版人，请小丑到那儿去主持一下评论专栏。</p>
+<p>于是，小丑开始批评一切事个一切人，一点也没有改变自己的手法和自己趾高气扬的神态。</p>
+<p>现在，他——一个曾经大喊大叫反对过权威的人——自己也成了一个权威了，而年轻人正崇拜他，而且害怕他。</p>
+<p>他们，可怜的年轻人，该怎么办呢？虽然一般地说，不应该崇拜……可是，在这儿，你试试不再去崇拜吧——你就将是个落后的人啦！</p>
+<p>在胆小的人们中间，小丑们是能很好地生活的。</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>写在vue中简单的随机验证码</title>
+    <url>/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    <content><![CDATA[<p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
+<a id="more"></a>
+<h3 id="dom"><a href="#dom" class="headerlink" title="dom"></a><a href="#dom" title="dom"></a>dom</h3><pre><code>&lt;el-form :model=&quot;formData&quot; :rules=&quot;rules&quot; ref=&quot;formData&quot; label-width=&quot;0px&quot;&gt;  
+ &lt;el-form-item prop=&quot;picLyanzhengma&quot;&gt;  
+ &lt;el-input type=&quot;text&quot; placeholder=&quot;请输入验证码&quot; @blur=&quot;checkLpicma()&quot; v-model=&quot;formData.picLyanzhengma&quot;&gt;&lt;/el-input&gt;  
+ &lt;input type=&quot;button&quot; @click=&quot;createCode&quot; class=&quot;verification1&quot; v-model=&quot;checkCode&quot;/&gt;  
+ &lt;/el-form-item&gt;  
+ &lt;el-button :loading=&quot;isLogin&quot; type=&quot;primary&quot; v-on:click=&quot;login(&#39;formData&#39;)&quot;&gt;登录&lt;/el-button&gt;  
+&lt;/el-form&gt;  </code></pre><h3 id="script"><a href="#script" class="headerlink" title="script"></a><a href="#script" title="script"></a>script</h3><pre><code>&lt;script&gt;  
+ export default {  
+ data () {  
+ var checkCodes = (rule, value, callback) =&gt; {  
+ if (value == &#39;&#39;) {  
+ callback(new Error(&#39;请输入验证码&#39;));  
+ } else if (value.toUpperCase() != this.checkCode) {  
+ callback(new Error(&#39;验证码不正确&#39;));  
+ } else {  
+ callback();  
+ }  
+ };  
+ return {  
+ formData: {  
+ picLyanzhengma: &#39;&#39;  
+ },  
+ checkCode: &#39;&#39;,  
+ rules: {  
+ picLyanzhengma :\[  
+ { validator: checkCodes, trigger:&#39;blur&#39;}  
+ \]  
+ },  
+ isLogin: false  
+ }  
+ },  
+ methods: {  
+ // 生成图片验证码  
+ createCode(){  
+ let code = &quot;&quot;;   
+ var codeLength = 4;//验证码的长度   
+ var random = new Array(0,1,2,3,4,5,6,7,8,9,&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,   
+ &#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;);//随机数   
+ for(var i = 0; i &lt; codeLength; i++) {  
+ //循环操作   
+ var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
+ code += random\[index\];//根据索引取得随机数加到code上   
+ }   
+ this.checkCode = code;//把code值赋给验证码   
+ },  
+ // 失焦验证图和密码  
+ checkLpicma(){  
+ let that = this  
+ this.formData.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写   
+ if(this.formData.picLyanzhengma == &#39;&#39;) {  
+ // 留空不刷  
+ }else if(this.formData.picLyanzhengma.toUpperCase() != this.checkCode ) {   
+ this.createCode();// 输错就刷新验证码   
+ this.formData.picLyanzhengma = &#39;&#39;;  
+ }else {  
+ return true;  
+ }   
+ },  
+ login (formName) {  
+ var that = this  
+ this.$refs\[formName\].validate((valid) =&gt; {  
+ if (valid) {   
+ // 验证通过  
+ } else {  
+ return false  
+ }  
+ })  
+ }  
+ }  
+ }  
+&lt;/script&gt;  </code></pre><h3 id="css"><a href="#css" class="headerlink" title="css"></a><a href="#css" title="css"></a>css</h3><pre><code>.verification1{  
+ vertical-align: middle;  
+ width: 70px;  
+ background: #f9f9f9;  
+ border: solid 1px #ddd;  
+ color: blue;  
+ height: 2rem;  
+}  </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>computed对input的v-model监听无效</title>
+    <url>/2021/07/19/vue%E4%B8%ADcomputed%E5%AF%B9input%E7%9A%84v-model%E7%9B%91%E5%90%AC%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>在写某个项目遇到的表单提交验证时，打算偷懒一次性验证几个字段，结果遇到，v-model绑定input，data未及时更新的小坑</p>
+<a id="more"></a>
+<p>源代码：</p>
+<pre><code>&lt;input v-model=&quot;info.expressName&quot;/&gt;
+&lt;input v-model=&quot;info.expressNo&quot;/&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        info: {
+            expressName: &#39;&#39;,
+            expressNo: &#39;&#39;
+        }
+    },
+    methods: {
+
+    }
+    computed: {
+        isCanSub: function() {
+            return this.info.expressName || this.info.expressNo
+        }
+    }
+}
+&lt;/script&gt;</code></pre><p>测试发现，computed并没有监听到任意一个input的v-model值的变化<br>怎么写怎么不通过，网上搜索一番，有的说在computed里$set()重新渲染，有的说用watch，有的说用value不用model，基本都没用，不方便的不方便，不好使的不好使。思来想去，既然没更新，那我直接vue.$set() 强制更新一波不就完了。<br>测试通过完美解决问题</p>
+<pre><code>&lt;input :value=&quot;info.expressName&quot; @input=&quot;checkValue($event, &#39;expressName&#39;)&quot;/&gt;
+&lt;input :value=&quot;info.expressNo&quot; @input=&quot;checkValue($event, &#39;expressNo&#39;)&quot;/&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        info: {
+            expressName: &#39;&#39;,
+            expressNo: &#39;&#39;
+        }
+    },
+    methods: {
+        checkValue(e, type){
+            let val = e.detail.value
+            this.$set(this.info, type, val)
+            return val
+        }
+    }
+    computed: {
+        isCanSub: function() {
+            return this.info.expressName || this.info.expressNo
+        }
+    }
+}
+&lt;/script&gt;</code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>心情随笔</title>
+    <url>/2014/12/24/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<p>　　生活越来越平淡慵懒和无力，内心疲倦到再难泛起丝毫涟漪。知觉和情感都下落到一个低潮的极点，与人交际不再单纯的交流，不愿过多谈及自身，疑似社会的黑暗面就在身边般小心翼翼地藏匿.</p>
+<p>　　不再相信美好的未来却又幻想未来的样子，像看恐怖片一样，明知害怕内心却期待着会出现什么样的场面让自己惊恐。这是瘾，是对作死的孤独有种习惯上的瘾…</p>
+<p>　　曾笃信，陪伴是最长情的告白，也一直默默身体力行。然，事实是时时事事为他人做嫁衣…一次又一次的双手空空。残酷的结局一次次碰击信念，如同克雷泽清肃屏障一般，屏障终将破碎。思维也在经历的催化下逐渐自我变异，无私的奉献心被短期的收益心取而代之，不再做看不到回报的事，长期式的坚持也被认为是多个短期的结合体，持之以恒变得艰难而又廉价。与朋友闲聊时不知不觉无言以对，从自闭到开怀再到慵懒过后，心很累，很累很累…满腔踌躇无人倾诉，把心情寄托于文字宣泄…  </p>
+<p><img src="http://ww4.sinaimg.cn/large/005K8Fb9gw1enkw25vjg6j30jg06474y.jpg" alt="">  </p>
+<p>　　读李煜词集、眠空、朝花夕拾…或许是受这类成名作影响变得沉毅寡言。但也无可置否，拥类似心境的人，论事朱红，偶尔愤世妒俗，时常为了活在当下而得过且过，站在社会的角读来看，着实是失败、偏执、也不合群…</p>
+<p>　　如此认清自己，也深知阳光下绿叶旁活的健康向上，却不愿主动去变更生活的习惯。有时曾想，自己怎么变得这么懒，基本的积极向上的心态都失去了。后来在某些方面的表现否定了自己的猜想。是麻木，是情感和生活的麻木，带走了信念里难得的动力，却不知如何找回，不知它在哪里…不知，它是否在偷笑着看我这副样子…</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组的和并和对象的和并</title>
+    <url>/2016/12/05/%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C%E5%B9%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%92%8C%E5%B9%B6/</url>
+    <content><![CDATA[<h4 id="1-数组合并"><a href="#1-数组合并" class="headerlink" title="1 数组合并"></a><a href="#1-数组合并" title="1 数组合并"></a>1 数组合并</h4><h5 id="1-1-concat-方法"><a href="#1-1-concat-方法" class="headerlink" title="1.1 concat 方法"></a><a href="#1-1-concat-方法" title="1.1 concat 方法"></a>1.1 concat 方法</h5><pre><code>var a=\[1,2,3\],b=\[4,5,6\];  
+var c=a.concat(b);  
+console.log(c);// 1,2,3,4,5,6  
+console.log(a);// 1,2,3  不改变本身  </code></pre><a id="more"></a>
+<h5 id="1-2-循环遍历"><a href="#1-2-循环遍历" class="headerlink" title="1.2 循环遍历"></a><a href="#1-2-循环遍历" title="1.2 循环遍历"></a>1.2 循环遍历</h5><pre><code>var arr1=\[&#39;a&#39;,&#39;b&#39;\];  
+var arr2=\[&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\];  
+
+for(var i=0;i &lt; arr2.length;i++){  
+ arr1.push(arr2\[i\])   
+}  
+
+console.log(arr1);//\[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\]  </code></pre><h5 id="1-3-apply"><a href="#1-3-apply" class="headerlink" title="1.3 apply"></a><a href="#1-3-apply" title="1.3 apply"></a>1.3 apply</h5><p>合并数组arr1和数组arr2,使用Array.prototype.push.apply(arr1,arr2) or arr1.push.apply(arr1,arr2);  </p>
+<pre><code>var arr1=\[&#39;a&#39;,&#39;b&#39;\];  
+var arr2=\[&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\];  
+
+Array.prototype.push.apply(arr1,arr2);  
+
+//或者  
+
+arr1.push.apply(arr1,arr2);  
+console.log(arr1) //\[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\]  </code></pre><h4 id="2-对象合并"><a href="#2-对象合并" class="headerlink" title="2 对象合并"></a><a href="#2-对象合并" title="2 对象合并"></a>2 对象合并</h4><h5 id="2-1-extend"><a href="#2-1-extend" class="headerlink" title="2.1 $.extend()"></a><a href="#2-1-extend" title="2.1 $.extend()"></a>2.1 $.extend()</h5><pre><code>var obj1= {&#39;a&#39;: 1};  
+var obj2= {&#39;b&#39;: 1};  
+var c = $.extend(obj1, obj2);  
+console.log(obj1); // {a: 1, b: 1}  obj1已被修改  
+//或者   
+var obj3 = $.extend({}, obj1, obj2)   
+console.log(obj3); //{a: 1, b: 1} 不会改变obj1,obj2  </code></pre><h5 id="2-2-遍历赋值"><a href="#2-2-遍历赋值" class="headerlink" title="2.2 遍历赋值"></a><a href="#2-2-遍历赋值" title="2.2 遍历赋值"></a>2.2 遍历赋值</h5><pre><code>var obj1={&#39;a&#39;:1};  
+var obj2={&#39;b&#39;:2,&#39;c&#39;:3};  
+for(var key in obj2){  
+ if(obj2.hasOwnProperty(key)===true){   
+ //此处hasOwnProperty是判断自有属性，使用 for in 循环遍历对象的属性时，原型链上的所有属性都将被访问会避免原型对象扩展带来的干扰  
+ obj1\[key\]=obj2\[key\];  
+}   
+}  
+
+console.log(obj1);//{&#39;a&#39;:1,&#39;b&#39;:2,&#39;c&#39;:3};  </code></pre><h5 id="2-3-Obj-assign"><a href="#2-3-Obj-assign" class="headerlink" title="2.3 Obj.assign()"></a><a href="#2-3-Obj-assign" title="2.3 Obj.assign()"></a>2.3 Obj.assign()</h5><p>可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。</p>
+<p>Object.assign(target, …sources)  </p>
+<pre><code>//a. 复制一个对象  
+var obj = { a: 1 ,b:2};  
+var copyObj = Object.assign({}, obj);  
+console.log(copyObj); // { a: 1,b:2 }  
+
+//b.合并多个对象  
+var o1 = { a: 1 };  
+var o2 = { b: 2 };  
+var o3 = { c: 3 };  
+
+var obj = Object.assign(o1, o2, o3);  
+console.log(obj); // { a: 1, b: 2, c: 3 }  
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 且目标对象自身也会改变。  </code></pre><p>//注意：obj.assign 也是浅拷贝，遇到对象里套对象的情况，也是拷贝一个引用</p>
+<h5 id="2-4-对象的深拷贝和浅拷贝"><a href="#2-4-对象的深拷贝和浅拷贝" class="headerlink" title="2.4 对象的深拷贝和浅拷贝"></a><a href="#2-4-对象的深拷贝和浅拷贝" title="2.4 对象的深拷贝和浅拷贝"></a>2.4 对象的深拷贝和浅拷贝</h5><h6 id="2-4-1-浅拷贝"><a href="#2-4-1-浅拷贝" class="headerlink" title="2.4.1 浅拷贝"></a><a href="#2-4-1-浅拷贝" title="2.4.1 浅拷贝"></a>2.4.1 浅拷贝</h6><pre><code>var obj1={&#39;a&#39;:1};  
+var obj2={&#39;b&#39;:{&#39;b1&#39;:22,&#39;b2&#39;:33}};  
+
+$.extend(obj1, obj2);   //obj1拷贝了obj2的属性  
+
+console.log(obj1)  // {&#39;a&#39;:1,&#39;b&#39;{&#39;b1&#39;:22,&#39;b2&#39;:33}}  
+console.log(obj1.b.b1)  // 22  
+
+obj2.b.b1=44;   //obj2重新赋值  
+console.log(obj1.b.b1)  // 44  obj1.b仅拷贝了对象的指引，所以受原obj2的影响  </code></pre><h6 id="2-4-2-深拷贝"><a href="#2-4-2-深拷贝" class="headerlink" title="2.4.2 深拷贝"></a><a href="#2-4-2-深拷贝" title="2.4.2 深拷贝"></a>2.4.2 深拷贝</h6><pre><code>var obj1={&#39;a&#39;:1};  
+var obj2={&#39;b&#39;:{&#39;b1&#39;:22,&#39;b2&#39;:33}};  
+
+$.extend(true,obj1, obj2);   //第一个参数设为true表示深复制  
+
+console.log(obj1)  // {&#39;a&#39;:1,&#39;b&#39;{&#39;b1&#39;:22,&#39;b2&#39;:33}}  
+console.log(obj1.b.b1)  // 22  
+
+obj2.b.b1=44;   //obj2重新赋值  
+console.log(obj1.b.b1)  // 22 obj1拷贝了obj2的所有属性以及值，并不受obj2的影响 </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>海心</title>
+    <url>/2014/05/18/%E6%B5%B7%E5%BF%83/</url>
+    <content><![CDATA[<p>　　昨日去了海边…</p>
+<p>　　szw很长很长，租一辆单车，缓缓骑行。飒飒的海风拂面，带着些许潮湿和腥味，这种腥咸的味道，清凉、酸涩、无人问津…耳边不时听闻男男女女的谈笑、小孩的稚语、好机油们打牌的大叫、山地车携带的咚恰乐…恰有一番清明上河图的繁华与喧嚣…<br>    <a id="more"></a><br>　　岸边树林下，条条石凳上都有一对相拥而坐的情侣在窃窃私语，好不浪漫。阴凉、安静、惬意，倘若是我，也定须选在这里约会…<br>靠近沙滩边的地方，每隔不远处都会有一小块聚会地，一张张颜色各异的毯子上摆着各式各样的零食，男女老少围成一圈，打牌、聊天、分享照片，笑声连绵…</p>
+<p>　　海边的浪花，沙粒，贝壳，海鸥，海藻…水如清泉，海天一色。看着一望无际的远方，大海和天空牵着手，交融在一起。看不清彼岸，可是能猜到，海那边，是大家立下的誓言，无边无际，永恒无期…</p>
+<p>　　沙滩上前一刻踩出的脚印，后一刻浪花涌上，瞬间被海水抚平。有些东西，虽随浪花离去，却已然铭记于心，任雪风吹雨打，依然不卑不亢，与岁月，与生命，不离不弃…</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用css使网站全局或者局部变黑色</title>
+    <url>/2014/09/24/%E7%94%A8css%E4%BD%BF%E7%BD%91%E7%AB%99%E5%85%A8%E5%B1%80%E6%88%96%E8%80%85%E5%B1%80%E9%83%A8%E5%8F%98%E9%BB%91%E8%89%B2/</url>
+    <content><![CDATA[<p>现在，不少网站需要用到灰色效果，比如企业站的”友情链接”、”部分案例”、网站底部logo等…<br>切图是比较简单，保存一张图片就好了。但是…图片要加载、增加了图片数量、更换不方便等等等等…<br>站在效率的角度来讲，用简单的代码来实现，显然更胜一筹…  </p>
+<a id="more"></a> 
+<h4 id="1、整站变灰"><a href="#1、整站变灰" class="headerlink" title="1、整站变灰"></a><a href="#1、整站变灰" title="1、整站变灰"></a>1、整站变灰</h4><p>在全局css文件中，加入以下代码  </p>
+<pre><code>html {  
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); //IE6以上   
+-webkit-filter:grayscale(100%); //支持google、Safari  
+}</code></pre><h4 id="2、只想针对图片"><a href="#2、只想针对图片" class="headerlink" title="2、只想针对图片"></a><a href="#2、只想针对图片" title="2、只想针对图片"></a>2、只想针对图片</h4><p>页面里所有的图片  </p>
+<pre><code>img{filter:Gray; //IE}  </code></pre><h4 id="3、只让指定图片变为灰色"><a href="#3、只让指定图片变为灰色" class="headerlink" title="3、只让指定图片变为灰色"></a><a href="#3、只让指定图片变为灰色" title="3、只让指定图片变为灰色"></a>3、只让指定图片变为灰色</h4><p>比如logo  </p>
+<pre><code>.gery{filter:Gray;}  
+&lt;img src=&quot;logo.gif&quot; class=&quot;gery&quot;&gt;  </code></pre><h4 id="4、如果部分图片变灰"><a href="#4、如果部分图片变灰" class="headerlink" title="4、如果部分图片变灰"></a><a href="#4、如果部分图片变灰" title="4、如果部分图片变灰"></a>4、如果部分图片变灰</h4><p>另外一些保留彩色  </p>
+<pre><code>.nochange {filter:gray(enabled=false);}  
+&lt;img src=&quot;no.gif&quot; class=&quot;nochange&quot; /&gt;  </code></pre><h4 id="5、让网站中Flash动画变灰"><a href="#5、让网站中Flash动画变灰" class="headerlink" title="5、让网站中Flash动画变灰"></a><a href="#5、让网站中Flash动画变灰" title="5、让网站中Flash动画变灰"></a>5、让网站中Flash动画变灰</h4><p>在Flash代码的&lt;object …&gt;和</object>之间插入： </p>
+<pre><code>&lt;param value=&quot;false&quot; name=&quot;menu&quot;/&gt;  
+&lt;param value=&quot;opaque&quot; name=&quot;wmode&quot;/&gt;  </code></pre><h4 id="6、使得Firefox变灰的方法"><a href="#6、使得Firefox变灰的方法" class="headerlink" title="6、使得Firefox变灰的方法"></a><a href="#6、使得Firefox变灰的方法" title="6、使得Firefox变灰的方法"></a>6、使得Firefox变灰的方法</h4><p>firefox旧版本必须调用<a href="http://www.oschina.net/p/grayscaling-js/similar_projects" target="_blank" rel="noopener">grayscale.js</a>来实现，然后在网站头部加入引用：  </p>
+<pre><code>&lt;script src=&quot;grayscale.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
+&lt;script type=&quot;text/javascript&quot;&gt; window.onload=function(){grayscale(document.body); } &lt;/script&gt;  </code></pre><h4 id="然而Firefox新版已支持该滤镜"><a href="#然而Firefox新版已支持该滤镜" class="headerlink" title="然而Firefox新版已支持该滤镜"></a><a href="#然而Firefox新版已支持该滤镜" title="然而Firefox新版已支持该滤镜"></a>然而Firefox新版已支持该滤镜</h4><h4 id="综上所述，IE6-、FF、google-全兼容完整的代码为："><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" class="headerlink" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a>综上所述，IE6+、FF、google 全兼容完整的代码为：</h4><pre><code>html{  
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
+-webkit-filter:grayscale(100%);  
+-moz-filter: grayscale(100%);  
+-ms-filter: grayscale(100%);  
+-o-filter: grayscale(100%);  
+filter: grayscale(100%);  
+filter:Gray;  
+}  </code></pre><p>注：相信日常会用FF的朋友，都会进行升级体验，所以grayscale.js的写法不调用，在此只用来拓展学习。 　　</p>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旅途随感</title>
+    <url>/2014/05/14/%E6%97%85%E9%80%94%E9%9A%8F%E6%84%9F/</url>
+    <content><![CDATA[<p>五月，下了一场很长很长的暴雨…<br>　　不知道期待了多久的雨过天晴，却迟迟未至，屋里充斥着气息君的低吟。雨天，是个调皮的坏姑娘，总是拦着我的脚步，陪她在家里玩耍…</p>
+<p><img src="http://ww3.sinaimg.cn/mw690/6f26315cgw1ejbg4tg69xj21kw11xtwz.jpg" alt="赣州浮桥"></p>
+<p>　　不知何时，习惯独自旅行，背着行囊，掠过层层叠叠的风景，情不自禁中拍下了许多照片留念，想把所有好的、美的、有趣的事物都留在自己的相机里、回忆里…可是，随着旅行的次数越来越多，时间的更迭，逐渐发现，即使是在此来到最美好的地方，还是孤身一人，而身临佳境的欢愉，一个不用朋友圈的人，竟不知要与何人分享。那个瞬间，突然有所感慨，原来一路走到现在，生活中所有与自己擦肩的人都成了过客，并没有谁一直做伴，看尽旅途…<br> <a id="more"></a><br><img src="http://ww4.sinaimg.cn/mw690/6f26315cgw1ejh15plaloj21kw0vzneh.jpg" alt="2014年-列车-武昌途"></p>
+<p>　　坐上缓缓行驶的车厢，望着窗外，倒退的草木犹如时间分分秒秒从眼前闪过，来不及欣赏，它已成为过去，塞上耳塞，眼前只有声音的跃动，”时间都去哪儿了,还没好好感受年轻就老了.时间都去哪儿了,还没好好看看你眼睛就花了…”</p>
+<p>　　人生的旅行，时间是最公平的资源，自己既是看客，也是风景. 感谢所有走进生命的人，无论有怎样的交集，终会随时间定格，都只是一场风月情浓…</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背景透明hack</title>
+    <url>/2014/11/11/%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8Ehack/</url>
+    <content><![CDATA[<p>不同浏览器里的兼容，实在有种蛋蛋的忧伤， 摆出所有hack，哪个浏览器不行就加哪个。通用就可以兼容各种浏览器</p>
+<h4 id="模块透明度"><a href="#模块透明度" class="headerlink" title="模块透明度"></a><a href="#模块透明度" title="模块透明度"></a>模块透明度</h4><pre><code>opacity:0.5;//所有浏览器  
+_filter:alpha(opacity=50);//IE6  
+\*opacity:0.5;//IE6&amp;7(\*包括6和7)  
++opacity:0.5;//IE7独有  
+-ms-filter:alpha(opacity=50);//-ms- IE8独有的hack  
+-ms-filter:&quot;progid:DXImageTransform.Microsoft.Alpha(opacity=50)&quot;;//上一句完整的写法  
+opacity:0.5\\9;  //IE6-10   
+opacity:0.5\\0; //IE8-10+最新版opera   
+-moz-opacity:0.5;//火狐  
+-webkit-opacity:0.5; //谷歌+safari  
+-o-opacity:0.5;//欧鹏(opera)  </code></pre><h4 id="IE6-、FF、google全兼容"><a href="#IE6-、FF、google全兼容" class="headerlink" title="IE6+、FF、google全兼容"></a><a href="#IE6-、FF、google全兼容" title="IE6+、FF、google全兼容"></a>IE6+、FF、google全兼容</h4><pre><code>opacity:0.5;  
+filter:alpha(opacity=50);  
+-ms-filter:alpha(opacity=50); </code></pre>]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>日常</title>
+    <url>/2021/02/03/%E6%97%A5%E5%B8%B8/</url>
+    <content><![CDATA[<h5 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h5><a id="more"></a>
+<p>躺下的时候灵感如泉涌，起来的时候，一篓子的感慨又不知跑到哪里去了，城市的喧嚣，让我安静不下来，亦消停不下来</p>
+<p>去年前年实在太累，19年7月份忙碌到2021年</p>
+<p>或许人都是不知足的，想要听话的，想要懂事的，又想要知心的来分担生活的琐碎。世上没有十全大补汤，也没有十全十美的人，以前以为十全十美是没有缺点没有恶习，长大后结合生活发现，十全十美是御、萝、少、骚、纯、忠、孝、勇、智、信 各个角度各个角色各个方面都具备的人，可世上哪有这样的人</p>
+<h5 id="2021年2月5日"><a href="#2021年2月5日" class="headerlink" title="2021年2月5日"></a>2021年2月5日</h5><p>假如疼痛会觉得快乐，疼痛会让人发笑，那该是怎样的，以前认为，怎么会有人觉得疼痛是快乐的呢。可随着逐步深入的了解这个社会，就是有那么些人，疼的时候说快乐，思想被扭曲，培养成这样的心理，该怎么去拯救ta们呢，心理学上至今没有一个解释，铁条弯了，反向扭一下就能变直，那些心理弯的人，如何反向扭才能让ta们直起来，还是像那破裂的腰间盘一样，永远也直不起来了…<br>如果有地狱，希望每个人都能知道，但即使有地狱，也得等老去死去才知道，它太遥远了，有些人，需要在去的过程中就感受到它的可怕，某些“传教士”更应受到如此的惩罚</p>
+<h5 id="2月6日"><a href="#2月6日" class="headerlink" title="2月6日"></a>2月6日</h5><p>把博客完善了一下，亲手搭建出来的东西，满满的成就感，或许以后会升级，但目前已经够用，上班的最后一天，把博客的分类整理清楚了，快乐～<br>更新了分类模块显示<br>还差个全站搜索</p>
+<h5 id="2月9日"><a href="#2月9日" class="headerlink" title="2月9日"></a>2月9日</h5><p>windows电脑卡的原因终于找到了，本打算重装系统，备份资料…一顿大操作，突然灵光一闪，检查软件的安装位置，全部重装到固态硬盘，完美解决所有问题！快乐</p>
+<h5 id="2月14日"><a href="#2月14日" class="headerlink" title="2月14日"></a>2月14日</h5><p>虽是情人节，见闻却跟情人节没丝毫关系。同龄人都有了各自成熟的想法，而我相比之下，就是个井底之蛙。小地方物质生活虽然没大城市现代化，但思想修行是真的快。<br>认识了几个新朋友，第一个暂称其为二哥，第一印象“眯眯眼，猥琐，好色，甚至有点娘”，一起喝茶聊天吃饭喝酒后，发现是个很细心专注有想法的人，或许是有殷实的家底，或许是也没遇到什么机遇，才未曾发展事业；第二个老大哥，四十来岁，交了个与我同龄的女朋友，大哥看起来随和、憨厚、实诚、大方，会面结束后，才知道是个政客，手段丰富，也位高权重；还有叔叔阿姨，饭店老板，甚至十来岁的小朋友都敢主动问我是哪里人，个个能抗能打，二线城市厉害如厮。</p>
+<h5 id="2月24日"><a href="#2月24日" class="headerlink" title="2月24日"></a>2月24日</h5><p>昨天搞定了分类排序错乱的功能，搜索一直没完善，下午定位问题在search.js上，经过两天的折腾，看了几个地方的源码+官网API，总算把全站搜索功能做了出来，别人的东西全是坑，完善改良了一下，尚且可用，以后有优化的空间的话再改。<br><a href="https://www.bilibili.com/read/cv6759812" target="_blank" rel="noopener">参考的b站脚程</a><br><a href="https://github.com/theme-next/hexo-theme-next/tree/master/layout/_partials" target="_blank" rel="noopener">theme-next主题github源码</a></p>
+<h5 id="2月25日"><a href="#2月25日" class="headerlink" title="2月25日"></a>2月25日</h5><p>可怜人必有可恨处，可恨人必有可怜处，接触到的人生故事，总结下来就像是一个圆，父母有本事的孩子废，孩子的孩子又努力又本事，富不过三代</p>
+<h5 id="3月3日"><a href="#3月3日" class="headerlink" title="3月3日"></a>3月3日</h5><p>给中介转店，交了钱后就没信儿了，别的会被发在朋友圈，有人问店，他先介绍别的同类型的店铺，绝口不提与我之间的合约<br>想起大前年，朋友借了点钱说是一个月还 2年后自己都开买玛莎拉蒂了才想着还钱，还钱的当天，让我他们那去参加个活动，我拒绝后，他大过年的喝点酒又打电话想让我把还给我的债钱给他转回去…奇妙的世界奇妙的人类，不遇事永远不知道自己交的胖友能干出什么奇妙的事儿.</p>
+<p>世间哪有绝对公平可言</p>
+<h5 id="3月21日"><a href="#3月21日" class="headerlink" title="3月21日"></a>3月21日</h5><p>有些路，虽然坑坑洼洼，但一路没什么大坎坷<br>有些路，平整漂亮，偶尔有一个井盖盖着下水道，下水道里藏污纳垢臭气熏天<br>有些人，其貌不扬，兢兢业业，安安稳稳，老老实实<br>有些人，光鲜亮丽，在某些特定的地方，特定的人面前，卑微如尘、如牛马、如猪狗…<br>平整的路面被挖个下水道，路一定很痛吧，下水道还被用来放污秽的东西，应该恨挖井的人吗？各有各的好，各有各的命，各有各的用处，各种各样的人，五彩斑斓的人生路…路就在那，谁有能力谁去改变；人是那些，谁有本事谁去拿捏. 这就是现实…</p>
+<p>我出生于黑夜，却妄想贪图光明；身处商人家庭，却想浮生牧野，不问世事；<br>光不救世，暗非毁灭，生活在黑暗里不一定都邪恶，阳光下也不全是鸟语花香，回到擅长的地方，或许能走的更好更稳</p>
+<h5 id="4月28日"><a href="#4月28日" class="headerlink" title="4月28日"></a>4月28日</h5><p>历经1年11个月，店铺关闭了，生活状态仿佛回到了2年前，轻松惬意而又无所事事，开始接受不完美，买东西会不介意二手，不再完美主义，开始不在意屏幕贴膜左下角鼓包，不在意手机壳的裂痕，我是老了么？可能真的老了</p>
+<h5 id="7月1日"><a href="#7月1日" class="headerlink" title="7月1日"></a>7月1日</h5><p>6月20日，一个朋友打电话来借钱，说是急用，最迟不超过明天还，然而10天过去，朋友的微信朋友圈里，该玩玩，该吃吃该喝喝，就是没有一条给我的还款信息，我打电话过去，向他表明今日是7月1号，公司拖欠了两个月工资没发，我手上没什么钱，要交房租了…话没说完，他打断我说知道我打电话什么意思，回说今天没有，明天给我。然而明日复明日，并没有消息，或许拮据是成家男人的常态，但“无声”的失信，令人失望<br>手上借出去给各种人的钱，全收回来可以买辆车了，最早的一个是2年前的，最近的是这个6月20号的，虽然大家还联系，日常闲聊中，他们的生活，个个过的都还不错，就是欠债的事儿，我不提，个个都跟没发生似的. “有财不露”，古人诚不欺我</p>
+<h5 id="7月5日"><a href="#7月5日" class="headerlink" title="7月5日"></a>7月5日</h5><p>迟来的阳光救不了枯萎的向日葵</p>
+<h5 id="9月1日"><a href="#9月1日" class="headerlink" title="9月1日"></a>9月1日</h5><p>我们在围墙里，受监管，被围了围栏的狩猎场，当狩猎场生态不平衡时，围栏管理者会来人来给主持公道，那围栏管理者来狩猎时，谁给公道呢…<br>生活在猪圈里的猪，圈里的一举一动都在被观察着。管理员说：“外面有狼，出去会被狼吃掉的”，但我会想“或许我运气好可能永远都遇不到狼呢”，为什么想逃？因为在围栏里，过年就一定会有猪被管理员吃掉… </p>
+<h5 id="9月2日"><a href="#9月2日" class="headerlink" title="9月2日"></a>9月2日</h5><p>人类的悲欢并不相通，我只是觉得他们吵闹 ————鲁迅<br>我扔了一件东西，然后又得到了一件同类替代品。某一天，发现这件我以为成色还可以的替代品，竟然是别人用坏再修复后扔掉的…哈哈哈哈哈哈…</p>
+<p>世上事，像一个圆，冥冥中似有因果轮回，你瞒我瞒，瞒到最后发现自己怎么对待别人，上天就会安排另外的别人来以同样的方式对待自己…如同还债一样.<br>活着是件不容易的事，大人物们的监管，小人物们的依赖和小心思，处于中间的人上下都要兼顾，早些年未曾懂得这些道理<br>初听不知曲中意，再听已是曲中人</p>
+<h5 id="10月中旬"><a href="#10月中旬" class="headerlink" title="10月中旬"></a>10月中旬</h5><p>人类之间在没有利益冲突时，客套和友情看起来都很坚固，有利益冲突时，除了利益，就什么都不想顾。说什么大家都不容易…实则内心都期待着别人白给自己，但个个又都不傻，最终僵持不下就耗着。活着很累，争斗的生活也令人厌倦</p>
+<p>zf的工作人员，徇私舞弊，交警不作为，查人不查车；<br>工商局的人接到举报后，不去查处，反而是给被举报的商户打电话询问别人是否违法经营；<br>废物行为让人失望<br>大家都在为着各自行事，什么道德理想人情世故，在利益面前一无是处，我顾情谊 他人不顾，那就对什么人用什么方式，斗个痛快。</p>
+<h5 id="11月3日"><a href="#11月3日" class="headerlink" title="11月3日"></a>11月3日</h5><p>睡了个饱饱的觉，8个小时，很久没睡到这么久，神清气爽思路清晰，错过太多东西，什么都没有自己重要，到了该健身、学习投资自己的时候了</p>
+<h5 id="11月18日"><a href="#11月18日" class="headerlink" title="11月18日"></a>11月18日</h5><p>次承租人A，拒绝交租，提醒后仍然不交，接到我解除合同的律师函的时候，发来信息恶语相向，什么“你真有本事，你会搬起石头砸自己的脚…”之类的话一段接着一段，不曾想，业权是我的，我才是站在高处的人，古人有云：“唯女子小人难养也”。世间应有个统一的秩序和标准，有些不明事理的人，理应得到该得的教训<br>不就是个拆迁赔偿么，馋赔偿款又不想尽义务，哪有这么好的事</p>
+<h5 id="11月19日"><a href="#11月19日" class="headerlink" title="11月19日"></a>11月19日</h5><p>感受到了一个人的恶意，看起来平时唯唯诺诺和气友善的人，竟然有那么暴躁的一面，且那一面如此轻易爆发出来，可怜人有可恨处，并非空穴来风。社会上，不知什么时候会出现一根刺，突然出现扎我一下，虽然我不曾想过伤害任何人，可别人却不同我一般想，对于好说话的人，他们都想咬一口，多占一点便宜，遇到利益不管不顾，甚至可能忘了看一下，对方是个兔子，还是只老虎…或许，成年人的世界就不该有太多怜悯.<br>古时候那些练铁砂掌的人，为了防御强大的意外，把手在铁砂里磨练，磨练出老茧、厚皮、磨练出一手肉刺，是可以防御部分外在危险，但以后要是再与细皮嫩肉的人握手时，难免会扎伤这类细皮嫩肉的人，这也算是有舍有得吧</p>
+<h5 id="11月21日"><a href="#11月21日" class="headerlink" title="11月21日"></a>11月21日</h5><p>与官方人打交道，时刻都像是在博弈，科长尚且如此</p>
+<h5 id="12月24日"><a href="#12月24日" class="headerlink" title="12月24日"></a>12月24日</h5><p>人类的情绪，并不相通，社会上的尔虞我诈，互相踩踏，仍旧很多，只是以一种相对文明的形式存在<br>升米恩，斗米仇，谁都想咬我一口，他们总说”你吃点亏吧“，可他们并不在乎你吃了多少亏，只想你再吃一点亏，每个人眼里都只有自己，生活在人间，仿佛置身于大海，水流时刻在挤压着自己，水里的空间就是生活中的资源，我稍微退一点，水就会进一步，占领本属于我的空间，我强一点，就能挤开水，自己多占一点空间。活着便是无时无刻不在与他人争斗，无论自己愿不愿意…</p>
+<h5 id="2022年9月6日"><a href="#2022年9月6日" class="headerlink" title="2022年9月6日"></a>2022年9月6日</h5><p>心脏，它很脆弱…</p>
+<h5 id="2022年9月12日（农历8月17）"><a href="#2022年9月12日（农历8月17）" class="headerlink" title="2022年9月12日（农历8月17）"></a>2022年9月12日（农历8月17）</h5><p>感受到了秋天的凉意…</p>
+<h5 id="2022年11月7日，晚上21点"><a href="#2022年11月7日，晚上21点" class="headerlink" title="2022年11月7日，晚上21点"></a>2022年11月7日，晚上21点</h5><p>直到今天，我才幡然理解到，”每天都有爱”的意思是”每天都有新鲜的爱”，没有喜忧的起伏生活是平凡，日复一日的生活是平淡，早安晚安的吻是日常，唯独缺少了让感觉人心神激荡的爱意，贪婪的女人啊，需要的是新鲜的爱意来作为维持关系的补充剂…</p>
+<h5 id="2022年12月6日"><a href="#2022年12月6日" class="headerlink" title="2022年12月6日"></a>2022年12月6日</h5><p>“公司拖欠工资第3个月，企业微信上给财务部门的负责人发消息询问缘由，消息已读不回。”<br><del>真是好狗腿啊</del><br>12月6日了，9月份的工资还没发，社保是正常发放的，也就是说，公司最惹不起的，是社保部门，三年前就说税务征收社保，如今税收还是全额的交，社保还是最低标准，离谱的是工资却没发…<br>或许压力都在职位最大的人身上，但同时他也享受了基层没有享受到的荣誉和名利，资本家们好像玩杠杆玩的很开心，或许老板在等一个契机，一个翻身的契机，就像我买股票，在等它升值一样…有些票，只要退市的。这种无缘由无解释的做法，似乎能留下继续工作的同事们，都像不介意一样，很有默契的默不作声，<br>我的账户里，一直都不是完整的全额状态，这个向借一点，那个欠一点，那里投一点，我过着基层的生活，他们欠债的，有房的、有车的、有家室的、有身份的…这一点也不公平，我的钱在他们那里，他们享受着比我更优质的生活资源，这一点也不公平…基层人是太好欺负了吧<br><del>五年没涨过一分钱工资，没兑现过一次福利，企业也没什么职业发展前景，大家并没有什么情谊可谈对不对，明天就去劳动监察部门走一遭，大家好好玩</del></p>
+<p>无意间想起，房屋的租约好像也将要到期了，起来翻翻看看去年签订的租赁合同，发现竟然有那么多不平等条款，全是利他的，对租户满满的恶意啊。我以前出租房子出去给别人的时候，可没这么多事儿…<br><del>转租虽然是个折中的办法，但这种就是坑别人，我要做个没有中介的租房网站！带评论的那种！</del></p>
+<p>最近到处拉横幅说要严管电动车啊…路边那么多违停的小轿车把路边停满，交警们都视而不见，那么屁大点儿的电动车，也要严查上牌的事儿，这是哪个大佬又要整年终总结的业绩了，底层真是难做人</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最近在喝武夷山岩茶</title>
+    <url>/2022/11/03/%E9%A5%AE%E8%8C%B6%E6%9C%89%E6%84%9F/</url>
+    <content><![CDATA[<p>冬天来了，要泡热茶喝了</p>
+<a id="more"></a>
+<h3 id="假的入门"><a href="#假的入门" class="headerlink" title="假的入门"></a>假的入门</h3><p><strong>136/250g 试喝装，一泡8g，给了5种，共30包+赠送两包“金奖大红袍+铁罗汉”（30包，折算下来，0.544元/g-272元/斤，一泡约4.5元）</strong> </p>
+<p><strong>金奖大红袍</strong>：一般，喝起来后味儿还有点收敛和涩口…500一斤的话划不来</p>
+<p><strong>铁罗汉</strong>： 喝起来有股淡淡的茶香，但也有一股淡淡的中药味，半茶半药，喝不来…</p>
+<p><strong>高山肉桂</strong>：还没喝就闻到强烈的香气，不像桂皮，就是好闻，入口有炭火味儿，火焙得有些过，喝着比之闻起来的香味减半，在口中停留几秒后再减半，三泡之后味道再减半，回甘不足，喝着让人有意犹未尽的感觉，茶香让人感觉是鸦片，茶汤喝起来像大前门，就刺激，不解馋，茶香、茶水不一致，品质不够</p>
+<p><strong>高枞水仙</strong>：闻香比肉桂平和，肉桂是强烈，水仙是温柔，茶汤入口顺滑，但香气散的快，喝几杯就感觉没味儿了…像温婉的女子在捏肩捶背，空有看头，喝几口过后再无兴致</p>
+<p><strong>奇兰</strong>：香气似铁观音和大红袍的对半分，喝起来顺口，略带绿茶的清新，茶汤香气绵长，比肉桂持久，乌龙茶的“乌龙感”当以奇兰的口感最为明显</p>
+<p><strong>金牡丹</strong>：闻起来很香，茶汤喝起来也香，没什么毛病，挺好喝，可以买些囤着用来招待。<br><small>(经查询，这个是属于移植茶（杂交）。“铁观音为母本，黄棪(旦)为父本，采用杂交育种法育成”)</small></p>
+<p><strong>红色包装大红袍</strong>：比较中庸，香气算第三，茶汤顺口，回甘有，但不多，也不会涩口，喝起来不错，老实人的感觉，像是调制茶，比之金奖大红袍要老实本分些</p>
+<p><del>上面有一款茶凉着也好喝，忘了哪个了…</del></p>
+<h3 id="真的入门-1"><a href="#真的入门-1" class="headerlink" title="真的入门+1"></a>真的入门+1</h3><p><strong>原价88/8泡/64g，加12块钱，换下了金奖大红袍+铁罗汉，换了两款“金交椅+荒野小气候”肉桂，送了一包上面的 高山肉桂（10包，折算下来均价，1.25元/g-625元/斤，一泡约10元）</strong></p>
+<p><strong>荒野小气候</strong>（x2）： 第一泡用的快客杯，茶具是粗陶的，这茶说是比高山肉桂喝起来更霸道，老客户价¥600/250g(半斤)，一泡下来，香味有，但茶水寡淡无味，如果上面的茶各有明显突出的特点像年轻人的话，这茶就像行将就木的老人，平淡无回甘无起伏，就是平淡，像是放了很久，把棱角都磨去了一样。<br>过了几天，特意问了老板，是去年的茶，今年都要结束，去年的茶，还经历过年年底的年货没卖完，到今天为止起码放15个月的库存茶，焙的火估计都下的差不多了<br>第二泡，用盖碗泡，喝起来平稳很多，茶香终于是出来了，不苦不涩，纯纯的陈香，没别的杂味儿，但还是有点过于陈的感觉</p>
+<p><strong>金交椅肉桂</strong>： 3秒出汤，耐泡，3-5泡还味道如初，茶香明显，初闻香气，隐隐有红薯的味道，就是蒸熟的红薯，喝起来也比较柔顺，像三四十岁的中年人，茶汤入口平和，没有舌头不适的感觉，回甘丝丝缕缕，有一点点薄荷的清凉。茶叶滤水后，闻茶，这才是肉桂，真肉桂，桂皮就是这个味儿，贼冲，高山肉桂就没这种明显的桂皮味儿。<br>这个味道，越闻越像热红薯…喝起来也有点，这就是桂皮的味道吗？</p>
+<p><del><em>这两泡贵一点的下来，茶汤全是平和，没有刺激味蕾的地方，一千出头的茶，满满的平和味儿，让我不禁遐思：那再贵点的茶，是不是马上快回到了立顿红茶的柔顺感了</em></del></p>
+<p><strong>兰香水仙</strong>： 耐泡，七八泡了还有味，香味平和，特点不突出，喝起来还可以</p>
+<p><strong>竹窠肉桂</strong>： 耐泡，闻起来果香浓郁，入口比金交椅好入口，金交椅的是突出的红薯味儿，这个是果香比较突出，但美中不足，回甘不甜</p>
+<p><strong>燕子窠</strong>： 耐泡，好像这个价位的茶都挺耐泡，前几泡果香突出，后泡就是桂皮比较突出了，闻起来的味道和竹窠差不多，区别是竹窠五六泡之后不会变红薯味儿。（这个醒茶后，要瞬间出汤，泡多几秒就苦了）</p>
+<p><strong>高山肉桂</strong>：就是”假的入门”里说的便宜的肉桂</p>
+<p><strong>老从水仙</strong>：好喝，闻起来淡雅，喝起来香，可以打七八分，汤水清亮，喝起来柔顺，甘甜有致，持久留香，水仙更喜欢这个</p>
+<p><strong>野生红茶</strong>：非常不起眼的一泡茶，小小包，5g，包装也不华丽，写着野生红茶，但喝起来好喝，闻起来很香，泡起来汤香也很浓郁，喝到胃里很舒服，耐泡性好，五六泡下来顶多香气淡一点，不会出苦味儿，600一斤，能有100泡，一泡10块，还算划得来</p>
+<p>以上都是在“欢乐茶仓”的店里喝的</p>
+<h3 id="触及初级"><a href="#触及初级" class="headerlink" title="触及初级"></a>触及初级</h3><p><strong>双11闲逛淘宝，无意间看到了一家名叫“望峰”的店铺，卖的牛栏坑肉桂在打折，原价750，双11只要¥501/500g，8g/泡，买了一斤试试水，送了正装以外其他别的类型1+3包试饮装</strong></p>
+<p><strong>牛栏坑肉桂</strong>： 秒出汤，香气四溢，醇香顺滑，上面的高山、小气候、竹窠、燕子窠，比起来，都没这个香，它的香会更入水一些，喝起来没有杂味，好喝是好喝，但不耐泡，小碗4泡就出苦味儿，不耐泡这点让人有一点点意犹未尽的感觉，喝完这个再回去喝高山肉桂，能明显感觉到味道的差距，这个喝起来好喝的多</p>
+<p>以下3款，都是赠的试饮装，与上面的牛栏坑，是同一链接的货，但价格有所不同，这三款大概都在4-500左右<br><strong>赠品_马头岩肉桂</strong>：刺激的味儿比较大，像脱缰的野马，wc 各种冲的味儿，去求吧，幸亏是送的，喝两杯就换茶了<br><strong>赠品_老枞水仙</strong>： 水仙如其名，如水般柔顺，香气比较足，没有那么突出的、特别的味道，就是淡香、顺滑，500一斤性价比可以的<br><strong>赠品_大红袍</strong>： 喝起来没特点…大红袍是各种岩茶掺一起的调制品，目前包括前面喝到的大红袍，基本都是特点无，食之无味的一款，也可能是我的嘴巴喝刁了</p>
+<p>11月25日，野生红茶喝了几包，跟望峰的店里老板也聊了不少，突发奇想试试望峰家的红茶，跟老板商量下，118买了6种12包，各式的红茶试饮装，老板又送了4泡肉桂，一共16包，单算价格已经不是划不划算的问题了，很划算！</p>
+<p>红茶6种，就跟上面到手的 野生红茶 做对比 (11月25日)<br><strong>麻栗老枞小种</strong>：998/斤，一般，相比妃子笑，稍微淳一些<br><strong>桐木老枞</strong>：420/斤，<br><strong>妃子笑正山小种</strong>：628/斤，喝起来略寡淡，香气淡，真淡，像白茶一样淡<br><strong>金芽金骏眉</strong>：628/斤，一般<br><strong>桐木关金骏眉</strong>：960/斤，<br><strong>顶级金骏眉</strong>：2988/斤，香气相对也淡，喝起来淳一些，想想价格，像亲了一口古代的公主-只觉高贵而不解馋，还是没野生红茶喝起来香，我可能对红茶无感？明显的区别在茶叶外形上，这个茶叶看起来可太值钱了，过水后泡开，不是大叶的一坨，就是一小毫一小毫，茶叶的单位都不能用”片”了，小小个，像是用茶树尖尖上最嫩的小叶部分做出来的，叶片各个大小还都差不多，都是那么丁点大，这卖相明显区别于别的茶</p>
+<p>肉桂4种，每种一包 （12月1日晚）<br><strong>马头岩肉桂</strong>：不敢喝，还没喝，想想前面的马头岩一言难尽…</p>
+<p><strong>牛背_牛栏坑肉桂</strong>：惊喜，目前喝到最好的茶，前面虽然吹嘘肉桂香，肉桂好，但在这个面前，就是儿子见爸爸，如果前面喝的是纯牛奶的话，这个就是特仑苏，浓、淳厚，就是它的代名词，比前面的牛栏坑肉桂耐泡些，五六泡还不苦不涩，厚重，醇香，喝到嘴里才知道是啥意思，就是价格…一问：老客户1200/斤</p>
+<p><strong>水帘洞肉桂</strong>：如果牛背是特仑苏的话，这个就是安慕希，也有淳厚感，但没牛背那么厚，太容易出味儿了，太浓了，秒出汤还很浓，看起来都发黑，浓到喝起来有微微的发苦，估计得用泡小青柑的方式来冲这个茶，盖碗秒出汤泡出来都过浓 （自己去望峰店里查了，标价610/斤，高火的，感觉火要是轻点，可能会好些？）<br>朋友喝了遭不住，我出汤兑水对半喝了七八泡还有味儿，耐泡性挺强的，就是浓的发苦…浓茶不过如此</p>
+<p><strong>水仙</strong>：忘了全称是什么水仙了…比较平和温润，打七八分，良好</p>
+]]></content>
+      <categories>
+        <category>日常心情</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
       </tags>
   </entry>
   <entry>

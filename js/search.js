@@ -266,7 +266,10 @@ window.addEventListener('DOMContentLoaded', () => {
   if (CONFIG.localsearch.preload) {
     fetchData();
   }
-
+ // const addclass =()=>{
+	//  alert('w')
+	//  document.querySelector('.search-input-container').addclass = 'active'
+ // };
   const proceedSearch = () => {
     document.body.style.overflow = 'hidden';
     document.querySelector('.search-pop-overlay').style.display = 'block';
