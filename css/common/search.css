@@ -18,10 +18,10 @@
   align-items: center; }
 
 .clearinput {
-  line-height: .8;
   color: #fff !important;
   display: none;
-  cursor: pointer; }
+  cursor: pointer;
+  opacity: .5; }
 
 #search-result {
   position: absolute;
@@ -70,6 +70,10 @@ a.search-result-title {
   font-size: 14px;
   color: #fff;
   background: none;
-  width: 130px;
+  width: 100px;
   outline: none;
-  border: none; }
+  border: none;
+  -webkit-transition: width 0.3s cubic-bezier(0.31, 1, 0.34, 1);
+  transition: width 0.3s cubic-bezier(0.31, 1, 0.34, 1); }
+  #search-input.active {
+    width: 200px; }

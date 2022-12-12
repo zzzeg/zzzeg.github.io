@@ -17,7 +17,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('search-input');
   const resultContent = document.getElementById('search-result');
   const clearbtn = document.querySelector('.clearinput');
-
+  
+  input.onfocus = function() {
+	  input.setAttribute("class", 'active' )
+  }
+  input.onblur = function () {
+	  input.removeAttribute('class')
+  }
+  
   // Ref: https://github.com/ForbesLindesay/unescape-html
   const unescapeHtml = html => {
     return String(html)
