@@ -162,7 +162,7 @@ var CONFIG = {
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vite装完后遇到的7788的坑"><span class="toc-text">vite装完后遇到的7788的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#打包不了"><span class="toc-text">打包不了</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#本地第一次dlist的速度有点慢，加载5秒才出来，还是问题"><span class="toc-text">本地第一次dlist的速度有点慢，加载5秒才出来，还是问题</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建nodejs-express-另起项目，别放一起！！！"><span class="toc-text">创建nodejs+express  另起项目，别放一起！！！</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vite装完后遇到的7788的坑"><span class="toc-text">vite装完后遇到的7788的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#打包不了"><span class="toc-text">打包不了</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#本地第一次dlist的速度有点慢，加载5秒才出来，还是问题"><span class="toc-text">本地第一次dlist的速度有点慢，加载5秒才出来，还是问题</span></a></li></ol></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
@@ -249,7 +249,13 @@ export default defineConfig({
       }
     }
   }
-})</code></pre><p><a href="https://www.tailwindcss.cn/docs/using-with-preprocessors" target="_blank" rel="noopener">附带一个css框架</a></p>
+})</code></pre><p>封装request.ts<br><a href="https://blog.csdn.net/weixin_59916662/article/details/127336840" target="_blank" rel="noopener">vue3 +ts 安装并封装axios</a><br>参考1:<a href="https://www.bilibili.com/read/cv13814623/" target="_blank" rel="noopener">vue3+typescript+axios+Element-plus进阶封装方案</a></p>
+<h4 id="创建nodejs-express-另起项目，别放一起！！！"><a href="#创建nodejs-express-另起项目，别放一起！！！" class="headerlink" title="创建nodejs+express  另起项目，别放一起！！！"></a>创建nodejs+express  另起项目，别放一起！！！</h4><p><a href="https://www.jb51.net/article/247290.htm" target="_blank" rel="noopener">Vue项目通过node连接MySQL数据库并实现增删改查操作的过程详解</a></p>
+<p>装jschardet，装papaparse，装csv-exportor</p>
+<pre><code>npm install --save csv-exportor
+npm install papaparse
+npm install jschardet</code></pre><p><a href="https://blog.csdn.net/weixin_48731584/article/details/124442071" target="_blank" rel="noopener">vue中csv文件的导入、导出</a></p>
+<p><a href="https://www.tailwindcss.cn/docs/using-with-preprocessors" target="_blank" rel="noopener">附带一个css框架</a></p>
 <h4 id="vite装完后遇到的7788的坑"><a href="#vite装完后遇到的7788的坑" class="headerlink" title="vite装完后遇到的7788的坑"></a>vite装完后遇到的7788的坑</h4><p> vue3写函数写变量就是神经病啊，写nm，为了简单而更复杂，做前端死路一条。直想用2.x的语法在3.x的项目里拉屎拉尿 (2022年3月)</p>
 <h5 id="打包不了"><a href="#打包不了" class="headerlink" title="打包不了"></a>打包不了</h5><p>装完各种组件库后，写了七八个页面，运行<code>npm run build</code>，报了一个错，说什么node_moudules里面<code>vscode-jsonrpc、vscode-languageservices</code>等等包的语法有错误，改nm这能报错，后面想想是不是node版本太低了，配置的node版本是v12.6.0，用nvm升级最新的node，查了一下是v16.x.x后，果然过去了。<br>然鹅，过是过去了，原来报一个错，现在<code>npm run build</code>后报800个错，创建项目的时候用的vue-ts，默认创建vue的项目，各种ts语法错误，看了一下package.json</p>
 <pre><code>&quot;scripts&quot;: { &quot;dev&quot;: &quot;vite&quot;, &quot;build&quot;: &quot;vue-tsc --noEmit &amp;&amp; vite build&quot;, &quot;serve&quot;: &quot;vite preview&quot; },</code></pre><p>网上说<code>build</code>只要<code>vite build</code>就行，删了前面7788的<code>vue-tsc --noEmit &amp;&amp;</code>,删完正常能打包了<br>在本地运行dlist文件夹里的内容，得丢服务端环境，完美进去</p>
@@ -295,7 +301,7 @@ export default defineConfig({
             &copy;
             
             
-            2022
+            2023
             &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
             <a target="_blank" href="https://github.com/iJinxin">zeg</a>
         </p>

@@ -162,7 +162,7 @@ var CONFIG = {
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows安装"><span class="toc-text">windows安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mac安装nvm"><span class="toc-text">mac安装nvm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#记录于7月19日"><span class="toc-text">记录于7月19日</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows安装"><span class="toc-text">windows安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mac安装nvm"><span class="toc-text">mac安装nvm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#记录于7月19日"><span class="toc-text">记录于7月19日</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nvm安装不上node，网络被墙的解决方式"><span class="toc-text">nvm安装不上node，网络被墙的解决方式</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
@@ -199,7 +199,9 @@ nvm install --lts # 下载最新的稳定版
 nvm alias default &lt;版本号&gt; //永久切换版本（版本别名，default就是默认使用的版本）
 nvm uninstall &lt;版本号&gt; // 删除指定版本
 nvm ls // 查看本地所有版本
-nvm ls-remote --lts  //查看线上所有稳定版</code></pre>
+nvm ls-remote --lts  //查看线上所有稳定版</code></pre><h5 id="nvm安装不上node，网络被墙的解决方式"><a href="#nvm安装不上node，网络被墙的解决方式" class="headerlink" title="nvm安装不上node，网络被墙的解决方式"></a>nvm安装不上node，网络被墙的解决方式</h5><p>nvm 安装node不成功，nvm list能查到版本但是nvm use 版本号显示该版本没有安装成功，解决：<br>在nvm安装nvm目录下，修改settings.txt配置文件，在文件中加入淘宝镜像下载地址：</p>
+<pre><code>node_mirror: https://npm.taobao.org/mirrors/node/
+npm_mirror: https://npm.taobao.org/mirrors/npm/</code></pre>
         </div>
         
         <div class="post-tag">
@@ -245,7 +247,7 @@ nvm ls-remote --lts  //查看线上所有稳定版</code></pre>
             &copy;
             
             
-            2022
+            2023
             &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
             <a target="_blank" href="https://github.com/iJinxin">zeg</a>
         </p>
