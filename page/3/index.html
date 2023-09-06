@@ -31,6 +31,10 @@
 				
 			
 			  
+				<a href="/categories/github/" class="header-nav-link"  title="github">github</a>
+			  
+			
+			  
 				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
 			  
 			
@@ -44,6 +48,10 @@
 			
 			  
 				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
 			  
 			
 
@@ -145,6 +153,125 @@ var CONFIG = {
     <div class="content-inner">
         <div class="posts">
 	<!--首页文章列表-->
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2021/01/28/%E5%85%A8%E5%9B%BD%E7%9C%81%E5%B8%82%E5%8C%BAjson/">全国省市区json</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2021-01-28</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>elementui使用的cascader级联省市区
+                    <div class="read-more">
+                        <a href="/2021/01/28/%E5%85%A8%E5%9B%BD%E7%9C%81%E5%B8%82%E5%8C%BAjson/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2020/11/25/svn%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%E5%BF%BD%E7%95%A5node_modules%E6%96%87%E4%BB%B6%E5%A4%B9/">svn提交的时候忽略node_moudules文件夹</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2020-11-25</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>右键空白处&gt;选中TortoiseSVN&gt;设置(settings)&gt;常规设置(General)&gt;Subversion&gt;编辑(edit)&gt;在弹出的config文件中找到global-ignores=“<em>node_modules”，复制一行下来，去掉global-ignores前的#。<br>如果是“文件夹” global-ignores=</em>node_modules<br>如果是”文件“ global-ignores = .project .git<br>中间用空格隔开<br><img src="https://img2018.cnblogs.com/blog/982259/201908/982259-20190820155127746-412002335.png" alt="图"></p>
+
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2019/07/01/Vue%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E8%AE%BF%E9%97%AE/">Vue项目设置局域网访问</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2019-07-01</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>有两种方式：</p>
+<ol>
+<li>修改<code>package.json</code>文件的dev,后面加上<code>--host 0.0.0.0</code>，或者自己的局域网ip地址，例：<code>--host 192.168.0.33</code></li>
+</ol>
+<pre><code>&quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0&quot;,
+    &quot;build&quot;: &quot;node build/build.js&quot;,
+    &quot;start&quot;: &quot;npm run build:client &amp;&amp; npm run build:server &amp;&amp; cross-env NODE_ENV=production node server&quot;,
+    &quot;build:client&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.client.conf.js --progress --hide-modules&quot;,
+    &quot;temp&quot;: &quot;node tools/app.js&quot;,
+    &quot;build:server&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.server.conf.js --progress --hide-modules&quot;,
+    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
+    &quot;karma&quot;: &quot;cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run&quot;
+  },</code></pre><p>2.Vue配置文件config下面的index.js把locahost改成0.0.0.0</p>
+<pre><code>dev: {
+    port: 8000,
+    autoOpenBrowser: true,
+    host: &#39;0.0.0.0&#39;,
+}</code></pre>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/">Vue里push方法的视图不更新</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2019-04-03</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>在js里面写的xxx[‘n’] = []，触发push后，视图没及时更新  </p>
+<pre><code>that.formData\[&#39;sampleList&#39;\] = \[\]  // 无效的响应式属性创建方式  
+that.formData.sampleList.push(n)  // push后视图不会更新  </code></pre><p>查了一番，是由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除，得用set去创建新的响应式属性：  </p>
+<pre><code>that.$set(that.formData, &#39;sampleList&#39;, \[\])  
+that.formData.sampleList.push(n)  </code></pre>
+                    <div class="read-more">
+                        <a href="/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
     
         <article class="post-abstract">
             <div class="post-title">
@@ -254,128 +381,6 @@ var CONFIG = {
  tab_replace:  </code></pre>
                     <div class="read-more">
                         <a href="/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">写在vue中简单的随机验证码</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2018-11-21</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
-                    <div class="read-more">
-                        <a href="/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">github+Hexo搭建博客</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2018-11-20</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>　　以前用wordpress写的博客，因为疏于更新后台，被勤劳的小蜜蜂们各种挂马，服务商给我下通牒的时候我才知道，记录的东西也丢失了七七八八。最近闲下来在看nodejs相关的资料时，无意间了解到hexo，然后决定入坑.  </p>
-                    <div class="read-more">
-                        <a href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2018/06/28/git%E6%97%A5%E5%B8%B8/">git日常</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2018-06-28</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><pre><code>git init</code></pre><h4 id="将文件添加到仓库"><a href="#将文件添加到仓库" class="headerlink" title="将文件添加到仓库"></a>将文件添加到仓库</h4><pre><code>git add .</code></pre><h4 id="文件commit到仓库"><a href="#文件commit到仓库" class="headerlink" title="文件commit到仓库"></a>文件commit到仓库</h4><pre><code>git commit -m &#39;注释&#39;</code></pre><h4 id="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><a href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上" class="headerlink" title="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"></a>去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</h4><pre><code>git remote add origin 仓库的地址</code></pre><h4 id="上传代码到仓库"><a href="#上传代码到仓库" class="headerlink" title="上传代码到仓库"></a>上传代码到仓库</h4><pre><code>git push -u origin master</code></pre><p>执行完没问题就完事了，如果上传失败，可能是因为README.md没下载下来，先下载再上传</p>
-<pre><code>git pull --rebase origin master</code></pre><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><h4 id="第一次下载"><a href="#第一次下载" class="headerlink" title="第一次下载"></a>第一次下载</h4><pre><code>进到目录，git clone 地址</code></pre><h4 id="下载更新"><a href="#下载更新" class="headerlink" title="下载更新"></a>下载更新</h4><pre><code>//方法一
-$ git fetch origin master //从远程的origin仓库的master分支下载代码到本地的origin master
-$ git log -p master.. origin/master//比较本地的仓库和远程参考的区别
-$ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并
-
-//方法二
-$ git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp
-$ git diff temp//比较master分支和temp分支的不同
-$ git merge temp//合并temp分支到master分支
-$ git branch -d temp//删除temp
-
-//方法三
-$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><pre><code>git config --global https.proxy http://127.0.0.1:7890
-git config --global http.proxy http://127.0.0.1:7890
-
-# 取消代理
-git config --global --unset http.proxy
-git config --global --unset https.proxy</code></pre>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/">json数组的增删改操作</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2018-05-24</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
-var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
-var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre>
-                    <div class="read-more">
-                        <a href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/" class="read-more-link">
                             阅读全文
                             <i class="iconfont icon-readmore"></i>
                         </a>
