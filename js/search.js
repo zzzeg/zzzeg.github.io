@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('search-input');
   const resultContent = document.getElementById('search-result');
   const clearbtn = document.querySelector('.clearinput');
+  const searchIcon = document.querySelector('.icon-sousuo');
   
   input.onfocus = function() {
 	  input.setAttribute("class", 'active' )
@@ -221,12 +222,17 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    if (keywords.length === 1 && keywords[0] === '') {
+    if (keywords.length == 1 && keywords[0] == '') {
       resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>';
-    } else if (resultItems.length === 0) {
+	  clearbtn.style.display = 'none';
+	  searchIcon.style.display = 'block'
+    } else if (resultItems.length == 0) {
       resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>';
+	  clearbtn.style.display = 'block';
+	  searchIcon.style.display = 'none'
     } else {
 		clearbtn.style.display = 'block';
+		searchIcon.style.display = 'none'
       resultItems.sort((resultLeft, resultRight) => {
         if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
           return resultRight.searchTextCount - resultLeft.searchTextCount;
@@ -303,13 +309,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Handle and trigger popup window
-  document.querySelector('.popup-trigger').addEventListener('click', () => {
-    if (isfetched === false) {
-      searchFunc();
-    } else {
-      proceedSearch();
-    }
-  });
+  // document.querySelector('.popup-trigger').addEventListener('click', () => {
+  //   if (isfetched === false) {
+  //     searchFunc();
+  //   } else {
+  //     proceedSearch();
+  //   }
+  // });
 	
 	clearbtn.addEventListener('click', ()=>{
 		input.value = ''
@@ -325,11 +331,11 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   // document.querySelector('.search-pop-overlay').addEventListener('click', onPopupClose);
-  document.querySelector('.popup-btn-close').addEventListener('click', onPopupClose);
-  window.addEventListener('pjax:success', onPopupClose);
-  window.addEventListener('keyup', event => {
-    if (event.which === 27) {
-      onPopupClose();
-    }
-  });
+  // document.querySelector('.popup-btn-close').addEventListener('click', onPopupClose);
+  // window.addEventListener('pjax:success', onPopupClose);
+  // window.addEventListener('keyup', event => {
+  //   if (event.which === 27) {
+  //     onPopupClose();
+  //   }
+  // });
 });
