@@ -82,4 +82,4 @@ a.search-result-title {
   #search-input.active {
     width: 200px; }
   #search-input::placeholder {
-    color: rgba(255, 255, 255, 0.5); }
+    color: rgba(255, 255, 255, 0.3); }
