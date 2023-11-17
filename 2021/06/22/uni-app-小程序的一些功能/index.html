@@ -166,7 +166,7 @@ var CONFIG = {
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载图片"><span class="toc-text">下载图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上传图片，选择图片"><span class="toc-text">上传图片，选择图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#保存图片到本地手机设备"><span class="toc-text">保存图片到本地手机设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小程序图片放大预览功能"><span class="toc-text">小程序图片放大预览功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扫码功能"><span class="toc-text">扫码功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模态窗，增加自定义内容"><span class="toc-text">模态窗，增加自定义内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#canvas图层-层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案"><span class="toc-text">canvas图层 层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uniapp里的editor无法赋值-（2021-09-24）"><span class="toc-text">uniapp里的editor无法赋值 （2021&#x2F;09&#x2F;24）</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载图片"><span class="toc-text">下载图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上传图片，选择图片"><span class="toc-text">上传图片，选择图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#保存图片到本地手机设备"><span class="toc-text">保存图片到本地手机设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小程序图片放大预览功能"><span class="toc-text">小程序图片放大预览功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扫码功能"><span class="toc-text">扫码功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模态窗，增加自定义内容"><span class="toc-text">模态窗，增加自定义内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#canvas图层-层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案"><span class="toc-text">canvas图层 层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uniapp里的editor无法赋值-（2021-09-24）"><span class="toc-text">uniapp里的editor无法赋值 （2021&#x2F;09&#x2F;24）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uniapp-金额正则验证"><span class="toc-text">uniapp 金额正则验证</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
@@ -396,6 +396,29 @@ onEditorReady(index) {
             html: that[&#39;content&#39;+index]
         })
     }).exec()
+},</code></pre><h4 id="uniapp-金额正则验证"><a href="#uniapp-金额正则验证" class="headerlink" title="uniapp 金额正则验证"></a>uniapp 金额正则验证</h4><pre><code>&lt;input type=&#39;digit&#39; @input=&quot;keyinput&quot; v-model=&quot;qian&quot; placeholder=&quot;0.00&quot;&gt;
+
+keyinput(e) {
+    let that = this
+    let price = e.detail.value.toString()
+
+    console.log(&#39;price old is1111&#39;, price)
+    price = price.replace(/[^\d.]/g, &quot;&quot;); //清除“数字”和“.”以外的字符  
+    price = price.replace(/\.{2,}/g, &quot;.&quot;); //只保留第一个. 清除多余的  
+    price = price.replace(&quot;.&quot;, &quot;$#$&quot;).replace(/\./g, &quot;&quot;).replace(&quot;$#$&quot;, &quot;.&quot;);
+    price = price.replace(/^(\-)*(\d+)\.(\d\d).*$/, &#39;$1$2.$3&#39;); //只能输入两个小数  
+    if (price.indexOf(&quot;.&quot;) &lt; 0 &amp;&amp; price != &quot;&quot;) { //以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额 
+        price = parseFloat(price);
+    } else if (price.indexOf(&quot;.&quot;) == 0) {//首为小数点，补全
+        price = price.replace(/[^$#$]/g, &quot;0.&quot;);
+        price = price.replace(/\.{2,}/g, &quot;.&quot;);
+    }
+    console.log(&#39;price is&#39;, price)
+    that.$nextTick(function() {
+        //限制位数 ---暂时：&#39;有小数点时，最大长度为7位，没有则是5位&#39;
+        // that.maxLength = maxLength == -1 ? 5 : 7
+        that.qian = price
+    })
 },</code></pre>
         </div>
         
