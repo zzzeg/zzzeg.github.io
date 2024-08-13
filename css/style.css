@@ -70,7 +70,9 @@ h6 {
   z-index: 1; }
 
 .search-header {
-  display: inline-block; }
+  display: inline-block; 
+	position: relative; z-index: 1;
+}
 
 .search-input-container {
   position: relative; display: flex; align-items: center;
@@ -78,7 +80,11 @@ h6 {
 	border-radius: 5px; 
 	padding: 0 10px;
 }
-
+.icon-sousuo {
+	position: absolute;
+	top:3px; right:5px;
+	color: rgba(255,255,255,.4);
+}
 .clearinput {
   line-height: .8;
   color: #fff !important;
@@ -126,10 +132,21 @@ a.search-result-title {
   margin: auto; }
 
 #search-input {
-  line-height: 1.8;
-  padding: 0 10px;
-  border-radius: 20px;
-  outline: none; }
+  line-height: 30px;
+  font-size: 14px;
+  color: rgba(255,255,255,.7);
+  background: none;
+  width: 80px;
+  outline: none;
+  border: none;
+  //-webkit-transition: width 0.3s cubic-bezier(0.31, 1, 0.34, 1);
+  transition: width 0.3s cubic-bezier(0.31, 1, 0.34, 1);
+  &.active {
+  	width: 200px;
+  }
+  &::placeholder{ color:rgba(255,255,255,.3) }
+  
+}
 
 .header {
   position: relative;
