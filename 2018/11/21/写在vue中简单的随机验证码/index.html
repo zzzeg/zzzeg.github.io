@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>写在vue中简单的随机验证码</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">写在vue中简单的随机验证码</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-11-21</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#dom"><span class="toc-text">dom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#script"><span class="toc-text">script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css"><span class="toc-text">css</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
+<a id="more"></a>
+<h3 id="dom"><a href="#dom" class="headerlink" title="dom"></a><a href="#dom" title="dom"></a>dom</h3><pre><code>&lt;el-form :model=&quot;formData&quot; :rules=&quot;rules&quot; ref=&quot;formData&quot; label-width=&quot;0px&quot;&gt;  
+ &lt;el-form-item prop=&quot;picLyanzhengma&quot;&gt;  
+ &lt;el-input type=&quot;text&quot; placeholder=&quot;请输入验证码&quot; @blur=&quot;checkLpicma()&quot; v-model=&quot;formData.picLyanzhengma&quot;&gt;&lt;/el-input&gt;  
+ &lt;input type=&quot;button&quot; @click=&quot;createCode&quot; class=&quot;verification1&quot; v-model=&quot;checkCode&quot;/&gt;  
+ &lt;/el-form-item&gt;  
+ &lt;el-button :loading=&quot;isLogin&quot; type=&quot;primary&quot; v-on:click=&quot;login(&#39;formData&#39;)&quot;&gt;登录&lt;/el-button&gt;  
+&lt;/el-form&gt;  </code></pre><h3 id="script"><a href="#script" class="headerlink" title="script"></a><a href="#script" title="script"></a>script</h3><pre><code>&lt;script&gt;  
+ export default {  
+ data () {  
+ var checkCodes = (rule, value, callback) =&gt; {  
+ if (value == &#39;&#39;) {  
+ callback(new Error(&#39;请输入验证码&#39;));  
+ } else if (value.toUpperCase() != this.checkCode) {  
+ callback(new Error(&#39;验证码不正确&#39;));  
+ } else {  
+ callback();  
+ }  
+ };  
+ return {  
+ formData: {  
+ picLyanzhengma: &#39;&#39;  
+ },  
+ checkCode: &#39;&#39;,  
+ rules: {  
+ picLyanzhengma :\[  
+ { validator: checkCodes, trigger:&#39;blur&#39;}  
+ \]  
+ },  
+ isLogin: false  
+ }  
+ },  
+ methods: {  
+ // 生成图片验证码  
+ createCode(){  
+ let code = &quot;&quot;;   
+ var codeLength = 4;//验证码的长度   
+ var random = new Array(0,1,2,3,4,5,6,7,8,9,&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,   
+ &#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;);//随机数   
+ for(var i = 0; i &lt; codeLength; i++) {  
+ //循环操作   
+ var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
+ code += random\[index\];//根据索引取得随机数加到code上   
+ }   
+ this.checkCode = code;//把code值赋给验证码   
+ },  
+ // 失焦验证图和密码  
+ checkLpicma(){  
+ let that = this  
+ this.formData.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写   
+ if(this.formData.picLyanzhengma == &#39;&#39;) {  
+ // 留空不刷  
+ }else if(this.formData.picLyanzhengma.toUpperCase() != this.checkCode ) {   
+ this.createCode();// 输错就刷新验证码   
+ this.formData.picLyanzhengma = &#39;&#39;;  
+ }else {  
+ return true;  
+ }   
+ },  
+ login (formName) {  
+ var that = this  
+ this.$refs\[formName\].validate((valid) =&gt; {  
+ if (valid) {   
+ // 验证通过  
+ } else {  
+ return false  
+ }  
+ })  
+ }  
+ }  
+ }  
+&lt;/script&gt;  </code></pre><h3 id="css"><a href="#css" class="headerlink" title="css"></a><a href="#css" title="css"></a>css</h3><pre><code>.verification1{  
+ vertical-align: middle;  
+ width: 70px;  
+ background: #f9f9f9;  
+ border: solid 1px #ddd;  
+ color: blue;  
+ height: 2rem;  
+}  </code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/vue/" title="vue">vue</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">hexo里的code代码高亮</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+                <span class="nav-default">github+Hexo搭建博客</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = '写在vue中简单的随机验证码';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>mac本地安装mysql记录</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">mac本地安装mysql记录</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-11-02</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、安装"><span class="toc-text">一、安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、设置环境变量"><span class="toc-text">二、设置环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL服务的启停和状态的查看："><span class="toc-text">MySQL服务的启停和状态的查看：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、启动"><span class="toc-text">三、启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、初始化设置"><span class="toc-text">四、初始化设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装好了，放弃！"><span class="toc-text">安装好了，放弃！</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>某个项目需要链接后端，进行接口测试，后端用node+express，数据库用mysql</p>
+<a id="more"></a>
+
+<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><p><a href="https://cloud.tencent.com/developer/article/2079282" target="_blank" rel="noopener">腾讯云教程链接1:MySQL之安装与配置（mac版）</a><br><a href="https://cloud.tencent.com/developer/article/1606801?policyId=1003" target="_blank" rel="noopener">腾讯云教程链接2:在Mac上安装MySQL</a></p>
+<p>第一步：打开MySQL官网网址，<a href="https://www.mysql.com" target="_blank" rel="noopener">https://www.mysql.com</a> ，点击DOWNLOAD。<br>第二步： 第一步结束后程序会跳转到<a href="https://dev.mysql.com/downloads/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/</a> 网址，一直往下翻，找到MySQL Community（GPL）Downloads，我们要下载的是社区版MySQL，也就是说免费版本。<br>第三步：页面跳转后点击MySQL Community Server<br>第四步：接着选择我们对应的操作系统，点击Download下载mysql，版本 arm：苹果芯片，x86：inter芯片<br>第五步：页面跳转后，不注册，点击最底下的“Nothanks, just start my download” 直接下载。<br>第六步：双击打开点击下载好的安装包，下一步下一步。</p>
+<p>设置sql的启动密码：字母+数字</p>
+<h3 id="二、设置环境变量"><a href="#二、设置环境变量" class="headerlink" title="二、设置环境变量"></a>二、设置环境变量</h3><p>第一步 ：在终端切换到根目录，编辑./.bash_profile文件</p>
+<pre><code class="js">$ cd ~
+$ vim ./.bash_profile</code></pre>
+<p>第二步 ：进入vim 编辑环境。 按下i 进入 insert 模式 ，输入</p>
+<pre><code class="js">export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:/usr/local/mysql/support-files</code></pre>
+<p>第三步 ：按下esc 退出 insert 模式，输入:wq保存配置文件。</p>
+<p>附：<a href="https://cloud.tencent.com.cn/developer/article/2119637?from=15425&frompage=seopage" target="_blank" rel="noopener">vim 常用命令(保存、放弃保存)</a></p>
+<p>第四步 ：在终端界面下输入以下命令，让配置文件的修改生效，并查看环境变量是否设置成功</p>
+<pre><code class="js">source ~/.bash_profile
+echo $PATH</code></pre>
+<h5 id="MySQL服务的启停和状态的查看："><a href="#MySQL服务的启停和状态的查看：" class="headerlink" title="MySQL服务的启停和状态的查看："></a>MySQL服务的启停和状态的查看：</h5><p>到这就会已经启动了，底下是一些启停命令</p>
+<pre><code class="js">启动Mysql服务
+sudo mysql.server start
+
+停止MySQL服务
+sudo mysql.server stop
+
+重启MySQL服务
+sudo mysql.server restart
+
+查看MySQL服务状态
+sudo mysql.server status</code></pre>
+<p>启动大概率会报错！解决方式，参考：<a href="https://blog.csdn.net/Bronze5/article/details/135258599" target="_blank" rel="noopener">解决ERROR! MySQL is running but PID file could not be found.</a>，这个意思是说，根据配置查找不到pid文件<br>解决办法：</p>
+<ol>
+<li>查看pid文件在哪里<pre><code class="js">ps aux | grep mysql
+</code></pre>
+</li>
+</ol>
+<p>找这个类似的字符：–pid-file=/usr/local/mysql/data/mysqld.local.pid //这就是我的pid所在位置</p>
+<pre><code>
+2.查看读取配置顺序
+```js
+mysqld --verbose --help | grep -A 1 &#39;Default options&#39;</code></pre><p>3.新建配置</p>
+<pre><code class="js">// 进入文件夹
+cd /usr/local/mysql
+
+//新建文件夹        如果命令过程中出现什么 dened 之类的，就是权限不够，语句前面加 sudo 去执行
+mkdir etc
+
+// 进入etc文件夹，新建配置文件        如果命令过程中出现什么 dened 之类的，就是权限不够，语句前面加 sudo 去执行
+/*这里不对*/ touch my.cnf
+
+/*修改*/
+在桌面上新建个文件，命名为my.cnf，用文本编辑器打开，写入内容，‘pid-file=’ 是上面“1. 查看pid文件在哪里“ 找到的pid位置路径，另外设置
+[mysqld]
+pid-file=/usr/local/mysql/data/mysqld.local.pid
+//default-storage-engine=INNODB        //    这三行都不能要，要了会报错，启不动
+//character-set-server=utf8
+//port = 3306
+
+[client]
+default-character-set=utf8
+
+保存
+在桌面按 shift+command+G 进入文件夹，输入：/usr/local/mysql/etc
+把my.cnf拖进这个etc文件夹，查看状态就正常了，可选查看状态命令
+
+//查看状态
+sudo /usr/local/mysql/support-files/mysql.server status
+// 停止MySQL
+sudo /usr/local/mysql/support-files/mysql.server stop
+// 启动MySQL
+sudo /usr/local/mysql/support-files/mysql.server start</code></pre>
+<h3 id="三、启动"><a href="#三、启动" class="headerlink" title="三、启动"></a>三、启动</h3><p>第一步 ：终端界面下输入</p>
+<pre><code class="js">sudo mysql.server start</code></pre>
+<p>第二步 ：启动mysql服务,启动成功后继续输入</p>
+<pre><code class="js">mysql -u root -p    //设置mac系统上mysql允许被其他电脑远程登录使用
+
+输入安装mysql时设置的mysql登陆密码：字母+数字：sql123456</code></pre>
+<p>如果报错，参考 <a href="https://blog.csdn.net/qq_38728790/article/details/80625584" target="_blank" rel="noopener">mac mysql -u root -p命令无效及不允许远程登录修改方法</a></p>
+<p>登陆成功后的欢迎信息：</p>
+<pre><code class="js">Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.15 MySQL Community Server - GPL
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+mysql&gt; </code></pre>
+<h3 id="四、初始化设置"><a href="#四、初始化设置" class="headerlink" title="四、初始化设置"></a>四、初始化设置</h3><p>设置初始化密码，进入数据库mysql数据库之后执行下面的语句，设置当前root用户的密码为root。</p>
+<pre><code class="js">set password = password(&#39;root&#39;);</code></pre>
+<p>退出sql界面</p>
+<pre><code class="js">exit</code></pre>
+<h3 id="安装好了，放弃！"><a href="#安装好了，放弃！" class="headerlink" title="安装好了，放弃！"></a>安装好了，放弃！</h3><p>有在线免费的数据库去测试，不用启服务  <a href="https://db4free.net/" target="_blank" rel="noopener">https://db4free.net/</a><br>本地app navicat for mysql 删除，sequel Ace安装启动<br>测试速度还可以</p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/mac-mysql/" title="mac, mysql">mac, mysql</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/2024/01/03/zk__%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">
+                <span class="nav-default">设计原理</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'mac本地安装mysql记录';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

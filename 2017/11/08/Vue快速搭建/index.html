@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>Vue快速搭建</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">Vue快速搭建</h2>
+            <div class="post-meta">
+                <span class="post-time">2017-11-08</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装nodejs"><span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装vue淘宝镜像"><span class="toc-text">安装vue淘宝镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装webpack"><span class="toc-text">安装webpack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装vue脚手架"><span class="toc-text">安装vue脚手架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根据模板创建项目"><span class="toc-text">根据模板创建项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#会有一些初始化的设置，如下输入"><span class="toc-text">会有一些初始化的设置，如下输入:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装项目依赖"><span class="toc-text">安装项目依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装需要用到的组件"><span class="toc-text">安装需要用到的组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动项目"><span class="toc-text">启动项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发布项目"><span class="toc-text">发布项目</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>截止到这篇文章发布，搭建开发环境用到的组件、工具：<a href="http://lib.csdn.net/base/nodejs" target="_blank" rel="noopener" title="Node.js知识库">Node.js</a> 8.2.1、npm 5.3.0、webpack 2.6.1、sublime3<br> <a id="more"></a><br>现在开始安装环境</p>
+<h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a><a href="#安装nodejs" title="安装nodejs"></a>安装nodejs</h4><p>可以在终端里下载，但是不推荐，npm的版本会报错<br>去nodejs官网下载即可，地址：<a href="http://nodejs.cn/" target="_blank" rel="noopener">http://nodejs.cn/</a>中文网</p>
+<h4 id="安装vue淘宝镜像"><a href="#安装vue淘宝镜像" class="headerlink" title="安装vue淘宝镜像"></a><a href="#安装vue淘宝镜像" title="安装vue淘宝镜像"></a>安装vue淘宝镜像</h4><pre><code>npm install -g vue –registry=https://registry.npm.taobao.org  </code></pre><h4 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a><a href="#安装webpack" title="安装webpack"></a>安装webpack</h4><pre><code>npm install webpack -g  </code></pre><h4 id="安装vue脚手架"><a href="#安装vue脚手架" class="headerlink" title="安装vue脚手架"></a><a href="#安装vue脚手架" title="安装vue脚手架"></a>安装vue脚手架</h4><pre><code>npm install vue-cli -g  </code></pre><p>—————-如果第二次编写新的vue项目，就可以在这里开始了—————–</p>
+<h4 id="根据模板创建项目"><a href="#根据模板创建项目" class="headerlink" title="根据模板创建项目"></a><a href="#根据模板创建项目" title="根据模板创建项目"></a>根据模板创建项目</h4><p>vue init webpack 项目名字&lt;项目名字不能用中文&gt;<br>接着开始下载 vue2.0模板，网络不好的下载前最好启动ssh (连接代理，否则过程会比较漫长)…</p>
+<h4 id="会有一些初始化的设置，如下输入"><a href="#会有一些初始化的设置，如下输入" class="headerlink" title="会有一些初始化的设置，如下输入:"></a><a href="#会有一些初始化的设置，如下输入" title="会有一些初始化的设置，如下输入:"></a>会有一些初始化的设置，如下输入:</h4><pre><code>Project name (vue-test) 直接回车默认  
+Project description (A Vue.js project) 直接回车默认  
+Author 直接回车默认  
+Install vue-router? (Y/n) Y  
+Use ESLint to lint your code? (Y/n) n  
+Setup unit tests with Karma + Mocha? (Y/n) n (单元测试不需要)  
+Setup e2e tests with Nightwatch? (Y/n) n (单元测试不需要)  </code></pre><p><strong>进入项目<br>win + R 键 输入 cmd<br>cd 项目名字 或者 cd /d 盘符:\项目名<br>例： cd /d e:\webs</strong></p>
+<h4 id="安装项目依赖"><a href="#安装项目依赖" class="headerlink" title="安装项目依赖"></a><a href="#安装项目依赖" title="安装项目依赖"></a>安装项目依赖</h4><pre><code>npm install  //下载node_modules文件夹的过程，这个文件夹不能拷贝，拷贝会导致各种错误...  </code></pre><h4 id="安装需要用到的组件"><a href="#安装需要用到的组件" class="headerlink" title="安装需要用到的组件"></a><a href="#安装需要用到的组件" title="安装需要用到的组件"></a>安装需要用到的组件</h4><pre><code>\- (1)npm install sass-loader --save-dev  
+\- (2)npm install gulp-sass --save  
+\- (3)npm install less --save  
+\- (4)npm install less-loader --save      // sass和less 二选一就行  
+\- (5)npm install --save axios   
+\- (6)npm install element-ui@1.4.2 -S   
+\- (7)npm install vuex --save   
+\- (8)npm install moment      // 日期格式化  
+\- (9)npm install vue-router vue-resource --save   // 路由模块vue-router和网络请求模块vue-resource  </code></pre><h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a><a href="#启动项目" title="启动项目"></a>启动项目</h4><pre><code>npm run dev  </code></pre><h4 id="发布项目"><a href="#发布项目" class="headerlink" title="发布项目"></a><a href="#发布项目" title="发布项目"></a>发布项目</h4><pre><code>npm run build  </code></pre>
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">Vue-quill-editor样式错乱</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2016/12/05/textarea%E8%87%AA%E5%8A%A8%E4%BC%B8%E7%BC%A9%E6%A1%86/">
+                <span class="nav-default">textarea自动伸缩框</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'Vue快速搭建';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

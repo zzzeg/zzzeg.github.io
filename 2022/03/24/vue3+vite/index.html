@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>vite+vue3搭建项目</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">vite+vue3搭建项目</h2>
+            <div class="post-meta">
+                <span class="post-time">2022-03-24</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建nodejs-express-另起项目，别放一起！！！"><span class="toc-text">创建nodejs+express  另起项目，别放一起！！！</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vite装完后遇到的7788的坑"><span class="toc-text">vite装完后遇到的7788的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#打包不了"><span class="toc-text">打包不了</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#本地第一次dlist的速度有点慢，加载5秒才出来，还是问题"><span class="toc-text">本地第一次dlist的速度有点慢，加载5秒才出来，还是问题</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>vite要求node版本大于12<a id="more"></a></p>
+<pre><code>npm install -g typescript // 装好typescript，查看版本号用 tsc -v
+npm init @vitejs/app 项目名
+vue
+vue-ts
+cd 项目名
+npm install
+npm run dev</code></pre><p>基础配置好了，安装各路依赖</p>
+<pre><code>npm i @vitejs/plugin-vue  //必要的 支持基于 VueJS 的项目的开发
+npm install axios // 网络请求模块
+npm install vue-router@next  // 路由  @next 最新稳定版
+npm install vuex@next   // vuex
+npm install sass node-sass sass-loader style-loader  // sass
+
+npm install element-plus --dev //elemenui plus+ 
+按需加载操作：首先，安装vite-plugin-style-import： npm install vite-plugin-style-import -D</code></pre><p>懵逼建完了…<br><a href="https://www.cnblogs.com/huodixveye/p/14143365.html" target="_blank" rel="noopener">参考1，有点过时的</a><br><a href="https://blog.csdn.net/qq_41854262/article/details/119668655" target="_blank" rel="noopener">参考2，比较接近自己试验的环境</a><br>完事编译器会报错，找不到__dirname，需要安装</p>
+<pre><code>npm install --save-dev @types/node  // 别名模块
+// vite.config.ts
+import { defineConfig } from &#39;vite&#39;
+import vue from &#39;@vitejs/plugin-vue&#39;
+// 注意：在 ts 模块中加载 node 核心模块需要安装 node 的类型补充模块：npm i -D @types/node
+import path from &#39;path&#39;
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  ...
+  resolve: {
+    alias: {
+      &#39;@&#39;: path.resolve(__dirname, &#39;./src&#39;)
+    }
+  }
+})
+因为使用了ts，还需要告诉 TS 别名的路径，否则 TS 会报错
+// tsconfig.json
+{
+  &quot;compilerOptions&quot;: {
+    ...
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;: {
+      &quot;@/*&quot;: [&quot;src/*&quot;]
+    }
+  },
+  ...
+}</code></pre><p>别名使用示例</p>
+<pre><code>// js
+import xxx from &#39;@/api/user.ts&#39;
+
+// html
+&lt;img src=&quot;@/assets/logo.png&quot;&gt;
+
+// css
+@import url(&quot;@/styles/index.scss&quot;);
+background: url(&quot;@/assets/logo.png&quot;);</code></pre><p>跨域问题</p>
+<pre><code>// vite.config.ts
+export default defineConfig({
+  server: {
+    proxy: {
+      // 字符串简写写法
+      &#39;/foo&#39;: &#39;http://localhost:4567&#39;,
+      // 选项写法
+      &#39;/api&#39;: {
+        target: &#39;http://jsonplaceholder.typicode.com&#39;,
+        changeOrigin: true,
+        rewrite: (path) =&gt; path.replace(/^\/api/, &#39;&#39;)
+      },
+      // 正则表达式写法
+      &#39;^/fallback/.*&#39;: {
+        target: &#39;http://jsonplaceholder.typicode.com&#39;,
+        changeOrigin: true,
+        rewrite: (path) =&gt; path.replace(/^\/fallback/, &#39;&#39;)
+      },
+      // 使用 proxy 实例
+      &#39;/api2&#39;: {
+        target: &#39;http://jsonplaceholder.typicode.com&#39;,
+        changeOrigin: true,
+        configure: (proxy, options) =&gt; {
+          // proxy 是 &#39;http-proxy&#39; 的实例
+        }
+      }
+    }
+  }
+})</code></pre><p>封装request.ts<br><a href="https://blog.csdn.net/weixin_59916662/article/details/127336840" target="_blank" rel="noopener">vue3 +ts 安装并封装axios</a><br>参考1:<a href="https://www.bilibili.com/read/cv13814623/" target="_blank" rel="noopener">vue3+typescript+axios+Element-plus进阶封装方案</a></p>
+<h4 id="创建nodejs-express-另起项目，别放一起！！！"><a href="#创建nodejs-express-另起项目，别放一起！！！" class="headerlink" title="创建nodejs+express  另起项目，别放一起！！！"></a>创建nodejs+express  另起项目，别放一起！！！</h4><p><a href="https://www.jb51.net/article/247290.htm" target="_blank" rel="noopener">Vue项目通过node连接MySQL数据库并实现增删改查操作的过程详解</a></p>
+<p>装jschardet，装papaparse，装csv-exportor</p>
+<pre><code>npm install --save csv-exportor
+npm install papaparse
+npm install jschardet</code></pre><p><a href="https://blog.csdn.net/weixin_48731584/article/details/124442071" target="_blank" rel="noopener">vue中csv文件的导入、导出</a></p>
+<p><a href="https://www.tailwindcss.cn/docs/using-with-preprocessors" target="_blank" rel="noopener">附带一个css框架</a></p>
+<h4 id="vite装完后遇到的7788的坑"><a href="#vite装完后遇到的7788的坑" class="headerlink" title="vite装完后遇到的7788的坑"></a>vite装完后遇到的7788的坑</h4><p> vue3写函数写变量就是神经病啊，写nm，为了简单而更复杂，做前端死路一条。直想用2.x的语法在3.x的项目里拉屎拉尿 (2022年3月)</p>
+<h5 id="打包不了"><a href="#打包不了" class="headerlink" title="打包不了"></a>打包不了</h5><p>装完各种组件库后，写了七八个页面，运行<code>npm run build</code>，报了一个错，说什么node_moudules里面<code>vscode-jsonrpc、vscode-languageservices</code>等等包的语法有错误，改nm这能报错，后面想想是不是node版本太低了，配置的node版本是v12.6.0，用nvm升级最新的node，查了一下是v16.x.x后，果然过去了。<br>然鹅，过是过去了，原来报一个错，现在<code>npm run build</code>后报800个错，创建项目的时候用的vue-ts，默认创建vue的项目，各种ts语法错误，看了一下package.json</p>
+<pre><code>&quot;scripts&quot;: { &quot;dev&quot;: &quot;vite&quot;, &quot;build&quot;: &quot;vue-tsc --noEmit &amp;&amp; vite build&quot;, &quot;serve&quot;: &quot;vite preview&quot; },</code></pre><p>网上说<code>build</code>只要<code>vite build</code>就行，删了前面7788的<code>vue-tsc --noEmit &amp;&amp;</code>,删完正常能打包了<br>在本地运行dlist文件夹里的内容，得丢服务端环境，完美进去</p>
+<h5 id="本地第一次dlist的速度有点慢，加载5秒才出来，还是问题"><a href="#本地第一次dlist的速度有点慢，加载5秒才出来，还是问题" class="headerlink" title="本地第一次dlist的速度有点慢，加载5秒才出来，还是问题"></a>本地第一次dlist的速度有点慢，加载5秒才出来，还是问题</h5><p>看了一下<code>dlist</code>文件夹里的<code>assets</code>文件夹，按大小排序，<code>vendor.xxx.js</code>900多kb，<code>index.xxxx.css</code>399kb，其他的都是几kb，几百字节，其他的问题不大，可以把<code>elementplus、vue、vuex、router、axios</code>这些上cdn，自己服务器好的话，不上cdn也无所谓</p>
+<p><a href="https://blog.csdn.net/shinjie1210/article/details/122473024" target="_blank" rel="noopener">还可以看一个大佬的教程用gzip压缩</a></p>
+
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2022/03/31/sublimeText%E6%B3%A8%E5%86%8C%E7%A0%81/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">sublimeText相关</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2021/07/19/vue%E4%B8%ADcomputed%E5%AF%B9input%E7%9A%84v-model%E7%9B%91%E5%90%AC%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/">
+                <span class="nav-default">computed对input的v-model监听无效</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'vite+vue3搭建项目';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

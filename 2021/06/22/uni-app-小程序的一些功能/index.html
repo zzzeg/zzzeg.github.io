@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>uni-app-小程序的一些功能</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">uni-app-小程序的一些功能</h2>
+            <div class="post-meta">
+                <span class="post-time">2021-06-22</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载图片"><span class="toc-text">下载图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上传图片，选择图片"><span class="toc-text">上传图片，选择图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#保存图片到本地手机设备"><span class="toc-text">保存图片到本地手机设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小程序图片放大预览功能"><span class="toc-text">小程序图片放大预览功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扫码功能"><span class="toc-text">扫码功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模态窗，增加自定义内容"><span class="toc-text">模态窗，增加自定义内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#canvas图层-层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案"><span class="toc-text">canvas图层 层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uniapp里的editor无法赋值-（2021-09-24）"><span class="toc-text">uniapp里的editor无法赋值 （2021&#x2F;09&#x2F;24）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uniapp-金额正则验证"><span class="toc-text">uniapp 金额正则验证</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>小程序有些图片无法作为背景使用，在css里面写提示“本地资源图片无法通过wxss获取”，有些小一些的又可以，图稍微大一些就不行</p>
+<pre><code>background:url(&#39;../static/image.png&#39;)</code></pre><a id="more"></a>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h4><p>1、在<code>&lt;view&gt;</code>上40k以上的图片虽然本地可以显示，但发布后还是空白的。40k以上的还是得用cdn<br>2、用cdn网图<br>3、base64图</p>
+<p>uni-app，api的地址为： <a href="https://uniapp.dcloud.io/api/" target="_blank" rel="noopener">https://uniapp.dcloud.io/api/</a></p>
+<h4 id="下载图片"><a href="#下载图片" class="headerlink" title="下载图片"></a>下载图片</h4><p>uni.downloadFile(object)<br><a href="https://uniapp.dcloud.io/api/request/network-file?id=downloadfile" target="_blank" rel="noopener">uniapp上的文档地址</a></p>
+<pre><code>wx.downloadFile({
+    url: object.url,
+    header: {
+        &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;,
+        Accept: &quot;audio/mp3&quot;,
+        Authorization: &quot;Bearer &quot; + object.accessToken
+    },
+    success(res){
+        object.url = res.tempFilePath;
+    },
+    fail(e){
+        console.log(&quot;downloadFile failed&quot;, e);
+    }
+});</code></pre><h4 id="上传图片，选择图片"><a href="#上传图片，选择图片" class="headerlink" title="上传图片，选择图片"></a>上传图片，选择图片</h4><p>uni.uploadFile(object)，chooseImage(object)<br><a href="https://uniapp.dcloud.io/api/request/network-file?id=uploadfile" target="_blank" rel="noopener">uniapp上的文档地址</a></p>
+<pre><code>// 上传前先获取权限
+upload(){
+    uni.authorize({
+        scope: &#39;scope.camera&#39;,
+        success:(res)=&gt; {
+            if (res.errMsg == &#39;authorize:ok&#39;) {
+                console.log(&#39;选择上传&#39;);
+                this.uploadImg();
+            }
+        },
+        fail:(err)=&gt; {
+            uni.showToast({
+                icon: &#39;none&#39;,
+                title: &quot;请先允许小程序获取相机访问权限&quot;
+            })
+        }
+    })
+},
+uploadImg() {
+    uni.chooseImage({
+        count: 1, //数量默认9
+        sizeType: [&#39;original&#39;, &#39;compressed&#39;],
+        sourceType: [&#39;album&#39;,&#39;camera&#39;],
+        success: (chooseImageRes) =&gt; {
+            const tempFilePaths = chooseImageRes.tempFilePaths;
+            console.log(tempFilePaths);
+            // 假设上传成功
+            uni.showLoading({
+                title:&#39;上传中...&#39;
+            })
+            uni.uploadFile({
+                url: this.uploadParams.url,
+                filePath: tempFilePaths[0],
+                name: &#39;userAvatar&#39;,
+                formData: {
+                    policy: this.uploadParams.policy,
+                    Signature: this.uploadParams.Signature
+                },
+                success:res=&gt; {
+                    console.log(res);
+                    let data = JSON.parse(res.data)
+                    console.log(data.data);
+                    if (data.status === &#39;OK&#39;) {
+                        let url = data.data.location + data.data.filepath
+                        this.imgList = [{url:url}]
+                        this.submitFlag= true
+                        uni.hideLoading()
+                    } else {
+                        uni.showToast({
+                            title: res.message,
+                            icon: &quot;none&quot;,
+                            duration: 2000
+                        })
+                    }
+                },
+                fail:(err)=&gt; {
+                    console.log(err); 
+                },
+
+            })
+        }
+    });
+},</code></pre><h4 id="保存图片到本地手机设备"><a href="#保存图片到本地手机设备" class="headerlink" title="保存图片到本地手机设备"></a>保存图片到本地手机设备</h4><p>saveImageToPhotosAlbum(object)</p>
+<pre><code>saveImg(url){
+    const that = this
+    uni.downloadFile({
+        url,
+        success: res =&gt; {
+            if(res.code == &#39;100&#39;) {
+                filePath: res.tempFilePath,
+                success: function() {
+                    uni.showToast({
+                        title: res.message,
+                        icon: &quot;none&quot;,
+                        duration: 2000
+                    })
+                },
+                fail: function() {}
+            }
+        }
+    })
+}</code></pre><h4 id="小程序图片放大预览功能"><a href="#小程序图片放大预览功能" class="headerlink" title="小程序图片放大预览功能"></a>小程序图片放大预览功能</h4><p>wx.previewImage(object)<br>uni.previewImage(object)<br><a href="https://uniapp.dcloud.io/api/media/image?id=unipreviewimageobject" target="_blank" rel="noopener">uniapp官方文档</a></p>
+<pre><code>previewImg() {
+    let urls = []
+    urls.push(this.url)
+    uni.previewImage({
+        current: 0,
+        urls: urls //urls必须是个数组
+    })
+},</code></pre><h4 id="扫码功能"><a href="#扫码功能" class="headerlink" title="扫码功能"></a>扫码功能</h4><p>uni.scanCode(object)<br><a href="https://uniapp.dcloud.io/api/media/image?id=scancode" target="_blank" rel="noopener">uniapp官方文档</a></p>
+<pre><code>uni.scanCode({
+    onlyFromCamera: false, //是否只能从相机扫码，不允许相册选择图片，非必填，默认false
+    scanType: [], // 扫码类型，非必传，值：二维码：qrCode，一维码:barCode，DataMatrix商品矩阵条码：datamartrix，高密度高信息含量二维码pdf417:pdf417
+    successs: function(res) {
+        console.log(&#39;条码类型：&#39;, res.scanType)
+        console.log(&#39;条码内容：&#39;, res.result)
+        console.log(&#39;扫码得出的字符集:&#39;, res.charSet)
+        console.log(&#39;结果为合法应用的路径信息:&#39;, res.path)
+    },
+    fail: function(res) {
+        console.log(&#39;接口调用失败(识别失败、用户取消等情况触发)&#39;)
+    },
+    complete: function(res) {
+        console.log(&#39;接口调用结束，无论成功失败都会执行&#39;)
+    }
+})</code></pre><h4 id="模态窗，增加自定义内容"><a href="#模态窗，增加自定义内容" class="headerlink" title="模态窗，增加自定义内容"></a>模态窗，增加自定义内容</h4><p>自定义组件使用模态窗，content里要添加代码的话，必须使用html的语法，并且在标签上写css，不然v-html（支持小程序，app和h5）在小程序里（仅小程序）解析成rich-text，不解析view标签之类的代码，且不支持rpx像素单位(结构就当是最基础的html4即可)<br>一般支持的标签有<br><a href="https://uniapp.dcloud.io/component/rich-text" target="_blank" rel="noopener">rich-text 支持的标签列表</a></p>
+<pre><code>调用uni-app组件库里的 uni-popup-dialog
+
+this.$refs[&#39;model&#39;].showModel({
+    title: `标题`,
+    content: &#39;&lt;div style=&quot;width:220px; padding:5px 0&quot;&gt;内容&lt;/div&gt;&#39;,
+    success: ()=&gt;{
+
+    }
+})</code></pre><h4 id="canvas图层-层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案"><a href="#canvas图层-层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案" class="headerlink" title="canvas图层 层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案"></a>canvas图层 层级问题，每次canvas都最高层显示，盖住了模态窗，解决方案</h4><p>用canvas画了个圆环的百分比 比例对比图，类似echar里的环形进度条，画完页面别的fixed/model/tips/porp窗口都盖不住canvas，<br>试过官方的<code>&lt;cover-view&gt;</code>，微信小程序开发工具里可以显示，放到手机里，这个标签就无了，解决方式不太靠谱</p>
+<pre><code>//扯犊子说明，不好使
+微信小程序文档中有提供cover-view组件，能覆盖canvas，map，video，camera等原生组件。但是也有一定的限制。比如：cover-view中只支持嵌套cover-view、cover-image，button。弊端是不可以使用input组件。</code></pre><p>最终，通过canvas转image，解决</p>
+<pre><code>&lt;canvas v-if=&quot;list[0].redarImg== &#39;&#39;&quot; class=&quot;canvas&quot; canvas-id=&quot;myCanvas1&quot;&gt;&lt;/canvas&gt;
+&lt;image v-else :src=&quot;list[0].redarImg&quot; style=&quot;width: 100px; height: 100px;&quot; /&gt;
+
+data(){
+    return{
+        list: [
+            {
+                sum: 100,
+                val: 30,
+                val1: 40,
+                valArr: 10,
+                canvas: &quot;myCanvas2&quot;,
+                title: &quot;模拟测试&quot;,
+                redarImg: &#39;&#39;
+            },
+        ],
+    }
+}
+
+Progressbar(canvas) {
+    //根据后台获取到的数据计算比例
+    let sum = canvas.sum == 0 ? 1 : canvas.sum; // 总计
+    let val = parseFloat(((canvas.val / sum) * 2).toFixed(2)); //实际1
+    let val1 = parseFloat(((canvas.val1 / sum) * 2).toFixed(2)); //实际2
+    let valArr = parseFloat(((canvas.valArr / sum) * 2).toFixed(2)); //实际3
+    const ctx = uni.createCanvasContext(&#39;myCanvas1&#39;); //拿到canvas对象（自己的定义的canvas-id）
+    // 开始绘制第一条路径 总数 红色
+    ctx.beginPath(); // 开始绘制路径
+    ctx.arc(50, 50, 45, 0, 2 * Math.PI); // arc画圆
+    ctx.setStrokeStyle(&quot;#f2f2f2&quot;); // 线条颜色
+    ctx.setLineWidth(7); // 线条宽度
+    ctx.stroke(); // 绘制成线条（fill()是填充为饼图）
+    // 开始绘制第二条路径 成交 橘色
+
+    ctx.beginPath();
+    ctx.arc(50, 50, 45, -Math.PI / 2, val * Math.PI - Math.PI / 2);
+    ctx.setStrokeStyle(&quot;#68B881&quot;);
+    ctx.setLineWidth(7);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(50, 50, 45, val * Math.PI - Math.PI / 2, (val + val1) * Math.PI - Math.PI / 2);
+    ctx.setStrokeStyle(&quot;#F3A21B&quot;);
+    ctx.setLineWidth(7);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(50, 50, 45, (val + val1)  * Math.PI - Math.PI / 2, (val + val1 + valArr) * Math.PI - Math.PI / 2);
+    ctx.setStrokeStyle(&quot;#4C97D9&quot;);
+    ctx.setLineWidth(7);
+    ctx.stroke();
+
+    ctx.draw(false, (()=&gt;{
+        setTimeout(()=&gt;{
+            this.handleCanvarToImg(canvas)
+        }, 500)
+    }));
+},
+
+handleCanvarToImg(canvas) {
+    uni.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width: 100,
+        height: 110,
+        canvasId: canvas.canvas,
+        success: function(res) {
+            let n = {redarImg: res.tempFilePath}
+            Object.assign(canvas, n)
+        }
+    })
+},</code></pre><h4 id="uniapp里的editor无法赋值-（2021-09-24）"><a href="#uniapp里的editor无法赋值-（2021-09-24）" class="headerlink" title="uniapp里的editor无法赋值 （2021/09/24）"></a>uniapp里的editor无法赋值 （2021/09/24）</h4><p>得益与老太太们的强烈要求，早上需要做编辑框editor的内容备份功能，但是发现给editor赋值无法生效<br>查阅文档得知，可以在初始化的时候给setContents,<br><a href="https://developers.weixin.qq.com/miniprogram/dev/component/editor.html" target="_blank" rel="noopener">editor富文本编辑器</a></p>
+<pre><code>&lt;editor    id=&quot;editor1&quot; class=&quot;ql-container&quot; :read-only=&quot;false&quot;
+    @ready=&quot;onEditorReady(&#39;1&#39;)&quot; 
+    @input=&quot;(e)=&gt;editorInput(&#39;1&#39;, e)&quot;
+    @focus=&quot;editorFocus&quot;
+    @blur=&quot;editorBlur&quot;
+    @statuschange=&quot;onStatusChange&quot; 
+showImgToolbar&gt;&lt;/editor&gt;
+
+onEditorReady(index) {
+    let that = this
+    uni.createSelectorQuery().select(&#39;#editor&#39; + index).context((res) =&gt; {
+        this.editorCtx = res.context
+        this.editorCtx.setContents({
+            html: that[&#39;content&#39;+index]
+        })
+    }).exec()
+},</code></pre><h4 id="uniapp-金额正则验证"><a href="#uniapp-金额正则验证" class="headerlink" title="uniapp 金额正则验证"></a>uniapp 金额正则验证</h4><pre><code>&lt;input type=&#39;digit&#39; @input=&quot;keyinput&quot; v-model=&quot;qian&quot; placeholder=&quot;0.00&quot;&gt;
+
+keyinput(e) {
+    let that = this
+    let price = e.detail.value.toString()
+
+    console.log(&#39;price old is1111&#39;, price)
+    price = price.replace(/[^\d.]/g, &quot;&quot;); //清除“数字”和“.”以外的字符  
+    price = price.replace(/\.{2,}/g, &quot;.&quot;); //只保留第一个. 清除多余的  
+    price = price.replace(&quot;.&quot;, &quot;$#$&quot;).replace(/\./g, &quot;&quot;).replace(&quot;$#$&quot;, &quot;.&quot;);
+    price = price.replace(/^(\-)*(\d+)\.(\d\d).*$/, &#39;$1$2.$3&#39;); //只能输入两个小数  
+    if (price.indexOf(&quot;.&quot;) &lt; 0 &amp;&amp; price != &quot;&quot;) { //以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额 
+        price = parseFloat(price);
+    } else if (price.indexOf(&quot;.&quot;) == 0) {//首为小数点，补全
+        price = price.replace(/[^$#$]/g, &quot;0.&quot;);
+        price = price.replace(/\.{2,}/g, &quot;.&quot;);
+    }
+    console.log(&#39;price is&#39;, price)
+    that.$nextTick(function() {
+        //限制位数 ---暂时：&#39;有小数点时，最大长度为7位，没有则是5位&#39;
+        // that.maxLength = maxLength == -1 ? 5 : 7
+        that.qian = price
+    })
+},</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F/" title="uniapp小程序">uniapp小程序</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2021/06/26/macbook%E4%BD%BF%E7%94%A8%E6%97%A5%E5%B8%B8/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">macbook使用日常</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2021/02/03/%E6%97%A5%E5%B8%B8/">
+                <span class="nav-default">日常</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'uni-app-小程序的一些功能';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>
