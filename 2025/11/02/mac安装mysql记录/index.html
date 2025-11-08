@@ -201,17 +201,13 @@ sudo mysql.server restart
 
 查看MySQL服务状态
 sudo mysql.server status</code></pre>
-<p>启动大概率会报错！解决方式，参考：<a href="https://blog.csdn.net/Bronze5/article/details/135258599" target="_blank" rel="noopener">解决ERROR! MySQL is running but PID file could not be found.</a>，这个意思是说，根据配置查找不到pid文件<br>解决办法：</p>
-<ol>
-<li>查看pid文件在哪里<pre><code class="js">ps aux | grep mysql
-</code></pre>
-</li>
-</ol>
-<p>找这个类似的字符：–pid-file=/usr/local/mysql/data/mysqld.local.pid //这就是我的pid所在位置</p>
-<pre><code>
-2.查看读取配置顺序
-```js
-mysqld --verbose --help | grep -A 1 &#39;Default options&#39;</code></pre><p>3.新建配置</p>
+<p>启动大概率会报错！解决方式，参考：<a href="https://blog.csdn.net/Bronze5/article/details/135258599" target="_blank" rel="noopener">解决ERROR! MySQL is running but PID file could not be found.</a>，这个意思是说，根据配置查找不到pid文件<br>解决办法：<br>1.查看pid文件在哪里</p>
+<pre><code class="js">ps aux | grep mysql
+
+找这个类似的字符：--pid-file=/usr/local/mysql/data/mysqld.local.pid //这就是我的pid所在位置</code></pre>
+<p>2.查看读取配置顺序</p>
+<pre><code class="js">mysqld --verbose --help | grep -A 1 &#39;Default options&#39;</code></pre>
+<p>3.新建配置</p>
 <pre><code class="js">// 进入文件夹
 cd /usr/local/mysql
 
