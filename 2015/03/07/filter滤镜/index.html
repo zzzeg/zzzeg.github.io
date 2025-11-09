@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>filter滤镜</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">filter滤镜</h2>
+            <div class="post-meta">
+                <span class="post-time">2015-03-07</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"><span class="toc-text">有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IE滤镜"><span class="toc-text">IE滤镜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#W3C滤镜"><span class="toc-text">W3C滤镜</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滤镜：透明效果"><span class="toc-text">滤镜：透明效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滤镜：投影效果"><span class="toc-text">滤镜：投影效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滤镜：模糊效果"><span class="toc-text">滤镜：模糊效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滤镜：波纹效果"><span class="toc-text">滤镜：波纹效果</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>在IE中使用CSS3的旋转效果是不能实现的，，但是我又想把IE旋转效果跟其他浏览使用CSS3 rotate(deg)一样。在百度找了一下，发现IE里面有一款滤镜，可以实现旋转角度。</p>
+<p>代码如下：  </p>
+<pre><code>filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod=&#39;auto expand&#39;, M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678);  </code></pre><a id="more"></a>
+<p>假如红色的矩形是我们需要旋转的元素，蓝色矩形是旋转之后的位置，也就是说(0,1)和(1,0)这两个坐标旋转a角之后变成了(x,y)和(m,-n)，我们只要知道他们的变换关系就好。那么(x,y)和(m,-n)可以用简单的三角函数算出得到(sin(a),cos(a))和(cos(a),-sin(a))。把这个结果代入单位矩阵中得到</p>
+<pre><code>{    m    -n    }  
+ x    y  
+也就是  
+{    cos(a)    -sin(a)    }  
+ sin(a)    cos(a)  
+假如a是45°就可以得到如下值。  
+{    0.707    -0.707    }  
+ 0.707    0.707  
+
+sin()  cos()  可在自己电脑上打开计算器进行计算。如下图计算了一个45度后的sin值。  </code></pre><p>其实旋转完了还是有些问题的存在。问题就是元素旋转了IE和FF的中心点不一样了。IE偏离了中心点，为了解决这个问题还是要计算一下。我们先要计算出它旋转后的大小，然后就能知道它旋转后大小的增量，偏移量就是这个增量的一半。公式：  </p>
+<pre><code>W=|sin(a)\*h|+|cos(a)\*w|，H=|sin(a)\*w|+|cos(a)\*h|  </code></pre><p>我这个元素的宽高都是200px…那么旋转后282这样。增量就是82.。。偏移量就是增量的一半那就是41.。。所以加这个属性margin:-41px;….不这个属性只是针对IE。。<br>所以Ie8：  </p>
+<pre><code>margin:-41px\\0;        ie7  : *margin:-41px;        ie6:margin:-41px;  </code></pre><h2 id="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"><a href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现" class="headerlink" title="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"></a><a href="#有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现" title="有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现"></a>有些在IE中不能实现CSS3样式效果，可以使用IE的滤镜来实现</h2><h4 id="IE滤镜"><a href="#IE滤镜" class="headerlink" title="IE滤镜"></a><a href="#IE滤镜" title="IE滤镜"></a>IE滤镜</h4><pre><code>Alpha：设置透明层次.   
+blur：创建高速度移动效果，即模糊效果.   
+Chroma：制作专用颜色透明.   
+DropShadow：创建对象的固定影子.   
+FlipH：创建水平镜像图片.   
+FlipV：创建垂直镜像图片.   
+glow：加光辉在附近对象的边外.   
+gray：把图片灰度化.   
+invert：反色.   
+light：创建光源在对象上.   
+mask：创建透明掩膜在对象上.   
+shadow：创建偏移固定影子.   
+wave：波纹效果.   
+Xray：使对象变的像被x光照射一样.  </code></pre><h4 id="W3C滤镜"><a href="#W3C滤镜" class="headerlink" title="W3C滤镜"></a><a href="#W3C滤镜" title="W3C滤镜"></a>W3C滤镜</h4><pre><code>grayscale 灰度  
+sepia 褐色  
+saturate 饱和度  
+hue-rotate 色相旋转  
+invert 反色  
+opacity 透明度  
+brightness 亮度  
+contrast 对比度  
+blur 模糊  
+drop-shadow 阴影  </code></pre><h2 id="滤镜：透明效果"><a href="#滤镜：透明效果" class="headerlink" title="滤镜：透明效果"></a><a href="#滤镜：透明效果" title="滤镜：透明效果"></a>滤镜：透明效果</h2><p>语法：<br>filter:Alpha(Opacity=opacity,FinishOpacity=finishopacity，Style=style,StartX=startX，StartY=startY，FinishX=finishX，FinishY=finishY)<br>说明：<br>Opacity：起始值，取值为0～100, 0为透明，100为原图。<br>FinishOpacity：目标值。<br>Style：1或2或3<br>StartX：任意值<br>StartY：任意值<br>FinishX：任意值<br>FinishY：任意值</p>
+<pre><code>一般透明效果：filter:alpha(opacity=30);  
+
+W3C代码：-webkit-filter:opacity(0.3); 或 opacity:0.3;  
+
+线型透明：filter: alpha(Opacity=0, FinishOpacity=100, Style=1, StartX=0, StartY=0, FinishX=200, FinishY=180);  
+
+放射透明：filter: Alpha(Opacity=0, FinishOpacity=100, Style=2);  
+
+柔光效果filter:alpha(opacity=100, finishOpacity=0,style=3);  </code></pre><h2 id="滤镜：投影效果"><a href="#滤镜：投影效果" class="headerlink" title="滤镜：投影效果"></a><a href="#滤镜：投影效果" title="滤镜：投影效果"></a>滤镜：投影效果</h2><p>语法：<br>filter:DropShadow(Color=color, OffX=offX, OffY=offY, Positive=positive)<br>说明：<br>Color:#rrggbb格式，任意。<br>Offx：X轴偏离值。<br>Offy：Y轴偏离值。<br>Positive：如果为”True”为任何的非透明像素建立可见的投影.如果为”False”,为透明的像素部分建立可见的投影。</p>
+<pre><code>投影效果：filter:progid:dXImageTransform.Microsoft.DropShadow(color=#000000,offX=5,offY=5,positives=true);  
+
+W3C代码：-webkit-filter:drop-shadow(5px 5px 0 #000000); 或 box-shadow:5px 5px 0 #000;  
+
+阴影效果：progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=10);  
+
+虑色效果：progid:DXImageTransform.Microsoft.Chroma(color=#59A074);  
+
+马赛克：filter:progid:dXImageTransform.Microsoft.Pixelate(maxsquare=3);  
+
+发光效果：filter:progid:dXImageTransform.Microsoft.Glow(color=#000000,Strength=5);  
+
+水平翻转：filter: fliph;  
+
+W3C代码：-webkit-transform:rotateY(180deg);  
+
+垂直翻转：filter: flipv;  
+
+W3C代码：-webkit-transform:rotateX(180deg);  
+
+反色效果：filter: invert;  
+
+W3C代码：-webkit-filter:invert(1);  
+
+黑白效果：filter:gray;  
+
+W3C代码：-webkit-filter:grayscale(1);  
+
+X光照片：filter:xray;  
+
+W3C代码：-webkit-filter:grayscale(1) invert(1);  </code></pre><h2 id="滤镜：模糊效果"><a href="#滤镜：模糊效果" class="headerlink" title="滤镜：模糊效果"></a><a href="#滤镜：模糊效果" title="滤镜：模糊效果"></a>滤镜：模糊效果</h2><p>语法：<br>filter:Blur(Add = add, Direction = direction, Strength = strength)<br>说明：<br>Add：指定图片是否被改变成印象派的模糊效果.1为真，0为假。<br>Direction：角度，0～315度，步长为45度。<br>Strength：有多少像素的宽度受到模糊影响,默认是5个像素。</p>
+<pre><code>风动模糊(有角度)：filter: blur(add=true,direction=45,strength=30);  
+
+一般模糊：filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=7);  
+
+W3C代码：-webkit-filter:blur(3px);  </code></pre><h2 id="滤镜：波纹效果"><a href="#滤镜：波纹效果" class="headerlink" title="滤镜：波纹效果"></a><a href="#滤镜：波纹效果" title="滤镜：波纹效果"></a>滤镜：波纹效果</h2><p>语法：<br>filter: Wave(Add=add，Freq=freq，LightStrength=strength，Phase=phase， Strength=strength)<br>说明：<br>Add：是否打乱,默认是”True”。<br>Freq：产生多少个完整的波纹。<br>LightStrength：增强光影,0-100的整数值。<br>Phase：正弦波的偏移量,通常值为0,范围是0-100的整数值。<br>Strength：代表振幅大小。</p>
+<pre><code>正弦波纹：filter: Wave(Add=0, Freq=60, LightStrength=1, Phase=0, Strength=3);  
+
+渐变效果：filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=&quot;#000000&quot;, EndColorStr=&quot;#ffffff&quot;);  
+
+W3C代码：background:-webkit-linear-gradient(#000000 0, #ffffff 100%);  </code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/css/" title="css">css</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">a.js里调用b.js的方法</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2014/12/24/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/">
+                <span class="nav-default">心情随笔</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'filter滤镜';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

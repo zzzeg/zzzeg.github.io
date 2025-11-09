@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>用css使网站全局或者局部变黑色</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">用css使网站全局或者局部变黑色</h2>
+            <div class="post-meta">
+                <span class="post-time">2014-09-24</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、整站变灰"><span class="toc-text">1、整站变灰</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、只想针对图片"><span class="toc-text">2、只想针对图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、只让指定图片变为灰色"><span class="toc-text">3、只让指定图片变为灰色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、如果部分图片变灰"><span class="toc-text">4、如果部分图片变灰</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、让网站中Flash动画变灰"><span class="toc-text">5、让网站中Flash动画变灰</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6、使得Firefox变灰的方法"><span class="toc-text">6、使得Firefox变灰的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#然而Firefox新版已支持该滤镜"><span class="toc-text">然而Firefox新版已支持该滤镜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#综上所述，IE6-、FF、google-全兼容完整的代码为："><span class="toc-text">综上所述，IE6+、FF、google 全兼容完整的代码为：</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>现在，不少网站需要用到灰色效果，比如企业站的”友情链接”、”部分案例”、网站底部logo等…<br>切图是比较简单，保存一张图片就好了。但是…图片要加载、增加了图片数量、更换不方便等等等等…<br>站在效率的角度来讲，用简单的代码来实现，显然更胜一筹…  </p>
+<a id="more"></a> 
+<h4 id="1、整站变灰"><a href="#1、整站变灰" class="headerlink" title="1、整站变灰"></a><a href="#1、整站变灰" title="1、整站变灰"></a>1、整站变灰</h4><p>在全局css文件中，加入以下代码  </p>
+<pre><code>html {  
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); //IE6以上   
+-webkit-filter:grayscale(100%); //支持google、Safari  
+}</code></pre><h4 id="2、只想针对图片"><a href="#2、只想针对图片" class="headerlink" title="2、只想针对图片"></a><a href="#2、只想针对图片" title="2、只想针对图片"></a>2、只想针对图片</h4><p>页面里所有的图片  </p>
+<pre><code>img{filter:Gray; //IE}  </code></pre><h4 id="3、只让指定图片变为灰色"><a href="#3、只让指定图片变为灰色" class="headerlink" title="3、只让指定图片变为灰色"></a><a href="#3、只让指定图片变为灰色" title="3、只让指定图片变为灰色"></a>3、只让指定图片变为灰色</h4><p>比如logo  </p>
+<pre><code>.gery{filter:Gray;}  
+&lt;img src=&quot;logo.gif&quot; class=&quot;gery&quot;&gt;  </code></pre><h4 id="4、如果部分图片变灰"><a href="#4、如果部分图片变灰" class="headerlink" title="4、如果部分图片变灰"></a><a href="#4、如果部分图片变灰" title="4、如果部分图片变灰"></a>4、如果部分图片变灰</h4><p>另外一些保留彩色  </p>
+<pre><code>.nochange {filter:gray(enabled=false);}  
+&lt;img src=&quot;no.gif&quot; class=&quot;nochange&quot; /&gt;  </code></pre><h4 id="5、让网站中Flash动画变灰"><a href="#5、让网站中Flash动画变灰" class="headerlink" title="5、让网站中Flash动画变灰"></a><a href="#5、让网站中Flash动画变灰" title="5、让网站中Flash动画变灰"></a>5、让网站中Flash动画变灰</h4><p>在Flash代码的&lt;object …&gt;和</object>之间插入： </p>
+<pre><code>&lt;param value=&quot;false&quot; name=&quot;menu&quot;/&gt;  
+&lt;param value=&quot;opaque&quot; name=&quot;wmode&quot;/&gt;  </code></pre><h4 id="6、使得Firefox变灰的方法"><a href="#6、使得Firefox变灰的方法" class="headerlink" title="6、使得Firefox变灰的方法"></a><a href="#6、使得Firefox变灰的方法" title="6、使得Firefox变灰的方法"></a>6、使得Firefox变灰的方法</h4><p>firefox旧版本必须调用<a href="http://www.oschina.net/p/grayscaling-js/similar_projects" target="_blank" rel="noopener">grayscale.js</a>来实现，然后在网站头部加入引用：  </p>
+<pre><code>&lt;script src=&quot;grayscale.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
+&lt;script type=&quot;text/javascript&quot;&gt; window.onload=function(){grayscale(document.body); } &lt;/script&gt;  </code></pre><h4 id="然而Firefox新版已支持该滤镜"><a href="#然而Firefox新版已支持该滤镜" class="headerlink" title="然而Firefox新版已支持该滤镜"></a><a href="#然而Firefox新版已支持该滤镜" title="然而Firefox新版已支持该滤镜"></a>然而Firefox新版已支持该滤镜</h4><h4 id="综上所述，IE6-、FF、google-全兼容完整的代码为："><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" class="headerlink" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a><a href="#综上所述，IE6-、FF、google-全兼容完整的代码为：" title="综上所述，IE6+、FF、google 全兼容完整的代码为："></a>综上所述，IE6+、FF、google 全兼容完整的代码为：</h4><pre><code>html{  
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
+-webkit-filter:grayscale(100%);  
+-moz-filter: grayscale(100%);  
+-ms-filter: grayscale(100%);  
+-o-filter: grayscale(100%);  
+filter: grayscale(100%);  
+filter:Gray;  
+}  </code></pre><p>注：相信日常会用FF的朋友，都会进行升级体验，所以grayscale.js的写法不调用，在此只用来拓展学习。 　　</p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/css/" title="css">css</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2014/11/11/%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8Ehack/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">背景透明hack</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2014/09/08/%E4%B8%AD%E7%A7%8B%E6%9C%88%E5%9C%86%E5%A4%9C/">
+                <span class="nav-default">中秋月圆夜</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = '用css使网站全局或者局部变黑色';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

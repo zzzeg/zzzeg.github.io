@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>nvm安装使用</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">nvm安装使用</h2>
+            <div class="post-meta">
+                <span class="post-time">2021-07-05</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows安装"><span class="toc-text">windows安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mac安装nvm"><span class="toc-text">mac安装nvm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#记录于7月19日"><span class="toc-text">记录于7月19日</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nvm安装不上node，网络被墙的解决方式"><span class="toc-text">nvm安装不上node，网络被墙的解决方式</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <h5 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h5><a id="more"></a>
+<p>注意事项，windows安装路径，不能有空格<br>安装之后，要在settings.txt里面加配置</p>
+<pre><code>node_mirror: https://npm.taobao.org/mirrors/node/
+npm_mirror: https://npm.taobao.org/mirrors/npm/</code></pre><p><a href="https://blog.csdn.net/YHjmonkey/article/details/110921515" target="_blank" rel="noopener">详细安装教程</a><br><a href="https://blog.csdn.net/weixin_40013817/article/details/114847038" target="_blank" rel="noopener">安装blog-底下有命令</a></p>
+<h5 id="mac安装nvm"><a href="#mac安装nvm" class="headerlink" title="mac安装nvm"></a>mac安装nvm</h5><p>卸载node先！一定要先卸载，依次输入</p>
+<pre><code>sudo npm uninstall npm -g
+sudo rm -rf /usr/local/lib/node /usr/local/lib/node_modules /var/db/receipts/org.nodejs.*
+sudo rm -rf /usr/local/include/node /Users/$USER/.npm
+sudo rm /usr/local/bin/node
+sudo rm /usr/local/share/man/man1/node.1
+sudo rm /usr/local/lib/dtrace/node.d</code></pre><p>完事后验证一下</p>
+<pre><code>node  //command not found
+npm  //command not found</code></pre><p>发现要先安装wget，或者curl，我选了wget<br><a href="https://www.cnblogs.com/wyaokai/p/11947379.html" target="_blank" rel="noopener">curl和wget的区别</a><br>安装wget要用brew install wget<br>brew每次使用的时候，都会自动更新，麻瓜！</p>
+<p>然后安装nvm</p>
+<pre><code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash</code></pre><p><a href="https://blog.csdn.net/yh1061632045/article/details/90290597" target="_blank" rel="noopener">有问题的话看安装nvm的教程</a><br>安装完nvm，下载node。<br>如果不是先卸载原有的全局node再安装nvm的话，安装完nvm使用node的时候，也需要卸载原来的，卸载完原来的node，在use新的node时，就会出现底下问题。</p>
+<pre><code>our user’s .npmrc file (${HOME}/.npmrc)
+has a `globalconfig` and/or a `prefix` setting, which are incompatible with nvm.
+Run `nvm use --delete-prefix v12.16.0` to unset it.</code></pre><p>解决办法</p>
+<pre><code>npm config delete prefix</code></pre><p>再重新use</p>
+<pre><code>nvm use 12.16.0</code></pre><p>如果vue项目打不开，就重启一下命令行，或者重新use node version</p>
+<h5 id="记录于7月19日"><a href="#记录于7月19日" class="headerlink" title="记录于7月19日"></a>记录于7月19日</h5><p>每次打开新项目，都提示node没了，烦死了<br>搜索得知还有个默认命令，默认使用某个版本，就不用次次切换了</p>
+<pre><code>nvm install xxx 　　　　  //安装版本号
+nvm use xxx 　　　　　　  //设置使用版本号
+nvm list 　　　　　　　　 //所有的node版本号
+nvm alias default v4.2.4  //nvm设置默认node版本号
+
+
+nvm install --lts # 下载最新的稳定版
+nvm alias default &lt;版本号&gt; //永久切换版本（版本别名，default就是默认使用的版本）
+nvm uninstall &lt;版本号&gt; // 删除指定版本
+nvm ls // 查看本地所有版本
+nvm ls-remote --lts  //查看线上所有稳定版</code></pre><h5 id="nvm安装不上node，网络被墙的解决方式"><a href="#nvm安装不上node，网络被墙的解决方式" class="headerlink" title="nvm安装不上node，网络被墙的解决方式"></a>nvm安装不上node，网络被墙的解决方式</h5><p>nvm 安装node不成功，nvm list能查到版本但是nvm use 版本号显示该版本没有安装成功，解决：<br>在nvm安装nvm目录下，修改settings.txt配置文件，在文件中加入淘宝镜像下载地址：</p>
+<pre><code>node_mirror: https://npm.taobao.org/mirrors/node/
+npm_mirror: https://npm.taobao.org/mirrors/npm/</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/nvm/" title="nvm">nvm</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2021/07/12/js%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">js函数相关</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2021/06/26/macbook%E4%BD%BF%E7%94%A8%E6%97%A5%E5%B8%B8/">
+                <span class="nav-default">macbook使用日常</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'nvm安装使用';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

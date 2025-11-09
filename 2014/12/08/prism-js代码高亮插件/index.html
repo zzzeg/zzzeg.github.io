@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>prism.js代码高亮插件</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">prism.js代码高亮插件</h2>
+            <div class="post-meta">
+                <span class="post-time">2014-12-08</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Prism-js的优点"><span class="toc-text">Prism.js的优点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#极致易用"><span class="toc-text">极致易用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#天生伶俐"><span class="toc-text">天生伶俐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轻如鸿毛"><span class="toc-text">轻如鸿毛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快如闪电"><span class="toc-text">快如闪电</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轻松扩展"><span class="toc-text">轻松扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#丰富样式"><span class="toc-text">丰富样式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prism-js使用方法"><span class="toc-text">Prism.js使用方法</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>Prism 是一个轻量级，可扩展的语法着色工具，符合 Web 标准。它压缩后只有 2KB，每种语言定义约增加300-500自己大小。非常易于使用，只需要插入一个 CSS 和 JS 文件即可。支持多种着色主题。  </p>
+<p>支持各种编程语言和插件：</p>
+<a id="more"></a>
+<h2 id="Prism-js的优点"><a href="#Prism-js的优点" class="headerlink" title="Prism.js的优点"></a><a href="#Prism-js的优点" title="Prism.js的优点"></a>Prism.js的优点</h2><h4 id="极致易用"><a href="#极致易用" class="headerlink" title="极致易用"></a><a href="#极致易用" title="极致易用"></a>极致易用</h4><p>引用 prism.css 和 prism.js，使用合适的 HTML5 标签（code.language-xxxx），搞定！</p>
+<h4 id="天生伶俐"><a href="#天生伶俐" class="headerlink" title="天生伶俐"></a><a href="#天生伶俐" title="天生伶俐"></a>天生伶俐</h4><p>语言的 CSS 类是可继承的，所以你只需定义一次就能应用到多个代码片段。</p>
+<h4 id="轻如鸿毛"><a href="#轻如鸿毛" class="headerlink" title="轻如鸿毛"></a><a href="#轻如鸿毛" title="轻如鸿毛"></a>轻如鸿毛</h4><p>代码压缩后只有 1.6KB。每添加一个语言平均增加 0.3-0.5KB，主题在 1KB 左右。</p>
+<h4 id="快如闪电"><a href="#快如闪电" class="headerlink" title="快如闪电"></a><a href="#快如闪电" title="快如闪电"></a>快如闪电</h4><p>如果可能，支持通过 Web Workers 实现并行。</p>
+<h4 id="轻松扩展"><a href="#轻松扩展" class="headerlink" title="轻松扩展"></a><a href="#轻松扩展" title="轻松扩展"></a>轻松扩展</h4><p>定义新语言或扩展现有语法，或者新增功能都非常简单。</p>
+<h4 id="丰富样式"><a href="#丰富样式" class="headerlink" title="丰富样式"></a><a href="#丰富样式" title="丰富样式"></a>丰富样式</h4><p>所有的样式通过 CSS 完成，并使用合理的类名如：.comment, .string, .property 等。</p>
+<h2 id="Prism-js使用方法"><a href="#Prism-js使用方法" class="headerlink" title="Prism.js使用方法"></a><a href="#Prism-js使用方法" title="Prism.js使用方法"></a>Prism.js使用方法</h2><p>Prism 使用非常简单，只需添加 Javascript 和 CSS 就能够轻易的将其整合进项目中使用。目前它已内置了 HTML\CSS\Javascript 三种语言的高亮支持，你也可以添加新的语法高亮配置文件，只需修改 Javascipt 和 CSS 文件就行。除此之外，它也提供了额外的插件功能，让你可以新增其它功能，比如自动转换链接等，你也可以自己撰写插件。<br>目前 Prism 唯一的缺点就是不支持 IE8，看<a href="http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/" target="_blank" rel="noopener">作者的博客介绍</a>，也不想支持 IE8。</p>
+<p>1、首先在页面的 head 中引入 Prism 的 CSS 样式文件和Prism类库  </p>
+<pre><code>&lt;link href=&quot;prism.css&quot; rel=&quot;stylesheet&quot;/&gt;  
+&lt;script src=&quot;prism.min.js&quot;&gt;&lt;/script&gt;  </code></pre><p>2、添加要高亮显示的代码，要放在 pre 标签中，设置 code 标签的样式类型为代码的类别，如下：  </p>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;language-xxx&quot;&gt;p { color: red }&lt;/code&gt;&lt;/pre&gt;  </code></pre><p>//注意：language-xxx，后面的xxx 是代码类型，在<a href="http://prismjs.com/download.html" target="_blank" rel="noopener">Prism.js的下载页面</a>“Language”一栏下有详细描述,见下图<br>//如：当前代码是html类型 那此处的language-xxx，就应该替换为 language-markup<br>//相对应的js类型代码,即将language-xxx,替换为language-javascript</p>
+<p><img src="http://ww1.sinaimg.cn/large/005K8Fb9gw1en2bbjdmluj30lu0bw76u.jpg" alt=""></p>
+<p><a href="http://prismjs.com/" target="_blank" rel="noopener">Prism 官网</a> | <a href="http://prismjs.com/examples.html" target="_blank" rel="noopener">代码示例</a> | <a href="http://prismjs.com/download.html" target="_blank" rel="noopener">立即下载</a></p>
+
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2014/12/24/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">心情随笔</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2014/11/11/%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8Ehack/">
+                <span class="nav-default">背景透明hack</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'prism.js代码高亮插件';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

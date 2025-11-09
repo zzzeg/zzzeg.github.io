@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>github+Hexo搭建博客</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">github+Hexo搭建博客</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-11-20</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装篇："><span class="toc-text">安装篇：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nodejs"><span class="toc-text">nodejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git"><span class="toc-text">git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo"><span class="toc-text">hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#初始化"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#创建文章"><span class="toc-text">创建文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#发布网站"><span class="toc-text">发布网站</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装完吐槽"><span class="toc-text">装完吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为博客安装评论"><span class="toc-text">为博客安装评论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gitment"><span class="toc-text">Gitment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#valine"><span class="toc-text">valine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypercomments"><span class="toc-text">hypercomments</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gitalk"><span class="toc-text">gitalk</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装后优化篇-（2020-1-10）"><span class="toc-text">装后优化篇 （2020-1-10）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上传github-后-自定义域名的坑"><span class="toc-text">上传github 后 自定义域名的坑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#填坑篇"><span class="toc-text">填坑篇</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo-g-不生成style-css，导致整个站点没有style-css文件"><span class="toc-text">hexo g 不生成style.css，导致整个站点没有style.css文件</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>　　以前用wordpress写的博客，因为疏于更新后台，被勤劳的小蜜蜂们各种挂马，服务商给我下通牒的时候我才知道，记录的东西也丢失了七七八八。最近闲下来在看nodejs相关的资料时，无意间了解到hexo，然后决定入坑.  </p>
+<a id="more"></a>
+<h3 id="安装篇："><a href="#安装篇：" class="headerlink" title="安装篇："></a><a href="#安装篇：" title="安装篇："></a>安装篇：</h3><h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a><a href="#nodejs" title="nodejs"></a>nodejs</h4><p>　下软件就行了</p>
+<h4 id="git"><a href="#git" class="headerlink" title="git"></a><a href="#git" title="git"></a>git</h4><p>　下软件看说明各种下一步结束</p>
+<h4 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a><a href="#hexo" title="hexo"></a>hexo</h4><p>　创建个文件夹来存放当前项目，并且，在该目录下右键菜单 选择： git bash</p>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a><a href="#初始化" title="初始化"></a>初始化</h5><p>在新开窗口下疯狂码字：  </p>
+<pre><code>git config –-global user.name &quot;zhangsan&quot;  //(&quot;&quot;里的账号是刚才Github里面自己注册的账号)   
+git config –-global user.email &quot;123456789@qq.com&quot; //(&quot;&quot;里的邮箱是注册的github邮箱)  
+
+// 生成密钥到github  
+cd ~/.ssh   
+ssh-keygen -t rsa -C &quot;123456789@qq.com&quot;   
+
+然后打开  
+C:\\Users\\username.ssh 文件夹，复制 id_rsa.pub文件里的内容，丢到github上的sshKey上  
+途径：github-&gt;settings-&gt;SSH and GPG key-&gt;new ssh key  
+
+不进行这两步，以后提交代码的时候要输帐号密码  
+
+npm install  
+npm install -g hexo-cli  // 第一次使用hexo要安装  成功后下一步  
+hexo init  </code></pre><p>到这模版就创建好了。蛋事，模版毕竟是模版，还是要自己修改一下配置信息</p>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a href="#配置" title="配置"></a>配置</h5><p>根目录下的 <code>_config.yml</code> 文件，某些东西一定要改  </p>
+<pre><code>title: xxx  # 博客名，站点名称  
+author: xxx # 博客作者名字  
+description: xxx # 对站点的描述，搜索引擎会抓取，可以自定义  
+language: zh-CN # 语言 简体中文  
+theme: sky  # 配置的主题名  </code></pre><p>这样，一个站点的基础配置就完了</p>
+<p>想要发布到github上，也要做跟github”关联”的配置，一样在<code>_config.yml</code> 最底下追加内容  </p>
+<pre><code>deploy:     # 部署相关配置  
+ type: git     # 使用 Git 提交  
+ repository: git@github.com/username/username.github.io.git # 博客的仓库地址，仓库名最好是 用户名.github.io   
+ branch: master    # 分支名称  </code></pre><h5 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a><a href="#创建文章" title="创建文章"></a>创建文章</h5><p>初始化完毕就可以创建文章了  </p>
+<pre><code>hexo new &quot;xxxx&quot;  </code></pre><p>在hexo/source/_posts下生成：”xxxx”文件夹、”xxxx.md”这俩.”xxxx.md”就是markdown语法的文章，文件夹目前还不知道干啥的，以后更新，我是直接在编辑器里，打开_posts文件夹，直接新建”a.md”文件，省去了文件夹，编译下来也没什么不一样。<br>创建后的页面内容如下：  </p>
+<pre><code>\-\-\-  
+title: 标题  
+date: 2018-11-20 11:26:00 # 时间  
+tags: 标签  
+categories: 分类  
+\-\-\-  
+内容  </code></pre><p>标签和分类，当在页面有填入对应的值时，会自动创建分类，如果要手动创建分类页面  </p>
+<pre><code>hexo new page &quot;categories&quot;  </code></pre><h5 id="发布网站"><a href="#发布网站" class="headerlink" title="发布网站"></a><a href="#发布网站" title="发布网站"></a>发布网站</h5><p>发布之前要装个git的插件,不然<code>hexo d</code>会报错</p>
+<pre><code>npm install hexo-deployer-git --save</code></pre><p>文章写完，发布到github上  </p>
+<pre><code>hexo clean     // 清除缓存  
+hexo g       // 生成  
+hexo s         // 启动本地服务查看，默认 localhost:4000//  
+hexo s -p 5000  假如4000端口被占用，更改其他端口启动服务  
+hexo d        // 发布到github上  
+
+也可以一次性执行：  
+hexo clean &amp;&amp; hexo g &amp;&amp; hexo s  </code></pre><h3 id="装完吐槽"><a href="#装完吐槽" class="headerlink" title="装完吐槽"></a><a href="#装完吐槽篇（踩坑之路）" title="装完吐槽篇（踩坑之路）"></a>装完吐槽</h3><p>　　最初，考虑到自己的英文水平不怎样，看github略困难，谷歌浏览器没梯子不能翻译，了解到方便的国内代码托管平台有不少，在下试用了coding.net、码云、腾讯云：</p>
+<ul>
+<li><p>coding.net使用感觉还不错，私有仓库、pages服务免费，并且<code>Enforce https</code>可以不用长时间的等解析，证书也是秒生成，不带https的请求也都一并强制了https，非常舒服。<br>但是coding.net被腾讯注资了，到处是”转移到腾讯云获得更好的服务”诸如此类的信息。看到这类提示，强迫症表示不点不舒服，点之，一路”下一步”进入马总的怀抱…然后回不来了，每次登录到coding.net就跳转腾讯云，真是手贱当斩！</p>
+</li>
+<li><p>腾讯云的托管系统界面和操作都跟coding.net基本没差别，初用也很顺滑，唯一查到的区别就是腾讯云的代码托管有隐藏的容量限制，没达到之前不会告诉你的(好像是总量10G)，要突破还得去找客服申请，而coding没有。想想也没关系，个人用户一般没事，然后绑定域名开启https一气呵成。然后，第二天打开这博客地址的时候，慌的一批，F12看到，页面加载2min，一个几kb的小图片加载20s，2kb的css加载16s，这公网服务速度真是没的说…<br>　我：页面这么慢怎么办？<br>　tx：<a href="https://imgsa.baidu.com/forum/w%3D580/sign=96ce82539b529822053339cbe7c87b3b/3a1f78310a55b3193b293ce148a98226cdfc17aa.jpg" target="_blank" rel="noopener">年轻人，你这个问题非常好，其实“点这”就可以解决的</a><br>　我：再见来不及挥手~</p>
+</li>
+<li><p>码云，体验还行，界面都是中文的，操作也还算顺手，但是pages服务和自定义域名要收钱，再见码云~</p>
+</li>
+<li><p>github，绕一圈又回到github，英文界面不习惯，走投无路的心情下，用着用着也就舒服了，只有一处坑，就是配置https：解析<code>Enforce https</code>一直点不上，一直提示配置不对。杠了半天，发现要添加域名解析A记录到185.199.109.153，然后把<code>Custom domain</code>下的域名删掉之后，等个五六七八个小时后，再重新添加域名进去，然后再等个十几分钟，就可以勾选了</p>
+</li>
+</ul>
+<h3 id="为博客安装评论"><a href="#为博客安装评论" class="headerlink" title="为博客安装评论"></a><a href="#为博客安装评论" title="为博客安装评论"></a>为博客安装评论</h3><h4 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a><a href="#Gitment" title="Gitment"></a>Gitment</h4><p>第一接触的评论插件是Gitment，自带的landscape主题也是用这玩意儿，必须要github帐号登录才能评论，又是注册 OAuth Application，又是配置callback乱七八糟的东西，排除了种种错误之后，在知乎上某篇文章了解到gitment作者弃坑了，要用gitment，得自己搭建服务器才行。</p>
+<h4 id="valine"><a href="#valine" class="headerlink" title="valine"></a><a href="#valine" title="valine"></a>valine</h4><p>折腾过gitment之后，再看valine，它简直就是个jquery插件。Valine依赖于Leancloud的后端服务，去leanclould注册一个账号，按部就班的<a href="https://valine.js.org/quickstart.html" target="_blank" rel="noopener">配置</a>一下就行。里面分为免费版和商业版还有企业版，免费版有一定限制首先API请求每天30000，最大10GB的储存空间，支持markdown语法。有点点不好的就是不会markdown语法的读者不好传图片。还有，由于是免登陆插件，所以这个评论没管理员概念，不会提示谁是当前作者。<strong>目前本站用的就是这个。</strong></p>
+<h4 id="hypercomments"><a href="#hypercomments" class="headerlink" title="hypercomments"></a><a href="#hypercomments" title="hypercomments"></a>hypercomments</h4><p>这个麻瓜以前免费，现在不免费了，不想讲了</p>
+<h4 id="gitalk"><a href="#gitalk" class="headerlink" title="gitalk"></a><a href="#gitalk" title="gitalk"></a>gitalk</h4><p>安装教程：<a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md" target="_blank" rel="noopener">https://github.com/gitalk/gitalk/blob/master/readme-cn.md</a></p>
+<h3 id="装后优化篇-（2020-1-10）"><a href="#装后优化篇-（2020-1-10）" class="headerlink" title="装后优化篇 （2020-1-10）"></a>装后优化篇 （2020-1-10）</h3><h4 id="上传github-后-自定义域名的坑"><a href="#上传github-后-自定义域名的坑" class="headerlink" title="上传github 后 自定义域名的坑"></a>上传github 后 自定义域名的坑</h4><p>域名解析，到域名解析界面增加一个CNAME记录，值为Username.github.io就行<br>然后进入<code>(https://github.com/Username/Username.github.io/)</code>，选择settings，找到Custom domain输入自己的域名<br>然后一定要在源文件根目录的source 文件夹下，新建一个名字为“CNAME”的文件，没后缀，内容写自己的域名，保存/生成/发布  ，不然每次<code>hexo d</code>,都要去重新绑定域名</p>
+<h3 id="填坑篇"><a href="#填坑篇" class="headerlink" title="填坑篇"></a>填坑篇</h3><h4 id="hexo-g-不生成style-css，导致整个站点没有style-css文件"><a href="#hexo-g-不生成style-css，导致整个站点没有style-css文件" class="headerlink" title="hexo g 不生成style.css，导致整个站点没有style.css文件"></a>hexo g 不生成style.css，导致整个站点没有style.css文件</h4><p>找了几种办法，改_config.yml的url，root，安装什么<code>hexo-renderer-stylus</code>什么的都是假的，真正原因在主题里，把style.css加到themes-themename-source-css里，就完事了</p>
+<p><a href="https://www.jianshu.com/p/ea1eb11db63f" target="_blank" rel="noopener">markdown图床</a></p>
+
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">写在vue中简单的随机验证码</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2018/06/28/git%E6%97%A5%E5%B8%B8/">
+                <span class="nav-default">git日常</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'github+Hexo搭建博客';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>javascript阻止浏览器后退backspace键</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">javascript阻止浏览器后退backspace键</h2>
+            <div class="post-meta">
+                <span class="post-time">2016-06-21</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#自己写的简单版"><span class="toc-text">自己写的简单版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网上的完整案例"><span class="toc-text">网上的完整案例</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>由于项目需求，写到某个插件的时候，需要阻止backspace等浏览器默认事件，但是用e.preventDefault()无论如何都搞不定，火狐和谷歌在input或textarea失焦之后，按backspace都执行了后退(上一页)，网上查了资料，也问了不少人，最终原生js解决，以此为记：  </p>
+<a id="more"></a>
+<h3 id="自己写的简单版"><a href="#自己写的简单版" class="headerlink" title="自己写的简单版"></a><a href="#自己写的简单版" title="自己写的简单版"></a>自己写的简单版</h3><pre><code>//禁止后退键（Backspace）  
+function banBackSpace(e){  
+ var ev = e || window.event;//获取event对象  
+ var focus=$(cid).is(&quot;:focus&quot;)?true:false;  
+ var flag1=(ev.keyCode == 8 &amp;&amp; focus==false &amp;&amp; $(&quot;div.adr_base&quot;).length&gt;0)?true:false;  
+ if(flag1){  
+ $(&quot;div.check&quot;).siblings(cid).focus();  
+ $(&quot;div.check&quot;).remove();  
+ return false;  
+ }  
+}  
+//禁止后退键 作用于Firefox、Opera  
+document.onkeypress=banBackSpace;  
+//禁止后退键 作用于IE、Chrome  
+document.onkeydown=banBackSpace;  
+//window.history.forward(1);//屏蔽浏览器自带的后退键  </code></pre><h3 id="网上的完整案例"><a href="#网上的完整案例" class="headerlink" title="网上的完整案例"></a><a href="#网上的完整案例" title="网上的完整案例"></a>网上的完整案例</h3><pre><code>//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外  
+function banBackSpace(e){  
+ var ev = e || window.event;//获取event对象  
+ var obj = ev.target || ev.srcElement;//获取事件  
+ var t = obj.type || obj.getAttribute(&#39;type&#39;);//获取事件源类型  
+ //获取作为判断条件的事件类型  
+ var vReadOnly = obj.getAttribute(&#39;readonly&#39;);  
+ var vEnabled = obj.getAttribute(&#39;enabled&#39;);  
+ //处理null值情况  
+ vReadOnly = (vReadOnly == null) ? false : true;  
+ vEnabled = (vEnabled == null) ? true : vEnabled;  
+ //当敲Backspace键时，事件源类型为密码或单行、多行文本的，  
+ //并且readonly属性为true或enabled属性为false的，则退格键失效  
+ var flag1=(ev.keyCode == 8 &amp;&amp; (t==&quot;password&quot; || t==&quot;text&quot; || t==&quot;textarea&quot;)&amp;&amp; (vReadOnly || vEnabled!=true))?true:false;  
+ //当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效  
+ var flag2=(ev.keyCode == 8 &amp;&amp; t != &quot;password&quot; &amp;&amp; t != &quot;text&quot; &amp;&amp; t != &quot;textarea&quot;)?true:false;  
+ //判断  
+ if(flag2){  
+ return false;  
+ }  
+ if(flag1){  
+ return false;  
+ }  
+}  
+//禁止后退键 用于Firefox、Opera  
+document.onkeypress=banBackSpace;  
+//禁止后退键 用于IE、Chrome  
+document.onkeydown=banBackSpace;  
+window.history.forward(1);//屏蔽浏览器自带的后退键 </code></pre>
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2016/07/14/%E5%B0%8F%E4%B8%91/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">小丑</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/">
+                <span class="nav-default">a.js里调用b.js的方法</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'javascript阻止浏览器后退backspace键';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

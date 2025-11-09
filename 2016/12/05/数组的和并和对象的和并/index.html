@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>数组的和并和对象的和并</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">数组的和并和对象的和并</h2>
+            <div class="post-meta">
+                <span class="post-time">2016-12-05</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-数组合并"><span class="toc-text">1 数组合并</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-concat-方法"><span class="toc-text">1.1 concat 方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-循环遍历"><span class="toc-text">1.2 循环遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-apply"><span class="toc-text">1.3 apply</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-对象合并"><span class="toc-text">2 对象合并</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-extend"><span class="toc-text">2.1 $.extend()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-遍历赋值"><span class="toc-text">2.2 遍历赋值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-Obj-assign"><span class="toc-text">2.3 Obj.assign()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-对象的深拷贝和浅拷贝"><span class="toc-text">2.4 对象的深拷贝和浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4-1-浅拷贝"><span class="toc-text">2.4.1 浅拷贝</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4-2-深拷贝"><span class="toc-text">2.4.2 深拷贝</span></a></li></ol></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <h4 id="1-数组合并"><a href="#1-数组合并" class="headerlink" title="1 数组合并"></a><a href="#1-数组合并" title="1 数组合并"></a>1 数组合并</h4><h5 id="1-1-concat-方法"><a href="#1-1-concat-方法" class="headerlink" title="1.1 concat 方法"></a><a href="#1-1-concat-方法" title="1.1 concat 方法"></a>1.1 concat 方法</h5><pre><code>var a=\[1,2,3\],b=\[4,5,6\];  
+var c=a.concat(b);  
+console.log(c);// 1,2,3,4,5,6  
+console.log(a);// 1,2,3  不改变本身  </code></pre><a id="more"></a>
+<h5 id="1-2-循环遍历"><a href="#1-2-循环遍历" class="headerlink" title="1.2 循环遍历"></a><a href="#1-2-循环遍历" title="1.2 循环遍历"></a>1.2 循环遍历</h5><pre><code>var arr1=\[&#39;a&#39;,&#39;b&#39;\];  
+var arr2=\[&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\];  
+
+for(var i=0;i &lt; arr2.length;i++){  
+ arr1.push(arr2\[i\])   
+}  
+
+console.log(arr1);//\[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\]  </code></pre><h5 id="1-3-apply"><a href="#1-3-apply" class="headerlink" title="1.3 apply"></a><a href="#1-3-apply" title="1.3 apply"></a>1.3 apply</h5><p>合并数组arr1和数组arr2,使用Array.prototype.push.apply(arr1,arr2) or arr1.push.apply(arr1,arr2);  </p>
+<pre><code>var arr1=\[&#39;a&#39;,&#39;b&#39;\];  
+var arr2=\[&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\];  
+
+Array.prototype.push.apply(arr1,arr2);  
+
+//或者  
+
+arr1.push.apply(arr1,arr2);  
+console.log(arr1) //\[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;\]  </code></pre><h4 id="2-对象合并"><a href="#2-对象合并" class="headerlink" title="2 对象合并"></a><a href="#2-对象合并" title="2 对象合并"></a>2 对象合并</h4><h5 id="2-1-extend"><a href="#2-1-extend" class="headerlink" title="2.1 $.extend()"></a><a href="#2-1-extend" title="2.1 $.extend()"></a>2.1 $.extend()</h5><pre><code>var obj1= {&#39;a&#39;: 1};  
+var obj2= {&#39;b&#39;: 1};  
+var c = $.extend(obj1, obj2);  
+console.log(obj1); // {a: 1, b: 1}  obj1已被修改  
+//或者   
+var obj3 = $.extend({}, obj1, obj2)   
+console.log(obj3); //{a: 1, b: 1} 不会改变obj1,obj2  </code></pre><h5 id="2-2-遍历赋值"><a href="#2-2-遍历赋值" class="headerlink" title="2.2 遍历赋值"></a><a href="#2-2-遍历赋值" title="2.2 遍历赋值"></a>2.2 遍历赋值</h5><pre><code>var obj1={&#39;a&#39;:1};  
+var obj2={&#39;b&#39;:2,&#39;c&#39;:3};  
+for(var key in obj2){  
+ if(obj2.hasOwnProperty(key)===true){   
+ //此处hasOwnProperty是判断自有属性，使用 for in 循环遍历对象的属性时，原型链上的所有属性都将被访问会避免原型对象扩展带来的干扰  
+ obj1\[key\]=obj2\[key\];  
+}   
+}  
+
+console.log(obj1);//{&#39;a&#39;:1,&#39;b&#39;:2,&#39;c&#39;:3};  </code></pre><h5 id="2-3-Obj-assign"><a href="#2-3-Obj-assign" class="headerlink" title="2.3 Obj.assign()"></a><a href="#2-3-Obj-assign" title="2.3 Obj.assign()"></a>2.3 Obj.assign()</h5><p>可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。</p>
+<p>Object.assign(target, …sources)  </p>
+<pre><code>//a. 复制一个对象  
+var obj = { a: 1 ,b:2};  
+var copyObj = Object.assign({}, obj);  
+console.log(copyObj); // { a: 1,b:2 }  
+
+//b.合并多个对象  
+var o1 = { a: 1 };  
+var o2 = { b: 2 };  
+var o3 = { c: 3 };  
+
+var obj = Object.assign(o1, o2, o3);  
+console.log(obj); // { a: 1, b: 2, c: 3 }  
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 且目标对象自身也会改变。  </code></pre><p>//注意：obj.assign 也是浅拷贝，遇到对象里套对象的情况，也是拷贝一个引用</p>
+<h5 id="2-4-对象的深拷贝和浅拷贝"><a href="#2-4-对象的深拷贝和浅拷贝" class="headerlink" title="2.4 对象的深拷贝和浅拷贝"></a><a href="#2-4-对象的深拷贝和浅拷贝" title="2.4 对象的深拷贝和浅拷贝"></a>2.4 对象的深拷贝和浅拷贝</h5><h6 id="2-4-1-浅拷贝"><a href="#2-4-1-浅拷贝" class="headerlink" title="2.4.1 浅拷贝"></a><a href="#2-4-1-浅拷贝" title="2.4.1 浅拷贝"></a>2.4.1 浅拷贝</h6><pre><code>var obj1={&#39;a&#39;:1};  
+var obj2={&#39;b&#39;:{&#39;b1&#39;:22,&#39;b2&#39;:33}};  
+
+$.extend(obj1, obj2);   //obj1拷贝了obj2的属性  
+
+console.log(obj1)  // {&#39;a&#39;:1,&#39;b&#39;{&#39;b1&#39;:22,&#39;b2&#39;:33}}  
+console.log(obj1.b.b1)  // 22  
+
+obj2.b.b1=44;   //obj2重新赋值  
+console.log(obj1.b.b1)  // 44  obj1.b仅拷贝了对象的指引，所以受原obj2的影响  </code></pre><h6 id="2-4-2-深拷贝"><a href="#2-4-2-深拷贝" class="headerlink" title="2.4.2 深拷贝"></a><a href="#2-4-2-深拷贝" title="2.4.2 深拷贝"></a>2.4.2 深拷贝</h6><pre><code>var obj1={&#39;a&#39;:1};  
+var obj2={&#39;b&#39;:{&#39;b1&#39;:22,&#39;b2&#39;:33}};  
+
+$.extend(true,obj1, obj2);   //第一个参数设为true表示深复制  
+
+console.log(obj1)  // {&#39;a&#39;:1,&#39;b&#39;{&#39;b1&#39;:22,&#39;b2&#39;:33}}  
+console.log(obj1.b.b1)  // 22  
+
+obj2.b.b1=44;   //obj2重新赋值  
+console.log(obj1.b.b1)  // 22 obj1拷贝了obj2的所有属性以及值，并不受obj2的影响 </code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/js/" title="js">js</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2016/12/05/textarea%E8%87%AA%E5%8A%A8%E4%BC%B8%E7%BC%A9%E6%A1%86/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">textarea自动伸缩框</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/">
+                <span class="nav-default">js/jquery选中部分文字功能</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = '数组的和并和对象的和并';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

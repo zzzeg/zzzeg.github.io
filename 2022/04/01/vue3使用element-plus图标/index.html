@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>Vue3使用element-plus图标</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">Vue3使用element-plus图标</h2>
+            <div class="post-meta">
+                <span class="post-time">2022-04-01</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>Vue项目中使用Element-plus的Icon图标，包括按钮和动态菜单</p>
+<a id="more"></a>
+<p>1、安装图标库</p>
+<pre><code>npm install @element-plus  //自动包含了图标库
+// 单独安装图标库：
+npm install @element-plus/icons</code></pre><p>2、注册<br>main.ts文件中引入并注册</p>
+<pre><code>import { createApp } from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+import ElementPlus from &#39;element-plus&#39;
+import * as ElIcons from &#39;@element-plus/icons&#39;
+
+const app = createApp(App)
+for (const name in ElIcons){
+    app.component(name,(ElIcons as any)[name])
+}
+
+app.use(ElementPlus).mount(&#39;#app&#39;)
+</code></pre><p>3、在组件中直接使用</p>
+<pre><code>// 结合按钮使用
+&lt;el-button type=&quot;primary&quot; icon=&quot;Edit&quot; &gt;编辑&lt;/el-button&gt;
+&lt;el-button
+  size=&quot;mini&quot;
+  type=&quot;primary&quot;
+  class=&quot;inline-block&quot;
+  icon=&quot;More&quot;
+  title=&quot;详情&quot;
+  @click=&quot;handleDetail(row.id)&quot;
+/&gt;
+// 结合el-icon使用
+&lt;el-icon&gt;
+    &lt;delete /&gt;
+&lt;/el-icon&gt;</code></pre><p>4、在<code>el-menu</code>组件中动态使用<br>如果想在渲染菜单时动态使用icon图标，需要使用动态组件，举个例子：</p>
+<pre><code>// 路由文件
+export const routes: Array&lt;RouteRecordRaw&gt; = [
+  {
+    path: &#39;/&#39;,
+    component: Layout,
+    redirect: &#39;home&#39;,
+    children: [
+      {
+        path: &#39;/home&#39;,
+        component: () =&gt; import(&#39;@/views/Home.vue&#39;),
+        name: &#39;Home&#39;,
+        meta: { title: &#39;首页&#39;, icon: &#39;HomeFilled&#39; },
+      },
+    ],
+  },
+]</code></pre><pre><code>// 使用el-menu的文件
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;el-scrollbar wrap-class=&quot;scrollbar-wrapper&quot;&gt;
+      &lt;el-menu
+        router
+        :default-active=&quot;activeMenu&quot;
+        @open=&quot;handleOpen&quot;
+        @close=&quot;handleClose&quot;
+      &gt;
+        &lt;template v-for=&quot;route in menuList&quot; :key=&quot;route.path&quot;&gt;
+          &lt;el-menu-item v-if=&quot;!route.children&quot; :index=&quot;route.path&quot;&gt;
+            &lt;el-icon&gt;
+              &lt;component :is=&quot;route.meta.icon&quot; /&gt;
+            &lt;/el-icon&gt;
+            &lt;span&gt;{{ route.meta.title }}&lt;/span&gt;
+          &lt;/el-menu-item&gt;
+          &lt;el-sub-menu v-else :index=&quot;route.path&quot;&gt;
+            &lt;template #title&gt;
+              &lt;el-icon&gt;
+                &lt;component :is=&quot;route.meta.icon&quot; /&gt;
+              &lt;/el-icon&gt;
+              &lt;span&gt;{{ route.meta.title }}&lt;/span&gt;
+            &lt;/template&gt;
+            &lt;el-menu-item
+              v-for=&quot;subRoute in route.children&quot;
+              :key=&quot;subRoute.path&quot;
+              :index=&quot;subRoute.path&quot;
+            &gt;
+              &lt;el-icon&gt;
+                &lt;component :is=&quot;subRoute.meta.icon&quot; /&gt;
+              &lt;/el-icon&gt;
+              &lt;span&gt;{{ subRoute.meta.title }}&lt;/span&gt;
+            &lt;/el-menu-item&gt;
+          &lt;/el-sub-menu&gt;
+        &lt;/template&gt;
+      &lt;/el-menu&gt;
+    &lt;/el-scrollbar&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script lang=&quot;ts&quot; setup&gt;
+import { defineComponent, computed } from &#39;vue&#39;
+import { useRoute } from &#39;vue-router&#39;
+import { routes } from &#39;@/router/index&#39;
+
+const route = useRoute()
+const activeMenu = computed(() =&gt; {
+  const { meta, path } = route
+  if (meta.activeMenu) {
+    return meta.activeMenu
+  }
+  return path
+})
+const menuList = computed(
+  () =&gt; (routes as any).find((item: any) =&gt; item.path === &#39;/&#39;).children
+)
+&lt;/script&gt;
+</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/elementplus-vue3/" title="elementplus,vue3">elementplus,vue3</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2022/11/03/%E9%A5%AE%E8%8C%B6%E6%9C%89%E6%84%9F/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">最近在喝武夷山岩茶</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2022/03/31/sublimeText%E6%B3%A8%E5%86%8C%E7%A0%81/">
+                <span class="nav-default">sublimeText相关</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'Vue3使用element-plus图标';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>
