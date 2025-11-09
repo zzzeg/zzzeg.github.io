@@ -152,6 +152,155 @@ var CONFIG = {
     
         <article class="post-abstract">
             <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">写在vue中简单的随机验证码</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-21</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>需要的效果<br><img src="https://zzz.cafe/img/0002.png" alt="">  </p>
+                    <div class="read-more">
+                        <a href="/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">github+Hexo搭建博客</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-20</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>　　以前用wordpress写的博客，因为疏于更新后台，被勤劳的小蜜蜂们各种挂马，服务商给我下通牒的时候我才知道，记录的东西也丢失了七七八八。最近闲下来在看nodejs相关的资料时，无意间了解到hexo，然后决定入坑.  </p>
+                    <div class="read-more">
+                        <a href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/06/28/git%E6%97%A5%E5%B8%B8/">git日常</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-06-28</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><pre><code>git init</code></pre><h4 id="将文件添加到仓库"><a href="#将文件添加到仓库" class="headerlink" title="将文件添加到仓库"></a>将文件添加到仓库</h4><pre><code>git add .</code></pre><h4 id="文件commit到仓库"><a href="#文件commit到仓库" class="headerlink" title="文件commit到仓库"></a>文件commit到仓库</h4><pre><code>git commit -m &#39;注释&#39;</code></pre><h4 id="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><a href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上" class="headerlink" title="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"></a>去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</h4><pre><code>git remote add origin 仓库的地址</code></pre><h4 id="上传代码到仓库"><a href="#上传代码到仓库" class="headerlink" title="上传代码到仓库"></a>上传代码到仓库</h4><pre><code>git push -u origin master</code></pre><p>执行完没问题就完事了，如果上传失败，可能是因为README.md没下载下来，先下载再上传</p>
+<pre><code>git pull --rebase origin master</code></pre><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><h4 id="第一次下载"><a href="#第一次下载" class="headerlink" title="第一次下载"></a>第一次下载</h4><pre><code>进到目录，git clone 地址</code></pre><h4 id="下载更新"><a href="#下载更新" class="headerlink" title="下载更新"></a>下载更新</h4><pre><code>//方法一
+$ git fetch origin master //从远程的origin仓库的master分支下载代码到本地的origin master
+$ git log -p master.. origin/master//比较本地的仓库和远程参考的区别
+$ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并
+
+//方法二
+$ git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp
+$ git diff temp//比较master分支和temp分支的不同
+$ git merge temp//合并temp分支到master分支
+$ git branch -d temp//删除temp
+
+//方法三
+$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><pre><code>git config --global https.proxy http://127.0.0.1:7890
+git config --global http.proxy http://127.0.0.1:7890
+
+# 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy</code></pre>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/">json数组的增删改操作</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-05-24</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
+var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
+var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre>
+                    <div class="read-more">
+                        <a href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">elementui的click事件绑定无效解决方案</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-03-27</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>做步骤条的时候，加click没生效，想点击步骤直接跳转<br><img src="https://image-static.segmentfault.com/418/389/4183891061-59967d2472d13_articlex" alt=""><br>图片来自<a href="https://segmentfault.com/q/1010000010731358" target="_blank" rel="noopener">segmentfault</a></p>
+                    <div class="read-more">
+                        <a href="/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
                 <h2><a class="post-title-link" href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/">Vue-quill-editor样式错乱</a></h2>
             </div>
             <div class="post-meta">
@@ -228,159 +377,6 @@ oninput=&quot;this.style.height=&#39;auto&#39;;this.style.height = this.scrollHe
 &lt;/textarea&gt;  </code></pre><p>实际效果测试：<br><textarea name="textarea" id="textarea" onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height='auto';this.style.height = this.scrollHeight + 'px'" style="overflow-Y: hidden;"></textarea></p>
 <h4 id="拓展延伸"><a href="#拓展延伸" class="headerlink" title="拓展延伸"></a><a href="#拓展延伸" title="拓展延伸"></a>拓展延伸</h4><p><a href="http://www.cnblogs.com/yuteng/articles/1894578.html" target="_blank" rel="noopener">1、height、clientHeight、scrollHeight、offsetHeight的区别</a><br><a href="https://yq.aliyun.com/articles/20672" target="_blank" rel="noopener">2、textarea其他两种方式实现高度自适应</a></p>
 
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/12/05/%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C%E5%B9%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%92%8C%E5%B9%B6/">数组的和并和对象的和并</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-12-05</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <h4 id="1-数组合并"><a href="#1-数组合并" class="headerlink" title="1 数组合并"></a><a href="#1-数组合并" title="1 数组合并"></a>1 数组合并</h4><h5 id="1-1-concat-方法"><a href="#1-1-concat-方法" class="headerlink" title="1.1 concat 方法"></a><a href="#1-1-concat-方法" title="1.1 concat 方法"></a>1.1 concat 方法</h5><pre><code>var a=\[1,2,3\],b=\[4,5,6\];  
-var c=a.concat(b);  
-console.log(c);// 1,2,3,4,5,6  
-console.log(a);// 1,2,3  不改变本身  </code></pre>
-                    <div class="read-more">
-                        <a href="/2016/12/05/%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C%E5%B9%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%92%8C%E5%B9%B6/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/">js/jquery选中部分文字功能</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-10-18</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>项目上需要一个文件重命名功能，就像百度网盘的文件重命名一样，只选中文件名不选中后缀:<br>这样子：<br><img src="http://zzzeg.github.io/img/0001.jpg" alt=""><br>代码如下：<br>
-                    <div class="read-more">
-                        <a href="/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/07/14/something-about-JQueryUi/">Something About JQueryUi</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-07-14</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>1、需要对IE6支持的话，只能使用jQuery UI 1.9.2，目前官网<a href="//jqueryui.com/download/" target="_blank" rel="noopener">定制页</a>只有1.9.2会支持IE6，</p>
-<p>jQuery UI Upgrade Guide（升级指南）中指出</p>
-<p><a href="//jqueryui.com/upgrade-guide/1.10/" target="_blank" rel="noopener">jQuery UI 1.10 Upgrade Guide</a></p>
-<h3 id="Removed-support-for-IE6"><a href="#Removed-support-for-IE6" class="headerlink" title="Removed support for IE6"></a><a href="#Removed-support-for-IE6" title="Removed support for IE6"></a>Removed support for IE6</h3><p>IE6 usage has dropped to a low enough point that jQuery UI no longer finds it necessary to support. As of 1.10.0, some portions of jQuery UI may not work properly in IE6. If you need to continue to support IE6, use the latest jQuery UI 1.9 release.<br><a href="//jqueryui.com/upgrade-guide/1.11/" target="_blank" rel="noopener">jQuery UI 1.11 Upgrade Guide</a></p>
-<h3 id="Discontinued-IE7-Support"><a href="#Discontinued-IE7-Support" class="headerlink" title="Discontinued IE7 Support"></a><a href="#Discontinued-IE7-Support" title="Discontinued IE7 Support"></a>Discontinued IE7 Support</h3><p>As of this release we are no longer accepting bug reports for IE7 issues. We have also removed IE7 from our testing infrastructure. The IE7 workarounds are still present in the code, but we will remove them for jQuery UI 1.12.</p>
-<p>2、部分组件只在服务端生效，目前用过的服务端生效的有：resizable、slider、</p>
-
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/07/14/%E5%B0%8F%E4%B8%91/">小丑</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-07-14</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E6%97%A5%E5%B8%B8%E5%BF%83%E6%83%85/">日常心情</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>世间曾有一个小丑。</p>
-<p>他长时间都过着很快乐的生活；但渐渐地有些流言传到了他的耳朵里，说他被公认为是个极其愚蠢的、非常鄙俗的家伙。</p>
-<p>小丑窘住了，开始忧郁地想：怎样才能制止那些讨厌的流言呢？</p>
-<p>一个突然的想法使他的脑袋瓜开了窍……于是，他一点也不拖延地把他的想法付诸实行。</p>
-<p>他在街上碰见了一个熟人，那熟人夸奖起一位著名的色彩画家。</p>
-<p>“得了吧！”小丑提高声音说道，“这位色彩画家早已经不行啦……您还不知道这个吗？我真没想到您会这样……您是个落后的人啦！”</p>
-<p>熟人感到吃惊，并立刻同意了小丑的说法。  </p>
-<p>“今天我读完了一本多么好的书啊！”另一个熟人告诉他说。</p>
-<p>“得了吧！”小丑提高声音说道，“您怎么不害羞？这本书一点意思也没有，大家老早就已经不看这本书了，您还不知道这个？您是个落后的人啦！”</p>
-<p>于是，这个熟人也感到吃惊，也同意了小丑的说法。</p>
-<p>“我的朋友某君真是个非常好的人啊！”第三个熟人告诉小丑说，“他真正是个高尚的人！”</p>
-<p>“得了吧！”小丑提高声音说道，“某君明明是个下流东西！他抢夺过所有亲戚的东西。谁还不知道这个呢？您是个落后的人啦。”</p>
-<p>第三个熟人同样感到吃惊，也同意了小丑的说法，并且不再同那个朋友来往。总之，人们在小丑面前无论赞扬谁和赞扬什么，他都一个劲儿地驳斥。</p>
-<p>只是有时候，他还以责备的口气补充说道：“您至今还相信权威吗？”</p>
-<p>“好一个坏心肠的人！一个好毒辣的家伙！”他的熟人们开始谈论起小丑了，“不过，他的脑袋瓜多么不简单！”</p>
-<p>“他的舌头也不简单！”另一些人又补充道，“哦，他简直是个天才！”</p>
-<p>末了，一家报纸的出版人，请小丑到那儿去主持一下评论专栏。</p>
-<p>于是，小丑开始批评一切事个一切人，一点也没有改变自己的手法和自己趾高气扬的神态。</p>
-<p>现在，他——一个曾经大喊大叫反对过权威的人——自己也成了一个权威了，而年轻人正崇拜他，而且害怕他。</p>
-<p>他们，可怜的年轻人，该怎么办呢？虽然一般地说，不应该崇拜……可是，在这儿，你试试不再去崇拜吧——你就将是个落后的人啦！</p>
-<p>在胆小的人们中间，小丑们是能很好地生活的。</p>
-
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/06/21/javascript%E9%98%BB%E6%AD%A2%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%8E%E9%80%80backspace%E9%94%AE/">javascript阻止浏览器后退backspace键</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-06-21</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>由于项目需求，写到某个插件的时候，需要阻止backspace等浏览器默认事件，但是用e.preventDefault()无论如何都搞不定，火狐和谷歌在input或textarea失焦之后，按backspace都执行了后退(上一页)，网上查了资料，也问了不少人，最终原生js解决，以此为记：  </p>
-                    <div class="read-more">
-                        <a href="/2016/06/21/javascript%E9%98%BB%E6%AD%A2%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%8E%E9%80%80backspace%E9%94%AE/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
                 
             </div>
         </article>

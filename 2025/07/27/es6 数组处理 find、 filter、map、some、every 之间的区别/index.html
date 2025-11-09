@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>find、 filter、map、some、every 之间的区别</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">find、 filter、map、some、every 之间的区别</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-07-27</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、find、findIndex"><span class="toc-text">1、find、findIndex</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、filter"><span class="toc-text">2、filter</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、map"><span class="toc-text">3、map</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、some"><span class="toc-text">4、some</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、every"><span class="toc-text">5、every</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6、reduce"><span class="toc-text">6、reduce</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>find和findIndex分别用于找出第一个符合条件的成员及位置；<br>filter用于过滤或筛选数组，可实现判断值是否存在、去重等；<br>map用于数组映射；<br>some判断是否有元素满足条件；<br>every检测所有元素是否都满足条件；<br>reduce用于累加数组值</p>
+<a id="more"></a>
+
+<h5 id="1、find、findIndex"><a href="#1、find、findIndex" class="headerlink" title="1、find、findIndex"></a>1、find、findIndex</h5><p>数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。</p>
+<pre><code>var array = [&#39;60&#39;,&#39;33&#39;,&#39;77&#39;,&#39;20&#39;,&#39;42&#39;]
+var newArray = array.find(item =&gt; item&lt;40) 
+console.log(newArray); //33</code></pre><p>find方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。</p>
+<pre><code>[1, 5, 10, 15].find(function(value, index, arr) {
+  return value &gt; 9;
+}) // 10</code></pre><p>数组实例的findIndex方法的用法与find方法类似，不同的是：findindex返回的是第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。</p>
+<pre><code>[1, 5, 10, 15].findIndex(function(value, index, arr) {
+  return value &gt; 9;
+}) // 2 (2是索引)</code></pre><p>这两个方法都可以接受第二个参数，用来绑定回调函数的this对象。<br>find函数接收了第二个参数person对象，回调函数中的this对象指向person对象。</p>
+<pre><code>function f(v){
+  return v &gt; this.age;
+}
+let person = {name: &#39;John&#39;, age: 20};
+[10, 12, 26, 15].find(f, person);    // 26</code></pre><p>另外，这两个方法都可以发现NaN，弥补了数组的indexOf方法的不足。<br>indexOf方法无法识别数组的NaN成员，但是findIndex方法可以借助Object.is方法做到。</p>
+<pre><code>[NaN].indexOf(NaN)                            // -1
+[NaN].findIndex(y =&gt; Object.is(NaN, y))        // 0</code></pre><h5 id="2、filter"><a href="#2、filter" class="headerlink" title="2、filter"></a>2、filter</h5><p>数组的过滤或筛选功能，根据筛选条件返回一个包含符合条件元素的新数组，不影响原数组，筛选条件写在一个函数中</p>
+<pre><code>const array=[
+    {id:1,name:&#39;javascript&#39;,date:&#39;2021-06-01&#39;},
+    {id:2,name:&#39;css&#39;,date:&#39;2021-06-01&#39;},
+    {id:3,name:&#39;vuejs&#39;,date:&#39;2021-06-01&#39;}
+]
+const newArray=array.filter(item=&gt;item.id==3);    //判断是否存在某个值
+console.log(newArray);         // [{id:3,name:&quot;vuejs&quot;,date:&quot;2021-06-01&quot;}]
+
+const newArray=array.filter(item=&gt;item.id!=3);    //过滤掉id!=3的项
+console.log(newArray);        // [{id:3,name:&quot;vuejs&quot;,date:&quot;2021-06-01&quot;},{id:3,name:&quot;vuejs&quot;,date:&quot;2021-06-01&quot;}]
+
+
+const array=[&#39;A&#39;,&#39;B&#39;,&#39;&#39;,&#39;D&#39;,&#39;&#39;,&#39;F&#39;,undefined, null]
+const newArray=array.filter(item=&gt;item);    去掉空数组空字符串、undefined、null
+console.log(newArray); //[&quot;A&quot;,&quot;B&quot;,&quot;D&quot;,&quot;F&quot;]
+
+var array = [20,80,50,96,40]
+var newArray = array.filter(item =&gt; item&gt;40)      //过滤不符合条件的项
+console.log(newArray); //[80,50,96]
+
+var arr = [1, 2, 2, 3, 4, 5, 5, 6, 7, 7,8,8,0,8,6,3,4,56,2];
+var arr2 = arr.filter((x, index,self)=&gt;self.indexOf(x)===index)      //数组去重
+console.log(arr2); //[1, 2, 3, 4, 5, 6, 7, 8, 0, 56]</code></pre><h5 id="3、map"><a href="#3、map" class="headerlink" title="3、map"></a>3、map</h5><p>map方法：可以简单的理解为映射</p>
+<pre><code>var arr=[1,2,3,4]; 
+console.log( arr.map((n)=&gt;n*n) );//[1, 4, 9,16] 
+console.log( arr.map((n)=&gt;n-1) );//[0, 1, 2, 3]</code></pre><p>数组的映射，返回一个新数组，其值是通过函数处理过的值</p>
+<pre><code>let arr = [2,3,5,6]
+let arr1 = arr.map(function(item){
+   return item +1;
+})
+console.log(arr1)//[3,4,6,7]  let arr = [2,3,5,6,7,8]
+
+let arr1 = arr.map(function(item){
+   return item &gt;5;
+})
+console.log(arr1)//[false,false,false,true,true,true]</code></pre><h5 id="4、some"><a href="#4、some" class="headerlink" title="4、some"></a>4、some</h5><p>some() 方法会依次执行数组的每个元素：<br>如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。 　　<br>如果没有满足条件的元素，则返回false</p>
+<pre><code>let arr = [2, 4, 6, 8]; 
+let flag = arr.some(function(item) {
+    return item &gt; 5 
+}); 
+console.log(flag); //true </code></pre><h5 id="5、every"><a href="#5、every" class="headerlink" title="5、every"></a>5、every</h5><p>every（）检测数组中的所有元素是否都满足函数的中的筛选条件<br>都满足返回true，否则返回false</p>
+<pre><code>let arr = [2, 4, 6, 8];
+let flag = arr.every(function(item) {
+    return item &gt; 6 
+}); 
+console.log(flag); //false</code></pre><h5 id="6、reduce"><a href="#6、reduce" class="headerlink" title="6、reduce"></a>6、reduce</h5><p>从左到右累加数组中的值，最后得到的仍是一个值</p>
+<pre><code>let arr = [2,3,5,6,7,8,&#39;a&#39;] 
+let arr1 =  arr.reduce(function(val,item,index,origin){
+     //val是累加值，item是当前值，index下标从1开始，arr[0]默认为第一次的累加值，origin是数组本身
+    console.log(val,item,index,origin)
+    return val+item 
+}) 
+console.log(arr1)//  2+3+5+6+7+8 = 31, 31+a = &#39;31a&#39;</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/ES6-js/" title="ES6,js">ES6,js</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/07/27/es6_%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">EM6-ECMAscript6一些记录</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2024/01/03/zk__%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">
+                <span class="nav-default">设计原理</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'find、 filter、map、some、every 之间的区别';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

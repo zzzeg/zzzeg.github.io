@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>javscript数组去重</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">javscript数组去重</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-07-27</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#方法1：ES6-Set-数组的Array-from方法-去重（ES6）"><span class="toc-text">方法1：ES6 Set+数组的Array.from方法 去重（ES6）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法2：for嵌套for，用splice去重（ES5）"><span class="toc-text">方法2：for嵌套for，用splice去重（ES5）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法3：利用indexOf去重"><span class="toc-text">方法3：利用indexOf去重</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法4：利用sort"><span class="toc-text">方法4：利用sort()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法5：利用对象的属性不能相同的特点"><span class="toc-text">方法5：利用对象的属性不能相同的特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法6：利用includes-检测数组是否包含某个值"><span class="toc-text">方法6：利用includes 检测数组是否包含某个值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法7：-利用filter-hasOwnProperty"><span class="toc-text">方法7： 利用filter + hasOwnProperty</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法8：-filter-indexof"><span class="toc-text">方法8： filter+indexof</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法9：-递归"><span class="toc-text">方法9： 递归</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法10：map数据结构"><span class="toc-text">方法10：map数据结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法11：-refuce-includes"><span class="toc-text">方法11： refuce+includes</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>数组去重，手写数组去重方法的代码。有十来种<br>在真实的项目中碰到的数组去重，一般都是后台去处理，很少让前端处理数组去重。虽然日常项目用到的概率比较低，但还是需要了解一下</p>
+<a id="more"></a>
+
+<p>数据：</p>
+<pre><code>let arr = [1,1,&#39;true&#39;,&#39;true&#39;,true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,&#39;NaN&#39;, 0, 0, &#39;a&#39;, &#39;a&#39;,{},{}];</code></pre><h5 id="方法1：ES6-Set-数组的Array-from方法-去重（ES6）"><a href="#方法1：ES6-Set-数组的Array-from方法-去重（ES6）" class="headerlink" title="方法1：ES6 Set+数组的Array.from方法 去重（ES6）"></a>方法1：ES6 Set+数组的Array.from方法 去重（ES6）</h5><pre><code>const newArr = [...new Set(arr)]
+console.log(newArr)            //[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {}, {}]
+
+or
+
+const newArr = Array.from(new Set(arr))
+console.log(unique(arr))    //[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {}, {}]</code></pre><p>上面有去不掉空对象的问题，因为空对象的引用地址不同，所以不会被认为是重复的，可以把空的对象转换成字符串，再用set去重，然后再还原对象，底下别的去重方式 同样类似处理</p>
+<pre><code>let arr2 = []
+let seen = new Set()
+
+for(let item of arr) {
+    let key = (typeof item === &quot;object&quot;) ? JSON.stringfy(item) : String(item) + typeof item
+    if(!(seen.has(key))) {
+        seen.add(key)
+        arr2.push(item)
+    }
+}
+console.log(arr2)    // [1, &#39;true&#39;, true, 15, false, undefined, null, NaN, &#39;NaN&#39;, 0, &#39;a&#39;, {}]</code></pre><h5 id="方法2：for嵌套for，用splice去重（ES5）"><a href="#方法2：for嵌套for，用splice去重（ES5）" class="headerlink" title="方法2：for嵌套for，用splice去重（ES5）"></a>方法2：for嵌套for，用splice去重（ES5）</h5><pre><code>function unique(arr) {
+    for (var i = 0; i &lt; arr.lenght; i++) {
+        for (var j = 0; j &lt; arr.length; j++) {
+            if(arr[i] === arr[j]) { //第一个等于第二个，就删除第二个
+                arr.splice(j,1);
+                j--;
+            }
+        }
+    }
+    return arr;
+}
+ console.log(unique(arr))  //[1, &quot;true&quot;, 15, false, undefined, NaN, NaN, &quot;NaN&quot;, &quot;a&quot;, {…}, {…}]     //NaN和{}没有去重，两个null直接消失了</code></pre><h5 id="方法3：利用indexOf去重"><a href="#方法3：利用indexOf去重" class="headerlink" title="方法3：利用indexOf去重"></a>方法3：利用indexOf去重</h5><pre><code>function unique(arr) {
+   if (!Array.isArray(arr)) {
+       console.log(&#39;type error!&#39;)
+       return
+   }
+   var array = [];
+   for (var i = 0; i &lt; arr.length; i++) {
+       if (array.indexOf(arr[i]) === -1) {
+           array.push(arr[i])
+       }
+   }
+   return array;
+}
+console.log(unique(arr))     // [1, &quot;true&quot;, true, 15, false, undefined, null, NaN, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {…}, {…}]  //NaN、{}没有去重</code></pre><h5 id="方法4：利用sort"><a href="#方法4：利用sort" class="headerlink" title="方法4：利用sort()"></a>方法4：利用sort()</h5><pre><code>function unique(arr) {
+   if (!Array.isArray(arr)) {
+       console.log(&#39;type error!&#39;)
+       return;
+   }
+   arr = arr.sort()
+   var arrry= [arr[0]];
+   for (var i = 1; i &lt; arr.length; i++) {
+       if (arr[i] !== arr[i-1]) {
+           arrry.push(arr[i]);
+       }
+   }
+   return arrry;
+}
+console.log(unique(arr))    // [0, 1, 15, &quot;NaN&quot;, NaN, NaN, {…}, {…}, &quot;a&quot;, false, null, true, &quot;true&quot;, undefined]      //NaN、{}没有去重</code></pre><h5 id="方法5：利用对象的属性不能相同的特点"><a href="#方法5：利用对象的属性不能相同的特点" class="headerlink" title="方法5：利用对象的属性不能相同的特点"></a>方法5：利用对象的属性不能相同的特点</h5><pre><code>function unique(arr) {
+    if (!Array.isArray(arr)) {
+       console.log(&#39;type error!&#39;)
+       return
+    }
+    var arrry= [];
+    var  obj = {};
+    for (var i = 0; i &lt; arr.length; i++) {
+       if (!obj[arr[i]]) {
+           arrry.push(arr[i])
+           obj[arr[i]] = 1
+       } else {
+           obj[arr[i]]++
+       }
+   }
+   return arrry;
+}
+console.log(unique(arr))    //[1, &quot;true&quot;, 15, false, undefined, null, NaN, 0, &quot;a&quot;, {…}]    //两个true直接去掉了，NaN和{}去重</code></pre><h5 id="方法6：利用includes-检测数组是否包含某个值"><a href="#方法6：利用includes-检测数组是否包含某个值" class="headerlink" title="方法6：利用includes 检测数组是否包含某个值"></a>方法6：利用includes 检测数组是否包含某个值</h5><pre><code>function unique(arr) {
+   if (!Array.isArray(arr)) {
+       console.log(&#39;type error!&#39;)
+       return
+   }
+   var array =[];
+   for(var i = 0; i &lt; arr.length; i++) {
+        if( !array.includes( arr[i]) ) {//includes 检测数组是否有某个值
+            array.push(arr[i]);
+        }
+   }
+   return array
+}
+console.log(unique(arr))    //[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {…}, {…}]     //{}没有去重</code></pre><h5 id="方法7：-利用filter-hasOwnProperty"><a href="#方法7：-利用filter-hasOwnProperty" class="headerlink" title="方法7： 利用filter + hasOwnProperty"></a>方法7： 利用filter + hasOwnProperty</h5><pre><code>function unique(arr) {
+   var obj = {};
+   return arr.filter(function(item, index, arr){
+       return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+   })
+}
+console.log(unique(arr))    //[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {…}]   //所有的都去重了</code></pre><h5 id="方法8：-filter-indexof"><a href="#方法8：-filter-indexof" class="headerlink" title="方法8： filter+indexof"></a>方法8： filter+indexof</h5><pre><code>function unique(arr) {
+    return arr.filter(function(item, index, arr) {
+        //当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素
+        return arr.indexOf(item, 0) === index;
+    });
+}
+console.log(unique(arr))    //[1, &quot;true&quot;, true, 15, false, undefined, null, &quot;NaN&quot;, 0, &quot;a&quot;, {…}, {…}]</code></pre><h5 id="方法9：-递归"><a href="#方法9：-递归" class="headerlink" title="方法9： 递归"></a>方法9： 递归</h5><pre><code>function unique(arr) {
+    var array= arr;
+    var len = array.length;
+    array.sort(function(a,b){   //排序后更加方便去重
+       return a - b;
+   })
+   function loop(index){
+       if(index &gt;= 1){
+           if(array[index] === array[index-1]){
+               array.splice(index,1);
+           }
+           loop(index - 1);    //递归loop，然后数组去重
+       }
+   }
+   loop(len-1);
+   return array;
+}
+console.log(unique(arr))    //[1, &quot;a&quot;, &quot;true&quot;, true, 15, false, 1, {…}, null, NaN, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {…}, undefined]</code></pre><h5 id="方法10：map数据结构"><a href="#方法10：map数据结构" class="headerlink" title="方法10：map数据结构"></a>方法10：map数据结构</h5><pre><code>function arrayNonRepeatfy(arr) {
+ let map = new Map();
+ let array = new Array();  // 数组用于返回结果
+ for (let i = 0; i &lt; arr.length; i++) {
+   if(map .has(arr[i])) {  // 如果有该key值
+     map .set(arr[i], true);
+   } else {
+     map .set(arr[i], false);   // 如果没有该key值
+     array .push(arr[i]);
+   }
+ }
+ return array ;
+}
+console.log(unique(arr))    //[1, &quot;a&quot;, &quot;true&quot;, true, 15, false, 1, {…}, null, NaN, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {…}, undefined]</code></pre><h5 id="方法11：-refuce-includes"><a href="#方法11：-refuce-includes" class="headerlink" title="方法11： refuce+includes"></a>方法11： refuce+includes</h5><pre><code>function unique(arr){
+   return arr.reduce((prev,cur) =&gt; prev.includes(cur) ? prev : [...prev,cur],[]);
+}
+console.log(unique(arr));    // [1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, {…}, {…}]</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/js/" title="js">js</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/08/04/uniapp%E5%85%BC%E5%AE%B9%E4%B8%8D%E5%90%8C%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%8E%AF%E5%A2%83%E5%86%99%E6%B3%95/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">uniapp兼容不同小程序环境写法</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/07/27/es6_%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">
+                <span class="nav-default">EM6-ECMAscript6一些记录</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'javscript数组去重';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>NavBar 顶部弹窗点击弹窗外部区域关闭弹窗实现</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">NavBar 顶部弹窗点击弹窗外部区域关闭弹窗实现</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-09-26</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>NavBar 顶部菜单按钮点击显示自定义的弹窗，【点击页面空白区域关闭弹窗】，类似 el-Popover 弹出框的效果。点击区域外自动关闭并且联动其他弹框</p>
+<a id="more"></a>
+<p>template</p>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;dropdown-with-icons dpitem&quot; @click=&quot;openDropDialog&quot;&gt;
+    &lt;div class=&quot;selected-item dpitem&quot;&gt;
+      &lt;img :src=&quot;selectedItem.icon&quot; alt=&quot;&quot; class=&quot;icon dpitem&quot;&gt;
+      {{ selectedItem.label }}
+    &lt;/div&gt;
+    &lt;transition name=&quot;fade&quot;&gt;
+      &lt;ul v-if=&quot;isOpen&quot; class=&quot;dropdown-menu&quot;&gt;
+        &lt;li v-for=&quot;item in items&quot; :key=&quot;item.value&quot; @click.stop=&quot;selectItem(item)&quot;&gt;
+          &lt;img :src=&quot;item.icon&quot; alt=&quot;&quot; class=&quot;icon&quot;&gt;
+          {{ item.label }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/transition&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre><p>vue3 script</p>
+<pre><code>&lt;script&gt;
+import { ref } from &#39;vue&#39;;
+export default {
+  name: &#39;DropdownWithIcons&#39;,
+  props: {
+    items: {
+      type: Array,
+      required: true,
+    },
+    initialValue: {
+      type: [String, Number],
+      required: false,
+      default: null,
+    },
+  },
+  setup(props,{ emit }) {
+
+    const isOpen = ref(false);
+    const selectedItem = ref(props.items.find(item =&gt; item.value === props.initialValue) || props.items[0]);
+
+    const openDropDialog = () =&gt; {
+      isOpen.value = true
+      show()
+    };
+    const selectItem = (item) =&gt; {
+      selectedItem.value = item;
+      isOpen.value = false;
+      emit(&#39;change&#39;, item); // 在选项式 API 中使用
+    };
+
+    const show = ()=&gt; {
+        document.addEventListener(&#39;click&#39;, hidePanel, false)
+    };
+    const close = ()=&gt; {
+        document.removeEventListener(&#39;click&#39;, hidePanel, false)
+        isOpen.value = false
+    };
+    // 点击空白区域隐藏面板事件
+    const hidePanel = (e)=&gt; {
+        const isOtherArea = !e.target.parentElement.className.includes(&#39;dpitem&#39;)
+        if (isOtherArea){
+            close()
+        }
+    };
+
+    // 使用组合式 API 时，需要在 setup 函数返回需要暴露给模板的响应式数据和方法
+    return {
+      isOpen,
+      selectedItem,
+      openDropDialog,
+      selectItem,
+      show,
+      close,
+      hidePanel
+    };
+  },
+};</code></pre><p>多个，示例：</p>
+<pre><code>&lt;template&gt;
+  &lt;div :class=&quot;classObj&quot; class=&quot;app-wrapper&quot;&gt;
+    &lt;div
+      v-if=&quot;device === &#39;mobile&#39; &amp;&amp; sidebar.opened&quot;
+      class=&quot;drawer-bg&quot;
+      @click=&quot;handleClickOutside&quot;
+    /&gt;
+    &lt;div class=&quot;main-container&quot;&gt;
+      &lt;navbar
+        @handleAvatarClick=&quot;handleAvatarClick&quot;
+        @handleCompanySeclect=&quot;handleCompanySeclect&quot;
+        @handleSearchInputChange=&quot;handleSearchInputChange&quot;
+        @handleMessageClick=&quot;handleMessageClick&quot;
+        @handleShareClick=&quot;handleShareClick&quot;
+      /&gt;
+      &lt;app-main /&gt;
+    &lt;/div&gt;
+    &lt;!--弹窗部分 --&gt;
+    &lt;AvatarModal
+      class=&quot;avtar-modal modal-zIndex&quot;
+      ref=&quot;Avatar&quot;
+      v-if=&quot;showModalType === &#39;Avatar&#39;&quot;
+      @closeModal=&quot;handleCloseModal&quot;
+      @removeEventPageClick=&quot;removeEventPageClick&quot;
+      @addEventPageClick=&quot;addEventPageClick&quot;
+    /&gt;
+    &lt;ShareModal
+      class=&quot;share-modal modal-zIndex&quot;
+      ref=&quot;Share&quot;
+      v-if=&quot;showModalType === &#39;Share&#39;&quot;
+      @closeModal=&quot;handleCloseModal&quot;
+      @removeEventPageClick=&quot;removeEventPageClick&quot;
+      @addEventPageClick=&quot;addEventPageClick&quot;
+    /&gt;
+    &lt;CompanySelectModal
+      class=&quot;company-select-modal&quot;
+      ref=&quot;Company&quot;
+      v-if=&quot;showModalType === &#39;Company&#39;&quot;
+    /&gt;
+    &lt;SearchModal
+      class=&quot;search-modal modal-zIndex&quot;
+      ref=&quot;Search&quot;
+      v-if=&quot;showModalType === &#39;Search&#39;&quot;
+    /&gt;
+    &lt;MessageModal
+      class=&quot;message-modal modal-zIndex&quot;
+      ref=&quot;Message&quot;
+      v-if=&quot;showModalType === &#39;Message&#39;&quot;
+      @closeModal=&quot;handleCloseModal&quot;
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { Navbar, AppMain, TagsView, HeadNavbar } from &#39;./components&#39;
+import ResizeMixin from &#39;./mixin/ResizeHandler&#39;
+import AvatarModal from &#39;./components/ModalComponents/AvatarModal.vue&#39;
+import CompanySelectModal from &#39;./components/ModalComponents/CompanySelectModal.vue&#39;
+import SearchModal from &#39;./components/ModalComponents/SearchModal.vue&#39;
+import MessageModal from &#39;./components/ModalComponents/MessageModal.vue&#39;
+import ShareModal from &#39;./components/ModalComponents/ShareModal.vue&#39;
+
+export default {
+  name: &#39;Layout&#39;,
+  components: {
+    Navbar,
+    AppMain,
+    TagsView,
+    HeadNavbar,
+    AvatarModal,
+    CompanySelectModal,
+    SearchModal,
+    MessageModal,
+    ShareModal,
+  },
+  mixins: [ResizeMixin],
+  data() {
+    return {
+      showModalType: &#39;&#39;, // 控制弹框的显示类型
+    }
+  },
+  computed: {
+    sidebar() {
+      return this.$store.state.app.sidebar
+    },
+    device() {
+      return this.$store.state.app.device
+    },
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+        withoutAnimation: this.sidebar.withoutAnimation,
+        mobile: this.device === &#39;mobile&#39;,
+      }
+    },
+  },
+  beforeDestroy() {
+    document.removeEventListener(&#39;click&#39;, this.bodyCloseModal)
+  },
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch(&#39;closeSideBar&#39;, {
+        withoutAnimation: false,
+      })
+    },
+    handleAvatarClick() {
+      this.isShowModal(&#39;Avatar&#39;)
+    },
+    handleCompanySeclect() {
+      this.isShowModal(&#39;Company&#39;)
+    },
+    handleSearchInputChange() {
+      this.isShowModal(&#39;Search&#39;)
+    },
+    handleMessageClick() {
+      this.isShowModal(&#39;Message&#39;)
+    },
+    handleShareClick() {
+      this.isShowModal(&#39;Share&#39;)
+    },
+    // 控制弹窗显隐
+    isShowModal(type) {
+      // 移除页面监听事件(防止用户通过点击 btn 产生 bug)
+      this.removeEventPageClick()
+      if (this.showModalType === type) {
+        this.showModalType = &#39;&#39;
+      } else {
+        this.showModalType = type
+      }
+      // 触发监听
+      this.addEventPageClick()
+    },
+    // 触发页面监听
+    addEventPageClick() {
+      setTimeout(() =&gt; {
+        document.addEventListener(&#39;click&#39;, this.bodyCloseModal)
+      }, 100)
+    },
+    // 移除页面监听
+    removeEventPageClick() {
+      document.removeEventListener(&#39;click&#39;, this.bodyCloseModal)
+    },
+    // 点击外部区域关闭
+    bodyCloseModal(e) {
+      let self = this
+      if (
+        this.showModalType &amp;&amp;
+        this.$refs[this.showModalType] &amp;&amp;
+        !this.$refs[this.showModalType].$el.contains(e.target)
+      ) {
+        if (self.showModalType) {
+          self.showModalType = &#39;&#39;
+          self.removeEventPageClick()
+        }
+      }
+    },
+    // 主动关闭
+    handleCloseModal() {
+      this.showModalType = &#39;&#39;
+    },
+  },
+}
+&lt;/script&gt;
+
+&lt;style rel=&quot;stylesheet/scss&quot; lang=&quot;scss&quot; scoped&gt;
+  @import &#39;~@/styles/mixin.scss&#39;;
+
+  .app-wrapper {
+    @include clearfix;
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    &amp;.mobile.openSidebar {
+      position: fixed;
+      top: 0;
+    }
+  }
+
+  .drawer-bg {
+    background: #000;
+    opacity: 0.3;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+  }
+
+  .modal-zIndex {
+    z-index: 2000;
+  }
+
+  .avtar-modal {
+    position: fixed;
+    right: 5PX;
+    top: 60PX;
+  }
+
+  .company-select-modal {
+    position: fixed;
+    right: 196PX;
+    top: 60PX;
+  }
+
+  .search-modal {
+    position: fixed;
+    right: 406PX;
+    top: 60PX;
+  }
+
+  .message-modal {
+    position: fixed;
+    right: 75PX;
+    top: 60PX;
+  }
+
+  .share-modal {
+    position: fixed;
+    right: 126PX;
+    top: 60PX;
+  }
+&lt;/style&gt;</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/js-vue/" title="js,vue">js,vue</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/11/02/mac%E5%AE%89%E8%A3%85mysql%E8%AE%B0%E5%BD%95/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">mac本地安装mysql记录</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/08/04/uniapp%E5%85%BC%E5%AE%B9%E4%B8%8D%E5%90%8C%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%8E%AF%E5%A2%83%E5%86%99%E6%B3%95/">
+                <span class="nav-default">uniapp兼容不同小程序环境写法</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'NavBar 顶部弹窗点击弹窗外部区域关闭弹窗实现';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

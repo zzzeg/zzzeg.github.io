@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>EM6-ECMAscript6一些记录</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.xml',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">EM6-ECMAscript6一些记录</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-07-27</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Var、Let、Const的区别"><span class="toc-text">Var、Let、Const的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#var"><span class="toc-text">var</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Let"><span class="toc-text">Let</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Const"><span class="toc-text">Const</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>记录一些es6相比之前的变化</p>
+<a id="more"></a>
+
+<h4 id="Var、Let、Const的区别"><a href="#Var、Let、Const的区别" class="headerlink" title="Var、Let、Const的区别"></a>Var、Let、Const的区别</h4><h5 id="var"><a href="#var" class="headerlink" title="var"></a>var</h5><p>1、声明的是全局变量，也是顶层变量，在ES5中，顶层对象（在浏览器中=window对象，在node环境中=global对象）=全局变量</p>
+<pre><code>var a = 1;
+console.log(window.a) //等价</code></pre><p>2、存在变量提升的问题</p>
+<pre><code>console.log(a)     // undefined
+var a = 20
+=&gt;
+var a
+console.log(a)
+a = 20</code></pre><p>3、可以进行多次重复声明，后声明的变量覆盖前面声明的变量</p>
+<pre><code>var a = 20
+var a = 30
+console.log(a) //30</code></pre><p>4、函数内部使用var声明变量是局部的，不用var是全局的</p>
+<pre><code>var a = 20
+function changeA () {
+    a = 30
+}
+changeA()
+console.log(a)    //30</code></pre><h5 id="Let"><a href="#Let" class="headerlink" title="Let"></a>Let</h5><p>1、ES6新增，声明变量，类似Var，但声明的变量只在let所在的代码块内生效</p>
+<pre><code>{
+    let a = 20
+}
+console.log(a) //a is not defined
+
+var a = 123    //只要块级作用域内存在let声明的变量，这个变量就不再受外部的影响
+if (true) {
+    a = &quot;abc&quot; //报错referenceError 
+    let a
+}</code></pre><p>2、不存在变量提升问题</p>
+<pre><code>console.log(a) //报错referenceError  can&#39;t access &#39;a&#39; before initailization
+let a = 20</code></pre><p>3、不能重复声明（除非在不同得作用域）</p>
+<pre><code>let a = 30
+let a = 20 // Indentifier &#39;a&#39; has already been declared
+
+function (arg) {
+    let arg // Indentifier &#39;a&#39; has already been declared
+}
+//以下可以通过
+let a = 20
+{
+    let b = 30
+}</code></pre><h5 id="Const"><a href="#Const" class="headerlink" title="Const"></a>Const</h5><p>const 声明一个只读的、必须立即初始化的常量，且声明后不能改变其地址的值(复杂类型数据{}，保存指针的结构不变，还是可以修改)，若与let或var重复声明会报错</p>
+<pre><code>const a = 1
+a = 3 //Assignment to constant variable
+
+const a; //syntaxError:Missing initializer in const declaration
+
+var a = 20
+let b = 20
+const a = 30    //报错
+const b = 30     //报错
+
+const foo = {}
+foo.prop = &quot;123&quot; //不报错，且保存成功
+
+foo = {} //TypeError：&#39;foo is readonly&#39; </code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/ES6-js/" title="ES6,js">ES6,js</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/07/27/JavaScript%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">javscript数组去重</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/07/27/es6%20%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%20find%E3%80%81%20filter%E3%80%81map%E3%80%81some%E3%80%81every%20%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                <span class="nav-default">find、 filter、map、some、every 之间的区别</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2025
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'EM6-ECMAscript6一些记录';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

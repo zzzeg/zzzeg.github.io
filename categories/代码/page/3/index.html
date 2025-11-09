@@ -160,6 +160,168 @@ var CONFIG = {
         
 			<article class="post-abstract">
 				<div class="post-title">
+					<h2><a class="post-title-link" href="/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/">Vue里push方法的视图不更新</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2019-04-03</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>在js里面写的xxx[‘n’] = []，触发push后，视图没及时更新  </p>
+<pre><code>that.formData\[&#39;sampleList&#39;\] = \[\]  // 无效的响应式属性创建方式  
+that.formData.sampleList.push(n)  // push后视图不会更新  </code></pre><p>查了一番，是由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除，得用set去创建新的响应式属性：  </p>
+<pre><code>that.$set(that.formData, &#39;sampleList&#39;, \[\])  
+that.formData.sampleList.push(n)  </code></pre>
+						<div class="read-more">
+							<a href="/2019/04/03/Vue%E9%87%8Cpush%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2018/11/28/Hexo%E5%8A%A8%E6%80%81%E4%B8%AA%E6%80%A7%E6%A0%87%E9%A2%98/">Hexo动态个性标题</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2018-11-28</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>装完乱七八糟的东西之后，发现网站title一直是同一个内容，翻到模版<code>head.ejs</code>里，当前配置的title改为  </p>
+<pre><code>&lt;title&gt;&lt;%= page.title ? page.title : config.title %&gt;&lt;/title&gt;  </code></pre><p>即可有动态title</p>
+						<div class="read-more">
+							<a href="/2018/11/28/Hexo%E5%8A%A8%E6%80%81%E4%B8%AA%E6%80%A7%E6%A0%87%E9%A2%98/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2018/11/23/js%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E6%9F%90%E4%B8%AA%E5%80%BC%E5%AD%98%E5%9C%A8/">js判断数组中是否有某个值存在</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2018-11-23</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>时常用到一些循环判断对比，想的最多的是for循环，后端返回的geneList是有几千条gene一维数组，数据结构为<code>list:[gene1,gene2,gene3,…]</code>，添加功能时不愿意改结构，response里增加了个<code>list1:[gene2,gene8]</code>这样的两对数据，进行循环对比，使同时存在于数组1和数组2数据的加上特殊颜色标识，for循环嵌套在dom里走不通，要实现得用钩子函数重构数组<br>
+						<div class="read-more">
+							<a href="/2018/11/23/js%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E6%9F%90%E4%B8%AA%E5%80%BC%E5%AD%98%E5%9C%A8/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/">hexo里的code代码高亮</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2018-11-22</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>Hexo博客弄好之后，代码高亮显得太单调了，以前折腾wordpress的时候用param.js不太适合这个，多方查看找到个<a href="https://github.com/google/code-prettify" target="_blank" rel="noopener">prettify</a> 插件，尝试了一下之后效果还不错。</p>
+<p>先关闭Hexo的代码高亮功能，修改根目录下的配置文件<code>_config.yml</code>  </p>
+<pre><code>highlight:  
+ enable: false  
+ line_number: false   
+ auto_detect: false  
+ tab_replace:  </code></pre>
+						<div class="read-more">
+							<a href="/2018/11/22/hexo%E9%87%8C%E7%9A%84code%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2018/11/22/hexo%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87Favicon/">hexo设置网站图标Favicon</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2018-11-22</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>网站发布后总是报错favicon.ico 403 not found. 坑很多啊！</p>
+<h4 id="生成favicon"><a href="#生成favicon" class="headerlink" title="生成favicon"></a><a href="#生成favicon" title="生成favicon"></a>生成favicon</h4><p>自行ps一个正方形的图标，网页显示的尺寸是16×16，做的时候最好是用32×32，可以<a href="http://www.faviconico.org/" target="_blank" rel="noopener">在线生成ico图标</a>。  </p>
+						<div class="read-more">
+							<a href="/2018/11/22/hexo%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87Favicon/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
 					<h2><a class="post-title-link" href="/2018/11/21/%E5%86%99%E5%9C%A8vue%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">写在vue中简单的随机验证码</a></h2>
 				</div>
 				<div class="post-meta">
@@ -253,159 +415,6 @@ git config --global http.proxy http://127.0.0.1:7890
 # 取消代理
 git config --global --unset http.proxy
 git config --global --unset https.proxy</code></pre>
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/">json数组的增删改操作</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2018-05-24</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<h4 id="1、数组的创建"><a href="#1、数组的创建" class="headerlink" title="1、数组的创建"></a><a href="#1、数组的创建" title="1、数组的创建"></a>1、数组的创建</h4><pre><code>var arrayObj = new Array();　//创建一个数组  
-var arrayObj = new Array(\[size\]);　//创建一个数组并指定长度，注意不是上限，是长度  
-var arrayObj = new Array(\[element0\[, element1\[, ...\[, elementN\]\]\]\]);　创建一个数组并赋值  </code></pre>
-						<div class="read-more">
-							<a href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/" class="read-more-link">
-								阅读全文
-								<i class="iconfont icon-readmore"></i>
-							</a>
-						</div>
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">elementui的click事件绑定无效解决方案</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2018-03-27</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>做步骤条的时候，加click没生效，想点击步骤直接跳转<br><img src="https://image-static.segmentfault.com/418/389/4183891061-59967d2472d13_articlex" alt=""><br>图片来自<a href="https://segmentfault.com/q/1010000010731358" target="_blank" rel="noopener">segmentfault</a></p>
-						<div class="read-more">
-							<a href="/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="read-more-link">
-								阅读全文
-								<i class="iconfont icon-readmore"></i>
-							</a>
-						</div>
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/">Vue-quill-editor样式错乱</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2018-03-08</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>2018年1月19日，项目使用<br>加入富文本编辑器（quillEditor），出现如下问题.</p>
-<p><img src="https://sfault-image.b0.upaiyun.com/373/732/3737323270-5a3bb77255b35_articlex" alt=""></p>
-<p>查询一圈，是因为这玩意儿升级了，css要单独去引用
-						<div class="read-more">
-							<a href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/" class="read-more-link">
-								阅读全文
-								<i class="iconfont icon-readmore"></i>
-							</a>
-						</div>
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/">Vue快速搭建</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2017-11-08</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>截止到这篇文章发布，搭建开发环境用到的组件、工具：<a href="http://lib.csdn.net/base/nodejs" target="_blank" rel="noopener" title="Node.js知识库">Node.js</a> 8.2.1、npm 5.3.0、webpack 2.6.1、sublime3<br>
-						<div class="read-more">
-							<a href="/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/" class="read-more-link">
-								阅读全文
-								<i class="iconfont icon-readmore"></i>
-							</a>
-						</div>
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2016/12/05/textarea%E8%87%AA%E5%8A%A8%E4%BC%B8%E7%BC%A9%E6%A1%86/">textarea自动伸缩框</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2016-12-05</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>在做表单配置时，项目遇到需要写一个回复月工作内容的页面，设计师给的初始界面就是一个只有一行的框。后台要求，必须用textarea，然后当时就想这个交互该怎么实现比较好，然后想起了新浪微博的做法：点击评论，默认显示一行，当输入的文字超过一行或者输入Enter时，输入框的高度会随着改变，直到输入完毕。顿时觉得这个细节做得挺不错的，可以效仿下。</p>
-<pre><code>&lt;textarea name=&quot;textarea&quot; id=&quot;textarea&quot; onpropertychange=&quot;this.style.height = this.scrollHeight + &#39;px&#39;;&quot;   
-oninput=&quot;this.style.height=&#39;auto&#39;;this.style.height = this.scrollHeight + &#39;px&#39;&quot; style=&quot;overflow-Y: hidden;&quot;&gt;  
-&lt;/textarea&gt;  </code></pre><p>实际效果测试：<br><textarea name="textarea" id="textarea" onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height='auto';this.style.height = this.scrollHeight + 'px'" style="overflow-Y: hidden;"></textarea></p>
-<h4 id="拓展延伸"><a href="#拓展延伸" class="headerlink" title="拓展延伸"></a><a href="#拓展延伸" title="拓展延伸"></a>拓展延伸</h4><p><a href="http://www.cnblogs.com/yuteng/articles/1894578.html" target="_blank" rel="noopener">1、height、clientHeight、scrollHeight、offsetHeight的区别</a><br><a href="https://yq.aliyun.com/articles/20672" target="_blank" rel="noopener">2、textarea其他两种方式实现高度自适应</a></p>
-
 					
 				</div>
 			</article>
