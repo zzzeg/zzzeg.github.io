@@ -322,7 +322,7 @@ a.search-result-title {
       .post-abstract .post-content a:hover, .post-whole .post-content a:hover {
         text-decoration: underline; }
     .post-abstract .post-content ul, .post-whole .post-content ul {
-      padding-left: 0; }
+      padding-left: 20px; }
 
 article.post-abstract:after {
   position: absolute;

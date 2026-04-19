@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
 	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 <body>
 <header class="header">
     <div class="header-inner">
@@ -93,7 +93,7 @@
 </div>
 <script>
 var CONFIG = {
- path: 'search.xml',
+ path: 'search.json',
  root: '/',
  localsearch:{
    	top_n_per_article: 1,
@@ -177,9 +177,9 @@ var CONFIG = {
  {i}  
 &lt;/span&gt;  </code></pre><p>如果用for循环比对，很麻烦，要多增加很多代码量，js里有个array.indexOf(‘a’)，来查询字符串对应索引  </p>
 <pre><code>例子：  
-var array = \[1,2,3,4\];  
-alert(array.indexOf(3)); // 2   得到索引  
-alert(array.indexOf(5)); // -1  </code></pre><p>indexOf的代码：  </p>
+var array = [1,2,3,4];  
+alert(array.indexOf(3)); // 2    得到索引  
+alert(array.indexOf(5)); // -1</code></pre><p>indexOf的代码：  </p>
 <pre><code>&lt;span v-for=&quot;(i, index) in arrayA&quot; :key=&quot;index&quot;&gt;  
  &lt;span :class=&quot;{&#39;color_red&#39;: arrayB.indexOf(i) != -1, &#39;&#39;: arrayB.indexOf(i) == -1}&quot;&gt;{{ i }}&lt;/span&gt;  
  or   
@@ -190,16 +190,16 @@ alert(array.indexOf(5)); // -1  </code></pre><p>indexOf的代码：  </p>
 &lt;/span&gt;  </code></pre><p>script：  </p>
 <pre><code>filters: {  
  hasName (data, param) {  
- let isOK = false  
- for (let i in param) {  
- if (param\[i\] == data) {  
- isOK = true  
- break  
- }  
- }  
- console.log(isOK)  
- return isOK  
- }  
+     let isOK = false  
+     for (let i in param) {  
+         if (param\[i\] == data) {  
+             isOK = true
+             break
+         }
+     }
+        console.log(isOK)  
+        return isOK  
+    }  
 }  </code></pre>
         </div>
         
@@ -246,7 +246,7 @@ alert(array.indexOf(5)); // -1  </code></pre><p>indexOf的代码：  </p>
             &copy;
             
             
-            2025
+            2026
             &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
             <a target="_blank" href="https://github.com/iJinxin">zeg</a>
         </p>

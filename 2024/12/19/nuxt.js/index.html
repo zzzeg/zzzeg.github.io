@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>Nuxt.js部分介绍</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.json',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">Nuxt.js部分介绍</h2>
+            <div class="post-meta">
+                <span class="post-time">2024-12-19</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装-创建项目"><span class="toc-text">1.安装 创建项目</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#基础：确保安装了-npx（npx-在-NPM-版本-5-2-0-默认安装了）-查看本机有没有npx"><span class="toc-text">基础：确保安装了 npx（npx 在 NPM 版本 5.2.0 默认安装了）,查看本机有没有npx</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#如果有npx，可以cmd进到指定目录后-直接命令基于nuxt创建项目"><span class="toc-text">如果有npx，可以cmd进到指定目录后 直接命令基于nuxt创建项目</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-项目目录结构及介绍"><span class="toc-text">1. 项目目录结构及介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2。启动文件、配置文件："><span class="toc-text">2。启动文件、配置文件：</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>为什么要使用Nuxt.js？因为采用vue。js开发的应用系统SEO不友好，需要解决SEO的问题，”垃”</p>
+<a id="more"></a>
+<h3 id="1-安装-创建项目"><a href="#1-安装-创建项目" class="headerlink" title="1.安装 创建项目"></a>1.安装 创建项目</h3><h5 id="基础：确保安装了-npx（npx-在-NPM-版本-5-2-0-默认安装了）-查看本机有没有npx"><a href="#基础：确保安装了-npx（npx-在-NPM-版本-5-2-0-默认安装了）-查看本机有没有npx" class="headerlink" title="基础：确保安装了 npx（npx 在 NPM 版本 5.2.0 默认安装了）,查看本机有没有npx"></a>基础：确保安装了 npx（npx 在 NPM 版本 5.2.0 默认安装了）,查看本机有没有npx</h5><pre><code class="bash">npm -v
+npx -v</code></pre>
+<h5 id="如果有npx，可以cmd进到指定目录后-直接命令基于nuxt创建项目"><a href="#如果有npx，可以cmd进到指定目录后-直接命令基于nuxt创建项目" class="headerlink" title="如果有npx，可以cmd进到指定目录后 直接命令基于nuxt创建项目"></a>如果有<code>npx</code>，可以cmd进到指定目录后 直接命令基于nuxt创建项目</h5><pre><code>npx nuxi init 项目名            
+// 项目架构：基于 Nuxt 3 + 的架构（Vite 构建、内置Nitro引擎、组合式 API 优先）
+// 内置引擎：内置 Nitro 引擎（支持跨平台部署、服务端 API、混合渲染优化）
+// 模板选择：提供极简模板（minimal）、内容驱动模板（content）等轻量模板，无冗余配置
+// 依赖安装：仅安装 Nuxt 3 + 核心必要依赖，无额外冗余依赖，后续可按需集成
+// 平台部署：支持静态服务器、Node.js、云函数、Vercel 等多种部署方式，零配置适配
+// TypeScript支持：原生内置 TypeScript 支持
+
+npx create-nuxt-app &lt;项目名&gt;      
+// 项目架构：基于 Nuxt 2 的架构，旧版，已废弃，但实测仍旧可用
+// 构建工具：仅支持 Webpack 4/5
+// 内置引擎：无 Nitro 引擎、自动安装大量配套依赖（如 UI 库、Vuex、Eslint 等），依赖体积较大
+// 模板选择：提供丰富的交互式配置模板（选择 UI 库、状态管理、测试工具等），配置繁琐但开箱即用
+// 依赖安装: 交互式选择后自动安装大量配套依赖（如 UI 库、Vuex、Eslint 等），依赖体积较大
+// 平台部署：仅支持 Node.js 环境部署，其他部署方式需手动配置
+// TypeScript支持：需手动选择并配置 TypeScript，兼容性和类型提示较差</code></pre><p><a href="https://blog.csdn.net/2301_79251107/article/details/132076765" target="_blank" rel="noopener">nuxt.js使用教程，install时报一堆错，暂时看这个…</a></p>
+<h3 id="1-项目目录结构及介绍"><a href="#1-项目目录结构及介绍" class="headerlink" title="1. 项目目录结构及介绍"></a>1. 项目目录结构及介绍</h3><ul>
+<li>assets/: 存放静态资源文件，如图片、样式表等。</li>
+<li>components/: 存放Vue组件文件。</li>
+<li>layouts/: 存放页面布局文件。</li>
+<li>middleware/: 存放中间件文件，用于在页面渲染前执行的逻辑。</li>
+<li>pages/: 存放页面文件，Nuxt.js会根据文件结构自动生成路由。</li>
+<li>plugins/: 存放插件文件，用于扩展Nuxt.js的功能。</li>
+<li>static/: 存放不需要经过Webpack处理的静态文件。</li>
+<li>store/: 存放Vuex状态管理文件。</li>
+<li>nuxt.config.js: Nuxt.js的配置文件。</li>
+<li>package.json: 项目的依赖管理文件。</li>
+<li>README.md: 项目的说明文档。</li>
+<li>yarn.lock: 依赖包的锁定文件。</li>
+</ul>
+<h3 id="2。启动文件、配置文件："><a href="#2。启动文件、配置文件：" class="headerlink" title="2。启动文件、配置文件："></a>2。启动文件、配置文件：</h3><p><code>package.json</code> 文件是Node.js项目的核心配置文件，包含了项目的元数据和依赖包信息。以下是一些关键字段：</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;nuxt-beginners-guide&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;nuxt&quot;,
+    &quot;build&quot;: &quot;nuxt build&quot;,
+    &quot;start&quot;: &quot;nuxt start&quot;,
+    &quot;generate&quot;: &quot;nuxt generate&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;nuxt&quot;: &quot;^2.0.0&quot;
+  }
+}</code></pre>
+<p>启动命令：</p>
+<ul>
+<li>开发模式: npm run dev 或 yarn dev</li>
+<li>构建项目: npm run build 或 yarn build</li>
+<li>启动生产服务器: npm run start 或 yarn start</li>
+<li>生成静态站点: npm run generate 或 yarn generate</li>
+</ul>
+<p><code>nuxt.config.js</code>是Nuxt.js的核心配置文件，用于配置项目的各种选项。以下是一些常见的配置项：</p>
+<pre><code class="javascript">export default {
+  // 全局页面头部配置  配置页面的头部信息，如标题、元数据等。
+  head: {
+    title: &#39;Nuxt.js 初学者指南&#39;,
+    meta: [
+      { charset: &#39;utf-8&#39; },
+      { name: &#39;viewport&#39;, content: &#39;width=device-width, initial-scale=1&#39; }
+    ],
+    link: [
+      { rel: &#39;icon&#39;, type: &#39;image/x-icon&#39;, href: &#39;/favicon.ico&#39; }
+    ]
+  },
+
+  // 配置全局CSS文件
+  css: [
+    &#39;~/assets/css/main.css&#39;
+  ],
+
+  // 配置项目中使用的插件。
+  plugins: [
+    &#39;~/plugins/vue-notifications&#39;
+  ],
+
+  // 配置Nuxt.js模块
+  modules: [
+    &#39;@nuxtjs/axios&#39;
+  ],
+
+  // 配置Axios模块的选项。
+  axios: {
+    baseURL: &#39;https://api.example.com&#39;
+  },
+
+  // 配置Webpack构建选项。
+  build: {
+    extend(config, ctx) {
+      // 自定义Webpack配置
+    }
+  }
+}</code></pre>
+
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/07/27/es6%20%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%20find%E3%80%81%20filter%E3%80%81map%E3%80%81some%E3%80%81every%20%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">find、 filter、map、some、every 之间的区别</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2024/01/03/zk__%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">
+                <span class="nav-default">设计原理</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2026
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'Nuxt.js部分介绍';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

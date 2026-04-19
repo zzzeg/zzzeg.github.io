@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>node版本管理工具nvm、volta、fnm</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.json',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">node版本管理工具nvm、volta、fnm</h2>
+            <div class="post-meta">
+                <span class="post-time">2026-04-12</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nvm"><span class="toc-text">nvm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-先说结论：日常好用，-lt-自动切换版本-gt-这个功能不好用，不推荐使用，半自动，不如不折腾，相比之下，每次nvm-use还省点心"><span class="toc-text">使用     先说结论：日常好用，&lt;自动切换版本&gt;这个功能不好用，不推荐使用，半自动，不如不折腾，相比之下，每次nvm use还省点心</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#volta"><span class="toc-text">volta</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-1"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载"><span class="toc-text">卸载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fnm"><span class="toc-text">fnm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#windows安装-卸载"><span class="toc-text">windows安装&#x2F;卸载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-1"><span class="toc-text">使用</span></a></li></ol></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>nvm、volta、fnm都是node版本管理工具，用于管理多个node版本，方便开发。</p>
+<a id="more"></a>
+
+<p>站在简洁、省事、好用、快捷的角度上，推荐使用：</p>
+<ul>
+<li>手动包管理：nvm</li>
+<li>多项目自动切换node版本，推荐volta</li>
+</ul>
+<h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><ul>
+<li>上一代node版本管理工具，用来切换node版本</li>
+<li>相对新的版本管理工具较慢：虽然nvm功能强大，但由于其依赖于源代码编译和安装，整体性能和切换速度相对较慢（实际开发感觉不到，切换就一句命令的事，当然，如果电脑太烂…可能能感觉到）。</li>
+<li>Node 绑死 npm版本<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4></li>
+</ul>
+<pre><code class="bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</code></pre>
+<h4 id="使用-先说结论：日常好用，-lt-自动切换版本-gt-这个功能不好用，不推荐使用，半自动，不如不折腾，相比之下，每次nvm-use还省点心"><a href="#使用-先说结论：日常好用，-lt-自动切换版本-gt-这个功能不好用，不推荐使用，半自动，不如不折腾，相比之下，每次nvm-use还省点心" class="headerlink" title="使用     先说结论：日常好用，&lt;自动切换版本&gt;这个功能不好用，不推荐使用，半自动，不如不折腾，相比之下，每次nvm use还省点心"></a>使用     先说结论：日常好用，&lt;自动切换版本&gt;这个功能不好用，不推荐使用，半自动，不如不折腾，相比之下，每次nvm use还省点心</h4><p>项目级别管理：<br>1、在项目根目录下，可以通过命令创建.nvmrc文件，并指定node版本号</p>
+<pre><code class="bash">echo &quot;12.16.0&quot; &gt; .nvmrc</code></pre>
+<p>也可以自己手动创建一个.nvmrc的文件，内容只填写node的版本号，比如12.16.0</p>
+<p>2、让 NVM 进入目录自动切换（关键！）<br>打开 PowerShell，执行下面这行命令：</p>
+<pre><code>notepad $profile</code></pre><p>弹出文件，把下面代码粘贴进去：</p>
+<pre><code>Function Set-NvmVersion {
+  if (Test-Path &quot;.nvmrc&quot;) {
+    $version = Get-Content &quot;.nvmrc&quot;
+    nvm use $version
+  }
+}
+Register-EngineEvent PowerShell.Exiting -Action {Set-Location $HOME; nvm use default} | Out-Null
+Register-EngineEvent LocationChanged -Action {Set-NvmVersion} | Out-Null</code></pre><p>3、关闭所有终端，重新打开！进入项目   </p>
+<pre><code>cd d:\git\hexoblog</code></pre><p>会看到如下提示（大概率看不到，windows太容易报错了，百度已死，报错复制到豆包，大傻子AI会瞎出馊主意，这类问题放弃问豆包，deepsuck、元宝，一个不如一个，遇到报错可以直接放弃这种方式，问国外的AI or 直接换volta）：</p>
+<pre><code>Now using node v12.16.0</code></pre><pre><code class="bash"># 安装node版本
+nvm install 12.16.0
+
+# 切换node版本
+nvm use 12.16.0
+
+# 查看已安装的node版本
+nvm ls
+
+# 删除node版本
+nvm uninstall 12.16.0</code></pre>
+<h2 id="volta"><a href="#volta" class="headerlink" title="volta"></a>volta</h2><p>只要是从命令行进入的项目，一进入项目路径，node版本就会自动切换，非常方便，这就是我想要的功能</p>
+<ul>
+<li>Volta 不是全局 / 会话级切换（像 nvm 那样），而是按命令所在目录（cwd）动态代理，所以同时启动两个项目，Node 版本是完全独立隔离的、互不干扰。nvm是全局替换，只能启动支持同版本node的项目</li>
+<li>性能优化：Volta的设计目标之一是提高性能，它使用轻量级的二进制分发机制，下载方便、安装快。</li>
+<li>快速切换：Volta旨在简化开发人员的工作流程，减少配置和维护的复杂性，由于其内部机制，版本切换非常迅速。</li>
+<li>一致性：无论是在本地开发还是CI/CD环境中，Volta都能提供一致的Node.js版本管理体验。</li>
+<li>跨平台支持：Volta原生支持Linux、macOS和Windows，具有较好的跨平台兼容性。</li>
+<li>无须sudo权限：所有操作都不需要管理员权限，避免了潜在的安全风险。</li>
+<li>Yarn和npm管理：Volta 的一个重要特性是可以在同一个 Node.js 版本下自由切换 npm、yarn 和 pnpm 的版本，这对于需要在不同包管理器之间切换的项目非常有用。</li>
+</ul>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><p>windows 打开powershell，输入以下命令：（要关闭防火墙，不然会安装失败 ）</p>
+<pre><code class="bash">winget install Volta.Volta</code></pre>
+<p>如果提示没有winget，也可以用irm</p>
+<pre><code>irm https://volta.sh/install-windows | iex</code></pre><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>项目级别管理，package.json 中添加volta字段</p>
+<pre><code class="json">{
+  &quot;volta&quot;: {
+    &quot;node&quot;: &quot;12.16.0&quot;
+  }
+}</code></pre>
+<pre><code class="bash"># 安装node版本
+volta install node@12.16.0
+
+# 切换node版本
+volta pin node@12.16.0
+
+# 查看已安装的node版本
+volta list node  =  nvm ls(稍微比nvm费劲一点，要加node，因为volta还能管理npm、yarn、pnpm包，要做区分)
+
+# 删除node版本
+volta uninstall node@12.16.0</code></pre>
+<p>注意：<br>如果同时安装了volta和nvm，并且设置了自动切换，就会出现冲突，因为它们都试图管理node版本。只设置一个的自动切换，就没事。 </p>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><p>极小概率对老项目不是完全兼容，有个node12的老项目，用volta切换node版本，启动会报错，试过删除node_moudules和package-lock.json了，依旧报错。<br>把volta卸载了，用nvm切换node版本，就没事了，然后又重装volta，又不报错了…代码以一种奇怪的方式运行了起来.gif<br>卸载volta的命令</p>
+<pre><code>winget uninstall Volta.Volta</code></pre><h2 id="fnm"><a href="#fnm" class="headerlink" title="fnm"></a>fnm</h2><p>fnm = 说是nvm升级版，</p>
+<ul>
+<li>配置繁琐，powershell里的提示乱码，安装、配置、卸载都麻烦</li>
+<li>整体体验：<ul>
+<li>甚至不如nvm用起来简洁，虽然操作命令差不多，但整体体验还不如nvm。大家都那么忙，最好是安装完直接生效，一个包管理+切换功能，整什么一堆花活配置这配置那的。</li>
+<li>fnm这个玩意儿可以说是一坨大便 </li>
+</ul>
+</li>
+</ul>
+<h4 id="windows安装-卸载"><a href="#windows安装-卸载" class="headerlink" title="windows安装/卸载"></a>windows安装/卸载</h4><pre><code class="bash">//安装
+winget install Schniz.fnm
+//卸载
+winget install Schniz.fnm</code></pre>
+<p><a href="https://blog.csdn.net/gitblog_00388/article/details/151487525" target="_blank" rel="noopener">卸载清理残留参考</a></p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><pre><code class="bash"># 安装node版本
+fnm install 12.16.0
+
+# 切换node版本
+fnm use 12.16.0
+
+# 查看已安装的node版本
+fnm list
+
+# 删除node版本
+fnm uninstall 12.16.0</code></pre>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/nodejs/" title="nodejs">nodejs</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2026/04/13/vue3%20%E6%95%99%E7%A8%8B01/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">vue3 教程 01 - 创建项目</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/12/18/JavaScript%E5%85%BC%E5%AE%B9%E6%80%A7%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%BF%85%E9%A1%BB%E4%BD%BF%E7%94%A8es5-shim%EF%BC%9F/">
+                <span class="nav-default">JavaScript,IE8浏览器兼容性终极解决方案：为什么你的项目必须使用es5-shim？</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2026
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'node版本管理工具nvm、volta、fnm';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

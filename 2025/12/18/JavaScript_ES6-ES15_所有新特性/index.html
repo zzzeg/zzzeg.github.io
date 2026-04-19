@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>JavaScript ES 版本特性（ES6-ES15）</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.json',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">JavaScript ES 版本特性（ES6-ES15）</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-12-18</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ES6-ECMAScript-2015-现代-JavaScript-的起点"><span class="toc-text">1. ES6 (ECMAScript 2015): 现代 JavaScript 的起点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-let-和-const"><span class="toc-text">1.1 let 和 const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-解构赋值"><span class="toc-text">1.2 解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-模板字符串"><span class="toc-text">1.3 模板字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-箭头函数"><span class="toc-text">1.4 箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-类"><span class="toc-text">1.5 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-模块系统"><span class="toc-text">1.6 模块系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-Promises"><span class="toc-text">1.7 Promises</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-Symbols"><span class="toc-text">1.8 Symbols</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-Array-from"><span class="toc-text">1.9 Array.from()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-Map-和-Set-citeturn8view1"><span class="toc-text">1.10 Map 和 Set citeturn8view1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-Array-of-citeturn8view1"><span class="toc-text">1.11 Array.of() citeturn8view1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-生成器函数-function-citeturn8view1"><span class="toc-text">1.12 生成器函数 function*() {} citeturn8view1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-13-默认参数和剩余参数-citeturn8view2"><span class="toc-text">1.13 默认参数和剩余参数 citeturn8view2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-String-prototype-repeat-citeturn8view2"><span class="toc-text">1.14 String.prototype.repeat() citeturn8view2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ES7-ECMAScript-2016-数学运算的提升-citeturn8view2"><span class="toc-text">2. ES7 (ECMAScript 2016): 数学运算的提升 citeturn8view2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-指数运算符"><span class="toc-text">2.1 指数运算符 (**)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ES8-ECMAScript-2017-异步编程的革命-citeturn8view2"><span class="toc-text">3. ES8 (ECMAScript 2017): 异步编程的革命 citeturn8view2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-async-await"><span class="toc-text">3.1 async&#x2F;await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-扩展运算符-…"><span class="toc-text">3.2 扩展运算符 (…)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Array-prototype-includes"><span class="toc-text">3.3 Array.prototype.includes()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-padStart-padEnd"><span class="toc-text">3.4 padStart &#x2F; padEnd</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ES9-ECMAScript-2018-异步迭代的引入-citeturn8view2"><span class="toc-text">4. ES9 (ECMAScript 2018): 异步迭代的引入 citeturn8view2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-异步迭代-async-iterators"><span class="toc-text">4.1 异步迭代 (async iterators)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-trimLeft-trimRight"><span class="toc-text">4.2 trimLeft &#x2F; trimRight</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-ES10-ECMAScript-2019-数组和字符串的增强-citeturn8view2turn8view3"><span class="toc-text">5. ES10 (ECMAScript 2019): 数组和字符串的增强 citeturn8view2turn8view3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-flat-flatMap"><span class="toc-text">5.1 flat &#x2F; flatMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Array-prototype-flatMap-citeturn8view3"><span class="toc-text">5.2 Array.prototype.flatMap() citeturn8view3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-trimStart-trimEnd-citeturn8view3"><span class="toc-text">5.3 trimStart &#x2F; trimEnd citeturn8view3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-String-prototype-matchAll-citeturn8view3"><span class="toc-text">5.4 String.prototype.matchAll citeturn8view3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-ES11-ECMAScript-2020-高级数据操作-citeturn8view3turn9view0"><span class="toc-text">6. ES11 (ECMAScript 2020): 高级数据操作 citeturn8view3turn9view0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-可选链操作符"><span class="toc-text">6.1 可选链操作符 (?.)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-空值合并运算符"><span class="toc-text">6.2 空值合并运算符 (??)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-at-方法"><span class="toc-text">6.3 .at() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-BigInt-类型"><span class="toc-text">6.4 BigInt 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-1-创建-BigInt"><span class="toc-text">6.4.1 创建 BigInt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-2-BigInt-的基本操作"><span class="toc-text">6.4.2 BigInt 的基本操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-3-注意事项"><span class="toc-text">6.4.3 注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-Promise-allSettled"><span class="toc-text">6.5 Promise.allSettled</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-ES12-ECMAScript-2021-citeturn9view0turn9view3"><span class="toc-text">7. ES12 (ECMAScript 2021) citeturn9view0turn9view3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-String-prototype-replaceAll"><span class="toc-text">7.1 String.prototype.replaceAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-Promise-any-和-AggregateError"><span class="toc-text">7.2 Promise.any 和 AggregateError</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-WeakRef（示例节选）"><span class="toc-text">7.3 WeakRef（示例节选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-逻辑运算符与赋值表达式-amp-amp"><span class="toc-text">7.4 逻辑运算符与赋值表达式 (&amp;&amp;&#x3D;, ||&#x3D;, ??&#x3D;)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-数字分隔符"><span class="toc-text">7.5 数字分隔符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-ES13-ECMAScript-2022-citeturn11view1turn11view2turn11view3"><span class="toc-text">8. ES13 (ECMAScript 2022) citeturn11view1turn11view2turn11view3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-类字段"><span class="toc-text">8.1 类字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-私有方法和字段（-）"><span class="toc-text">8.3 私有方法和字段（#）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-顶层-await（示例）"><span class="toc-text">8.4 顶层 await（示例）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-静态私有字段-方法（示例节选）"><span class="toc-text">8.5 静态私有字段&#x2F;方法（示例节选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-类静态块"><span class="toc-text">8.6 类静态块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-7-检查对象中的私有字段（in）"><span class="toc-text">8.7 检查对象中的私有字段（in）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-9-正则表达式匹配索引（-d）"><span class="toc-text">8.9 正则表达式匹配索引（&#x2F;d）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-10-Object-hasOwn"><span class="toc-text">8.10 Object.hasOwn()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-11-Error-cause"><span class="toc-text">8.11 Error cause</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-12-findLast-findLastIndex（示例节选）"><span class="toc-text">8.12 findLast &#x2F; findLastIndex（示例节选）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-ES14-ECMAScript-2023-citeturn10view0turn10view1turn10view2"><span class="toc-text">9. ES14 (ECMAScript 2023) citeturn10view0turn10view1turn10view2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-Array-prototype-toSorted"><span class="toc-text">9.1 Array.prototype.toSorted</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-Array-prototype-toReversed"><span class="toc-text">9.2 Array.prototype.toReversed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-Array-prototype-with"><span class="toc-text">9.3 Array.prototype.with</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-Array-prototype-toSpliced"><span class="toc-text">9.4 Array.prototype.toSpliced</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-5-shebang（hashbang）支持"><span class="toc-text">9.5 shebang（hashbang）支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-6-Symbol-作为-WeakMap-的键（示例节选）"><span class="toc-text">9.6 Symbol 作为 WeakMap 的键（示例节选）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-ES15-ECMAScript-2024-citeturn10view2turn7view3"><span class="toc-text">10. ES15 (ECMAScript 2024) citeturn10view2turn7view3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-Group-By-分组（示例节选）"><span class="toc-text">10.1 Group By 分组（示例节选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-Math-sign"><span class="toc-text">10.2 Math.sign()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-Promise-withResolvers（说明-示例节选）"><span class="toc-text">10.3 Promise.withResolvers（说明+示例节选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-正则表达式新标志-v（Unicode-Sets）"><span class="toc-text">10.4 正则表达式新标志 &#x2F;v（Unicode Sets）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-ArrayBuffer-SharedArrayBuffer-新能力"><span class="toc-text">10.5 ArrayBuffer &#x2F; SharedArrayBuffer 新能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-6-String-prototype-isWellFormed"><span class="toc-text">10.6 String.prototype.isWellFormed()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-7-String-prototype-toWellFormed"><span class="toc-text">10.7 String.prototype.toWellFormed()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-8-Atomics-waitAsync"><span class="toc-text">10.8 Atomics.waitAsync()</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>自从ES6（ECMAScript 2015）以来，JavaScript作为一门语言经历了前所未有的变革，每年的新版本都带来了令人振奋的新特性和优化，极大地提升了开发者的生产力和代码的可维护性。本文将深入探讨从ES6到ES15（ECMAScript 2024）期间JavaScript的演变历程，旨在为开发者提供一份全面的指南，涵盖语言的关键更新和实用示例。</p>
+<a id="more"></a>
+
+<p><a href="https://blog.csdn.net/to_the_Future/article/details/140653968" target="_blank" rel="noopener">JavaScript的现代进阶：从ES6到ES15看这一篇就够了</a></p>
+<h2 id="1-ES6-ECMAScript-2015-现代-JavaScript-的起点"><a href="#1-ES6-ECMAScript-2015-现代-JavaScript-的起点" class="headerlink" title="1. ES6 (ECMAScript 2015): 现代 JavaScript 的起点"></a>1. ES6 (ECMAScript 2015): 现代 JavaScript 的起点</h2><h3 id="1-1-let-和-const"><a href="#1-1-let-和-const" class="headerlink" title="1.1 let 和 const"></a>1.1 let 和 const</h3><ul>
+<li>let：块级作用域，避免变量提升带来的问题  </li>
+<li>const：不可重新赋值的常量</li>
+</ul>
+<pre><code class="js">let count = 0;
+const PI = 3.14;</code></pre>
+<h3 id="1-2-解构赋值"><a href="#1-2-解构赋值" class="headerlink" title="1.2 解构赋值"></a>1.2 解构赋值</h3><pre><code class="js">const { firstName, lastName } = { firstName: &#39;John&#39;, lastName: &#39;Doe&#39; };
+console.log(firstName, lastName); // John Doe
+const [first, second] = [1, 2];
+console.log(first, second); // 1 2</code></pre>
+<h3 id="1-3-模板字符串"><a href="#1-3-模板字符串" class="headerlink" title="1.3 模板字符串"></a>1.3 模板字符串</h3><pre><code class="js">const name = &#39;Alice&#39;;
+console.log(`Hello, ${name}!`); // Hello, Alice!</code></pre>
+<h3 id="1-4-箭头函数"><a href="#1-4-箭头函数" class="headerlink" title="1.4 箭头函数"></a>1.4 箭头函数</h3><pre><code class="js">const add = (a, b) =&gt; a + b;
+add(1, 2); // 3</code></pre>
+<h3 id="1-5-类"><a href="#1-5-类" class="headerlink" title="1.5 类"></a>1.5 类</h3><pre><code class="js">class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, ${this.name}`);
+  }
+}
+
+const person = new Person(&#39;John&#39;);
+person.greet();</code></pre>
+<h3 id="1-6-模块系统"><a href="#1-6-模块系统" class="headerlink" title="1.6 模块系统"></a>1.6 模块系统</h3><pre><code class="js">// myModule.js
+export const PI = 3.14;
+
+// main.js
+import { PI } from &#39;./myModule.js&#39;;</code></pre>
+<h3 id="1-7-Promises"><a href="#1-7-Promises" class="headerlink" title="1.7 Promises"></a>1.7 Promises</h3><pre><code class="js">const promise = new Promise((resolve) =&gt; {
+  setTimeout(() =&gt; resolve(&#39;Done!&#39;), 1000);
+});
+console.log(promise);</code></pre>
+<h3 id="1-8-Symbols"><a href="#1-8-Symbols" class="headerlink" title="1.8 Symbols"></a>1.8 Symbols</h3><pre><code class="js">const uniqueId = Symbol(&#39;id&#39;);
+console.log(uniqueId);</code></pre>
+<h3 id="1-9-Array-from"><a href="#1-9-Array-from" class="headerlink" title="1.9 Array.from()"></a>1.9 Array.from()</h3><pre><code class="js">const arrayLike = { length: 3, 0: &#39;a&#39;, 1: &#39;b&#39;, 2: &#39;c&#39; };
+const arr = Array.from(arrayLike);
+console.log(arr);</code></pre>
+<h3 id="1-10-Map-和-Set-citeturn8view1"><a href="#1-10-Map-和-Set-citeturn8view1" class="headerlink" title="1.10 Map 和 Set citeturn8view1"></a>1.10 Map 和 Set citeturn8view1</h3><pre><code class="js">const myMap = new Map();
+myMap.set(&#39;key1&#39;, &#39;value1&#39;);
+myMap.set(123, &#39;another value&#39;);
+console.log(myMap.get(&#39;key1&#39;)); // value1
+console.log(myMap.size);        // 2
+
+const mySet = new Set();
+mySet.add(&#39;a&#39;);
+mySet.add(&#39;b&#39;);
+mySet.add(&#39;a&#39;);
+console.log(mySet.has(&#39;a&#39;)); // true
+console.log(mySet.size);     // 2</code></pre>
+<h3 id="1-11-Array-of-citeturn8view1"><a href="#1-11-Array-of-citeturn8view1" class="headerlink" title="1.11 Array.of() citeturn8view1"></a>1.11 Array.of() citeturn8view1</h3><pre><code class="js">const arr = Array.of(1, 2, 3);
+console.log(arr);</code></pre>
+<h3 id="1-12-生成器函数-function-citeturn8view1"><a href="#1-12-生成器函数-function-citeturn8view1" class="headerlink" title="1.12 生成器函数 function*() {} citeturn8view1"></a>1.12 生成器函数 function*() {} citeturn8view1</h3><pre><code class="js">function* numberGenerator() {
+  yield 1;
+  yield 2;
+  return &#39;done&#39;;
+}
+
+const gen = numberGenerator();
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());</code></pre>
+<h3 id="1-13-默认参数和剩余参数-citeturn8view2"><a href="#1-13-默认参数和剩余参数-citeturn8view2" class="headerlink" title="1.13 默认参数和剩余参数 citeturn8view2"></a>1.13 默认参数和剩余参数 citeturn8view2</h3><pre><code class="js">function sum(a = 10, ...nums) {
+  return a + nums.reduce((acc, curr) =&gt; acc + curr, 0);
+}
+console.log(sum()); // 10
+
+function sum2(...nums) {
+  return nums.reduce((acc, curr) =&gt; acc + curr, 0);
+}
+console.log(sum2(1, 2, 3, 4)); // 10</code></pre>
+<h3 id="1-14-String-prototype-repeat-citeturn8view2"><a href="#1-14-String-prototype-repeat-citeturn8view2" class="headerlink" title="1.14 String.prototype.repeat() citeturn8view2"></a>1.14 String.prototype.repeat() citeturn8view2</h3><pre><code class="js">const str = &#39;abc&#39;.repeat(3);
+console.log(str); // abcabcabc</code></pre>
+<hr>
+<h2 id="2-ES7-ECMAScript-2016-数学运算的提升-citeturn8view2"><a href="#2-ES7-ECMAScript-2016-数学运算的提升-citeturn8view2" class="headerlink" title="2. ES7 (ECMAScript 2016): 数学运算的提升 citeturn8view2"></a>2. ES7 (ECMAScript 2016): 数学运算的提升 citeturn8view2</h2><h3 id="2-1-指数运算符"><a href="#2-1-指数运算符" class="headerlink" title="2.1 指数运算符 (**)"></a>2.1 指数运算符 (**)</h3><pre><code class="js">const result = 2 ** 3;
+console.log(result); // 8</code></pre>
+<hr>
+<h2 id="3-ES8-ECMAScript-2017-异步编程的革命-citeturn8view2"><a href="#3-ES8-ECMAScript-2017-异步编程的革命-citeturn8view2" class="headerlink" title="3. ES8 (ECMAScript 2017): 异步编程的革命 citeturn8view2"></a>3. ES8 (ECMAScript 2017): 异步编程的革命 citeturn8view2</h2><h3 id="3-1-async-await"><a href="#3-1-async-await" class="headerlink" title="3.1 async/await"></a>3.1 async/await</h3><pre><code class="js">async function fetchData() {
+  const response = await fetch(&#39;/data&#39;);
+  return await response.json();
+}</code></pre>
+<h3 id="3-2-扩展运算符-…"><a href="#3-2-扩展运算符-…" class="headerlink" title="3.2 扩展运算符 (…)"></a>3.2 扩展运算符 (…)</h3><pre><code class="js">const arr = [...[1, 2], ...[3, 4]];
+console.log(arr);</code></pre>
+<h3 id="3-3-Array-prototype-includes"><a href="#3-3-Array-prototype-includes" class="headerlink" title="3.3 Array.prototype.includes()"></a>3.3 Array.prototype.includes()</h3><pre><code class="js">const arr = [1, 2, 3];
+console.log(arr.includes(2)); // true</code></pre>
+<h3 id="3-4-padStart-padEnd"><a href="#3-4-padStart-padEnd" class="headerlink" title="3.4 padStart / padEnd"></a>3.4 padStart / padEnd</h3><pre><code class="js">console.log(&#39;123&#39;.padStart(7, &#39;0&#39;)); // 0000123
+console.log(&#39;123&#39;.padEnd(7, &#39;0&#39;));   // 1230000</code></pre>
+<hr>
+<h2 id="4-ES9-ECMAScript-2018-异步迭代的引入-citeturn8view2"><a href="#4-ES9-ECMAScript-2018-异步迭代的引入-citeturn8view2" class="headerlink" title="4. ES9 (ECMAScript 2018): 异步迭代的引入 citeturn8view2"></a>4. ES9 (ECMAScript 2018): 异步迭代的引入 citeturn8view2</h2><h3 id="4-1-异步迭代-async-iterators"><a href="#4-1-异步迭代-async-iterators" class="headerlink" title="4.1 异步迭代 (async iterators)"></a>4.1 异步迭代 (async iterators)</h3><pre><code class="js">const asyncIterable = {
+  [Symbol.asyncIterator]() {
+    return { next: () =&gt; Promise.resolve({ done: false, value: 1 }) };
+  },
+};
+console.log(asyncIterable);</code></pre>
+<h3 id="4-2-trimLeft-trimRight"><a href="#4-2-trimLeft-trimRight" class="headerlink" title="4.2 trimLeft / trimRight"></a>4.2 trimLeft / trimRight</h3><pre><code class="js">const str1 = &#39;   hello world   &#39;;
+console.log(str1.trimLeft());
+
+const str2 = &#39;   hello world   &#39;;
+console.log(str2.trimRight());</code></pre>
+<hr>
+<h2 id="5-ES10-ECMAScript-2019-数组和字符串的增强-citeturn8view2turn8view3"><a href="#5-ES10-ECMAScript-2019-数组和字符串的增强-citeturn8view2turn8view3" class="headerlink" title="5. ES10 (ECMAScript 2019): 数组和字符串的增强 citeturn8view2turn8view3"></a>5. ES10 (ECMAScript 2019): 数组和字符串的增强 citeturn8view2turn8view3</h2><h3 id="5-1-flat-flatMap"><a href="#5-1-flat-flatMap" class="headerlink" title="5.1 flat / flatMap"></a>5.1 flat / flatMap</h3><pre><code class="js">const arr = [1, [2, [3, [4]]]];
+console.log(arr.flat(2)); // [1,2,3,[4]]
+
+const deepArr = [1, [2, [3, [4, [5]]]]];
+console.log(deepArr.flat(4)); // [1,2,3,4,5]</code></pre>
+<h3 id="5-2-Array-prototype-flatMap-citeturn8view3"><a href="#5-2-Array-prototype-flatMap-citeturn8view3" class="headerlink" title="5.2 Array.prototype.flatMap() citeturn8view3"></a>5.2 Array.prototype.flatMap() citeturn8view3</h3><pre><code class="js">const numbers = [[1, 2], [3, 4], [5, 6]];
+const flattened = numbers.flatMap(x =&gt; x);
+console.log(flattened); // [1,2,3,4,5,6]</code></pre>
+<h3 id="5-3-trimStart-trimEnd-citeturn8view3"><a href="#5-3-trimStart-trimEnd-citeturn8view3" class="headerlink" title="5.3 trimStart / trimEnd citeturn8view3"></a>5.3 trimStart / trimEnd citeturn8view3</h3><pre><code class="js">const str1 = &#39;   Hello World   &#39;;
+console.log(str1.trimStart());
+
+const str2 = &#39;   Hello World   &#39;;
+console.log(str2.trimEnd());</code></pre>
+<h3 id="5-4-String-prototype-matchAll-citeturn8view3"><a href="#5-4-String-prototype-matchAll-citeturn8view3" class="headerlink" title="5.4 String.prototype.matchAll citeturn8view3"></a>5.4 String.prototype.matchAll citeturn8view3</h3><pre><code class="js">const str = &#39;hello world&#39;;
+const regex = /l/g;
+for (const match of str.matchAll(regex)) {
+  console.log(match);
+}</code></pre>
+<hr>
+<h2 id="6-ES11-ECMAScript-2020-高级数据操作-citeturn8view3turn9view0"><a href="#6-ES11-ECMAScript-2020-高级数据操作-citeturn8view3turn9view0" class="headerlink" title="6. ES11 (ECMAScript 2020): 高级数据操作 citeturn8view3turn9view0"></a>6. ES11 (ECMAScript 2020): 高级数据操作 citeturn8view3turn9view0</h2><h3 id="6-1-可选链操作符"><a href="#6-1-可选链操作符" class="headerlink" title="6.1 可选链操作符 (?.)"></a>6.1 可选链操作符 (?.)</h3><pre><code class="js">const obj = { a: { b: null } };
+console.log(obj.a?.b?.c); // undefined</code></pre>
+<h3 id="6-2-空值合并运算符"><a href="#6-2-空值合并运算符" class="headerlink" title="6.2 空值合并运算符 (??)"></a>6.2 空值合并运算符 (??)</h3><pre><code class="js">let a = null;
+let b = &quot;Hello&quot;;
+console.log(a ?? b); // &quot;Hello&quot;
+console.log(0 ?? b); // 0</code></pre>
+<h3 id="6-3-at-方法"><a href="#6-3-at-方法" class="headerlink" title="6.3 .at() 方法"></a>6.3 .at() 方法</h3><pre><code class="js">const arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];
+console.log(arr.at(-1)); // d
+console.log(arr.at(-2)); // c
+
+const str = &#39;Coding Beauty&#39;;
+console.log(str.at(-1)); // y</code></pre>
+<h3 id="6-4-BigInt-类型"><a href="#6-4-BigInt-类型" class="headerlink" title="6.4 BigInt 类型"></a>6.4 BigInt 类型</h3><h4 id="6-4-1-创建-BigInt"><a href="#6-4-1-创建-BigInt" class="headerlink" title="6.4.1 创建 BigInt"></a>6.4.1 创建 BigInt</h4><pre><code class="js">const bigIntValue1 = 1234567890123456789012345678901234567890n;
+console.log(bigIntValue1, typeof bigIntValue1);
+
+const num = 1234567890123456789012345678901234567890;
+const bigIntValue2 = BigInt(num);
+console.log(bigIntValue2, typeof bigIntValue2);</code></pre>
+<h4 id="6-4-2-BigInt-的基本操作"><a href="#6-4-2-BigInt-的基本操作" class="headerlink" title="6.4.2 BigInt 的基本操作"></a>6.4.2 BigInt 的基本操作</h4><pre><code class="js">const a1 = 1234567890123456789012345678901234567890n;
+const b1 = 9876543210987654321098765432109876543210n;
+
+console.log(a1 + b1);
+console.log(a1 - b1);
+console.log(a1 * b1);
+console.log(a1 / b1);</code></pre>
+<h4 id="6-4-3-注意事项"><a href="#6-4-3-注意事项" class="headerlink" title="6.4.3 注意事项"></a>6.4.3 注意事项</h4><ul>
+<li>BigInt 不能与 Number 直接混算（需显式转换）</li>
+<li>BigInt 除法结果仍为 BigInt</li>
+</ul>
+<h3 id="6-5-Promise-allSettled"><a href="#6-5-Promise-allSettled" class="headerlink" title="6.5 Promise.allSettled"></a>6.5 Promise.allSettled</h3><ul>
+<li>等待所有 Promise 完成（fulfilled 或 rejected），获得更完整的控制</li>
+</ul>
+<hr>
+<h2 id="7-ES12-ECMAScript-2021-citeturn9view0turn9view3"><a href="#7-ES12-ECMAScript-2021-citeturn9view0turn9view3" class="headerlink" title="7. ES12 (ECMAScript 2021) citeturn9view0turn9view3"></a>7. ES12 (ECMAScript 2021) citeturn9view0turn9view3</h2><h3 id="7-1-String-prototype-replaceAll"><a href="#7-1-String-prototype-replaceAll" class="headerlink" title="7.1 String.prototype.replaceAll"></a>7.1 String.prototype.replaceAll</h3><pre><code class="js">const str = &#39;hello world&#39;;
+console.log(str.replaceAll(&#39;l&#39;, &#39;L&#39;)); // heLLo worLd</code></pre>
+<h3 id="7-2-Promise-any-和-AggregateError"><a href="#7-2-Promise-any-和-AggregateError" class="headerlink" title="7.2 Promise.any 和 AggregateError"></a>7.2 Promise.any 和 AggregateError</h3><pre><code class="js">const prom1 = new Promise((resolve) =&gt; setTimeout(() =&gt; resolve(&quot;promise one&quot;), Math.floor(Math.random() * 100)));
+const prom2 = new Promise((resolve) =&gt; setTimeout(() =&gt; resolve(&quot;promise two&quot;), Math.floor(Math.random() * 100)));
+const prom3 = new Promise((resolve) =&gt; setTimeout(() =&gt; resolve(&quot;promise three&quot;), Math.floor(Math.random() * 100)));
+
+(async function () {
+  const result = await Promise.any([prom1, prom2, prom3]);
+  console.log(result);
+})();</code></pre>
+<h3 id="7-3-WeakRef（示例节选）"><a href="#7-3-WeakRef（示例节选）" class="headerlink" title="7.3 WeakRef（示例节选）"></a>7.3 WeakRef（示例节选）</h3><pre><code class="js">class Counter {
+  constructor(element) {
+    this.ref = new WeakRef(element);
+    this.start();
+  }
+  start() {
+    if (this.timer) return;
+    this.count = 0;
+    const tick = () =&gt; {
+      const element = this.ref.deref();
+      if (element) element.textContent = ++this.count;
+      else {
+        console.log(&quot;The element is gone.&quot;);
+        this.stop();
+        this.ref = null;
+      }
+    };
+    tick();
+    this.timer = setInterval(tick, 1000);
+  }
+  stop() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = 0;
+    }
+  }
+}</code></pre>
+<h3 id="7-4-逻辑运算符与赋值表达式-amp-amp"><a href="#7-4-逻辑运算符与赋值表达式-amp-amp" class="headerlink" title="7.4 逻辑运算符与赋值表达式 (&amp;&amp;=, ||=, ??=)"></a>7.4 逻辑运算符与赋值表达式 (&amp;&amp;=, ||=, ??=)</h3><pre><code class="js">let x = 1;
+let y = 3;
+x &amp;&amp;= y;
+x ||= y;
+console.log(x, y);
+
+let a2;
+let b2 = 2;
+a2 ??= b2;
+console.log(a2);</code></pre>
+<h3 id="7-5-数字分隔符"><a href="#7-5-数字分隔符" class="headerlink" title="7.5 数字分隔符"></a>7.5 数字分隔符</h3><pre><code class="js">const number = 1_000_000_000_000;
+const binary = 0b1010_0101_1111_1101;
+const hex = 0xAF_BF_C3;
+console.log(number, binary, hex);</code></pre>
+<hr>
+<h2 id="8-ES13-ECMAScript-2022-citeturn11view1turn11view2turn11view3"><a href="#8-ES13-ECMAScript-2022-citeturn11view1turn11view2turn11view3" class="headerlink" title="8. ES13 (ECMAScript 2022) citeturn11view1turn11view2turn11view3"></a>8. ES13 (ECMAScript 2022) citeturn11view1turn11view2turn11view3</h2><h3 id="8-1-类字段"><a href="#8-1-类字段" class="headerlink" title="8.1 类字段"></a>8.1 类字段</h3><pre><code class="js">class Car {
+  color = &#39;blue&#39;;
+  age = 2;
+}</code></pre>
+<h3 id="8-3-私有方法和字段（-）"><a href="#8-3-私有方法和字段（-）" class="headerlink" title="8.3 私有方法和字段（#）"></a>8.3 私有方法和字段（#）</h3><pre><code class="js">class Person {
+  #firstName = &#39;Joseph&#39;;
+  #lastName = &#39;Stevens&#39;;
+  get name() {
+    return `${this.#firstName} ${this.#lastName}`;
+  }
+}</code></pre>
+<h3 id="8-4-顶层-await（示例）"><a href="#8-4-顶层-await（示例）" class="headerlink" title="8.4 顶层 await（示例）"></a>8.4 顶层 await（示例）</h3><pre><code class="js">function setTimeoutAsync(timeout) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, timeout));
+}
+await setTimeoutAsync(3000);</code></pre>
+<h3 id="8-5-静态私有字段-方法（示例节选）"><a href="#8-5-静态私有字段-方法（示例节选）" class="headerlink" title="8.5 静态私有字段/方法（示例节选）"></a>8.5 静态私有字段/方法（示例节选）</h3><pre><code class="js">class Person {
+  static #count = 0;
+  static getCount() {
+    return this.#count;
+  }
+  constructor() {
+    this.constructor.#incrementCount();
+  }
+  static #incrementCount() {
+    this.#count++;
+  }
+}</code></pre>
+<h3 id="8-6-类静态块"><a href="#8-6-类静态块" class="headerlink" title="8.6 类静态块"></a>8.6 类静态块</h3><pre><code class="js">class Vehicle {
+  static defaultColor = &#39;blue&#39;;
+}
+class Car extends Vehicle {
+  static colors = [];
+  static {
+    this.colors.push(super.defaultColor, &#39;red&#39;);
+  }
+  static {
+    this.colors.push(&#39;green&#39;);
+  }
+}
+console.log(Car.colors);</code></pre>
+<h3 id="8-7-检查对象中的私有字段（in）"><a href="#8-7-检查对象中的私有字段（in）" class="headerlink" title="8.7 检查对象中的私有字段（in）"></a>8.7 检查对象中的私有字段（in）</h3><pre><code class="js">class Car {
+  #color;
+  hasColor() {
+    return #color in this;
+  }
+}</code></pre>
+<h3 id="8-9-正则表达式匹配索引（-d）"><a href="#8-9-正则表达式匹配索引（-d）" class="headerlink" title="8.9 正则表达式匹配索引（/d）"></a>8.9 正则表达式匹配索引（/d）</h3><pre><code class="js">const str = &#39;sun and moon&#39;;
+const regex = /and/d;
+const matchObj = regex.exec(str);
+console.log(matchObj?.indices);</code></pre>
+<h3 id="8-10-Object-hasOwn"><a href="#8-10-Object-hasOwn" class="headerlink" title="8.10 Object.hasOwn()"></a>8.10 Object.hasOwn()</h3><pre><code class="js">const obj = Object.create(null);
+obj.color = &#39;green&#39;;
+obj.hasOwnProperty = () =&gt; false;
+console.log(Object.hasOwn(obj, &#39;color&#39;)); // true</code></pre>
+<h3 id="8-11-Error-cause"><a href="#8-11-Error-cause" class="headerlink" title="8.11 Error cause"></a>8.11 Error cause</h3><pre><code class="js">try {
+  throw new Error(&#39;New error message&#39;, { cause: new Error(&#39;root cause&#39;) });
+} catch (err) {
+  console.log(err.cause);
+}</code></pre>
+<h3 id="8-12-findLast-findLastIndex（示例节选）"><a href="#8-12-findLast-findLastIndex（示例节选）" class="headerlink" title="8.12 findLast / findLastIndex（示例节选）"></a>8.12 findLast / findLastIndex（示例节选）</h3><pre><code class="js">const letters = [{ value: &#39;v&#39; }, { value: &#39;w&#39; }, { value: &#39;x&#39; }, { value: &#39;y&#39; }, { value: &#39;z&#39; }];
+console.log(letters.findLast((item) =&gt; item.value === &#39;y&#39;));
+console.log(letters.findLastIndex((item) =&gt; item.value === &#39;y&#39;));</code></pre>
+<hr>
+<h2 id="9-ES14-ECMAScript-2023-citeturn10view0turn10view1turn10view2"><a href="#9-ES14-ECMAScript-2023-citeturn10view0turn10view1turn10view2" class="headerlink" title="9. ES14 (ECMAScript 2023) citeturn10view0turn10view1turn10view2"></a>9. ES14 (ECMAScript 2023) citeturn10view0turn10view1turn10view2</h2><h3 id="9-1-Array-prototype-toSorted"><a href="#9-1-Array-prototype-toSorted" class="headerlink" title="9.1 Array.prototype.toSorted"></a>9.1 Array.prototype.toSorted</h3><pre><code class="js">let arr = [3, 5, 8, 2, 1];
+let toSortedArr = arr.toSorted((a, b) =&gt; a - b);
+console.log(toSortedArr);
+console.log(arr); // 原数组不变</code></pre>
+<h3 id="9-2-Array-prototype-toReversed"><a href="#9-2-Array-prototype-toReversed" class="headerlink" title="9.2 Array.prototype.toReversed"></a>9.2 Array.prototype.toReversed</h3><pre><code class="js">let arr2 = [3, 5, 8, 2, 1];
+console.log(arr2.toReversed());
+console.log(arr2); // 原数组不变</code></pre>
+<h3 id="9-3-Array-prototype-with"><a href="#9-3-Array-prototype-with" class="headerlink" title="9.3 Array.prototype.with"></a>9.3 Array.prototype.with</h3><pre><code class="js">const originalArray = [1, 2, 3];
+const newArray = originalArray.with(1, 4);
+console.log(originalArray);
+console.log(newArray);</code></pre>
+<h3 id="9-4-Array-prototype-toSpliced"><a href="#9-4-Array-prototype-toSpliced" class="headerlink" title="9.4 Array.prototype.toSpliced"></a>9.4 Array.prototype.toSpliced</h3><pre><code class="js">const arr3 = [&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;purple&quot;];
+const newArr = arr3.toSpliced(2, 1, &quot;pink&quot;, &quot;cyan&quot;);
+console.log(newArr);
+console.log(arr3);</code></pre>
+<h3 id="9-5-shebang（hashbang）支持"><a href="#9-5-shebang（hashbang）支持" class="headerlink" title="9.5 shebang（hashbang）支持"></a>9.5 shebang（hashbang）支持</h3><pre><code class="bash">#!/usr/bin/env node</code></pre>
+<h3 id="9-6-Symbol-作为-WeakMap-的键（示例节选）"><a href="#9-6-Symbol-作为-WeakMap-的键（示例节选）" class="headerlink" title="9.6 Symbol 作为 WeakMap 的键（示例节选）"></a>9.6 Symbol 作为 WeakMap 的键（示例节选）</h3><pre><code class="js">let map = new WeakMap();
+const symbolKey = Symbol(&#39;uniqueKey&#39;);
+
+function useSymbol(symbol) {
+  let called = map.get(symbol) || 0;
+  map.set(symbol, ++called);
+  console.log(`Called: ${called} times`);
+}
+useSymbol(symbolKey);</code></pre>
+<hr>
+<h2 id="10-ES15-ECMAScript-2024-citeturn10view2turn7view3"><a href="#10-ES15-ECMAScript-2024-citeturn10view2turn7view3" class="headerlink" title="10. ES15 (ECMAScript 2024) citeturn10view2turn7view3"></a>10. ES15 (ECMAScript 2024) citeturn10view2turn7view3</h2><h3 id="10-1-Group-By-分组（示例节选）"><a href="#10-1-Group-By-分组（示例节选）" class="headerlink" title="10.1 Group By 分组（示例节选）"></a>10.1 Group By 分组（示例节选）</h3><pre><code class="js">function myGroupBy(array, iteratee) {
+  return array.reduce((groups, value) =&gt; {
+    const key = iteratee(value);
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(value);
+    return groups;
+  }, {});
+}</code></pre>
+<h3 id="10-2-Math-sign"><a href="#10-2-Math-sign" class="headerlink" title="10.2 Math.sign()"></a>10.2 Math.sign()</h3><ul>
+<li>正数：1；0：0；-0：-0；NaN：NaN；负数：-1</li>
+</ul>
+<pre><code class="js">console.log(Math.sign(2));
+console.log(Math.sign(-4));
+console.log(Math.sign(0));
+console.log(Math.sign(-0));
+console.log(Math.sign(NaN));</code></pre>
+<h3 id="10-3-Promise-withResolvers（说明-示例节选）"><a href="#10-3-Promise-withResolvers（说明-示例节选）" class="headerlink" title="10.3 Promise.withResolvers（说明+示例节选）"></a>10.3 Promise.withResolvers（说明+示例节选）</h3><ul>
+<li>创建 Promise 的同时拿到 resolve/reject</li>
+</ul>
+<pre><code class="js">const { promise, resolve, reject } = Promise.withResolvers();
+setTimeout(() =&gt; resolve(&quot;ok&quot;), 1000);
+promise.then(console.log);</code></pre>
+<h3 id="10-4-正则表达式新标志-v（Unicode-Sets）"><a href="#10-4-正则表达式新标志-v（Unicode-Sets）" class="headerlink" title="10.4 正则表达式新标志 /v（Unicode Sets）"></a>10.4 正则表达式新标志 <code>/v</code>（Unicode Sets）</h3><ul>
+<li>提供更强的 Unicode 集合表达能力</li>
+<li>支持集合运算（并集、交集、差集）</li>
+<li>用于更精确、安全的字符类匹配</li>
+</ul>
+<pre><code class="js">// 使用 v 标志的 Unicode 集合（示意）
+const regex = /[\p{Script=Greek}&amp;&amp;[^\p{Letter}]]/v;</code></pre>
+<hr>
+<h3 id="10-5-ArrayBuffer-SharedArrayBuffer-新能力"><a href="#10-5-ArrayBuffer-SharedArrayBuffer-新能力" class="headerlink" title="10.5 ArrayBuffer / SharedArrayBuffer 新能力"></a>10.5 ArrayBuffer / SharedArrayBuffer 新能力</h3><ul>
+<li>改进二进制数据处理能力</li>
+<li>更好地支持高性能计算与并发</li>
+<li>常用于 WebAssembly、音视频、Worker 场景</li>
+</ul>
+<pre><code class="js">const buffer = new ArrayBuffer(16);
+const view = new Uint8Array(buffer);
+view[0] = 255;</code></pre>
+<hr>
+<h3 id="10-6-String-prototype-isWellFormed"><a href="#10-6-String-prototype-isWellFormed" class="headerlink" title="10.6 String.prototype.isWellFormed()"></a>10.6 String.prototype.isWellFormed()</h3><ul>
+<li>判断字符串是否是合法 UTF-16</li>
+<li>用于处理外部输入、跨系统文本</li>
+</ul>
+<pre><code class="js">const str = &quot;\uD800&quot;; // 非法 UTF-16
+console.log(str.isWellFormed()); // false</code></pre>
+<hr>
+<h3 id="10-7-String-prototype-toWellFormed"><a href="#10-7-String-prototype-toWellFormed" class="headerlink" title="10.7 String.prototype.toWellFormed()"></a>10.7 String.prototype.toWellFormed()</h3><ul>
+<li>将非法 UTF-16 字符替换为 �</li>
+<li>常与 isWellFormed 配合使用</li>
+</ul>
+<pre><code class="js">const str = &quot;\uD800&quot;;
+console.log(str.toWellFormed()); // &quot;�&quot;</code></pre>
+<hr>
+<h3 id="10-8-Atomics-waitAsync"><a href="#10-8-Atomics-waitAsync" class="headerlink" title="10.8 Atomics.waitAsync()"></a>10.8 Atomics.waitAsync()</h3><ul>
+<li>Atomics.wait 的异步版本</li>
+<li>不阻塞主线程</li>
+<li>用于并发与 Worker 通信</li>
+</ul>
+<pre><code class="js">const sab = new SharedArrayBuffer(4);
+const int32 = new Int32Array(sab);
+
+Atomics.waitAsync(int32, 0, 0).value.then(() =&gt; {
+  console.log(&quot;woken up&quot;);
+});</code></pre>
+
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/12/18/JavaScript%E5%85%BC%E5%AE%B9%E6%80%A7%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%BF%85%E9%A1%BB%E4%BD%BF%E7%94%A8es5-shim%EF%BC%9F/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">JavaScript,IE8浏览器兼容性终极解决方案：为什么你的项目必须使用es5-shim？</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/09/27/vue2%E9%A1%B9%E7%9B%AE%E9%87%8D%E6%9E%84%E5%88%B0vue3%E5%BB%BA%E8%AE%AE%E6%B5%81%E7%A8%8B/">
+                <span class="nav-default">vue2项目重构到vue3建议流程</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2026
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'JavaScript ES 版本特性（ES6-ES15）';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

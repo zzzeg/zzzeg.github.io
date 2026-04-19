@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>vue3 教程 01 - 创建项目</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.json',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">vue3 教程 01 - 创建项目</h2>
+            <div class="post-meta">
+                <span class="post-time">2026-04-13</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-官方标准方式：create-vue（Vue-官方推荐）"><span class="toc-text">1. 官方标准方式：create-vue（Vue 官方推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-纯-Vite-方式（更轻、更快）"><span class="toc-text">2. 纯 Vite 方式（更轻、更快）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-旧时代方式-vue-cli"><span class="toc-text">3. 旧时代方式 vue-cli</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-企业常用：现成后台管理模板（PC-后台主流），Vue3-Element-Plus，内置：路由、权限、菜单、布局、Pinia、axios等。常见模板："><span class="toc-text">4. 企业常用：现成后台管理模板（PC 后台主流），Vue3 + Element Plus，内置：路由、权限、菜单、布局、Pinia、axios等。常见模板：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-旧时代方式-vue-cli-记录"><span class="toc-text">5. 旧时代方式 vue-cli 记录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-安装-vue-cli"><span class="toc-text">1. 安装 vue-cli</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-创建项目"><span class="toc-text">2. 创建项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-选择配置"><span class="toc-text">3. 选择配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-选择配置"><span class="toc-text">4. 选择配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-选择-Vue-版本"><span class="toc-text">5. 选择 Vue 版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-选择路由版本"><span class="toc-text">6. 选择路由版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-选择-Vuex-版本"><span class="toc-text">7. 选择 Vuex 版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-选择-CSS-预处理器"><span class="toc-text">8. 选择 CSS 预处理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-选择-Lint-工具"><span class="toc-text">9. 选择 Lint 工具</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10-选择-Lint-运行方式"><span class="toc-text">10. 选择 Lint 运行方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#11-选择测试工具"><span class="toc-text">11. 选择测试工具</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-选择是否保存配置"><span class="toc-text">12. 选择是否保存配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#13-安装依赖"><span class="toc-text">13. 安装依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#14-运行项目"><span class="toc-text">14. 运行项目</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>新建一个项目，初始化、配置等 步骤</p>
+<a id="more"></a>
+
+<h4 id="1-官方标准方式：create-vue（Vue-官方推荐）"><a href="#1-官方标准方式：create-vue（Vue-官方推荐）" class="headerlink" title="1. 官方标准方式：create-vue（Vue 官方推荐）"></a>1. 官方标准方式：create-vue（Vue 官方推荐）</h4><p>-替代旧的 <code>vue-cli</code><br>-底层默认用 Vite<br>-适合：新项目、标准 PC 项目、企业后台、官网<br>-初始化时可勾选：TS、Vue Router、Pinia、ESLint、Prettier 等<br>-创建命令：</p>
+<pre><code>npm create vue@latest</code></pre><h4 id="2-纯-Vite-方式（更轻、更快）"><a href="#2-纯-Vite-方式（更轻、更快）" class="headerlink" title="2. 纯 Vite 方式（更轻、更快）"></a>2. 纯 Vite 方式（更轻、更快）</h4><p>-直接用 Vite 构建工具创建 Vue 项目<br>-比 create-vue 更 “裸”，配置更自由<br>-适合：自己定制工程化、简单 PC 项目<br>-创建命令：</p>
+<pre><code>npm create vite@latest</code></pre><p>然后选择：<code>Vue → JavaScript / TypeScript</code></p>
+<h4 id="3-旧时代方式-vue-cli"><a href="#3-旧时代方式-vue-cli" class="headerlink" title="3. 旧时代方式 vue-cli"></a>3. 旧时代方式 vue-cli</h4><p>-基于 webpack，速度慢<br>-现在新项目基本不用，只维护老项目会见到<br>-命令：<code>vue create 项目名</code></p>
+<h4 id="4-企业常用：现成后台管理模板（PC-后台主流），Vue3-Element-Plus，内置：路由、权限、菜单、布局、Pinia、axios等。常见模板："><a href="#4-企业常用：现成后台管理模板（PC-后台主流），Vue3-Element-Plus，内置：路由、权限、菜单、布局、Pinia、axios等。常见模板：" class="headerlink" title="4. 企业常用：现成后台管理模板（PC 后台主流），Vue3 + Element Plus，内置：路由、权限、菜单、布局、Pinia、axios等。常见模板："></a>4. 企业常用：现成后台管理模板（PC 后台主流），Vue3 + Element Plus，内置：路由、权限、菜单、布局、Pinia、axios等。常见模板：</h4><p>-vue-pure-admin<br>-vue-element-plus-admin<br>-vue-vben-admin</p>
+<h4 id="5-旧时代方式-vue-cli-记录"><a href="#5-旧时代方式-vue-cli-记录" class="headerlink" title="5. 旧时代方式 vue-cli 记录"></a>5. 旧时代方式 vue-cli 记录</h4><h5 id="1-安装-vue-cli"><a href="#1-安装-vue-cli" class="headerlink" title="1. 安装 vue-cli"></a>1. 安装 vue-cli</h5><pre><code>npm install -g @vue/cli</code></pre><h5 id="2-创建项目"><a href="#2-创建项目" class="headerlink" title="2. 创建项目"></a>2. 创建项目</h5><pre><code>vue create my-project/项目名</code></pre><h5 id="3-选择配置"><a href="#3-选择配置" class="headerlink" title="3. 选择配置"></a>3. 选择配置</h5><pre><code>? Please pick a preset: (Use arrow keys)
+  Default ([Vue 3] babel, eslint)
+&gt; Default ([Vue 2] babel, eslint)
+  Manually select features</code></pre><h5 id="4-选择配置"><a href="#4-选择配置" class="headerlink" title="4. 选择配置"></a>4. 选择配置</h5><pre><code>? Check the features needed for your project: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)
+&gt;(*) Choose Vue version
+ (*) Babel
+ ( ) TypeScript
+ ( ) Progressive Web App (PWA) Support
+ (*) Router
+ (*) Vuex
+ (*) CSS Pre-processors
+ (*) Linter / Formatter
+ ( ) Unit Testing
+ ( ) E2E Testing</code></pre><h5 id="5-选择-Vue-版本"><a href="#5-选择-Vue-版本" class="headerlink" title="5. 选择 Vue 版本"></a>5. 选择 Vue 版本</h5><pre><code>? Choose a version of Vue.js that you want to start the project with
+&gt; 3.x
+  2.x</code></pre><h5 id="6-选择路由版本"><a href="#6-选择路由版本" class="headerlink" title="6. 选择路由版本"></a>6. 选择路由版本</h5><pre><code>? Choose a version of Vue Router that you want to start the project with
+&gt; 4.x (Vue 3)
+  3.x (Vue 2)</code></pre><h5 id="7-选择-Vuex-版本"><a href="#7-选择-Vuex-版本" class="headerlink" title="7. 选择 Vuex 版本"></a>7. 选择 Vuex 版本</h5><pre><code>? Choose a version of Vuex that you want to start the project with
+&gt; 4.x (Vue 3)
+  3.x (Vue 2)</code></pre><h5 id="8-选择-CSS-预处理器"><a href="#8-选择-CSS-预处理器" class="headerlink" title="8. 选择 CSS 预处理器"></a>8. 选择 CSS 预处理器</h5><pre><code>? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by default):
+&gt; Sass/SCSS (with dart-sass)
+  Less
+  Stylus</code></pre><h5 id="9-选择-Lint-工具"><a href="#9-选择-Lint-工具" class="headerlink" title="9. 选择 Lint 工具"></a>9. 选择 Lint 工具</h5><pre><code>? Pick a linter / formatter config:
+&gt; ESLint with error prevention only
+  ESLint + Airbnb config
+  ESLint + Standard config
+  ESLint + Prettier</code></pre><h5 id="10-选择-Lint-运行方式"><a href="#10-选择-Lint-运行方式" class="headerlink" title="10. 选择 Lint 运行方式"></a>10. 选择 Lint 运行方式</h5><pre><code>? Pick additional lint features:
+ (*) Lint on save
+ (Lint and fix files when saving)
+ ( ) Lint and fix on commit (Lint and fix files when committing)</code></pre><h5 id="11-选择测试工具"><a href="#11-选择测试工具" class="headerlink" title="11. 选择测试工具"></a>11. 选择测试工具</h5><pre><code>? Where do you prefer placing config for Babel, ESLint, etc.?
+&gt; In dedicated config files
+  In package.json</code></pre><h5 id="12-选择是否保存配置"><a href="#12-选择是否保存配置" class="headerlink" title="12. 选择是否保存配置"></a>12. 选择是否保存配置</h5><pre><code>? Save this as a preset for future projects?
+&gt; Yes
+  No</code></pre><h5 id="13-安装依赖"><a href="#13-安装依赖" class="headerlink" title="13. 安装依赖"></a>13. 安装依赖</h5><pre><code>npm install</code></pre><h5 id="14-运行项目"><a href="#14-运行项目" class="headerlink" title="14. 运行项目"></a>14. 运行项目</h5><pre><code>npm run serve</code></pre>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/vue/" title="vue">vue</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/2026/04/12/node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E3%80%81volta%E3%80%81fnm/">
+                <span class="nav-default">node版本管理工具nvm、volta、fnm</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2026
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'vue3 教程 01 - 创建项目';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

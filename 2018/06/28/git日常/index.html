@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
 	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 <body>
 <header class="header">
     <div class="header-inner">
@@ -93,7 +93,7 @@
 </div>
 <script>
 var CONFIG = {
- path: 'search.xml',
+ path: 'search.json',
  root: '/',
  localsearch:{
    	top_n_per_article: 1,
@@ -166,31 +166,43 @@ var CONFIG = {
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#上传"><span class="toc-text">上传</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化仓库"><span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将文件添加到仓库"><span class="toc-text">将文件添加到仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件commit到仓库"><span class="toc-text">文件commit到仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><span class="toc-text">去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上传代码到仓库"><span class="toc-text">上传代码到仓库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一次下载"><span class="toc-text">第一次下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载更新"><span class="toc-text">下载更新</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#设置代理"><span class="toc-text">设置代理</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#上传"><span class="toc-text">上传</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化仓库"><span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-先把所有文件加入-Git-跟踪"><span class="toc-text">1. 先把所有文件加入 Git 跟踪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-提交这些文件（第一次备份）"><span class="toc-text">2. 提交这些文件（第一次备份）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><span class="toc-text">3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、推送到-GitHub（注意分支名）"><span class="toc-text">4、推送到 GitHub（注意分支名）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#或者直接把本地分支名改成-main，更方便："><span class="toc-text">或者直接把本地分支名改成 main，更方便：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一次下载"><span class="toc-text">第一次下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载更新"><span class="toc-text">下载更新</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#设置代理"><span class="toc-text">设置代理</span></a></li></ol></li></ol></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
 </div>
         <div class="post-content">
-            <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><pre><code>git init</code></pre><h4 id="将文件添加到仓库"><a href="#将文件添加到仓库" class="headerlink" title="将文件添加到仓库"></a>将文件添加到仓库</h4><pre><code>git add .</code></pre><h4 id="文件commit到仓库"><a href="#文件commit到仓库" class="headerlink" title="文件commit到仓库"></a>文件commit到仓库</h4><pre><code>git commit -m &#39;注释&#39;</code></pre><h4 id="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><a href="#去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上" class="headerlink" title="去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"></a>去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</h4><pre><code>git remote add origin 仓库的地址</code></pre><h4 id="上传代码到仓库"><a href="#上传代码到仓库" class="headerlink" title="上传代码到仓库"></a>上传代码到仓库</h4><pre><code>git push -u origin master</code></pre><p>执行完没问题就完事了，如果上传失败，可能是因为README.md没下载下来，先下载再上传</p>
-<pre><code>git pull --rebase origin master</code></pre><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><h4 id="第一次下载"><a href="#第一次下载" class="headerlink" title="第一次下载"></a>第一次下载</h4><pre><code>进到目录，git clone 地址</code></pre><h4 id="下载更新"><a href="#下载更新" class="headerlink" title="下载更新"></a>下载更新</h4><pre><code>//方法一
-$ git fetch origin master //从远程的origin仓库的master分支下载代码到本地的origin master
-$ git log -p master.. origin/master//比较本地的仓库和远程参考的区别
-$ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并
+            <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><pre><code>git init</code></pre><h4 id="1-先把所有文件加入-Git-跟踪"><a href="#1-先把所有文件加入-Git-跟踪" class="headerlink" title="1. 先把所有文件加入 Git 跟踪"></a>1. 先把所有文件加入 Git 跟踪</h4><pre><code>git add .</code></pre><h4 id="2-提交这些文件（第一次备份）"><a href="#2-提交这些文件（第一次备份）" class="headerlink" title="2. 提交这些文件（第一次备份）"></a>2. 提交这些文件（第一次备份）</h4><pre><code>git commit -m &#39;注释(第一次备份)&#39;</code></pre><h4 id="3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><a href="#3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上" class="headerlink" title="3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"></a>3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</h4><pre><code>git remote add origin 仓库的地址</code></pre><h4 id="4、推送到-GitHub（注意分支名）"><a href="#4、推送到-GitHub（注意分支名）" class="headerlink" title="4、推送到 GitHub（注意分支名）"></a>4、推送到 GitHub（注意分支名）</h4><p>#####本地分支是 master，而 GitHub 默认是 main，所以需要这样推：</p>
+<pre><code>git push -u origin master:main</code></pre><p>执行完没问题就完事了，如果上传失败，可能是因为README.md没下载下来，先下载再上传</p>
+<pre><code>git pull --rebase origin master</code></pre><h5 id="或者直接把本地分支名改成-main，更方便："><a href="#或者直接把本地分支名改成-main，更方便：" class="headerlink" title="或者直接把本地分支名改成 main，更方便："></a>或者直接把本地分支名改成 main，更方便：</h5><pre><code>git branch -M main
+git push -u origin main</code></pre><p>执行完以上命令，本地的文件就成功备份到 GitHub 了<br>以后提交新代码，只需要：</p>
+<pre><code>git add .
+git commit -m &#39;注释&#39;
+git push</code></pre><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><h4 id="第一次下载"><a href="#第一次下载" class="headerlink" title="第一次下载"></a>第一次下载</h4><pre><code>进到目录，git clone 地址</code></pre><h4 id="下载更新"><a href="#下载更新" class="headerlink" title="下载更新"></a>下载更新</h4><pre><code>//方法一：（安全同步法）
+$ git fetch origin master                 //从远程的origin仓库的master分支下载代码到本地的origin master // 下载云端最新代码，但**不修改本地代码**
+$ git log -p master.. origin/master        // 对比：云端比本地多了哪些改动
+$ git merge origin/master                // 把云端新代码合并到本地master分支
 
 //方法二
-$ git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp
-$ git diff temp//比较master分支和temp分支的不同
-$ git merge temp//合并temp分支到master分支
-$ git branch -d temp//删除temp
+$ git fetch origin master:temp             // 下载云端代码 → 新建一个叫 temp 的临时分支
+$ git diff temp                            // 比较本地和云端的不同    
+$ git merge temp                        // 合并临时版本到本地
+$ git branch -d temp                    //删除temp
 
-//方法三
-$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><pre><code>git config --global https.proxy http://127.0.0.1:7890
+//方式三： GitHub上的文件变新了 → 把最新内容同步到自己电脑已关联的项目上。 git pull = git fetch + git merge
+$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><p>代理 = 给 Git 开一条 “更快、更稳” 的路，让你能正常连接 GitHub，不卡、不掉、不报错。</p>
+<pre><code>git config --global https.proxy http://127.0.0.1:7890
 git config --global http.proxy http://127.0.0.1:7890
 
 # 取消代理
 git config --global --unset http.proxy
-git config --global --unset https.proxy</code></pre>
+git config --global --unset https.proxy</code></pre><p>为什么要设置代理？<br>因为：</p>
+<ul>
+<li>GitHub 在国外</li>
+<li>国内直接连接经常很慢、连不上、上传失败</li>
+<li>你电脑如果开了梯子（科学上网），Git 不会自动用，必须手动告诉它：“走我这个梯子！”</li>
+</ul>
+
         </div>
         
         <div class="post-tag">
@@ -236,7 +248,7 @@ git config --global --unset https.proxy</code></pre>
             &copy;
             
             
-            2025
+            2026
             &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
             <a target="_blank" href="https://github.com/iJinxin">zeg</a>
         </p>

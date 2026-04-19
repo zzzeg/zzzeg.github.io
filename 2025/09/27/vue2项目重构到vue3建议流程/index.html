@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>vue2项目重构到vue3建议流程</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.json',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">vue2项目重构到vue3建议流程</h2>
+            <div class="post-meta">
+                <span class="post-time">2025-09-27</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案一：渐进式增量迁移（无需重建项目，逐步改造）"><span class="toc-text">方案一：渐进式增量迁移（无需重建项目，逐步改造）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-适用场景"><span class="toc-text">1.适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-操作步骤（核心流程，关键是「兼容共存」）"><span class="toc-text">2.操作步骤（核心流程，关键是「兼容共存」）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤1：升级项目依赖，实现-Vue2-与-Vue3-兼容共存"><span class="toc-text">步骤1：升级项目依赖，实现 Vue2 与 Vue3 兼容共存</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤-2：在原有项目中增量引入-Vue3-语法"><span class="toc-text">步骤 2：在原有项目中增量引入 Vue3 语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤-3：逐步替换核心依赖，向-Vue3-完全迁移"><span class="toc-text">步骤 3：逐步替换核心依赖，向 Vue3 完全迁移</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤-4：清理旧代码，完成迁移"><span class="toc-text">步骤 4：清理旧代码，完成迁移</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-小技巧：使用vue-codemod自动迁移"><span class="toc-text">3.小技巧：使用vue-codemod自动迁移</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-优势与劣势"><span class="toc-text">4. 优势与劣势</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案二：全新项目重构（重新建项目，按需重写代码）-当记录创建vue3项目"><span class="toc-text">方案二：全新项目重构（重新建项目，按需重写代码）  当记录创建vue3项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-操作步骤："><span class="toc-text">1.操作步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤-1：搭建全新-Vue3-项目环境"><span class="toc-text">步骤 1：搭建全新 Vue3 项目环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤-2：迁移核心配置与资源"><span class="toc-text">步骤 2：迁移核心配置与资源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤-3：分模块-分页面重写业务代码"><span class="toc-text">步骤 3：分模块 &#x2F; 分页面重写业务代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#步骤4：打包测试上线"><span class="toc-text">步骤4：打包测试上线</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-优劣势"><span class="toc-text">2.优劣势</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>判断Vue2 项目重构为 Vue3 是否需要重新建项目并完全重写所有代码，取决于项目的大小和复杂度。</p>
+<a id="more"></a>
+<p>不需要完全重新建项目并重写所有代码，Vue 提供了「渐进式迁移」的方案，既支持「全新项目重构（重写）」，也支持「原有项目增量迁移（逐步改造）」，可根据项目规模、团队情况选择合适的方案。</p>
+<h3 id="方案一：渐进式增量迁移（无需重建项目，逐步改造）"><a href="#方案一：渐进式增量迁移（无需重建项目，逐步改造）" class="headerlink" title="方案一：渐进式增量迁移（无需重建项目，逐步改造）"></a>方案一：渐进式增量迁移（无需重建项目，逐步改造）</h3><h4 id="1-适用场景"><a href="#1-适用场景" class="headerlink" title="1.适用场景"></a>1.适用场景</h4><ul>
+<li>中大型项目，代码量庞大、业务逻辑复杂，无法一次性重写；</li>
+<li>项目需要持续迭代上线，不能长时间停服或暂停新功能开发；</li>
+<li>团队对 Vue3 的熟悉度有限，希望逐步过渡，降低学习和迁移风险；</li>
+<li>原 Vue2 项目代码质量较好，仅需升级框架版本，无需大幅重构架构。</li>
+</ul>
+<h4 id="2-操作步骤（核心流程，关键是「兼容共存」）"><a href="#2-操作步骤（核心流程，关键是「兼容共存」）" class="headerlink" title="2.操作步骤（核心流程，关键是「兼容共存」）"></a>2.操作步骤（核心流程，关键是「兼容共存」）</h4><h5 id="步骤1：升级项目依赖，实现-Vue2-与-Vue3-兼容共存"><a href="#步骤1：升级项目依赖，实现-Vue2-与-Vue3-兼容共存" class="headerlink" title="步骤1：升级项目依赖，实现 Vue2 与 Vue3 兼容共存"></a>步骤1：升级项目依赖，实现 Vue2 与 Vue3 兼容共存</h5><ul>
+<li>核心依赖升级：使用@vue/composition-api插件（让 Vue2 项目支持 Vue3 的组合式 API），或直接升级到「Vue 2.7」（Vue2 的最终版本，内置了组合式 API，无需额外插件，是 Vue2 迁移到 Vue3 的最佳过渡版本）</li>
+</ul>
+<pre><code># 升级Vue到2.7
+npm install vue@2.7 --save
+# 若需使用组合式API，Vue2.7已内置，无需安装@vue/composition-api</code></pre><ul>
+<li>升级配套依赖：<code>vue-router@3.6+</code>（兼容 Vue2.7，为后续升级到 v4 做准备）、<code>vuex@3.6+</code></li>
+</ul>
+<h5 id="步骤-2：在原有项目中增量引入-Vue3-语法"><a href="#步骤-2：在原有项目中增量引入-Vue3-语法" class="headerlink" title="步骤 2：在原有项目中增量引入 Vue3 语法"></a>步骤 2：在原有项目中增量引入 Vue3 语法</h5><ul>
+<li>新开发的功能直接使用 Vue3 的语法（如 Setup 语法糖、ref/reactive），Vue2.7 完全兼容，可与旧代码和平共存；</li>
+<li>对旧功能模块，按「低风险→高风险」的顺序逐步改造：先改造辅助功能（如工具类组件、简单页面），再改造核心业务模块；</li>
+<li>改造时遵循「最小改动原则」：优先保留原业务逻辑，仅修改框架相关语法，避免引入新的业务 bug。</li>
+</ul>
+<h5 id="步骤-3：逐步替换核心依赖，向-Vue3-完全迁移"><a href="#步骤-3：逐步替换核心依赖，向-Vue3-完全迁移" class="headerlink" title="步骤 3：逐步替换核心依赖，向 Vue3 完全迁移"></a>步骤 3：逐步替换核心依赖，向 Vue3 完全迁移</h5><ul>
+<li>当项目中大部分代码已迁移为 Vue3 语法后，开始升级核心依赖到 Vue3 生态：<ul>
+<li>升级vue到3.x；</li>
+<li>升级vue-router到4.x；</li>
+<li>替换Vuex为Pinia（状态管理更简洁，适配 Vue3）；</li>
+<li>替换 UI 组件库（如element-ui→element-plus，vant@2→vant@3）。</li>
+</ul>
+</li>
+</ul>
+<h5 id="步骤-4：清理旧代码，完成迁移"><a href="#步骤-4：清理旧代码，完成迁移" class="headerlink" title="步骤 4：清理旧代码，完成迁移"></a>步骤 4：清理旧代码，完成迁移</h5><ul>
+<li>移除所有 Vue2 的专属语法和依赖（如Vue.prototype、new Vue()、旧版组件库）；</li>
+<li>优化项目架构，适配 Vue3 的最佳实践（如全局配置改为createApp、指令钩子调整）；</li>
+<li>全面测试，确保业务功能正常，性能优于原 Vue2 项目。</li>
+</ul>
+<h4 id="3-小技巧：使用vue-codemod自动迁移"><a href="#3-小技巧：使用vue-codemod自动迁移" class="headerlink" title="3.小技巧：使用vue-codemod自动迁移"></a>3.小技巧：使用vue-codemod自动迁移</h4><p>Vue 官方提供了vue-codemod工具，可自动将 Vue2 的部分语法转换为 Vue3 语法，减少手动修改工作量：</p>
+<pre><code># 安装vue-codemod
+npm install -g vue-codemod
+# 执行自动迁移（示例：将选项式API的组件转换为组合式API）
+vue-codemod vue2-to-vue3 ./src/components</code></pre><p>该工具支持路由、组件、生命周期等多种语法的自动转换，大幅提升迁移效率。</p>
+<h4 id="4-优势与劣势"><a href="#4-优势与劣势" class="headerlink" title="4. 优势与劣势"></a>4. 优势与劣势</h4><ul>
+<li>✅ 优势：风险低，不影响现有业务迭代，团队可逐步适应 Vue3 语法，迁移周期灵活可控；</li>
+<li>❌ 劣势：项目中会存在新旧语法共存的过渡期，架构略显混乱，后期需要额外清理旧代码，无法一次性发挥 Vue3 的全部优势。</li>
+</ul>
+<h3 id="方案二：全新项目重构（重新建项目，按需重写代码）-当记录创建vue3项目"><a href="#方案二：全新项目重构（重新建项目，按需重写代码）-当记录创建vue3项目" class="headerlink" title="方案二：全新项目重构（重新建项目，按需重写代码）  当记录创建vue3项目"></a>方案二：全新项目重构（重新建项目，按需重写代码）  当记录创建vue3项目</h3><h4 id="1-操作步骤："><a href="#1-操作步骤：" class="headerlink" title="1.操作步骤："></a>1.操作步骤：</h4><h5 id="步骤-1：搭建全新-Vue3-项目环境"><a href="#步骤-1：搭建全新-Vue3-项目环境" class="headerlink" title="步骤 1：搭建全新 Vue3 项目环境"></a>步骤 1：搭建全新 Vue3 项目环境</h5><ul>
+<li>使用Vite初始化（比 Vue CLI 更快，更适配 Vue3）</li>
+</ul>
+<pre><code># npm
+npm create vite@latest my-vue3-project -- --template vue
+# yarn
+yarn create vite my-vue3-project --template vue
+# pnpm
+pnpm create vite my-vue3-project -- --template vue</code></pre><ul>
+<li>若需兼容旧项目的Vue CLI习惯，也可使用 Vue CLI 创建 Vue3 项目：</li>
+</ul>
+<pre><code>vue create my-vue3-project # 选择Vue 3 + TypeScript/JavaScript</code></pre><ul>
+<li>安装项目依赖（替换原 Vue2 的依赖，如vue-router@4、pinia（替代 Vuex）、element-plus（替代 element-ui））。</li>
+</ul>
+<h5 id="步骤-2：迁移核心配置与资源"><a href="#步骤-2：迁移核心配置与资源" class="headerlink" title="步骤 2：迁移核心配置与资源"></a>步骤 2：迁移核心配置与资源</h5><ul>
+<li>复制原项目的静态资源（<code>public</code>目录下的图片、字体、配置文件等），直接粘贴到新 Vue3 项目的<code>public</code>或<code>assets</code>目录；</li>
+<li>迁移全局配置（如全局样式、全局指令、全局组件），适配 Vue3 的语法（如全局指令的钩子函数调整）；</li>
+<li>配置路由（<code>vue-router@4</code>），将原 Vue2 的<code>router/index.js</code>迁移为 Vue3 的写法（语法差异极小，主要是创建路由实例的方法变化）：</li>
+</ul>
+<pre><code>// Vue2 路由写法
+import Vue from &#39;vue&#39;
+import Router from &#39;vue-router&#39;
+Vue.use(Router)
+export default new Router({
+  routes: [/* 路由配置 */]
+})
+
+// Vue3 路由写法（vue-router@4）
+import { createRouter, createWebHistory } from &#39;vue-router&#39;
+const routes = [/* 迁移原路由配置，基本无需修改 */]
+const router = createRouter({
+  history: createWebHistory(), // 替代Vue2的mode: &#39;history&#39;
+  routes
+})
+export default router</code></pre><h5 id="步骤-3：分模块-分页面重写业务代码"><a href="#步骤-3：分模块-分页面重写业务代码" class="headerlink" title="步骤 3：分模块 / 分页面重写业务代码"></a>步骤 3：分模块 / 分页面重写业务代码</h5><ul>
+<li>按「模块优先级」（核心业务→次要业务→辅助功能）逐步重写；</li>
+<li>重写时适配 Vue3 语法：<ul>
+<li>选项式 API（Vue2）可直接复用（Vue3 完全兼容），若想优化，再逐步改造为组合式 API/Setup 语法糖；</li>
+<li>响应式数据：data() → ref/reactive；</li>
+<li>生命周期：mounted → onMounted（需手动导入）；</li>
+<li>组件通信：props/$emit用法基本不变，v-model自定义更灵活。</li>
+</ul>
+</li>
+</ul>
+<h5 id="步骤4：打包测试上线"><a href="#步骤4：打包测试上线" class="headerlink" title="步骤4：打包测试上线"></a>步骤4：打包测试上线</h5><ul>
+<li>每个模块重写完成后，进行单元测试和业务测试，确保与原 Vue2 项目功能一致；</li>
+<li>全部重写完成后，进行整体联调，优化打包体积和性能，最终上线。</li>
+</ul>
+<h4 id="2-优劣势"><a href="#2-优劣势" class="headerlink" title="2.优劣势"></a>2.优劣势</h4><ul>
+<li>✅ 优势：项目架构干净，无旧代码冗余，能完全发挥 Vue3 的性能优势和最佳实践，后期维护成本低；</li>
+<li>❌ 劣势：耗时较长，需要投入较多人力，若项目规模大，可能影响业务迭代进度。</li>
+</ul>
+
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2025/12/18/JavaScript_ES6-ES15_%E6%89%80%E6%9C%89%E6%96%B0%E7%89%B9%E6%80%A7/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">JavaScript ES 版本特性（ES6-ES15）</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/09/26/NavBar%E5%BC%B9%E7%AA%97%E7%82%B9%E5%87%BB_%E5%BC%B9%E7%AA%97%E5%A4%96%E9%83%A8%E5%8C%BA%E5%9F%9F%E5%85%B3%E9%97%AD/">
+                <span class="nav-default">NavBar 顶部弹窗点击弹窗外部区域关闭弹窗实现</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2026
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'vue2项目重构到vue3建议流程';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>
