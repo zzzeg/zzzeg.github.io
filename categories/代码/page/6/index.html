@@ -160,6 +160,67 @@ var CONFIG = {
         
 			<article class="post-abstract">
 				<div class="post-title">
+					<h2><a class="post-title-link" href="/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/">a.js里调用b.js的方法</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2016-04-16</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>在调用之前，引入如下4行代码即可 </p>
+<pre><code>new_element=document.createElement(&quot;script&quot;);   
+new_element.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);   
+new_element.setAttribute(&quot;src&quot;,&quot;b.js&quot;);  
+document.body.appendChild(new_element);  </code></pre><p>分析：利用document.createElement(“script”)生成了一个script的标签，设置其type属性为text/javascript，src为a.js(这里的a.js同b.js放在同一个目录，也可放在不同的目录)。最后将这个标签动态地加入body中。如此一来，我们就可以调用到不同js文件中的方法了</p>
+
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2015/03/07/filter%E6%BB%A4%E9%95%9C/">filter滤镜</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2015-03-07</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>在IE中使用CSS3的旋转效果是不能实现的，，但是我又想把IE旋转效果跟其他浏览使用CSS3 rotate(deg)一样。在百度找了一下，发现IE里面有一款滤镜，可以实现旋转角度。</p>
+<p>代码如下：  </p>
+<pre><code>filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod=&#39;auto expand&#39;, M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678);  </code></pre>
+						<div class="read-more">
+							<a href="/2015/03/07/filter%E6%BB%A4%E9%95%9C/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
 					<h2><a class="post-title-link" href="/2014/12/08/prism-js%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%8F%92%E4%BB%B6/">prism.js代码高亮插件</a></h2>
 				</div>
 				<div class="post-meta">

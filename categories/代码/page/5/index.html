@@ -160,6 +160,68 @@ var CONFIG = {
         
 			<article class="post-abstract">
 				<div class="post-title">
+					<h2><a class="post-title-link" href="/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">elementui的click事件绑定无效解决方案</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2018-03-27</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>做步骤条的时候，加click没生效，想点击步骤直接跳转<br><img src="https://image-static.segmentfault.com/418/389/4183891061-59967d2472d13_articlex" alt=""><br>图片来自<a href="https://segmentfault.com/q/1010000010731358" target="_blank" rel="noopener">segmentfault</a></p>
+						<div class="read-more">
+							<a href="/2018/03/27/elementui%E7%9A%84click%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
+					<h2><a class="post-title-link" href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/">Vue-quill-editor样式错乱</a></h2>
+				</div>
+				<div class="post-meta">
+					<span class="post-time">2018-03-08</span>
+					
+					<span class="post-category">
+						
+						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+						
+					</span>
+					
+				</div>
+				<div class="post-content">
+					
+						<p>2018年1月19日，项目使用<br>加入富文本编辑器（quillEditor），出现如下问题.</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/373/732/3737323270-5a3bb77255b35_articlex" alt=""></p>
+<p>查询一圈，是因为这玩意儿升级了，css要单独去引用
+						<div class="read-more">
+							<a href="/2018/03/08/Vue-quill-editor%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1/" class="read-more-link">
+								阅读全文
+								<i class="iconfont icon-readmore"></i>
+							</a>
+						</div>
+					
+				</div>
+			</article>
+		
+
+    
+        
+			<article class="post-abstract">
+				<div class="post-title">
 					<h2><a class="post-title-link" href="/2017/11/08/Vue%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/">Vue快速搭建</a></h2>
 				</div>
 				<div class="post-meta">
@@ -329,67 +391,6 @@ console.log(a);// 1,2,3  不改变本身  </code></pre>
 						<p>由于项目需求，写到某个插件的时候，需要阻止backspace等浏览器默认事件，但是用e.preventDefault()无论如何都搞不定，火狐和谷歌在input或textarea失焦之后，按backspace都执行了后退(上一页)，网上查了资料，也问了不少人，最终原生js解决，以此为记：  </p>
 						<div class="read-more">
 							<a href="/2016/06/21/javascript%E9%98%BB%E6%AD%A2%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%8E%E9%80%80backspace%E9%94%AE/" class="read-more-link">
-								阅读全文
-								<i class="iconfont icon-readmore"></i>
-							</a>
-						</div>
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2016/04/16/a-js%E9%87%8C%E8%B0%83%E7%94%A8b-js%E7%9A%84%E6%96%B9%E6%B3%95/">a.js里调用b.js的方法</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2016-04-16</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>在调用之前，引入如下4行代码即可 </p>
-<pre><code>new_element=document.createElement(&quot;script&quot;);   
-new_element.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);   
-new_element.setAttribute(&quot;src&quot;,&quot;b.js&quot;);  
-document.body.appendChild(new_element);  </code></pre><p>分析：利用document.createElement(“script”)生成了一个script的标签，设置其type属性为text/javascript，src为a.js(这里的a.js同b.js放在同一个目录，也可放在不同的目录)。最后将这个标签动态地加入body中。如此一来，我们就可以调用到不同js文件中的方法了</p>
-
-					
-				</div>
-			</article>
-		
-
-    
-        
-			<article class="post-abstract">
-				<div class="post-title">
-					<h2><a class="post-title-link" href="/2015/03/07/filter%E6%BB%A4%E9%95%9C/">filter滤镜</a></h2>
-				</div>
-				<div class="post-meta">
-					<span class="post-time">2015-03-07</span>
-					
-					<span class="post-category">
-						
-						<a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-						
-					</span>
-					
-				</div>
-				<div class="post-content">
-					
-						<p>在IE中使用CSS3的旋转效果是不能实现的，，但是我又想把IE旋转效果跟其他浏览使用CSS3 rotate(deg)一样。在百度找了一下，发现IE里面有一款滤镜，可以实现旋转角度。</p>
-<p>代码如下：  </p>
-<pre><code>filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod=&#39;auto expand&#39;, M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678);  </code></pre>
-						<div class="read-more">
-							<a href="/2015/03/07/filter%E6%BB%A4%E9%95%9C/" class="read-more-link">
 								阅读全文
 								<i class="iconfont icon-readmore"></i>
 							</a>

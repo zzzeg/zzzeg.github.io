@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>Vue3 + TypeScript 商业化前端项目从 0 到完整结构搭建规范</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/c/font_4290596_wzbse8sc9u.css"><!--新增的自定义图标-->
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <nav class="header-nav">
+			
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+			
+			
+			<!--a href="/categories" class="header-nav-link" >
+			    分类
+			</a-->
+			
+				
+			
+			  
+				<a href="/categories/mac系统/" class="header-nav-link"  title="mac系统">mac系统</a>
+			  
+			
+			  
+				<a href="/categories/代码/" class="header-nav-link"  title="代码">代码</a>
+			  
+			
+			  
+				<a href="/categories/日常心情/" class="header-nav-link"  title="日常心情">日常心情</a>
+			  
+			
+			  
+				<a href="/categories/自考/" class="header-nav-link"  title="自考">自考</a>
+			  
+			
+
+            
+            <!--a href="/archives" class="header-nav-link">
+                归档
+            </a-->
+            
+
+            
+            <!--a href="/tags" class="header-nav-link">
+                标签
+            </a-->
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+			
+        </nav>
+		<div class="search-header">
+  <!--span class="search-icon">
+    <i class="iconfont icon-sousuo"></i>
+  </span-->
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索" spellcheck="false"
+           type="text" id="search-input">
+	<a class="clearinput"><i class="iconfont icon-del" style="font-size:20px;"></i></a>
+  </div>
+  
+  <i class="search-icon iconfont icon-sousuo"></i>
+  
+  <!--span class="popup-btn-close">
+	<a role="button" class="popup-trigger">
+		<i class="fa fa-times-circle"></i>
+	</a>
+  </span-->
+</div>
+<div id="search-result">
+	<div id="no-result">
+	    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	  </div>
+</div>
+<script>
+var CONFIG = {
+ path: 'search.json',
+ root: '/',
+ localsearch:{
+   	top_n_per_article: 1,
+   	trigger: 'auto',
+	enable: false,
+	unescape: false,
+	preload: true
+ }
+}
+</script>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">zeg's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
+<link rel="stylesheet" href="/css/prettify.css">
+
+	
+<script src="/js/prettify.js"></script>
+
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+			<!--文章详情页-->
+            <h2 class="title">Vue3 + TypeScript 商业化前端项目从 0 到完整结构搭建规范</h2>
+            <div class="post-meta">
+                <span class="post-time">2026-03-06</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AI-可读版：Vue3-TypeScript-商业化前端项目从-0-到完整结构搭建规范"><span class="toc-text">AI 可读版：Vue3 + TypeScript 商业化前端项目从 0 到完整结构搭建规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-AI-执行总原则"><span class="toc-text">0. AI 执行总原则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-项目创建"><span class="toc-text">1. 项目创建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-创建项目"><span class="toc-text">1.1 创建项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-安装核心依赖"><span class="toc-text">2. 安装核心依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-运行依赖"><span class="toc-text">2.1 运行依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-开发依赖"><span class="toc-text">2.2 开发依赖</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-推荐完整目录结构"><span class="toc-text">3. 推荐完整目录结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-每个目录应该放什么"><span class="toc-text">4. 每个目录应该放什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-src-api"><span class="toc-text">4.1 src&#x2F;api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-src-request"><span class="toc-text">4.2 src&#x2F;request</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#axios-版本推荐"><span class="toc-text">axios 版本推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fetch-版本推荐"><span class="toc-text">fetch 版本推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-src-stores"><span class="toc-text">4.3 src&#x2F;stores</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-src-router"><span class="toc-text">4.4 src&#x2F;router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-src-layouts"><span class="toc-text">4.5 src&#x2F;layouts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-src-i18n"><span class="toc-text">4.6 src&#x2F;i18n</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-src-types"><span class="toc-text">4.7 src&#x2F;types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8-src-composables"><span class="toc-text">4.8 src&#x2F;composables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9-src-utils"><span class="toc-text">4.9 src&#x2F;utils</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10-src-constants"><span class="toc-text">4.10 src&#x2F;constants</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11-src-validators"><span class="toc-text">4.11 src&#x2F;validators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12-src-components"><span class="toc-text">4.12 src&#x2F;components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-13-src-pages"><span class="toc-text">4.13 src&#x2F;pages</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-环境变量规范"><span class="toc-text">5. 环境变量规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-main-ts-初始化规范"><span class="toc-text">6. main.ts 初始化规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-App-vue-规范"><span class="toc-text">7. App.vue 规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-vite-config-ts-推荐配置"><span class="toc-text">8. vite.config.ts 推荐配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-tsconfig-规范"><span class="toc-text">9. tsconfig 规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-ESLint-Prettier-规范"><span class="toc-text">10. ESLint &#x2F; Prettier 规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-prettierrc"><span class="toc-text">10.1 .prettierrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-editorconfig"><span class="toc-text">10.2 .editorconfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-package-json-scripts"><span class="toc-text">10.3 package.json scripts</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-Pinia-使用边界"><span class="toc-text">11. Pinia 使用边界</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1-应该放-Pinia-的内容"><span class="toc-text">11.1 应该放 Pinia 的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-不应该放-Pinia-的内容"><span class="toc-text">11.2 不应该放 Pinia 的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3-判断标准"><span class="toc-text">11.3 判断标准</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-接口层规范"><span class="toc-text">12. 接口层规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#12-1-正确调用链"><span class="toc-text">12.1 正确调用链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-2-禁止调用链"><span class="toc-text">12.2 禁止调用链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-3-推荐写法"><span class="toc-text">12.3 推荐写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-错误处理规范"><span class="toc-text">13. 错误处理规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-权限设计规范"><span class="toc-text">14. 权限设计规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#14-1-路由-meta"><span class="toc-text">14.1 路由 meta</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-2-权限判断位置"><span class="toc-text">14.2 权限判断位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-3-按钮权限示例"><span class="toc-text">14.3 按钮权限示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-表单规范"><span class="toc-text">15. 表单规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-列表页规范"><span class="toc-text">16. 列表页规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17-样式规范"><span class="toc-text">17. 样式规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#17-1-variables-css"><span class="toc-text">17.1 variables.css</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-2-组件样式规则"><span class="toc-text">17.2 组件样式规则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18-图片和静态资源规范"><span class="toc-text">18. 图片和静态资源规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19-测试规范"><span class="toc-text">19. 测试规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20-监控和日志规范"><span class="toc-text">20. 监控和日志规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#21-Docker-部署规范"><span class="toc-text">21. Docker 部署规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#22-README-md-必须包含什么"><span class="toc-text">22. README.md 必须包含什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发"><span class="toc-text">开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建"><span class="toc-text">构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录结构"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-2-分支建议"><span class="toc-text">23.2 分支建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-3-提交信息建议"><span class="toc-text">23.3 提交信息建议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#24-当前项目常见问题修正建议"><span class="toc-text">24. 当前项目常见问题修正建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#25-fetch-和-axios-怎么选"><span class="toc-text">25. fetch 和 axios 怎么选</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#25-1-继续用-fetch-的条件"><span class="toc-text">25.1 继续用 fetch 的条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-2-推荐-axios-的条件"><span class="toc-text">25.2 推荐 axios 的条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-3-关键结论"><span class="toc-text">25.3 关键结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#26-AI-生成项目时的执行步骤"><span class="toc-text">26. AI 生成项目时的执行步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#27-AI-生成代码时的禁止事项"><span class="toc-text">27. AI 生成代码时的禁止事项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#28-最小可用商业项目结构"><span class="toc-text">28. 最小可用商业项目结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#29-推荐最终结论"><span class="toc-text">29. 推荐最终结论</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>123</p>
+<a id="more"></a>
+
+<h1 id="AI-可读版：Vue3-TypeScript-商业化前端项目从-0-到完整结构搭建规范"><a href="#AI-可读版：Vue3-TypeScript-商业化前端项目从-0-到完整结构搭建规范" class="headerlink" title="AI 可读版：Vue3 + TypeScript 商业化前端项目从 0 到完整结构搭建规范"></a>AI 可读版：Vue3 + TypeScript 商业化前端项目从 0 到完整结构搭建规范</h1><blockquote>
+<p>这份文档是给 AI 或开发者直接执行用的项目规范。<br>技术栈默认：Vue3 + TypeScript + Vite + Vue Router + Pinia + Element Plus。<br>目标：从 0 创建一个结构清晰、适合商业项目长期维护的前端项目。</p>
+</blockquote>
+<h1 id="0-AI-执行总原则"><a href="#0-AI-执行总原则" class="headerlink" title="0. AI 执行总原则"></a>0. AI 执行总原则</h1><p>AI 在根据本文档生成项目时，必须遵守以下原则：</p>
+<pre><code class="txt">1. 不要把所有逻辑塞进 Pinia。
+2. Pinia 只放全局状态，例如用户信息、token、主题、语言、全局布局状态。
+3. 接口请求必须通过统一 request 层，不允许页面组件里直接 fetch 或 axios。
+4. api 目录只负责定义业务接口函数，不处理页面逻辑。
+5. 页面 pages 只负责页面组合，不承载大量业务工具函数。
+6. 复用逻辑放 composables。
+7. 通用工具函数放 utils。
+8. 常量放 constants。
+9. 类型定义放 types。
+10. 国际化资源不要放 stores，应放 i18n 或 locales。
+11. 表单规则、业务校验规则不要大量写在页面里，优先放 validators 或 schemas。
+12. 路由守卫单独放 router/guard.ts。
+13. 布局壳子放 layouts。
+14. 样式要有统一入口，不要散乱写全局样式。
+15. 项目必须支持开发、测试、生产环境变量。
+16. 商业项目上线前要考虑错误处理、权限、登录失效、打包、部署、日志、README。</code></pre>
+<hr>
+<h1 id="1-项目创建"><a href="#1-项目创建" class="headerlink" title="1. 项目创建"></a>1. 项目创建</h1><h2 id="1-1-创建项目"><a href="#1-1-创建项目" class="headerlink" title="1.1 创建项目"></a>1.1 创建项目</h2><pre><code class="bash">npm create vite@latest frontend -- --template vue-ts
+cd frontend
+npm install</code></pre>
+<p>如果已经有后端目录，可以使用这种结构：</p>
+<pre><code class="txt">rental-account-platform/
+  backend/
+  frontend/
+  docker/
+  nginx/
+  docker-compose.yml
+  README.md</code></pre>
+<p>其中前端项目放在：</p>
+<pre><code class="txt">rental-account-platform/frontend/</code></pre>
+<hr>
+<h1 id="2-安装核心依赖"><a href="#2-安装核心依赖" class="headerlink" title="2. 安装核心依赖"></a>2. 安装核心依赖</h1><h2 id="2-1-运行依赖"><a href="#2-1-运行依赖" class="headerlink" title="2.1 运行依赖"></a>2.1 运行依赖</h2><pre><code class="bash">npm install vue-router pinia element-plus @element-plus/icons-vue axios</code></pre>
+<p>说明：</p>
+<pre><code class="txt">vue-router              路由
+pinia                   状态管理
+element-plus            UI 组件库
+@element-plus/icons-vue Element Plus 图标
+axios                   请求库，也可以不用 axios，改用 fetch 自封装</code></pre>
+<p>尽量使用axios，如果决定不用 axios，也可以不安装 axios，但必须自己封装 request。</p>
+<hr>
+<h2 id="2-2-开发依赖"><a href="#2-2-开发依赖" class="headerlink" title="2.2 开发依赖"></a>2.2 开发依赖</h2><pre><code class="bash">npm install -D eslint prettier eslint-plugin-vue @typescript-eslint/parser @typescript-eslint/eslint-plugin
+npm install -D vite-plugin-vue-devtools
+npm install -D unplugin-auto-import unplugin-vue-components
+npm install -D unplugin-element-plus
+npm install -D vitest jsdom @vue/test-utils
+npm install -D playwright</code></pre>
+<p>说明：</p>
+<pre><code class="txt">eslint                  代码检查
+prettier                代码格式化
+vite-plugin-vue-devtools Vue 开发工具
+unplugin-auto-import    自动导入 Vue API、Element Plus API
+unplugin-vue-components 自动导入组件
+unplugin-element-plus   Element Plus 按需样式
+vitest                  单元测试
+playwright              E2E 测试</code></pre>
+<hr>
+<h1 id="3-推荐完整目录结构"><a href="#3-推荐完整目录结构" class="headerlink" title="3. 推荐完整目录结构"></a>3. 推荐完整目录结构</h1><p>AI 创建项目时，优先按下面结构生成：</p>
+<pre><code class="txt">frontend/
+  public/
+    favicon.ico
+
+  src/
+    api/
+      order.ts
+      product.ts
+      system.ts
+      user.ts
+
+    request/
+      index.ts
+      error.ts
+      types.ts
+
+    assets/
+      images/
+      svg/
+      styles/
+        variables.css
+        reset.css
+        element.css
+        common.css
+
+    components/
+      common/
+        EmptyState.vue
+        PageLoading.vue
+        ConfirmButton.vue
+      layout/
+        AppHeader.vue
+        AppDrawer.vue
+        AppFooter.vue
+
+    composables/
+      useGo.ts
+      useMessage.ts
+      useLoading.ts
+      usePagination.ts
+      useConfirm.ts
+
+    config/
+      index.ts
+      env.ts
+
+    constants/
+      route.ts
+      storage.ts
+      tips.ts
+      status.ts
+
+    i18n/
+      index.ts
+      messages/
+        zh.ts
+        en.ts
+        ru.ts
+
+    layouts/
+      MainLayout.vue
+      AdminLayout.vue
+      BlankLayout.vue
+
+    pages/
+      HomePage.vue
+      LoginPage.vue
+      RegisterPage.vue
+      ProductPage.vue
+      ProductDetailPage.vue
+      OrdersPage.vue
+      OrderSuccessPage.vue
+      DeliveryPage.vue
+      admin/
+        AdminHomePage.vue
+        AdminOrdersPage.vue
+        AdminProductEditPage.vue
+        AdminCategoriesPage.vue
+
+    router/
+      index.ts
+      routes.ts
+      guard.ts
+
+    stores/
+      app.ts
+      auth.ts
+      user.ts
+
+    types/
+      api.ts
+      order.ts
+      product.ts
+      user.ts
+      common.ts
+
+    utils/
+      storage.ts
+      format.ts
+      price.ts
+      date.ts
+      validate.ts
+
+    validators/
+      auth.ts
+      order.ts
+      product.ts
+
+    App.vue
+    main.ts
+    style.css
+
+  tests/
+    unit/
+      utils/
+        price.test.ts
+    e2e/
+      login.spec.ts
+      order.spec.ts
+
+  .env
+  .env.development
+  .env.staging
+  .env.production
+
+  .editorconfig
+  .gitignore
+  .prettierignore
+  .prettierrc
+  eslint.config.js
+
+  index.html
+  package.json
+  package-lock.json
+  tsconfig.json
+  tsconfig.app.json
+  tsconfig.node.json
+  vite.config.ts
+  README.md
+  Dockerfile</code></pre>
+<hr>
+<h1 id="4-每个目录应该放什么"><a href="#4-每个目录应该放什么" class="headerlink" title="4. 每个目录应该放什么"></a>4. 每个目录应该放什么</h1><h2 id="4-1-src-api"><a href="#4-1-src-api" class="headerlink" title="4.1 src/api"></a>4.1 src/api</h2><p>作用：放业务接口函数。</p>
+<p>规则：</p>
+<pre><code class="txt">1. api 目录只写接口函数。
+2. api 文件不直接处理 UI。
+3. api 文件不直接弹窗。
+4. api 文件不直接操作路由。
+5. api 文件只负责调用 request 并返回结果。</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/api/product.ts
+import request from &#39;@/request&#39;
+import type { Product, Category } from &#39;@/types/product&#39;
+import type { PageResult } from &#39;@/types/api&#39;
+
+export function getProducts(params?: {
+  page?: number
+  pageSize?: number
+  keyword?: string
+}) {
+  return request.get&lt;PageResult&lt;Product&gt;&gt;(&#39;/accounts&#39;, { params })
+}
+
+export function getProduct(id: string) {
+  return request.get&lt;Product&gt;(`/accounts/${id}`)
+}
+
+export function getCategories() {
+  return request.get&lt;Category[]&gt;(&#39;/categories&#39;)
+}
+
+export function createProduct(payload: Partial&lt;Product&gt;) {
+  return request.post&lt;Product&gt;(&#39;/admin/accounts&#39;, payload)
+}
+
+export function updateProduct(id: string, payload: Partial&lt;Product&gt;) {
+  return request.patch&lt;Product&gt;(`/admin/accounts/${id}`, payload)
+}
+
+export function deleteProduct(id: string) {
+  return request.delete&lt;void&gt;(`/admin/accounts/${id}`)
+}</code></pre>
+<hr>
+<h2 id="4-2-src-request"><a href="#4-2-src-request" class="headerlink" title="4.2 src/request"></a>4.2 src/request</h2><p>作用：统一请求层。</p>
+<p>必须负责：</p>
+<pre><code class="txt">1. baseURL
+2. token 注入
+3. 请求超时
+4. 请求错误处理
+5. 401 登录失效处理
+6. 403 无权限处理
+7. 500 服务错误处理
+8. JSON 解析
+9. FormData 兼容
+10. 响应数据格式统一</code></pre>
+<h3 id="axios-版本推荐"><a href="#axios-版本推荐" class="headerlink" title="axios 版本推荐"></a>axios 版本推荐</h3><pre><code class="ts">// src/request/index.ts
+import axios, { AxiosError, type AxiosRequestConfig } from &#39;axios&#39;
+import { useAuthStore } from &#39;@/stores/auth&#39;
+import { handleRequestError } from &#39;./error&#39;
+
+const request = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || &#39;/api&#39;,
+  timeout: 15000,
+  headers: {
+    &#39;Content-Type&#39;: &#39;application/json&#39;,
+  },
+})
+
+request.interceptors.request.use((config) =&gt; {
+  const auth = useAuthStore()
+
+  if (auth.token) {
+    config.headers.Authorization = `Bearer ${auth.token}`
+  }
+
+  return config
+})
+
+request.interceptors.response.use(
+  (response) =&gt; {
+    const data = response.data
+
+    // 后端如果统一返回 { code, message, data }
+    if (data &amp;&amp; typeof data === &#39;object&#39; &amp;&amp; &#39;code&#39; in data) {
+      if (data.code !== 0 &amp;&amp; data.code !== 200) {
+        return Promise.reject(new Error(data.message || &#39;请求失败&#39;))
+      }
+      return data.data
+    }
+
+    // 后端如果直接返回业务数据
+    return data?.data ?? data
+  },
+  (error: AxiosError) =&gt; {
+    return Promise.reject(handleRequestError(error))
+  },
+)
+
+export default request</code></pre>
+<pre><code class="ts">// src/request/error.ts
+import type { AxiosError } from &#39;axios&#39;
+import { useAuthStore } from &#39;@/stores/auth&#39;
+import router from &#39;@/router&#39;
+
+export function handleRequestError(error: AxiosError | unknown) {
+  if (!isAxiosError(error)) {
+    return error instanceof Error ? error : new Error(&#39;未知错误&#39;)
+  }
+
+  const status = error.response?.status
+  const data = error.response?.data as any
+
+  if (status === 401) {
+    const auth = useAuthStore()
+    auth.logout()
+    router.replace(&#39;/login&#39;)
+    return new Error(&#39;登录已失效，请重新登录&#39;)
+  }
+
+  if (status === 403) {
+    return new Error(&#39;没有权限访问&#39;)
+  }
+
+  if (status === 404) {
+    return new Error(&#39;请求资源不存在&#39;)
+  }
+
+  if (status &amp;&amp; status &gt;= 500) {
+    return new Error(&#39;服务器异常，请稍后重试&#39;)
+  }
+
+  if (error.code === &#39;ECONNABORTED&#39;) {
+    return new Error(&#39;请求超时，请检查网络&#39;)
+  }
+
+  return new Error(data?.message || error.message || &#39;请求失败&#39;)
+}
+
+function isAxiosError(error: unknown): error is AxiosError {
+  return !!error &amp;&amp; typeof error === &#39;object&#39; &amp;&amp; &#39;isAxiosError&#39; in error
+}</code></pre>
+<hr>
+<h3 id="fetch-版本推荐"><a href="#fetch-版本推荐" class="headerlink" title="fetch 版本推荐"></a>fetch 版本推荐</h3><p>如果不想使用 axios，可以使用 fetch，但必须补齐商业项目常用能力。</p>
+<pre><code class="ts">// src/request/index.ts
+import { useAuthStore } from &#39;@/stores/auth&#39;
+import { handleHttpError } from &#39;./error&#39;
+
+type RequestOptions = RequestInit &amp; {
+  timeout?: number
+  params?: Record&lt;string, string | number | boolean | undefined | null&gt;
+}
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || &#39;/api&#39;
+
+function buildUrl(url: string, params?: RequestOptions[&#39;params&#39;]) {
+  const fullUrl = url.startsWith(&#39;http&#39;) ? url : `${BASE_URL}${url}`
+
+  if (!params) return fullUrl
+
+  const searchParams = new URLSearchParams()
+
+  Object.entries(params).forEach(([key, value]) =&gt; {
+    if (value !== undefined &amp;&amp; value !== null &amp;&amp; value !== &#39;&#39;) {
+      searchParams.append(key, String(value))
+    }
+  })
+
+  const query = searchParams.toString()
+  return query ? `${fullUrl}?${query}` : fullUrl
+}
+
+async function request&lt;T&gt;(url: string, options: RequestOptions = {}): Promise&lt;T&gt; {
+  const auth = useAuthStore()
+  const controller = new AbortController()
+  const timeout = options.timeout ?? 15000
+
+  const timer = window.setTimeout(() =&gt; {
+    controller.abort()
+  }, timeout)
+
+  const headers = new Headers(options.headers)
+
+  if (!(options.body instanceof FormData)) {
+    headers.set(&#39;Content-Type&#39;, &#39;application/json&#39;)
+  }
+
+  if (auth.token) {
+    headers.set(&#39;Authorization&#39;, `Bearer ${auth.token}`)
+  }
+
+  try {
+    const res = await fetch(buildUrl(url, options.params), {
+      ...options,
+      headers,
+      signal: controller.signal,
+    })
+
+    const contentType = res.headers.get(&#39;content-type&#39;)
+    const isJson = contentType?.includes(&#39;application/json&#39;)
+    const data = isJson ? await res.json().catch(() =&gt; null) : await res.text()
+
+    if (!res.ok) {
+      throw handleHttpError(res.status, data)
+    }
+
+    if (data &amp;&amp; typeof data === &#39;object&#39; &amp;&amp; &#39;code&#39; in data) {
+      if (data.code !== 0 &amp;&amp; data.code !== 200) {
+        throw new Error(data.message || &#39;请求失败&#39;)
+      }
+
+      return data.data as T
+    }
+
+    if (data &amp;&amp; typeof data === &#39;object&#39; &amp;&amp; &#39;data&#39; in data) {
+      return data.data as T
+    }
+
+    return data as T
+  } catch (error: any) {
+    if (error?.name === &#39;AbortError&#39;) {
+      throw new Error(&#39;请求超时，请稍后重试&#39;)
+    }
+
+    throw error instanceof Error ? error : new Error(&#39;请求失败&#39;)
+  } finally {
+    window.clearTimeout(timer)
+  }
+}
+
+export default {
+  get&lt;T&gt;(url: string, options?: RequestOptions) {
+    return request&lt;T&gt;(url, {
+      ...options,
+      method: &#39;GET&#39;,
+    })
+  },
+
+  post&lt;T&gt;(url: string, body?: unknown, options?: RequestOptions) {
+    return request&lt;T&gt;(url, {
+      ...options,
+      method: &#39;POST&#39;,
+      body: body instanceof FormData ? body : JSON.stringify(body ?? {}),
+    })
+  },
+
+  patch&lt;T&gt;(url: string, body?: unknown, options?: RequestOptions) {
+    return request&lt;T&gt;(url, {
+      ...options,
+      method: &#39;PATCH&#39;,
+      body: body instanceof FormData ? body : JSON.stringify(body ?? {}),
+    })
+  },
+
+  put&lt;T&gt;(url: string, body?: unknown, options?: RequestOptions) {
+    return request&lt;T&gt;(url, {
+      ...options,
+      method: &#39;PUT&#39;,
+      body: body instanceof FormData ? body : JSON.stringify(body ?? {}),
+    })
+  },
+
+  delete&lt;T&gt;(url: string, options?: RequestOptions) {
+    return request&lt;T&gt;(url, {
+      ...options,
+      method: &#39;DELETE&#39;,
+    })
+  },
+}</code></pre>
+<pre><code class="ts">// src/request/error.ts
+import router from &#39;@/router&#39;
+import { useAuthStore } from &#39;@/stores/auth&#39;
+
+export function handleHttpError(status: number, data: any) {
+  if (status === 401) {
+    const auth = useAuthStore()
+    auth.logout()
+    router.replace(&#39;/login&#39;)
+    return new Error(&#39;登录已失效，请重新登录&#39;)
+  }
+
+  if (status === 403) {
+    return new Error(&#39;没有权限访问&#39;)
+  }
+
+  if (status === 404) {
+    return new Error(&#39;请求资源不存在&#39;)
+  }
+
+  if (status &gt;= 500) {
+    return new Error(&#39;服务器异常，请稍后重试&#39;)
+  }
+
+  return new Error(data?.message || data?.error || `请求失败：${status}`)
+}</code></pre>
+<hr>
+<h2 id="4-3-src-stores"><a href="#4-3-src-stores" class="headerlink" title="4.3 src/stores"></a>4.3 src/stores</h2><p>作用：全局状态管理。</p>
+<p>可以放：</p>
+<pre><code class="txt">1. token
+2. 用户信息
+3. 当前语言
+4. 主题模式
+5. 全局布局状态
+6. 登录状态
+7. 权限信息</code></pre>
+<p>不应该放：</p>
+<pre><code class="txt">1. 接口请求封装
+2. 静态字典
+3. 大量 i18n 文本
+4. 页面内部状态
+5. 临时弹窗状态
+6. 表单数据
+7. 纯工具函数</code></pre>
+<p>推荐：</p>
+<pre><code class="txt">src/stores/
+  app.ts      全局 UI 状态，例如 dark、locale、drawer
+  auth.ts     token、登录、退出
+  user.ts     当前用户资料、角色、权限</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/stores/auth.ts
+import { defineStore } from &#39;pinia&#39;
+import { ref } from &#39;vue&#39;
+import { TOKEN_KEY } from &#39;@/constants/storage&#39;
+
+export const useAuthStore = defineStore(&#39;auth&#39;, () =&gt; {
+  const token = ref(localStorage.getItem(TOKEN_KEY) || &#39;&#39;)
+
+  function setToken(value: string) {
+    token.value = value
+    localStorage.setItem(TOKEN_KEY, value)
+  }
+
+  function logout() {
+    token.value = &#39;&#39;
+    localStorage.removeItem(TOKEN_KEY)
+  }
+
+  return {
+    token,
+    setToken,
+    logout,
+  }
+})</code></pre>
+<hr>
+<h2 id="4-4-src-router"><a href="#4-4-src-router" class="headerlink" title="4.4 src/router"></a>4.4 src/router</h2><p>作用：路由配置和路由守卫。</p>
+<p>推荐结构：</p>
+<pre><code class="txt">src/router/
+  index.ts
+  routes.ts
+  guard.ts</code></pre>
+<pre><code class="ts">// src/router/routes.ts
+import type { RouteRecordRaw } from &#39;vue-router&#39;
+
+export const routes: RouteRecordRaw[] = [
+  {
+    path: &#39;/&#39;,
+    component: () =&gt; import(&#39;@/layouts/MainLayout.vue&#39;),
+    children: [
+      {
+        path: &#39;&#39;,
+        name: &#39;home&#39;,
+        component: () =&gt; import(&#39;@/pages/HomePage.vue&#39;),
+        meta: {
+          title: &#39;首页&#39;,
+          public: true,
+        },
+      },
+      {
+        path: &#39;products&#39;,
+        name: &#39;products&#39;,
+        component: () =&gt; import(&#39;@/pages/ProductPage.vue&#39;),
+        meta: {
+          title: &#39;产品&#39;,
+          public: true,
+        },
+      },
+      {
+        path: &#39;orders&#39;,
+        name: &#39;orders&#39;,
+        component: () =&gt; import(&#39;@/pages/OrdersPage.vue&#39;),
+        meta: {
+          title: &#39;订单&#39;,
+          requiresAuth: true,
+        },
+      },
+    ],
+  },
+  {
+    path: &#39;/login&#39;,
+    component: () =&gt; import(&#39;@/layouts/BlankLayout.vue&#39;),
+    children: [
+      {
+        path: &#39;&#39;,
+        name: &#39;login&#39;,
+        component: () =&gt; import(&#39;@/pages/LoginPage.vue&#39;),
+        meta: {
+          title: &#39;登录&#39;,
+          public: true,
+        },
+      },
+    ],
+  },
+  {
+    path: &#39;/admin&#39;,
+    component: () =&gt; import(&#39;@/layouts/AdminLayout.vue&#39;),
+    meta: {
+      requiresAuth: true,
+      roles: [&#39;admin&#39;],
+    },
+    children: [
+      {
+        path: &#39;&#39;,
+        name: &#39;admin-home&#39;,
+        component: () =&gt; import(&#39;@/pages/admin/AdminHomePage.vue&#39;),
+        meta: {
+          title: &#39;管理后台&#39;,
+        },
+      },
+    ],
+  },
+]</code></pre>
+<pre><code class="ts">// src/router/index.ts
+import { createRouter, createWebHistory } from &#39;vue-router&#39;
+import { routes } from &#39;./routes&#39;
+import { setupRouterGuard } from &#39;./guard&#39;
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes,
+})
+
+setupRouterGuard(router)
+
+export default router</code></pre>
+<pre><code class="ts">// src/router/guard.ts
+import type { Router } from &#39;vue-router&#39;
+import { useAuthStore } from &#39;@/stores/auth&#39;
+
+export function setupRouterGuard(router: Router) {
+  router.beforeEach((to) =&gt; {
+    const auth = useAuthStore()
+
+    if (typeof to.meta.title === &#39;string&#39;) {
+      document.title = to.meta.title
+    }
+
+    if (to.meta.requiresAuth &amp;&amp; !auth.token) {
+      return {
+        path: &#39;/login&#39;,
+        query: {
+          redirect: to.fullPath,
+        },
+      }
+    }
+
+    if (to.path === &#39;/login&#39; &amp;&amp; auth.token) {
+      return &#39;/&#39;
+    }
+
+    return true
+  })
+}</code></pre>
+<hr>
+<h2 id="4-5-src-layouts"><a href="#4-5-src-layouts" class="headerlink" title="4.5 src/layouts"></a>4.5 src/layouts</h2><p>作用：页面布局壳子。</p>
+<p>推荐：</p>
+<pre><code class="txt">MainLayout.vue     普通前台页面布局，例如 Header + Drawer + 内容区
+AdminLayout.vue    管理后台布局，例如侧边栏 + 顶栏 + 内容区
+BlankLayout.vue    空白布局，例如登录页、注册页</code></pre>
+<p>示例：</p>
+<pre><code class="vue">&lt;!-- src/layouts/MainLayout.vue --&gt;
+&lt;template&gt;
+  &lt;div class=&quot;main-layout&quot;&gt;
+    &lt;AppHeader /&gt;
+    &lt;AppDrawer /&gt;
+    &lt;main class=&quot;main-layout__content&quot;&gt;
+      &lt;RouterView /&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import AppHeader from &#39;@/components/layout/AppHeader.vue&#39;
+import AppDrawer from &#39;@/components/layout/AppDrawer.vue&#39;
+&lt;/script&gt;</code></pre>
+<hr>
+<h2 id="4-6-src-i18n"><a href="#4-6-src-i18n" class="headerlink" title="4.6 src/i18n"></a>4.6 src/i18n</h2><p>作用：国际化文本和语言切换。</p>
+<p>不要把语言包放在 stores 里。</p>
+<p>推荐：</p>
+<pre><code class="txt">src/i18n/
+  index.ts
+  messages/
+    zh.ts
+    en.ts
+    ru.ts</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/i18n/messages/zh.ts
+export default {
+  common: {
+    confirm: &#39;确认&#39;,
+    cancel: &#39;取消&#39;,
+    save: &#39;保存&#39;,
+    delete: &#39;删除&#39;,
+  },
+  page: {
+    home: &#39;首页&#39;,
+    product: &#39;产品&#39;,
+    order: &#39;订单&#39;,
+  },
+}</code></pre>
+<pre><code class="ts">// src/i18n/index.ts
+import zh from &#39;./messages/zh&#39;
+import en from &#39;./messages/en&#39;
+import ru from &#39;./messages/ru&#39;
+
+export const messages = {
+  zh,
+  en,
+  ru,
+}
+
+export type Locale = keyof typeof messages
+
+export function t(locale: Locale, path: string): string {
+  const keys = path.split(&#39;.&#39;)
+  let current: any = messages[locale]
+
+  for (const key of keys) {
+    current = current?.[key]
+  }
+
+  return typeof current === &#39;string&#39; ? current : path
+}</code></pre>
+<p>Pinia 只保存当前语言：</p>
+<pre><code class="ts">// src/stores/app.ts
+import { defineStore } from &#39;pinia&#39;
+import { ref } from &#39;vue&#39;
+import type { Locale } from &#39;@/i18n&#39;
+
+export const useAppStore = defineStore(&#39;app&#39;, () =&gt; {
+  const locale = ref&lt;Locale&gt;((localStorage.getItem(&#39;locale&#39;) as Locale) || &#39;zh&#39;)
+  const dark = ref(localStorage.getItem(&#39;theme&#39;) === &#39;dark&#39;)
+  const drawer = ref(false)
+
+  function setLocale(value: Locale) {
+    locale.value = value
+    localStorage.setItem(&#39;locale&#39;, value)
+  }
+
+  function setDark(value: boolean) {
+    dark.value = value
+    localStorage.setItem(&#39;theme&#39;, value ? &#39;dark&#39; : &#39;light&#39;)
+  }
+
+  function toggleDrawer() {
+    drawer.value = !drawer.value
+  }
+
+  return {
+    locale,
+    dark,
+    drawer,
+    setLocale,
+    setDark,
+    toggleDrawer,
+  }
+})</code></pre>
+<hr>
+<h2 id="4-7-src-types"><a href="#4-7-src-types" class="headerlink" title="4.7 src/types"></a>4.7 src/types</h2><p>作用：集中管理类型。</p>
+<p>推荐：</p>
+<pre><code class="txt">types/api.ts       接口公共类型
+types/user.ts      用户类型
+types/product.ts   产品类型
+types/order.ts     订单类型
+types/common.ts    通用类型</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/types/api.ts
+export interface ApiResponse&lt;T&gt; {
+  code: number
+  message: string
+  data: T
+}
+
+export interface PageResult&lt;T&gt; {
+  list: T[]
+  total: number
+  page: number
+  pageSize: number
+}</code></pre>
+<pre><code class="ts">// src/types/product.ts
+export interface Product {
+  id: string
+  name: string
+  price: number
+  status: &#39;available&#39; | &#39;rented&#39; | &#39;disabled&#39;
+  categoryId: number
+  description?: string
+  image?: string
+}
+
+export interface Category {
+  id: number
+  name: string
+}</code></pre>
+<pre><code class="ts">// src/types/order.ts
+export interface Order {
+  orderNo: string
+  productId: string
+  productName: string
+  status: &#39;pending&#39; | &#39;paid&#39; | &#39;delivering&#39; | &#39;completed&#39; | &#39;cancelled&#39;
+  createdAt: string
+}</code></pre>
+<hr>
+<h2 id="4-8-src-composables"><a href="#4-8-src-composables" class="headerlink" title="4.8 src/composables"></a>4.8 src/composables</h2><p>作用：复用组合式逻辑。</p>
+<p>适合放：</p>
+<pre><code class="txt">1. usePagination
+2. useLoading
+3. useConfirm
+4. useMessage
+5. useGo
+6. useTable
+7. useUpload</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/composables/useLoading.ts
+import { ref } from &#39;vue&#39;
+
+export function useLoading(initialValue = false) {
+  const loading = ref(initialValue)
+
+  async function withLoading&lt;T&gt;(task: () =&gt; Promise&lt;T&gt;) {
+    loading.value = true
+
+    try {
+      return await task()
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return {
+    loading,
+    withLoading,
+  }
+}</code></pre>
+<pre><code class="ts">// src/composables/useMessage.ts
+import { ElMessage, ElMessageBox } from &#39;element-plus&#39;
+
+export function useMessage() {
+  function success(message: string) {
+    ElMessage.success(message)
+  }
+
+  function error(message: string) {
+    ElMessage.error(message)
+  }
+
+  function warning(message: string) {
+    ElMessage.warning(message)
+  }
+
+  async function confirm(message: string, title = &#39;提示&#39;) {
+    await ElMessageBox.confirm(message, title, {
+      type: &#39;warning&#39;,
+      confirmButtonText: &#39;确认&#39;,
+      cancelButtonText: &#39;取消&#39;,
+    })
+  }
+
+  return {
+    success,
+    error,
+    warning,
+    confirm,
+  }
+}</code></pre>
+<hr>
+<h2 id="4-9-src-utils"><a href="#4-9-src-utils" class="headerlink" title="4.9 src/utils"></a>4.9 src/utils</h2><p>作用：纯工具函数。</p>
+<p>适合放：</p>
+<pre><code class="txt">1. 日期格式化
+2. 金额格式化
+3. 字符串处理
+4. localStorage/sessionStorage 包装
+5. 参数处理
+6. 数据转换
+7. 正则校验</code></pre>
+<p>规则：</p>
+<pre><code class="txt">1. utils 不依赖页面。
+2. utils 不依赖组件。
+3. utils 不直接操作 UI。
+4. utils 尽量写成纯函数。</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/utils/price.ts
+export function formatPrice(value: number) {
+  return `¥${value.toFixed(2)}`
+}</code></pre>
+<pre><code class="ts">// src/utils/storage.ts
+export function getStorage&lt;T&gt;(key: string, fallback: T): T {
+  const value = localStorage.getItem(key)
+
+  if (!value) return fallback
+
+  try {
+    return JSON.parse(value) as T
+  } catch {
+    return fallback
+  }
+}
+
+export function setStorage&lt;T&gt;(key: string, value: T) {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+
+export function removeStorage(key: string) {
+  localStorage.removeItem(key)
+}</code></pre>
+<hr>
+<h2 id="4-10-src-constants"><a href="#4-10-src-constants" class="headerlink" title="4.10 src/constants"></a>4.10 src/constants</h2><p>作用：常量集中管理。</p>
+<p>推荐：</p>
+<pre><code class="txt">constants/storage.ts   localStorage key
+constants/route.ts     路由名称
+constants/status.ts    状态枚举
+constants/tips.ts      固定提示语</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/constants/storage.ts
+export const TOKEN_KEY = &#39;APP_TOKEN&#39;
+export const USER_INFO_KEY = &#39;APP_USER_INFO&#39;
+export const LOCALE_KEY = &#39;APP_LOCALE&#39;
+export const THEME_KEY = &#39;APP_THEME&#39;</code></pre>
+<pre><code class="ts">// src/constants/status.ts
+export const ORDER_STATUS = {
+  pending: &#39;待处理&#39;,
+  paid: &#39;已支付&#39;,
+  delivering: &#39;配送中&#39;,
+  completed: &#39;已完成&#39;,
+  cancelled: &#39;已取消&#39;,
+} as const</code></pre>
+<hr>
+<h2 id="4-11-src-validators"><a href="#4-11-src-validators" class="headerlink" title="4.11 src/validators"></a>4.11 src/validators</h2><p>作用：表单校验和业务校验规则。</p>
+<p>推荐：</p>
+<pre><code class="txt">validators/auth.ts
+validators/order.ts
+validators/product.ts</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// src/validators/auth.ts
+import type { FormRules } from &#39;element-plus&#39;
+
+export const loginRules: FormRules = {
+  username: [
+    {
+      required: true,
+      message: &#39;请输入账号&#39;,
+      trigger: &#39;blur&#39;,
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: &#39;请输入密码&#39;,
+      trigger: &#39;blur&#39;,
+    },
+    {
+      min: 6,
+      message: &#39;密码至少 6 位&#39;,
+      trigger: &#39;blur&#39;,
+    },
+  ],
+}</code></pre>
+<hr>
+<h2 id="4-12-src-components"><a href="#4-12-src-components" class="headerlink" title="4.12 src/components"></a>4.12 src/components</h2><p>作用：可复用组件。</p>
+<p>推荐分层：</p>
+<pre><code class="txt">components/common/     完全通用组件
+components/layout/     布局相关组件
+components/business/   业务组件，可选</code></pre>
+<p>规则：</p>
+<pre><code class="txt">1. 通用组件不要依赖具体业务接口。
+2. 业务组件可以依赖业务类型，但尽量不要直接请求接口。
+3. 大组件要拆分，不要一个 Vue 文件几千行。</code></pre>
+<hr>
+<h2 id="4-13-src-pages"><a href="#4-13-src-pages" class="headerlink" title="4.13 src/pages"></a>4.13 src/pages</h2><p>作用：页面级组件。</p>
+<p>规则：</p>
+<pre><code class="txt">1. pages 负责页面组织。
+2. pages 可以调用 api。
+3. pages 可以使用 composables。
+4. pages 不应该放大量工具函数。
+5. pages 不应该定义大量全局类型。
+6. pages 不应该直接操作 localStorage，应该通过 utils 或 store。</code></pre>
+<p>页面推荐结构：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;section class=&quot;page&quot;&gt;
+    页面内容
+  &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import { ref, onMounted } from &#39;vue&#39;
+import { getProducts } from &#39;@/api/product&#39;
+import type { Product } from &#39;@/types/product&#39;
+import { useLoading } from &#39;@/composables/useLoading&#39;
+import { useMessage } from &#39;@/composables/useMessage&#39;
+
+const products = ref&lt;Product[]&gt;([])
+const { loading, withLoading } = useLoading()
+const message = useMessage()
+
+async function loadProducts() {
+  await withLoading(async () =&gt; {
+    try {
+      const result = await getProducts()
+      products.value = result.list
+    } catch (error: any) {
+      message.error(error.message || &#39;加载失败&#39;)
+    }
+  })
+}
+
+onMounted(() =&gt; {
+  loadProducts()
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.page {
+  padding: 16px;
+}
+&lt;/style&gt;</code></pre>
+<hr>
+<h1 id="5-环境变量规范"><a href="#5-环境变量规范" class="headerlink" title="5. 环境变量规范"></a>5. 环境变量规范</h1><p>必须创建：</p>
+<pre><code class="txt">.env
+.env.development
+.env.staging
+.env.production</code></pre>
+<p>示例：</p>
+<pre><code class="env"># .env
+VITE_APP_NAME=Rental Account Platform</code></pre>
+<pre><code class="env"># .env.development
+VITE_API_BASE_URL=/api
+VITE_APP_ENV=development</code></pre>
+<pre><code class="env"># .env.staging
+VITE_API_BASE_URL=https://staging-api.example.com
+VITE_APP_ENV=staging</code></pre>
+<pre><code class="env"># .env.production
+VITE_API_BASE_URL=https://api.example.com
+VITE_APP_ENV=production</code></pre>
+<p>读取方式：</p>
+<pre><code class="ts">const baseURL = import.meta.env.VITE_API_BASE_URL</code></pre>
+<p>注意：</p>
+<pre><code class="txt">1. Vite 前端环境变量必须以 VITE_ 开头。
+2. 不要把密钥、数据库密码、服务端私钥放前端 .env。
+3. 前端 .env 打包后是可见的，不能存真正的秘密。</code></pre>
+<hr>
+<h1 id="6-main-ts-初始化规范"><a href="#6-main-ts-初始化规范" class="headerlink" title="6. main.ts 初始化规范"></a>6. main.ts 初始化规范</h1><pre><code class="ts">// src/main.ts
+import { createApp } from &#39;vue&#39;
+import { createPinia } from &#39;pinia&#39;
+import ElementPlus from &#39;element-plus&#39;
+import &#39;element-plus/dist/index.css&#39;
+
+import App from &#39;./App.vue&#39;
+import router from &#39;./router&#39;
+
+import &#39;./assets/styles/reset.css&#39;
+import &#39;./assets/styles/variables.css&#39;
+import &#39;./assets/styles/common.css&#39;
+import &#39;./style.css&#39;
+
+const app = createApp(App)
+
+app.use(createPinia())
+app.use(router)
+app.use(ElementPlus)
+
+app.mount(&#39;#app&#39;)</code></pre>
+<hr>
+<h1 id="7-App-vue-规范"><a href="#7-App-vue-规范" class="headerlink" title="7. App.vue 规范"></a>7. App.vue 规范</h1><pre><code class="vue">&lt;template&gt;
+  &lt;RouterView /&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;&lt;/script&gt;</code></pre>
+<p>不要把所有 Header、Drawer、Footer 都直接塞进 App.vue。<br>应该交给 layouts 控制。</p>
+<hr>
+<h1 id="8-vite-config-ts-推荐配置"><a href="#8-vite-config-ts-推荐配置" class="headerlink" title="8. vite.config.ts 推荐配置"></a>8. vite.config.ts 推荐配置</h1><pre><code class="ts">import { fileURLToPath, URL } from &#39;node:url&#39;
+
+import { defineConfig } from &#39;vite&#39;
+import vue from &#39;@vitejs/plugin-vue&#39;
+import VueDevTools from &#39;vite-plugin-vue-devtools&#39;
+
+export default defineConfig({
+  plugins: [vue(), VueDevTools()],
+  resolve: {
+    alias: {
+      &#39;@&#39;: fileURLToPath(new URL(&#39;./src&#39;, import.meta.url)),
+    },
+  },
+  server: {
+    port: 5173,
+    proxy: {
+      &#39;/api&#39;: {
+        target: &#39;http://localhost:3000&#39;,
+        changeOrigin: true,
+        rewrite: (path) =&gt; path.replace(/^\/api/, &#39;&#39;),
+      },
+    },
+  },
+})</code></pre>
+<p>如果后端接口本身就是 <code>/api</code> 开头，rewrite 根据实际情况调整。</p>
+<hr>
+<h1 id="9-tsconfig-规范"><a href="#9-tsconfig-规范" class="headerlink" title="9. tsconfig 规范"></a>9. tsconfig 规范</h1><p>确保支持 <code>@</code> 路径别名。</p>
+<pre><code class="json">{
+  &quot;compilerOptions&quot;: {
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;: {
+      &quot;@/*&quot;: [&quot;src/*&quot;]
+    }
+  }
+}</code></pre>
+<hr>
+<h1 id="10-ESLint-Prettier-规范"><a href="#10-ESLint-Prettier-规范" class="headerlink" title="10. ESLint / Prettier 规范"></a>10. ESLint / Prettier 规范</h1><h2 id="10-1-prettierrc"><a href="#10-1-prettierrc" class="headerlink" title="10.1 .prettierrc"></a>10.1 .prettierrc</h2><pre><code class="json">{
+  &quot;semi&quot;: false,
+  &quot;singleQuote&quot;: true,
+  &quot;printWidth&quot;: 100,
+  &quot;trailingComma&quot;: &quot;all&quot;
+}</code></pre>
+<h2 id="10-2-editorconfig"><a href="#10-2-editorconfig" class="headerlink" title="10.2 .editorconfig"></a>10.2 .editorconfig</h2><pre><code class="ini">root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true</code></pre>
+<h2 id="10-3-package-json-scripts"><a href="#10-3-package-json-scripts" class="headerlink" title="10.3 package.json scripts"></a>10.3 package.json scripts</h2><pre><code class="json">{
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;vue-tsc -b &amp;&amp; vite build&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;,
+    &quot;lint&quot;: &quot;eslint .&quot;,
+    &quot;format&quot;: &quot;prettier --write .&quot;,
+    &quot;test:unit&quot;: &quot;vitest&quot;,
+    &quot;test:e2e&quot;: &quot;playwright test&quot;
+  }
+}</code></pre>
+<hr>
+<h1 id="11-Pinia-使用边界"><a href="#11-Pinia-使用边界" class="headerlink" title="11. Pinia 使用边界"></a>11. Pinia 使用边界</h1><h2 id="11-1-应该放-Pinia-的内容"><a href="#11-1-应该放-Pinia-的内容" class="headerlink" title="11.1 应该放 Pinia 的内容"></a>11.1 应该放 Pinia 的内容</h2><pre><code class="txt">token
+用户信息
+用户权限
+语言
+主题
+全局菜单状态
+全局布局状态
+购物车这类跨页面长期状态</code></pre>
+<h2 id="11-2-不应该放-Pinia-的内容"><a href="#11-2-不应该放-Pinia-的内容" class="headerlink" title="11.2 不应该放 Pinia 的内容"></a>11.2 不应该放 Pinia 的内容</h2><pre><code class="txt">接口请求函数
+纯工具函数
+静态文本
+静态配置
+只在一个页面用的表单数据
+只在一个组件用的 loading
+临时弹窗开关</code></pre>
+<h2 id="11-3-判断标准"><a href="#11-3-判断标准" class="headerlink" title="11.3 判断标准"></a>11.3 判断标准</h2><pre><code class="txt">如果刷新页面后不需要恢复，且只有当前页面使用，不要放 Pinia。
+如果多个页面都要用，或者需要长期保存，可以考虑 Pinia。
+如果是静态内容，不要放 Pinia。
+如果是工具能力，不要放 Pinia。</code></pre>
+<hr>
+<h1 id="12-接口层规范"><a href="#12-接口层规范" class="headerlink" title="12. 接口层规范"></a>12. 接口层规范</h1><h2 id="12-1-正确调用链"><a href="#12-1-正确调用链" class="headerlink" title="12.1 正确调用链"></a>12.1 正确调用链</h2><pre><code class="txt">页面组件
+  ↓
+api 业务接口函数
+  ↓
+request 统一请求层
+  ↓
+后端接口</code></pre>
+<h2 id="12-2-禁止调用链"><a href="#12-2-禁止调用链" class="headerlink" title="12.2 禁止调用链"></a>12.2 禁止调用链</h2><pre><code class="txt">页面组件直接 fetch
+页面组件直接 axios
+页面组件直接拼 Authorization
+页面组件重复写错误处理
+页面组件重复写 baseURL</code></pre>
+<h2 id="12-3-推荐写法"><a href="#12-3-推荐写法" class="headerlink" title="12.3 推荐写法"></a>12.3 推荐写法</h2><pre><code class="ts">// 页面
+const products = await getProducts({ page: 1, pageSize: 20 })
+
+// api/product.ts
+export function getProducts(params: ProductQuery) {
+  return request.get&lt;PageResult&lt;Product&gt;&gt;(&#39;/products&#39;, { params })
+}</code></pre>
+<hr>
+<h1 id="13-错误处理规范"><a href="#13-错误处理规范" class="headerlink" title="13. 错误处理规范"></a>13. 错误处理规范</h1><p>商业项目至少要处理：</p>
+<pre><code class="txt">400 参数错误
+401 登录失效
+403 没有权限
+404 资源不存在
+408 请求超时
+500 服务器错误
+网络断开
+JSON 解析失败
+接口返回结构不符合预期</code></pre>
+<p>原则：</p>
+<pre><code class="txt">1. request 层处理通用错误。
+2. 页面层处理业务错误。
+3. 401 在 request 层统一退出登录。
+4. 表单校验错误在页面层或 validators 处理。
+5. 不要每个页面重复写同样的 401 判断。</code></pre>
+<hr>
+<h1 id="14-权限设计规范"><a href="#14-权限设计规范" class="headerlink" title="14. 权限设计规范"></a>14. 权限设计规范</h1><h2 id="14-1-路由-meta"><a href="#14-1-路由-meta" class="headerlink" title="14.1 路由 meta"></a>14.1 路由 meta</h2><pre><code class="ts">meta: {
+  title: &#39;订单管理&#39;,
+  requiresAuth: true,
+  roles: [&#39;admin&#39;],
+  permissions: [&#39;order:list&#39;]
+}</code></pre>
+<h2 id="14-2-权限判断位置"><a href="#14-2-权限判断位置" class="headerlink" title="14.2 权限判断位置"></a>14.2 权限判断位置</h2><pre><code class="txt">router/guard.ts        页面级权限
+components             按钮级权限
+stores/user.ts         保存角色和权限</code></pre>
+<h2 id="14-3-按钮权限示例"><a href="#14-3-按钮权限示例" class="headerlink" title="14.3 按钮权限示例"></a>14.3 按钮权限示例</h2><pre><code class="ts">// src/composables/usePermission.ts
+import { useUserStore } from &#39;@/stores/user&#39;
+
+export function usePermission() {
+  const userStore = useUserStore()
+
+  function hasPermission(permission: string) {
+    return userStore.permissions.includes(permission)
+  }
+
+  function hasRole(role: string) {
+    return userStore.roles.includes(role)
+  }
+
+  return {
+    hasPermission,
+    hasRole,
+  }
+}</code></pre>
+<hr>
+<h1 id="15-表单规范"><a href="#15-表单规范" class="headerlink" title="15. 表单规范"></a>15. 表单规范</h1><p>表单页面应包含：</p>
+<pre><code class="txt">1. 表单数据
+2. 表单校验规则
+3. submit loading
+4. 防重复提交
+5. 错误提示
+6. 成功后跳转或刷新</code></pre>
+<p>表单校验规则优先放：</p>
+<pre><code class="txt">src/validators/</code></pre>
+<p>不要所有规则都散落在页面里。</p>
+<hr>
+<h1 id="16-列表页规范"><a href="#16-列表页规范" class="headerlink" title="16. 列表页规范"></a>16. 列表页规范</h1><p>列表页通常包括：</p>
+<pre><code class="txt">1. keyword 搜索
+2. page
+3. pageSize
+4. total
+5. loading
+6. table data
+7. refresh
+8. delete confirm
+9. error message</code></pre>
+<p>可以抽出：</p>
+<pre><code class="txt">usePagination
+useTable
+useConfirm</code></pre>
+<hr>
+<h1 id="17-样式规范"><a href="#17-样式规范" class="headerlink" title="17. 样式规范"></a>17. 样式规范</h1><p>推荐：</p>
+<pre><code class="txt">src/assets/styles/
+  reset.css
+  variables.css
+  element.css
+  common.css
+
+src/style.css</code></pre>
+<h2 id="17-1-variables-css"><a href="#17-1-variables-css" class="headerlink" title="17.1 variables.css"></a>17.1 variables.css</h2><pre><code class="css">:root {
+  --app-primary-color: #409eff;
+  --app-bg-color: #f5f7fa;
+  --app-text-color: #303133;
+  --app-border-color: #dcdfe6;
+  --app-header-height: 56px;
+  --app-sidebar-width: 220px;
+}</code></pre>
+<h2 id="17-2-组件样式规则"><a href="#17-2-组件样式规则" class="headerlink" title="17.2 组件样式规则"></a>17.2 组件样式规则</h2><pre><code class="txt">1. 页面组件可以使用 scoped。
+2. 全局样式放 assets/styles。
+3. 不要在多个页面重复定义相同按钮、卡片、间距样式。
+4. 不建议滥用 !important。
+5. 样式命名保持清晰。</code></pre>
+<hr>
+<h1 id="18-图片和静态资源规范"><a href="#18-图片和静态资源规范" class="headerlink" title="18. 图片和静态资源规范"></a>18. 图片和静态资源规范</h1><pre><code class="txt">src/assets/images/      参与打包的图片
+src/assets/svg/         SVG 图标
+public/                 不经过打包处理的静态资源</code></pre>
+<p>使用规则：</p>
+<pre><code class="txt">1. 需要 import 的图片放 src/assets。
+2. 需要通过固定 URL 访问的文件放 public。
+3. 大图要压缩。
+4. 不要把无用截图、临时图片放进项目。</code></pre>
+<hr>
+<h1 id="19-测试规范"><a href="#19-测试规范" class="headerlink" title="19. 测试规范"></a>19. 测试规范</h1><p>商业项目不是必须一开始大量写测试，但建议至少覆盖：</p>
+<pre><code class="txt">1. utils 纯函数
+2. 登录流程
+3. 下单流程
+4. 订单删除、编辑这类高风险操作
+5. 权限跳转</code></pre>
+<p>推荐：</p>
+<pre><code class="txt">Vitest       单元测试
+Playwright   E2E 测试</code></pre>
+<p>示例：</p>
+<pre><code class="ts">// tests/unit/utils/price.test.ts
+import { describe, expect, it } from &#39;vitest&#39;
+import { formatPrice } from &#39;@/utils/price&#39;
+
+describe(&#39;formatPrice&#39;, () =&gt; {
+  it(&#39;formats price correctly&#39;, () =&gt; {
+    expect(formatPrice(12)).toBe(&#39;¥12.00&#39;)
+  })
+})</code></pre>
+<hr>
+<h1 id="20-监控和日志规范"><a href="#20-监控和日志规范" class="headerlink" title="20. 监控和日志规范"></a>20. 监控和日志规范</h1><p>商业项目上线后建议接入：</p>
+<pre><code class="txt">1. JS 错误监控
+2. 接口错误监控
+3. 白屏监控
+4. 性能监控
+5. 用户操作关键路径日志</code></pre>
+<p>可以预留目录：</p>
+<pre><code class="txt">src/monitor/
+  error.ts
+  performance.ts</code></pre>
+<p>基础错误监听：</p>
+<pre><code class="ts">// src/monitor/error.ts
+export function setupErrorMonitor() {
+  window.addEventListener(&#39;error&#39;, (event) =&gt; {
+    console.error(&#39;Global error:&#39;, event.error)
+  })
+
+  window.addEventListener(&#39;unhandledrejection&#39;, (event) =&gt; {
+    console.error(&#39;Unhandled promise rejection:&#39;, event.reason)
+  })
+}</code></pre>
+<hr>
+<h1 id="21-Docker-部署规范"><a href="#21-Docker-部署规范" class="headerlink" title="21. Docker 部署规范"></a>21. Docker 部署规范</h1><p>前端 Dockerfile 示例：</p>
+<pre><code class="dockerfile">FROM node:20-alpine AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</code></pre>
+<p>nginx.conf 示例：</p>
+<pre><code class="nginx">server {
+  listen 80;
+  server_name _;
+
+  root /usr/share/nginx/html;
+  index index.html;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+
+  location /api/ {
+    proxy_pass http://backend:3000/;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+}</code></pre>
+<hr>
+<h1 id="22-README-md-必须包含什么"><a href="#22-README-md-必须包含什么" class="headerlink" title="22. README.md 必须包含什么"></a>22. README.md 必须包含什么</h1><p>商业项目 README 至少包含：</p>
+<pre><code class="txt">1. 项目简介
+2. 技术栈
+3. 目录结构
+4. 环境要求
+5. 安装依赖
+6. 本地启动
+7. 环境变量说明
+8. 打包构建
+9. 部署方式
+10. 接口代理说明
+11. 代码规范
+12. 常见问题</code></pre>
+<p>README 模板：</p>
+<pre><code class="md"># Project Name
+
+## 技术栈
+
+- Vue3
+- TypeScript
+- Vite
+- Vue Router
+- Pinia
+- Element Plus
+
+## 安装
+
+```bash
+npm install</code></pre>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><pre><code class="bash">npm run dev</code></pre>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><pre><code class="bash">npm run build</code></pre>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VITE_API_BASE_URL</td>
+<td>API 地址</td>
+</tr>
+<tr>
+<td>VITE_APP_ENV</td>
+<td>当前环境</td>
+</tr>
+</tbody></table>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>见项目结构说明。</p>
+<pre><code>
+---
+
+# 23. Git 规范
+
+## 23.1 .gitignore
+
+```gitignore
+node_modules
+dist
+.env.local
+.DS_Store
+*.log
+*.bak</code></pre><p>不要提交：</p>
+<pre><code class="txt">node_modules
+dist
+日志文件
+临时备份文件
+本地环境文件</code></pre>
+<h2 id="23-2-分支建议"><a href="#23-2-分支建议" class="headerlink" title="23.2 分支建议"></a>23.2 分支建议</h2><pre><code class="txt">main        生产分支
+develop     开发分支
+feature/*   功能分支
+fix/*       修复分支
+release/*   发布分支</code></pre>
+<h2 id="23-3-提交信息建议"><a href="#23-3-提交信息建议" class="headerlink" title="23.3 提交信息建议"></a>23.3 提交信息建议</h2><pre><code class="txt">feat: 新功能
+fix: 修复问题
+docs: 文档
+style: 样式调整
+refactor: 重构
+test: 测试
+chore: 工程配置</code></pre>
+<p>示例：</p>
+<pre><code class="bash">git commit -m &quot;feat: add order management page&quot;</code></pre>
+<hr>
+<h1 id="24-当前项目常见问题修正建议"><a href="#24-当前项目常见问题修正建议" class="headerlink" title="24. 当前项目常见问题修正建议"></a>24. 当前项目常见问题修正建议</h1><p>如果已有项目结构类似：</p>
+<pre><code class="txt">src/
+  api/
+  stores/
+    api.ts
+    i18n-en.ts
+    i18n-zh.ts</code></pre>
+<p>建议改成：</p>
+<pre><code class="txt">src/
+  api/
+  request/
+    index.ts
+    error.ts
+  stores/
+    app.ts
+    auth.ts
+  i18n/
+    index.ts
+    messages/
+      en.ts
+      zh.ts</code></pre>
+<p>原因：</p>
+<pre><code class="txt">stores/api.ts 不是状态管理，应该移动到 request/index.ts。
+i18n-en.ts 不是状态管理，应该移动到 i18n/messages/en.ts。
+stores 只保留真正的全局状态。</code></pre>
+<hr>
+<h1 id="25-fetch-和-axios-怎么选"><a href="#25-fetch-和-axios-怎么选" class="headerlink" title="25. fetch 和 axios 怎么选"></a>25. fetch 和 axios 怎么选</h1><h2 id="25-1-继续用-fetch-的条件"><a href="#25-1-继续用-fetch-的条件" class="headerlink" title="25.1 继续用 fetch 的条件"></a>25.1 继续用 fetch 的条件</h2><pre><code class="txt">1. 项目不复杂
+2. 接口数量不多
+3. 愿意自己封装 timeout、错误处理、JSON 解析、FormData 兼容
+4. 不需要 axios 拦截器生态</code></pre>
+<h2 id="25-2-推荐-axios-的条件"><a href="#25-2-推荐-axios-的条件" class="headerlink" title="25.2 推荐 axios 的条件"></a>25.2 推荐 axios 的条件</h2><pre><code class="txt">1. 商业项目长期维护
+2. 接口很多
+3. 多人协作
+4. 需要统一请求/响应拦截器
+5. 需要更成熟的错误处理
+6. 需要上传、下载、取消请求等能力</code></pre>
+<h2 id="25-3-关键结论"><a href="#25-3-关键结论" class="headerlink" title="25.3 关键结论"></a>25.3 关键结论</h2><pre><code class="txt">商业项目不是必须 axios。
+但商业项目必须有统一 request 层。
+fetch 可以用，但不能散着写。
+axios 可以用，但也不能直接在页面里乱写。</code></pre>
+<hr>
+<h1 id="26-AI-生成项目时的执行步骤"><a href="#26-AI-生成项目时的执行步骤" class="headerlink" title="26. AI 生成项目时的执行步骤"></a>26. AI 生成项目时的执行步骤</h1><p>AI 应按这个顺序创建：</p>
+<pre><code class="txt">第 1 步：创建 Vite Vue TS 项目
+第 2 步：安装 router、pinia、element-plus、axios
+第 3 步：创建完整 src 目录结构
+第 4 步：配置 @ 路径别名
+第 5 步：配置 env 文件
+第 6 步：创建 request 统一请求层
+第 7 步：创建 api 业务接口层
+第 8 步：创建 types 类型层
+第 9 步：创建 stores 状态层
+第 10 步：创建 router/routes/guard
+第 11 步：创建 layouts
+第 12 步：创建 pages
+第 13 步：创建 components
+第 14 步：创建 composables
+第 15 步：创建 utils
+第 16 步：创建 validators
+第 17 步：创建 i18n
+第 18 步：配置 main.ts
+第 19 步：配置 App.vue
+第 20 步：配置 ESLint、Prettier、EditorConfig
+第 21 步：配置测试目录
+第 22 步：配置 Dockerfile
+第 23 步：完善 README
+第 24 步：运行 npm run build 检查类型和打包</code></pre>
+<hr>
+<h1 id="27-AI-生成代码时的禁止事项"><a href="#27-AI-生成代码时的禁止事项" class="headerlink" title="27. AI 生成代码时的禁止事项"></a>27. AI 生成代码时的禁止事项</h1><pre><code class="txt">1. 禁止在页面里直接 fetch。
+2. 禁止在页面里直接 axios。
+3. 禁止把 request 放 stores。
+4. 禁止把 i18n 字典放 stores。
+5. 禁止把所有类型都写在页面里。
+6. 禁止把所有接口写在一个巨大 api.ts 里。
+7. 禁止所有页面共用一个巨大 style.css。
+8. 禁止把 token 判断写在每个页面里。
+9. 禁止把登录失效处理写在每个接口里。
+10. 禁止把大量重复的 Element Plus message 逻辑散落在页面中。
+11. 禁止提交 .bak 文件。
+12. 禁止提交 dist、node_modules、日志文件。</code></pre>
+<hr>
+<h1 id="28-最小可用商业项目结构"><a href="#28-最小可用商业项目结构" class="headerlink" title="28. 最小可用商业项目结构"></a>28. 最小可用商业项目结构</h1><p>如果项目比较小，可以先使用精简版：</p>
+<pre><code class="txt">src/
+  api/
+    order.ts
+    product.ts
+    system.ts
+
+  request/
+    index.ts
+    error.ts
+
+  assets/
+    styles/
+
+  components/
+
+  composables/
+    useMessage.ts
+    useLoading.ts
+
+  constants/
+    storage.ts
+
+  i18n/
+    index.ts
+    messages/
+
+  layouts/
+    MainLayout.vue
+    AdminLayout.vue
+    BlankLayout.vue
+
+  pages/
+
+  router/
+    index.ts
+    routes.ts
+    guard.ts
+
+  stores/
+    app.ts
+    auth.ts
+
+  types/
+    api.ts
+    order.ts
+    product.ts
+    user.ts
+
+  utils/
+    storage.ts
+    format.ts
+
+  validators/
+    auth.ts
+
+  App.vue
+  main.ts
+  style.css</code></pre>
+<p>这个版本已经足够支撑大多数中小商业项目。</p>
+<hr>
+<h1 id="29-推荐最终结论"><a href="#29-推荐最终结论" class="headerlink" title="29. 推荐最终结论"></a>29. 推荐最终结论</h1><p>一个合格的 Vue3 商业项目前端，不是看用了多少技术，而是看是否具备这些基础能力：</p>
+<pre><code class="txt">1. 请求统一
+2. 状态边界清晰
+3. 路由权限清晰
+4. 类型定义清晰
+5. 目录职责清晰
+6. 环境变量清晰
+7. 错误处理清晰
+8. 表单校验清晰
+9. 样式组织清晰
+10. 构建部署清晰
+11. README 清晰
+12. 后期扩展不混乱</code></pre>
+<p>优先补齐：</p>
+<pre><code class="txt">request
+env
+router guard
+types
+i18n
+layouts
+validators
+eslint/prettier
+README</code></pre>
+<p>不要一开始追求复杂架构。<br>先做到边界清楚，再逐步增加测试、监控、CI/CD。</p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/AI/" title="AI">AI</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2026/04/12/node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E3%80%81volta%E3%80%81fnm/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">node版本管理工具nvm、volta、fnm</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2025/12/18/JavaScript_ES6-ES15_%E6%89%80%E6%9C%89%E6%96%B0%E7%89%B9%E6%80%A7/">
+                <span class="nav-default">JavaScript ES 版本特性（ES6-ES15）</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container">
+<div id="vcomments"></div>
+</div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2026
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">zeg</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+	
+<script src="/js/search.js"></script>
+
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+       prettyPrint();
+	   
+	   
+	   var hiddenProperty = 'hidden' in document ? 'hidden' :    
+	       'webkitHidden' in document ? 'webkitHidden' :    
+	       'mozHidden' in document ? 'mozHidden' :    
+	       null;
+	   var realTitle = 'Vue3 + TypeScript 商业化前端项目从 0 到完整结构搭建规范';
+	   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+	   var onVisibilityChange = function(){
+	       if (!document[hiddenProperty]) {
+	           document.title = realTitle;
+	       }else{
+	           document.title = '藏起来啦 (*´∇｀*)';
+	       }
+	   }
+	   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	   
+	   
+	    new Valine({
+	               el: '#vcomments' ,
+	                   appId: 'ECqpaC0iXQ26KQJHF9olNbFh-gzGzoHsz',
+	                   appKey: 'opIxDQ23FmemTLQXoqY4EQT9',
+	                   notify:false, 
+	                   verify:false, 
+	                   avatar:'mp', 
+	                   placeholder: 'just go go' 
+	           })
+</script>
+</html>

@@ -152,6 +152,84 @@ var CONFIG = {
     
         <article class="post-abstract">
             <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">github+Hexo搭建博客</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-20</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>　　以前用wordpress写的博客，因为疏于更新后台，被勤劳的小蜜蜂们各种挂马，服务商给我下通牒的时候我才知道，记录的东西也丢失了七七八八。最近闲下来在看nodejs相关的资料时，无意间了解到hexo，然后决定入坑.  </p>
+                    <div class="read-more">
+                        <a href="/2018/11/20/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/06/28/git%E6%97%A5%E5%B8%B8/">git日常</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-06-28</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><pre><code>git init</code></pre><h4 id="1-先把所有文件加入-Git-跟踪"><a href="#1-先把所有文件加入-Git-跟踪" class="headerlink" title="1. 先把所有文件加入 Git 跟踪"></a>1. 先把所有文件加入 Git 跟踪</h4><pre><code>git add .</code></pre><h4 id="2-提交这些文件（第一次备份）"><a href="#2-提交这些文件（第一次备份）" class="headerlink" title="2. 提交这些文件（第一次备份）"></a>2. 提交这些文件（第一次备份）</h4><pre><code>git commit -m &#39;注释(第一次备份)&#39;</code></pre><h4 id="3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"><a href="#3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上" class="headerlink" title="3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上"></a>3、去github创建repository，记下地址，https和git都行，https老是出问题，建议用git；然后将本地仓库跟github上新建的repository关联上</h4><pre><code>git remote add origin 仓库的地址</code></pre><h4 id="4、推送到-GitHub（注意分支名）"><a href="#4、推送到-GitHub（注意分支名）" class="headerlink" title="4、推送到 GitHub（注意分支名）"></a>4、推送到 GitHub（注意分支名）</h4><p>#####本地分支是 master，而 GitHub 默认是 main，所以需要这样推：</p>
+<pre><code>git push -u origin master:main</code></pre><p>执行完没问题就完事了，如果上传失败，可能是因为README.md没下载下来，先下载再上传</p>
+<pre><code>git pull --rebase origin master</code></pre><h5 id="或者直接把本地分支名改成-main，更方便："><a href="#或者直接把本地分支名改成-main，更方便：" class="headerlink" title="或者直接把本地分支名改成 main，更方便："></a>或者直接把本地分支名改成 main，更方便：</h5><pre><code>git branch -M main
+git push -u origin main</code></pre><p>执行完以上命令，本地的文件就成功备份到 GitHub 了<br>以后提交新代码，只需要：</p>
+<pre><code>git add .
+git commit -m &#39;注释&#39;
+git push</code></pre><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><h4 id="第一次下载"><a href="#第一次下载" class="headerlink" title="第一次下载"></a>第一次下载</h4><pre><code>进到目录，git clone 地址</code></pre><h4 id="下载更新"><a href="#下载更新" class="headerlink" title="下载更新"></a>下载更新</h4><pre><code>//方法一：（安全同步法）
+$ git fetch origin master                 //从远程的origin仓库的master分支下载代码到本地的origin master // 下载云端最新代码，但**不修改本地代码**
+$ git log -p master.. origin/master        // 对比：云端比本地多了哪些改动
+$ git merge origin/master                // 把云端新代码合并到本地master分支
+
+//方法二
+$ git fetch origin master:temp             // 下载云端代码 → 新建一个叫 temp 的临时分支
+$ git diff temp                            // 比较本地和云端的不同    
+$ git merge temp                        // 合并临时版本到本地
+$ git branch -d temp                    //删除temp
+
+//方式三： GitHub上的文件变新了 → 把最新内容同步到自己电脑已关联的项目上。 git pull = git fetch + git merge
+$ git pull //更新远程代码到本地</code></pre><h5 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h5><p>代理 = 给 Git 开一条 “更快、更稳” 的路，让你能正常连接 GitHub，不卡、不掉、不报错。</p>
+<pre><code>git config --global https.proxy http://127.0.0.1:7890
+git config --global http.proxy http://127.0.0.1:7890
+
+# 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy</code></pre><p>为什么要设置代理？<br>因为：</p>
+<ul>
+<li>GitHub 在国外</li>
+<li>国内直接连接经常很慢、连不上、上传失败</li>
+<li>你电脑如果开了梯子（科学上网），Git 不会自动用，必须手动告诉它：“走我这个梯子！”</li>
+</ul>
+
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
                 <h2><a class="post-title-link" href="/2018/05/24/json%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C/">json数组的增删改操作</a></h2>
             </div>
             <div class="post-meta">
@@ -314,60 +392,6 @@ console.log(a);// 1,2,3  不改变本身  </code></pre>
                             <i class="iconfont icon-readmore"></i>
                         </a>
                     </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/">js/jquery选中部分文字功能</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-10-18</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>项目上需要一个文件重命名功能，就像百度网盘的文件重命名一样，只选中文件名不选中后缀:<br>这样子：<br><img src="http://zzzeg.github.io/img/0001.jpg" alt=""><br>代码如下：<br>
-                    <div class="read-more">
-                        <a href="/2016/10/18/js-jquery%E9%80%89%E4%B8%AD%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E5%8A%9F%E8%83%BD/" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/2016/07/14/something-about-JQueryUi/">Something About JQueryUi</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2016-07-14</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>1、需要对IE6支持的话，只能使用jQuery UI 1.9.2，目前官网<a href="//jqueryui.com/download/" target="_blank" rel="noopener">定制页</a>只有1.9.2会支持IE6，</p>
-<p>jQuery UI Upgrade Guide（升级指南）中指出</p>
-<p><a href="//jqueryui.com/upgrade-guide/1.10/" target="_blank" rel="noopener">jQuery UI 1.10 Upgrade Guide</a></p>
-<h3 id="Removed-support-for-IE6"><a href="#Removed-support-for-IE6" class="headerlink" title="Removed support for IE6"></a><a href="#Removed-support-for-IE6" title="Removed support for IE6"></a>Removed support for IE6</h3><p>IE6 usage has dropped to a low enough point that jQuery UI no longer finds it necessary to support. As of 1.10.0, some portions of jQuery UI may not work properly in IE6. If you need to continue to support IE6, use the latest jQuery UI 1.9 release.<br><a href="//jqueryui.com/upgrade-guide/1.11/" target="_blank" rel="noopener">jQuery UI 1.11 Upgrade Guide</a></p>
-<h3 id="Discontinued-IE7-Support"><a href="#Discontinued-IE7-Support" class="headerlink" title="Discontinued IE7 Support"></a><a href="#Discontinued-IE7-Support" title="Discontinued IE7 Support"></a>Discontinued IE7 Support</h3><p>As of this release we are no longer accepting bug reports for IE7 issues. We have also removed IE7 from our testing infrastructure. The IE7 workarounds are still present in the code, but we will remove them for jQuery UI 1.12.</p>
-<p>2、部分组件只在服务端生效，目前用过的服务端生效的有：resizable、slider、</p>
-
                 
             </div>
         </article>
